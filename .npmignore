@@ -1,0 +1,7 @@
+.git*
+nano.*
+examples
+plugins
+vendor
+docs/*.php
+tests/*.html
