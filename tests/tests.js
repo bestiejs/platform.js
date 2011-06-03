@@ -10,6 +10,8 @@
    */
   function each(object, callback) {
     var i = -1,
+        result = object,
+        object = Object(object),
         length = object.length;
 
     if ('length' in object && length > -1 && length < 4294967296) {
@@ -25,7 +27,7 @@
         }
       }
     }
-    return object;
+    return result;
   }
 
   /**
