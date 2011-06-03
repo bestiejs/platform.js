@@ -147,7 +147,7 @@
    * @returns {Object} The current platform object.
    */
   function noConflict() {
-    window.platform = old;
+    window['platform'] = old;
     return this;
   }
 
@@ -392,6 +392,8 @@
   } else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     define(function() { return platform; });
   } else {
-    window.platform = platform;
+    // use square bracket notation so Closure Compiler won't mung `platform`
+    // http://code.google.com/closure/compiler/docs/api-tutorial3.html#export
+    window['platform'] = platform;
   }
 }(this));

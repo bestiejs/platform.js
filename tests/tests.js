@@ -1343,7 +1343,7 @@
   });
 
   test('require("platform")', function() {
-    equals(platform2 && platform2.description, platform.description, 'require("platform")');
+    equals((platform2 || { }).description, platform.description, 'require("platform")');
   });
 
 }());
