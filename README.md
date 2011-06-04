@@ -2,6 +2,10 @@
 
 A platform detection library that works on nearly all JavaScript platforms.
 
+## Disclaimer
+
+Platform.js is for informational purposes only and **not** intended as a substitution for [feature detection/inference](http://www.screenr.com/5Ab) checks.
+
 ## Documentation
 
 The documentation for Platform.js can be viewed here: [/docs/README.md](https://github.com/bestiejs/platform.js/blob/master/docs/README.md#readme)
