@@ -4,9 +4,9 @@ A platform detection library that works on nearly all JavaScript platforms.
 
 ## Documentation
 
-The documentation for Platform.js can be viewed here: [/docs/README.md](https://github.com/bestiejs/Platform.js/blob/master/docs/README.md#readme)
+The documentation for Platform.js can be viewed here: [/docs/README.md](https://github.com/bestiejs/platform.js/blob/master/docs/README.md#readme)
 
-For a list of upcoming features, check out our [roadmap](https://github.com/bestiejs/Platform.js/wiki/Roadmap).
+For a list of upcoming features, check out our [roadmap](https://github.com/bestiejs/platform.js/wiki/Roadmap).
 
 ## Installation and usage
 
@@ -65,15 +65,15 @@ console.log(platform.description);
 To clone this repository including all submodules, using git 1.6.5 or later:
 
 ~~~ bash
-git clone --recursive https://github.com/bestiejs/Platform.js.git
-cd Platform.js
+git clone --recursive https://github.com/bestiejs/platform.js.git
+cd platform.js
 ~~~
 
 For older git versions, just use:
 
 ~~~ bash
-git clone https://github.com/bestiejs/Platform.js.git
-cd Platform.js
+git clone https://github.com/bestiejs/platform.js.git
+cd platform.js
 git submodule update --init
 ~~~
 
