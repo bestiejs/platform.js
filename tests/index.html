@@ -8,14 +8,20 @@
 		<script src="../platform.js"></script>
 		<script src="../vendor/requirejs/require.js"></script>
 		<script>
-		require({
-			'baseUrl': '../vendor/requirejs/',
-			'paths': { 'src': '../../' }
-		},
-		['src/platform'], function(platform) {
-			platform2 = platform;
-			require(['tests.js']);
-		});
+		if (/[?&]norequire=true(?:&|$)/.test(location.search)) {
+			require = define = null;
+			document.write('<script src="tests.js"><\/script>');
+		}
+		else {
+			require({
+				'baseUrl': '../vendor/requirejs/',
+				'paths': { 'src': '../../' }
+			},
+			['src/platform'], function(platform) {
+				platform2 = platform;
+				require(['tests.js']);
+			});
+		}
 		</script>
 	</head>
 	<body>
