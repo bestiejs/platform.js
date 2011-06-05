@@ -137,7 +137,7 @@
       var src = element.src;
       if (/platform\.js$/.test(src)) {
         xhr.open('get', src + '?t=' + (+new Date), false);
-        xhr.send();
+        xhr.send(null);
         compiled = Function('isClassOf,reduce,options',
           ('return ' +
           /\(function(?:.|\n|\r)+?platform\s*=\s*\{(?:.|\n|\r)+?};/.exec(xhr.responseText)[0] +
