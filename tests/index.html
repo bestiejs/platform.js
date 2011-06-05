@@ -29,8 +29,10 @@
 				require(['tests.js']);
 			});
 		}
-		var onload = function() {
-			document.getElementById('qunit-userAgent').innerHTML = platform;
+		window.onload = function() {
+			setTimeout(function() {
+				document.getElementById('qunit-userAgent').innerHTML = platform;
+			}, 15);
 		};
 		</script>
 	</body>

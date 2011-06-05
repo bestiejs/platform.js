@@ -49,13 +49,13 @@
   data = { '6.1': 'Server 2008 R2 / 7', '6.0': 'Server 2008 / Vista', '5.2': 'Server 2003 / XP x64', '5.1': 'XP', '5.0': '2000', '4.0': 'NT', '4.9': 'ME' },
 
   /**  String of detectable layout engines */
-  layout = 'iCab,Presto,NetFront,Trident,WebKit,KHTML,Gecko',
+  layout = 'iCab,Presto,NetFront,Tasman,Trident,WebKit,KHTML,Gecko',
 
   /** String of detectable browser names */
   name = 'Arora,Avant Browser,Camino,Epiphany,Fennec,Flock,Galeon,GreenBrowser,iCab,Iron,K-Meleon,Konqueror,Lunascape,Maxthon,Midori,Minefield,Nook Browser,Rekonq,RockMelt,SeaMonkey,Sleipnir,SlimBrowser,Sunrise,Swiftfox,Opera Mini,Opera,Chrome,Firefox,IE,Safari',
 
   /** String of detectable operating systems */
-  os = 'Android,Cygwin,SymbianOS,webOS[ /]\\d,Linux,Mac OS(?: X)?,Macintosh,Windows 98;,Windows ',
+  os = 'Android,Cygwin,SymbianOS,webOS[ /]\\d,Linux,Mac OS(?: X)?,Macintosh,Mac,Windows 98;,Windows ',
 
   /** String of detectable products */
   product = 'BlackBerry\\s?\\d+,iP[ao]d,iPhone,Kindle,Nokia,Nook,PlayBook,Samsung,Xoom',
@@ -200,8 +200,9 @@
       }
       // cleanup
       os = String(os).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess)
+        .replace('Macintosh', 'Mac OS').replace(/_PowerPC/, ' OS').replace(/(OS X) Mach$/, '$1')
         .replace(/\/(\d)/, ' $1').replace(/_/g, '.').replace(/x86\.64/g, 'x86_64')
-        .replace('Macintosh', 'Mac OS').replace(/(OS X) Mach$/, '$1').split(' on ')[0];
+        .split(' on ')[0];
     }
     return os;
   });
@@ -226,7 +227,7 @@
     });
   }
   // detect stubborn layout engines
-  if (data = !layout && (opera && 'Presto' || /\bMSIE\b/.test(ua) && 'Trident') || /\b(Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
+  if (data = !layout && (opera && 'Presto' || /\bMSIE\b/.test(ua) && (/^M/.test(os) ? 'Tasman' : 'Trident')) || /\b(Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
     layout = [data];
   } else if (layout == 'iCab') {
     layout = parseFloat(version) > 3 ? ['WebKit'] : layout;
