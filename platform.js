@@ -340,21 +340,21 @@
      * @member platform
      * @type {String|Null}
      */
-    'version': name && version && description.unshift(version) && version,
+    'version': name && version && (description.unshift(version), version),
 
     /**
      * The name of the browser/environment.
      * @member platform
      * @type {String|Null}
      */
-    'name': name && description.unshift(name) && name,
+    'name': name && (description.unshift(name), name),
 
     /**
      * The name of the operating system.
      * @member platform
      * @type {String|Null}
      */
-    'os': name && (os = os && format(os)) && description.push(product ? '(' + os + ')' : 'on ' + os) && os,
+    'os': name && (os = os && format(os)) && (description.push(product ? '(' + os + ')' : 'on ' + os), os),
 
     /**
      * The platform description.
