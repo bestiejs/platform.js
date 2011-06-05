@@ -1,4 +1,8 @@
-.git*
-vendor
+.*
+vendor/
 docs/*.php
+tests/*.air
 tests/*.html
+tests/*l.js
+tests/*o.js
+tests/*s.js
