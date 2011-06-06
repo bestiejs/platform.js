@@ -1,10 +1,14 @@
 # Platform.js
 
-A platform detection library that works on nearly all JavaScript platforms.
+A platform detection library that works on nearly all JavaScript platforms<sup><a name="fnref1" href="#fn1">1</a></sup>.
 
 ## Disclaimer
 
 Platform.js is for informational purposes only and **not** intended as a substitution for [feature detection/inference](http://www.screenr.com/5Ab) checks.
+
+## BestieJS
+
+Platform.js is part of the BestieJS *"Best in Class"* module collection. This means we promote solid browser/environment support, ES5 precedents, unit testing, and plenty of documentation.
 
 ## Documentation
 
@@ -82,6 +86,11 @@ git submodule update --init
 ~~~
 
 Feel free to fork if you see possible improvements!
+
+## Footnotes
+
+  1. Platform.js has been tested in at least Adobe AIR 2.6, Chrome 4/8/13, Firefox 2-4, IE 6-10, Opera 9.25-11, Safari 2-5, Node.js 0.4.1, Narwhal 0.3.2, Ringo 0.6, and Rhino 1.7RC2.
+     <a name="fn1" title="Jump back to footnote 1 in the text." href="#fnref1">&#8617;</a>
 
 ## Authors
 
