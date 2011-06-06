@@ -5,8 +5,11 @@
  */
 (function(window) {
 
+  /** Backup possible window/global object */
+  var oldWin = window,
+
   /** Possible global object */
-  var thisBinding = this,
+  thisBinding = this,
 
   /** Detect free variable `exports` */
   freeExports = typeof exports == 'object' && exports,
@@ -235,7 +238,7 @@
   // detect server-side js
   if (freeGlobal) {
     if (typeof exports == 'object' && exports) {
-      if (thisBinding == window && typeof system == 'object' && (data = system)) {
+      if (thisBinding == oldWin && typeof system == 'object' && (data = system)) {
         name = data.global == freeGlobal ? 'Narwhal' : 'RingoJS';
         os = data.os || null;
       }
@@ -260,6 +263,10 @@
   else if (isClassOf(data = window.phantom, 'RuntimeObject')) {
     name = 'PhantomJS';
     version = (data = data.version || null) && (data.major + '.' + data.minor + '.' + data.patch);
+  }
+  // detect IE platform preview
+  if (name == 'IE' && typeof external == 'object' && !external) {
+    description.push('platform preview');
   }
   // detect IE compatibility mode
   else if (typeof doc.documentMode == 'number' && (data = /Trident\/(\d+)/.exec(ua))) {
@@ -298,11 +305,6 @@
     data = (/Chrome\/([\d.]+)/.exec(ua) || 0)[1] || data;
     layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /\./.test(data) ? '' : '+');
     version = name == 'Safari' && (!version || parseInt(version) > 45) ? data : version;
-  }
-  // detect platform preview
-  if (RegExp(alpha + '|' + beta).test(version) && typeof external == 'object' && !external) {
-    layout = layout && !layout[1] ? (layout[1] = 'rendered by ' + layout[0], layout) : layout;
-    description.unshift('platform preview');
   }
   // add layout engine
   if (layout && !/^(?:Av|Noo)/.test(name) && (/^(?:L|Ma)|B/.test(name) || /^(?:A|L|P|R|Mi|Sl)/.test(name) && !/^u|by/.test(layout[1]))) {

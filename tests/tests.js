@@ -143,6 +143,7 @@
           /\(function(?:.|\n|\r)+?platform\s*=\s*\{(?:.|\n|\r)+?};/.exec(xhr.responseText)[0] +
           ' return platform}(this))')
             .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
+            .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
             .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
             .replace(/\bua\s*=[^\n]+?(,\n)/, 'ua=me.ua$1')
             .replace(/\bisClassOf\(data\s*=\s*window\.runtime[^)]+\)/g, 'data=me.runtime')
@@ -240,9 +241,8 @@
       'name': 'Android Browser'
     },
 
-    'Android Browser 4.1#{alpha} (platform preview; like Chrome 5.x) on Android 2.2.1': {
+    'Android Browser 4.1#{alpha} (like Chrome 5.x) on Android 2.2.1': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.1a Mobile Safari/533.1',
-      'external': null,
       'layout': 'WebKit',
       'name': 'Android Browser'
     },
@@ -660,8 +660,9 @@
       'name': 'IE'
     },
 
-    'IE 10.0 on Windows Server 2008 / Vista': {
+    'IE 10.0 (platform preview) on Windows Server 2008 / Vista': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.0; Trident/6.0)',
+      'external': null,
       'layout': 'Trident',
       'mode': 10,
       'name': 'IE'
@@ -747,7 +748,7 @@
       'name': 'Lunascape'
     },
 
-    'Lunascape 6.3.1.22729#{beta} (platform preview; rendered by Trident) on Windows Server 2008 / Vista': {
+    'Lunascape 6.3.1.22729#{beta} (Trident) on Windows Server 2008 / Vista': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0; Lunascape/6.3.1.22729)',
       'appMinorVersion': 'beta',
       'external': null,
@@ -790,7 +791,7 @@
       'name': 'Maxthon'
     },
 
-    'Maxthon 3.x#{alpha} (platform preview; rendered by Trident) on Windows XP': {
+    'Maxthon 3.x#{alpha} (Trident) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; Maxthon/3.0)',
       'appMinorVersion': 'alpha',
       'external': null,
@@ -1442,10 +1443,9 @@
       'name': 'Sleipnir'
     },
 
-    'Sleipnir 2.9.2#{beta} (platform preview) on Windows XP': {
+    'Sleipnir 2.9.2#{beta} on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; Sleipnir/2.9.2)',
       'appMinorVersion': 'beta',
-      'external': null,
       'layout': 'Trident',
       'mode': 8,
       'name': 'Sleipnir'
