@@ -2,7 +2,7 @@
   "name": "platform",
   "version": "0.1.337",
   "description": "A platform detection library that works on nearly all JavaScript platforms.",
-  "homepage": "https://github.com/bestiejs/Platform.js",
+  "homepage": "https://github.com/bestiejs/platform.js",
   "main": "platform",
   "keywords": [
     "environment",
@@ -34,11 +34,11 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/bestiejs/Platform.js/issues"
+    "url": "https://github.com/bestiejs/platform.js/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bestiejs/Platform.js.git"
+    "url": "https://github.com/bestiejs/platform.js.git"
   },
   "engines": [
     "node",
