@@ -140,16 +140,16 @@
         xhr.send(null);
         compiled = Function('isClassOf,reduce,options',
           ('return ' +
-          /\(function(?:.|\n|\r)+?platform\s*=\s*\{(?:.|\n|\r)+?};/.exec(xhr.responseText)[0] +
-          ' return platform}(this))')
+          /\(function(?:.|\n|\r)+?};\s*}/.exec(xhr.responseText)[0] +
+          ' return getPlatform()}(this))')
             .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
             .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
             .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
-            .replace(/\bua\s*=[^\n]+?(,\n)/, 'ua=me.ua$1')
+            .replace(/\buserAgent\s*=[^\n]+?(,\n)/, 'userAgent=me.ua$1')
             .replace(/\bisClassOf\(data\s*=\s*window\.runtime[^)]+\)/g, 'data=me.runtime')
             .replace(/\b(?:thisBinding|window)\b/g, 'me')
             .replace(/([^.])\bsystem\b/g, '$1me.system')
-            .replace(/\/Opera\//g, '/Object/')
+            .replace(/\/Opera\/\.test\(\{/g, '/Object/.test({')
             .replace(/\b(?:Environment|RuntimeObject)\b/g, 'Object')
             .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
             .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
@@ -159,6 +159,7 @@
             .replace(/\bprocess\b/g, 'me.process')
             .replace(/\b(?:me\.)?phantom/g, 'me.phantom')
             .replace(/\bdoc\.documentMode/g, 'me.mode'));
+        return false;
       }
     });
 
@@ -865,6 +866,20 @@
       'layout': 'Presto',
       'name': 'Opera Mobile',
       'opera': { 'version': function() { return '10.00'; } }
+    },
+
+    'Opera 10.10 (identifying as Firefox 2.0.0) on Windows XP': {
+      'ua': 'Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 10.10',
+      'layout': 'Presto',
+      'name': 'Opera',
+      'opera': { 'version': function() { return '10.10'; } }
+    },
+
+    'Opera 10.63 (identifying as IE 6.0) on Windows XP': {
+      'ua': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 10.63',
+      'layout': 'Presto',
+      'name': 'Opera',
+      'opera': { 'version': function() { return '10.63'; } }
     },
 
     'Opera 11.00 on Windows XP': {
