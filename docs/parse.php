@@ -15,7 +15,7 @@
   // generate Markdown
   $markdown = docdown(array(
     "path" => "../" . $_GET["f"],
-    "url"  => "https://github.com/bestiejs/Platform.js/blob/master/platform.js"
+    "url"  => "https://github.com/bestiejs/platform.js/blob/master/platform.js"
   ));
 
   // save to a .md file
