@@ -219,7 +219,7 @@
       if (!os && (os = RegExp('\\b' + guess + '[^();/-]*', 'i').exec(ua))) {
         // platform tokens defined at
         // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
-        if (/^Wi/i.test(os) && (data = data[0/*opera fix*/,/[456]\.\d/.exec(os)])) {
+        if (/^Win/i.test(os) && (data = data[0/*opera fix*/, /[456]\.\d/.exec(os)])) {
           os = 'Windows ' + data;
         }
         // normalize iOS
@@ -229,7 +229,7 @@
         }
         // cleanup
         os = String(os).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess)
-          .replace('Macintosh', 'Mac OS').replace(/_PowerPC/i, ' OS').replace(/(OS X) Mach$/i, '$1')
+          .replace(/Macintosh/i, 'Mac OS').replace(/_PowerPC/i, ' OS').replace(/(OS X) Mach$/i, '$1')
           .replace(/\/(\d)/, ' $1').replace(/_/g, '.').replace(/x86\.64/gi, 'x86_64')
           .split(' on ')[0];
       }
@@ -241,12 +241,12 @@
       product = (product ? product + ' ' : '') + 'Simulator';
     }
     // detect non Firefox/Safari like browsers
-    if (ua && (data = /^(?:Firefox|Safari|null)$/.exec(name))) {
+    if (ua && (data = !name || /Firefox|Safari/.exec(name))) {
       if (name && !product && /[/,]/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         name = null;
       }
-      if ((data = product || os) && !/^(?:iP|L|M|W)/.test(data)) {
-        name = /[a-z]+/i.exec(/^A/.test(os) && os || data) + ' Browser';
+      if ((data = product || os) && !/^(?:iP|Linux|Mac|Win)/.test(data)) {
+        name = /[a-z]+/i.exec(/Android/.test(os) && os || data) + ' Browser';
       }
     }
     // detect non Opera versions
@@ -256,7 +256,7 @@
       });
     }
     // detect stubborn layout engines
-    if (data = !layout && (opera && 'Presto' || /\bMSIE\b/i.test(ua) && (/^M/.test(os) ? 'Tasman' : 'Trident')) || /\b(Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
+    if (data = !layout && (opera && 'Presto' || /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident')) || /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
       layout = [data];
     } else if (layout == 'iCab') {
       layout = parseFloat(version) > 3 ? ['WebKit'] : layout;
@@ -298,20 +298,20 @@
     }
     // detect release phases
     if (version && (data = /(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(version) || /(?:alpha|beta)(?: ?\d)?/i.exec(ua + ';' + nav.appMinorVersion))) {
-      version = version.replace(RegExp(data + '\\+?$'), '') + (/^b/i.test(data) ? beta : alpha) + (/\d+\+?/.exec(data) || '');
+      version = version.replace(RegExp(data + '\\+?$'), '') + (/b/i.test(data) ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
     // detect Maxthon's unreliable version info
-    if (/^Ma/.test(name)) {
-      version = version && version.replace(/\.[.\d]*/, '.x');
+    if (name == 'Maxthon') {
+      version = version && version.replace(/\.[.\d]+/, '.x');
     }
     // detect Firefox nightly
-    else if (/^Min/.test(name)) {
+    else if (name == 'Minefield') {
       name = 'Firefox';
-      version = RegExp(alpha + '|' + beta + '|null').test(version) ? version : version + alpha;
+      version = !version || (RegExp(alpha + '|' + beta).test(version) ? version : version + alpha);
     }
-    // detect Blackberry OS version
+    // detect BlackBerry OS version
     // http://docs.blackberry.com/en/developers/deliverables/18169/HTTP_headers_sent_by_BB_Browser_1234911_11.jsp
-    else if (/^B/.test(version != null && product)) {
+    else if (/BlackBerry/.test(version != null && product)) {
       os = 'Device Software ' + version;
       version = null;
     }
@@ -328,7 +328,7 @@
     }
     // detect unspecified Chrome/Safari versions
     else if (data = (/AppleWebKit\/(\d+(?:\.\d+)?)/i.exec(ua) || 0)[1]) {
-      if (/^A/.test(os) || /^Ro/.test(name)) {
+      if (/Android|RockMelt/.test(os + name)) {
         layout[1] = 'like Chrome';
         data = data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.10 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : '10';
       } else {
@@ -340,11 +340,11 @@
       version = name == 'Safari' && (!version || parseInt(version) > 45) ? data : version;
     }
     // add layout engine
-    if (layout && !/^(?:Av|Noo)/.test(name) && (/^(?:L|Ma)|B/.test(name) || /^(?:A|L|P|R|Mi|Sl)/.test(name) && !/^u|by/.test(layout[1]))) {
+    if (layout && !/Avant|Nook/.test(name) && (/Browser|Lunascape|Maxthon/.test(name) || layout[1] && /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir/.test(name))) {
       (data = layout[layout.length - 1]) && description.push(data);
     }
     // add mobile postfix
-    if (name && (!product || name == 'IE') && !/B/.test(name) && /Mobi/i.test(ua)) {
+    if (name && (!product || name == 'IE') && !/Browser/.test(name) && /Mobi/i.test(ua)) {
       name += ' Mobile';
     }
     // combine contextual information
