@@ -146,10 +146,10 @@
             .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
             .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
             .replace(/\buserAgent\s*=[^\n]+?(,\n)/, 'userAgent=me.ua$1')
-            .replace(/\bisClassOf\(data\s*=\s*window\.runtime[^)]+\)/g, 'data=me.runtime')
+            .replace(/\bgetClassOf\(data\s*=\s*window\.runtime\)[^)]+/g, 'data=me.runtime')
             .replace(/\b(?:thisBinding|window)\b/g, 'me')
             .replace(/([^.])\bsystem\b/g, '$1me.system')
-            .replace(/\/Opera\/\.test\(\{/g, '/Object/.test({')
+            .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
             .replace(/\b(?:Environment|RuntimeObject)\b/g, 'Object')
             .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
             .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
@@ -858,35 +858,35 @@
       'ua': 'Opera/9.50 (J2ME/MIDP; Opera Mini/4.1.11355/542; U; en)',
       'layout': 'Presto',
       'name': 'Opera Mini',
-      'operamini': { }
+      'operamini': { '[[Class]]': 'OperaMini' }
     },
 
     'Opera Mobile 10.00 on Linux i686': {
       'ua': 'Opera/9.80 (Linux i686; Opera Mobi/1038; U; en) Presto/2.5.24 Version/10.00',
       'layout': 'Presto',
       'name': 'Opera Mobile',
-      'opera': { 'version': function() { return '10.00'; } }
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } }
     },
 
     'Opera 10.10 (identifying as Firefox 2.0.0) on Windows XP': {
       'ua': 'Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 10.10',
       'layout': 'Presto',
       'name': 'Opera',
-      'opera': { 'version': function() { return '10.10'; } }
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.10'; } }
     },
 
     'Opera 10.63 (identifying as IE 6.0) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 10.63',
       'layout': 'Presto',
       'name': 'Opera',
-      'opera': { 'version': function() { return '10.63'; } }
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.63'; } }
     },
 
     'Opera 11.00 on Windows XP': {
       'ua': 'Opera/9.80 (Windows NT 5.1; U; en) Presto/2.6.37 Version/11.00',
       'layout': 'Presto',
       'name': 'Opera',
-      'opera': { 'version': function() { return '11.00'; } }
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '11.00'; } }
     },
 
     'PhantomJS 1.0.0 (like Safari 4.x) on Cygwin': {

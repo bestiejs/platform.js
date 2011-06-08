@@ -18,7 +18,7 @@
   freeGlobal = isHostType(thisBinding, 'global') && (freeExports ? (window = global) : global),
 
   /** Detect Java environment */
-  java = isClassOf(window.java, 'JavaPackage') && window.java,
+  java = /Java/.test(getClassOf(window.java)) && window.java,
 
   /** A character to represent alpha */
   alpha = java ? 'a' : '\u03b1',
@@ -43,9 +43,25 @@
    * http://www.howtocreate.co.uk/operaStuff/operaObject.html
    * http://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
    */
-  opera = /Opera/.test({}.toString.call(opera = window.opera || window.operamini)) && opera;
+  opera = window.opera || window.operamini,
+
+  /** Opera regexp */
+  reOpera = /Opera/,
+
+  /** Opera [[Class]] */
+  operaClass = reOpera.test(operaClass = getClassOf(opera)) ? operaClass : (opera = null);
 
   /*--------------------------------------------------------------------------*/
+
+  /**
+   * Capitalizes a string value.
+   * @private
+   * @param {String} string The string.
+   * @returns {String} The capitalized string.
+   */
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   /**
    * Copies own/inherited properties of a source object to the destination object.
@@ -70,19 +86,17 @@
    */
   function format(string) {
     string = string.replace(/^\s+|\s+$/g, '');
-    return /^(?:webOS|i(?:OS|P))/.test(string) ? string :
-      string.charAt(0).toUpperCase() + string.slice(1);
+    return /^(?:webOS|i(?:OS|P))/.test(string) ? string : capitalize(string);
   }
 
   /**
-   * Checks if an object is of the specified class.
+   * Gets the internal [[Class]] value of an object.
    * @private
    * @param {Object} object The object.
-   * @param {String} name The name of the class.
-   * @returns {Boolean} Returns `true` if of the class, else `false`.
+   * @returns {String} The [[Class]] value.
    */
-  function isClassOf(object, name) {
-    return object != null && {}.toString.call(object).slice(8, -1) == name;
+  function getClassOf(object) {
+    return object == null ? capitalize(String(object)) : {}.toString.call(object).slice(8, -1);
   }
 
   /**
@@ -179,7 +193,7 @@
     ua || (ua = userAgent);
 
     layout = reduce(layout.split(','), function(layout, guess, index) {
-      return layout || RegExp('\\b' + guess + '\\b').exec(ua) && [guess == 'AppleWebKit' ? 'WebKit' : guess];
+      return layout || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && [guess == 'AppleWebKit' ? 'WebKit' : guess];
     });
 
     name = reduce(name.split(','), function(name, guess) {
@@ -242,7 +256,7 @@
       });
     }
     // detect stubborn layout engines
-    if (data = !layout && (opera && 'Presto' || /\bMSIE\b/.test(ua) && (/^M/.test(os) ? 'Tasman' : 'Trident')) || /\b(Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
+    if (data = !layout && (opera && 'Presto' || /\bMSIE\b/i.test(ua) && (/^M/.test(os) ? 'Tasman' : 'Trident')) || /\b(Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
       layout = [data];
     } else if (layout == 'iCab') {
       layout = parseFloat(version) > 3 ? ['WebKit'] : layout;
@@ -259,7 +273,7 @@
           version = /[\d.]+/.exec(data.version)[0];
           os = data.platform;
         }
-      } else if (isClassOf(thisBinding.environment, 'Environment')) {
+      } else if (getClassOf(thisBinding.environment) == 'Environment') {
         name = 'Rhino';
       }
       if (java && !os) {
@@ -267,12 +281,12 @@
       }
     }
     // detect Adobe AIR
-    else if (isClassOf(data = window.runtime, 'ScriptBridgingProxyObject')) {
+    else if (getClassOf(data = window.runtime) == 'ScriptBridgingProxyObject') {
       name = 'Adobe AIR';
       os = data.flash.system.Capabilities.os;
     }
     // detect PhantomJS
-    else if (isClassOf(data = window.phantom, 'RuntimeObject')) {
+    else if (getClassOf(data = window.phantom) == 'RuntimeObject') {
       name = 'PhantomJS';
       version = (data = data.version || null) && (data.major + '.' + data.minor + '.' + data.patch);
     }
@@ -306,8 +320,10 @@
       description.unshift('platform preview');
     }
     // detect an Opera identity crisis
-    else if (opera && (opera = 0, data = getPlatform(ua.replace(RegExp(name, 'gi'), ''))).name && !/Opera/.test(data.name)) {
-      description.push('identifying as ' + data.name + ((data = data.version) ? ' ' + data : ''));
+    // http://www.opera.com/support/kb/view/843/
+    else if (opera && (data = [opera, opera = 0, getPlatform(ua.replace(reOpera, ''))], opera = data[0], data = data[2]).name && !reOpera.test(data.name)) {
+      description.push((reOpera.test(name) ? 'identify' : 'mask') + 'ing as ' + data.name + ((data = data.version) ? ' ' + data : ''));
+      name = reOpera.test(name) ? name : format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2'));
       layout = ['Presto'];
     }
     // detect unspecified Chrome/Safari versions
@@ -319,7 +335,7 @@
         layout[1] = 'like Safari';
         data = data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : '4';
       }
-      data = (/Chrome\/([\d.]+)/.exec(ua) || 0)[1] || data;
+      data = (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1] || data;
       layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /\./.test(data) ? '' : '+');
       version = name == 'Safari' && (!version || parseInt(version) > 45) ? data : version;
     }
@@ -340,7 +356,7 @@
       description.push('on ' + product);
     }
     // add browser/os architecture
-    if (/\b(?:WOW|x|IA)64\b/.test(ua)) {
+    if (/\b(?:WOW|x|IA)64\b/i.test(ua)) {
       os = os && os + (/64/.test(os) ? '' : ' x64');
       if (name && (/WOW64/i.test(ua) || /\w(?:86|32)$/.test(nav.cpuClass || nav.platform))) {
         description.unshift('x86');
