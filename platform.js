@@ -115,20 +115,20 @@
   }
 
   /**
-   * A generic bare-bones `Array#reduce` solution.
+   * An `Array#reduce` like solution.
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
-   * @param {Mixed} accumulator Initial value of the accumulator.
+   * @param {Mixed} [accumulator=undefined] Initial value of the accumulator.
    * @returns {Mixed} The accumulator.
    */
   function reduce(array, callback, accumulator) {
-    var i = -1,
+    var index = -1,
         length = array.length;
 
-    while (++i < length) {
-      if (i in array) {
-        accumulator = callback(accumulator, array[i], i, array);
+    while (++index < length) {
+      if (index in array) {
+        accumulator = callback(accumulator, array[index], index, array);
       }
     }
     return accumulator;
@@ -150,7 +150,7 @@
     /** Platform description array  */
     description = [],
 
-    /**  String of detectable layout engines */
+    /** String of detectable layout engines */
     layout = 'AppleWebKit,iCab,Presto,NetFront,Tasman,Trident,KHTML,Gecko',
 
     /** String of detectable browser names */

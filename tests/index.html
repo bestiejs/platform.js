@@ -22,6 +22,7 @@
 		else {
 			require({
 				'baseUrl': '../vendor/requirejs/',
+				'urlArgs': 't=' + (+new Date),
 				'paths': { 'src': '../../' }
 			},
 			['src/platform'], function(platform) {
