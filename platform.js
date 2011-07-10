@@ -71,7 +71,7 @@
    * @returns {Object} The destination object.
    */
   function extend(destination, source) {
-    source || (source = { });
+    source || (source = {});
     for (var key in source) {
       destination[key] = source[key];
     }
@@ -425,11 +425,16 @@
   /*--------------------------------------------------------------------------*/
 
   // expose platform
+  // in Narwhal, Node.js or Ringo
   if (freeExports) {
     extend(freeExports, getPlatform());
-  } else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+  }
+  // via curl.js or RequireJS
+  else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     define(function() { return getPlatform(); });
-  } else {
+  }
+  // in a browser or Rhino
+  else {
     // use square bracket notation so Closure Compiler won't mung `platform`
     // http://code.google.com/closure/compiler/docs/api-tutorial3.html#export
     window['platform'] = getPlatform();
