@@ -3,7 +3,7 @@
  * Copyright 2010-2011 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <http://mths.be/mit>
  */
-(function(window) {
+;(function(window) {
 
   /** Backup possible window/global object */
   var oldWin = window,
