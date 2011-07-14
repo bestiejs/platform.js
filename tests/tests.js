@@ -964,6 +964,15 @@
       'version': '4.1.11355'
     },
 
+    'Opera Mini 6.1.15738 on iPhone': {
+      'ua': 'Opera/9.80 (iPhone; Opera Mini/6.1.15738/25.669; U; en) Presto/2.5.25 Version/10.54.544',
+      'layout': 'Presto',
+      'name': 'Opera Mini',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'operamini': { '[[Class]]': 'OperaMini' },
+      'version': '6.1.15738'
+    },
+
     'Opera Mobile 10.00 on Linux i686': {
       'ua': 'Opera/9.80 (Linux i686; Opera Mobi/1038; U; en) Presto/2.5.24 Version/10.00',
       'layout': 'Presto',

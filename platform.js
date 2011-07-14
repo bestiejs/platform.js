@@ -43,7 +43,7 @@
    * http://www.howtocreate.co.uk/operaStuff/operaObject.html
    * http://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
    */
-  opera = window.opera || window.operamini,
+  opera = window.operamini || window.opera,
 
   /** Opera regexp */
   reOpera = /Opera/,
@@ -163,7 +163,7 @@
     product = 'BlackBerry\\s?\\d+,iP[ao]d,iPhone,Kindle,LG,Nokia,Nook,PlayBook,Samsung,TouchPad,Xoom',
 
     /** Stores browser/environment version */
-    version = opera && opera.version && opera.version();
+    version = opera && typeof opera.version == 'function' && opera.version();
 
     /*------------------------------------------------------------------------*/
 
@@ -249,9 +249,9 @@
         name = /[a-z]+/i.exec(/Android/.test(os) && os || data) + ' Browser';
       }
     }
-    // detect non Opera versions
+    // detect non Opera desktop versions
     if (!version) {
-      version = reduce(['version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(version, guess) {
+      version = reduce([/Mini/.test(opera && name) ? name : 'version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(version, guess) {
         return version || (RegExp(guess + '(?:-[\\d.]+/|[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
       });
     }
