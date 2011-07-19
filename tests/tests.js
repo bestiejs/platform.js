@@ -10,8 +10,7 @@
    */
   function each(object, callback) {
     var i = -1,
-        result = object,
-        object = Object(object),
+        result = [object, object = Object(object)][0],
         length = object.length;
 
     // in Opera < 10.5 `hasKey(object, 'length')` returns false for NodeLists
@@ -41,7 +40,7 @@
    */
   function hasKey(object, key) {
     var result,
-        o = { },
+        o = {},
         hasOwnProperty = o.hasOwnProperty,
         parent = (object.constructor || Object).prototype;
 
@@ -70,7 +69,7 @@
    */
   function interpolate(string, object) {
     string = string == null ? '' : string;
-    each(object || { }, function(value, key) {
+    each(object || {}, function(value, key) {
       string = string.replace(RegExp('#\\{' + key + '\\}', 'g'), String(value));
     });
     return string;
@@ -167,6 +166,8 @@
       return compiled(isClassOf, reduce, options);
     };
   }());
+
+  /*--------------------------------------------------------------------------*/
 
   /**
    * An object of UA variations.
@@ -927,7 +928,7 @@
 
     'Narwhal on Cygwin': (function() {
       var object = {
-        'exports': { },
+        'exports': {},
         'name': 'Narwhal',
         'system':  { 'os': 'cygwin' }
       };
@@ -936,8 +937,8 @@
     }()),
 
     'Node.js 0.3.1 on Cygwin': {
-      'exports': { },
-      'global': { },
+      'exports': {},
+      'global': {},
       'name': 'Node.js',
       'process': { 'version': 'v0.3.1', 'platform': 'cygwin' },
       'version': '0.3.1'
@@ -1033,15 +1034,15 @@
     },
 
     'Rhino': {
-      'global': { },
-      'environment': { },
+      'global': {},
+      'environment': {},
       'name': 'Rhino'
     },
 
     'RingoJS': (function() {
       var object = {
-        'exports': { },
-        'system':  { },
+        'exports': {},
+        'system':  {},
         'name': 'RingoJS'
       };
       object.global = object;
@@ -1813,7 +1814,7 @@
 
   if (isHostType(window, 'require')) {
     test('require("platform")', function() {
-      equals((platform2 || { }).description, platform.description, 'require("platform")');
+      equals((platform2 || {}).description, platform.description, 'require("platform")');
     });
   }
 }(this));
