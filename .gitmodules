@@ -7,3 +7,6 @@
 [submodule "vendor/docdown"]
 	path = vendor/docdown
 	url = git://github.com/jdalton/docdown.git
+[submodule "vendor/qunit-clib"]
+	path = vendor/qunit-clib
+	url = git://github.com/jdalton/qunit-clib.git
