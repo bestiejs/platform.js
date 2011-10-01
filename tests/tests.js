@@ -1,5 +1,21 @@
 (function(window) {
 
+  /** Use a single load function */
+  var load = typeof require == 'function' ? require : window.load;
+
+  /** The unit testing framework */
+  var QUnit =
+    window.QUnit ||
+    (window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit) &&
+    (load('../vendor/qunit-clib/qunit-clib.js'), window.QUnit);
+
+  /** The `platform` object to test */
+  var platform =
+    window.platform ||
+    (load('../platform.js') || window.platform);
+
+  /*--------------------------------------------------------------------------*/
+
   /**
    * A bare-bones `Array#forEach`/`for-in` own property solution.
    * Callbacks may terminate the loop by explicitly returning `false`.
@@ -11,19 +27,22 @@
   function each(object, callback) {
     var i = -1,
         result = [object, object = Object(object)][0],
+        skipCheck = 'item' in object,
         length = object.length;
 
     // in Opera < 10.5 `hasKey(object, 'length')` returns false for NodeLists
-    if ('length' in object && length > -1 && length < 4294967296) {
+    if (length == length >>> 0) {
       while (++i < length) {
         // in Safari 2 `i in object` is always false for NodeLists
-        if ((i in object || 'item' in object) && callback(object[i], i, object) === false) {
+        if ((skipCheck || i in object) &&
+            callback(object[i], i, object) === false) {
           break;
         }
       }
     } else {
       for (i in object) {
-        if (hasKey(object, i) && callback(object[i], i, object) === false) {
+        if (hasKey(object, i) &&
+            callback(object[i], i, object) === false) {
           break;
         }
       }
@@ -46,7 +65,7 @@
 
     // for modern browsers
     object = Object(object);
-    if (isClassOf(hasOwnProperty, 'Function')) {
+    if (typeof hasOwnProperty == 'function') {
       result = hasOwnProperty.call(object, key);
     }
     // for Safari 2
@@ -76,17 +95,6 @@
   }
 
   /**
-   * Checks if an object is of the specified class.
-   * @private
-   * @param {Object} object The object.
-   * @param {String} name The name of the class.
-   * @returns {Boolean} Returns `true` if of the class, else `false`.
-   */
-  function isClassOf(object, name) {
-    return object != null && {}.toString.call(object).slice(8, -1) == name;
-  }
-
-  /**
    * Host objects can return type values that are different from their actual
    * data type. The objects we are concerned with usually return non-primitive
    * types of object, function, or unknown.
@@ -102,28 +110,13 @@
   }
 
   /**
-   * A generic bare-bones `Array#reduce` solution.
-   * @private
-   * @param {Array} array The array to iterate over.
-   * @param {Function} callback The function called per iteration.
-   * @param {Mixed} accumulator Initial value of the accumulator.
-   * @returns {Mixed} The accumulator.
-   */
-  function reduce(array, callback, accumulator) {
-    each(array, function(value, index) {
-      accumulator = callback(accumulator, value, index, array);
-    });
-    return accumulator;
-  }
-
-  /**
    * Returns a platform object of a simulated environment.
    * @private
    * @param {Object} options The options object to simulate environment objects.
    * @returns {Object} The modified string.
    */
   var getPlatform = (function() {
-    var compiled,
+    var result,
         xhr;
 
     if (isHostType(window, 'ActiveXObject')) {
@@ -131,13 +124,12 @@
     } else if (isHostType(window, 'XMLHttpRequest')) {
       xhr = new XMLHttpRequest;
     }
-
     each(document.getElementsByTagName('script'), function(element) {
       var src = element.src;
       if (/platform\.js$/.test(src)) {
         xhr.open('get', src + '?t=' + (+new Date), false);
         xhr.send(null);
-        compiled = Function('isClassOf,reduce,options',
+        result = Function('options',
           ('return ' +
           /\(function(?:.|\n|\r)+?};\s*}/.exec(xhr.responseText)[0] +
           ' return getPlatform()}(this))')
@@ -145,26 +137,22 @@
             .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
             .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
             .replace(/\buserAgent\s*=[^\n]+?(,\n)/, 'userAgent=me.ua$1')
-            .replace(/\bgetClassOf\(data\s*=\s*window\.runtime\)[^)]+/g, 'data=me.runtime')
             .replace(/\b(?:thisBinding|window)\b/g, 'me')
             .replace(/([^.])\bsystem\b/g, '$1me.system')
             .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
-            .replace(/\b(?:Environment|RuntimeObject)\b/g, 'Object')
+            .replace(/\b(?:Environment|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
             .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
             .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
             .replace(/\bnav\.platform/g, 'me.platform')
+            .replace(/\benvironment\b/g, 'me.environment')
             .replace(/\bexports\b/g, 'me.exports')
             .replace(/\bexternal/g, 'me.external')
             .replace(/\bprocess\b/g, 'me.process')
-            .replace(/\b(?:me\.)?phantom/g, 'me.phantom')
             .replace(/\bdoc\.documentMode/g, 'me.mode'));
         return false;
       }
     });
-
-    return function(options) {
-      return compiled(isClassOf, reduce, options);
-    };
+    return result;
   }());
 
   /*--------------------------------------------------------------------------*/
@@ -180,6 +168,58 @@
       'name': 'Adobe AIR',
       'runtime': { 'flash': { 'system': { 'Capabilities': { 'os': 'Windows XP' }}}},
       'version': '2.5'
+    },
+
+    'Android Browser (like Chrome 2.x) on Android 2.1': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Sprint APA9292KT Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko)',
+      'layout': 'WebKit',
+      'name': 'Android Browser'
+    },
+
+    'Android Browser (like Chrome 8.0) on Asus Transformer (Linux)': {
+      'ua': 'Mozilla/5.0 (Linux; U; Linux Ventana; en-us; Transformer TF101 Build/HMJ37) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/8.0 Safari/534.13',
+      'layout': 'WebKit',
+      'os': 'Linux',
+      'name': 'Android Browser',
+      'manufacturer': 'Asus',
+      'product': 'Transformer'
+    },
+
+    'Android Browser 3.0.4 (like Chrome 1.x) on Motorola Xoom (Android 3.0)': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 3.0; xx-xx; Xoom Build/HRI39) AppleWebKit/525.10+ (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2',
+      'layout': 'WebKit',
+      'manufacturer': 'Motorola',
+      'name': 'Android Browser',
+      'product': 'Xoom',
+      'version': '3.0.4'
+    },
+
+    'Android Browser 3.1.2 (like Chrome 1.x) on Android 1.6': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 1.6; en-us; HTC_TATTOO_A3288 Build/DRC79) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1',
+      'layout': 'WebKit',
+      'name': 'Android Browser',
+      'version': '3.1.2'
+    },
+
+    'Android Browser 4.0 (like Chrome 5.x) on Android 2.2': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 2.2; zh-cn;) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+      'layout': 'WebKit',
+      'name': 'Android Browser',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 5.x) on Android 2.2.1': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+      'layout': 'WebKit',
+      'name': 'Android Browser',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.1#{alpha} (like Chrome 5.x) on Android 2.2.1': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.1a Mobile Safari/533.1',
+      'layout': 'WebKit',
+      'name': 'Android Browser',
+      'version': '4.1#{alpha}'
     },
 
     'Arora 0.4 (like Safari 3.x) on Linux': {
@@ -217,61 +257,26 @@
       'name': 'Avant Browser'
     },
 
-    'Android Browser (like Chrome 2.x) on Android 2.1': {
-      'ua': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Sprint APA9292KT Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko)',
-      'layout': 'WebKit',
-      'name': 'Android Browser'
-    },
-
-    'Android Browser 3.0.4 (like Chrome 1.x) on Xoom (Android 3.0)': {
-      'ua': 'Mozilla/5.0 (Linux; U; Android 3.0; xx-xx; Xoom Build/HRI39) AppleWebKit/525.10+ (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2',
-      'layout': 'WebKit',
-      'name': 'Android Browser',
-      'version': '3.0.4'
-    },
-
-    'Android Browser 3.1.2 (like Chrome 1.x) on Android 1.6': {
-      'ua': 'Mozilla/5.0 (Linux; U; Android 1.6; en-us; HTC_TATTOO_A3288 Build/DRC79) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1',
-      'layout': 'WebKit',
-      'name': 'Android Browser',
-      'version': '3.1.2'
-    },
-
-    'Android Browser 4.0 (like Chrome 5.x) on Android 2.2': {
-      'ua': 'Mozilla/5.0 (Linux; U; Android 2.2; zh-cn;) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
-      'layout': 'WebKit',
-      'name': 'Android Browser',
-      'version': '4.0'
-    },
-
-    'Android Browser 4.0 (like Chrome 5.x) on Android 2.2.1': {
-      'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
-      'layout': 'WebKit',
-      'name': 'Android Browser',
-      'version': '4.0'
-    },
-
-    'Android Browser 4.1#{alpha} (like Chrome 5.x) on Android 2.2.1': {
-      'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.1a Mobile Safari/533.1',
-      'layout': 'WebKit',
-      'name': 'Android Browser',
-      'version': '4.1#{alpha}'
-    },
-
     'BlackBerry Browser on BlackBerry 7250 (Device Software 4.0.0)': {
       'ua': 'BlackBerry7250/4.0.0 Profile/MIDP-2.0 Configuration/CLDC-1.1',
-      'name': 'BlackBerry Browser'
+      'manufacturer': 'BlackBerry',
+      'name': 'BlackBerry Browser',
+      'product': 'BlackBerry 7250'
     },
 
     'BlackBerry Browser on BlackBerry 8900 (Device Software 4.5.1.231)': {
       'ua': 'BlackBerry8900/4.5.1.231 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/100',
-      'name': 'BlackBerry Browser'
+      'manufacturer': 'BlackBerry',
+      'name': 'BlackBerry Browser',
+      'product': 'BlackBerry 8900'
     },
 
     'BlackBerry Browser (like Safari 4+) on BlackBerry 9800 (Device Software 6.0.0.91)': {
       'ua': 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en-US) AppleWebKit/534.1  (KHTML, like Gecko) Version/6.0.0.91 Mobile Safari/534.1 ,gzip(gfe),gzip(gfe)',
       'layout': 'WebKit',
-      'name': 'BlackBerry Browser'
+      'manufacturer': 'BlackBerry',
+      'name': 'BlackBerry Browser',
+      'product': 'BlackBerry 9800'
     },
 
     'Camino 0.7 on Mac OS X': {
@@ -746,19 +751,23 @@
       'version': '10.0'
     },
 
-    'IE Mobile 7.0 on Samsung (Windows Phone OS 7.0)': {
+    'IE Mobile 7.0 on Samsung OMNIA7 (Windows Phone OS 7.0)': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; SAMSUNG; OMNIA7)',
       'external': null,
       'layout': 'Trident',
+      'manufacturer': 'Samsung',
       'name': 'IE Mobile',
+      'product': 'Samsung OMNIA7',
       'version': '7.0'
     },
 
-    'IE Mobile 7.0 on LG (Windows Phone OS 7.0)': {
+    'IE Mobile 7.0 on LG GW910 (Windows Phone OS 7.0)': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; LG; GW910)',
       'external': null,
       'layout': 'Trident',
+      'manufacturer': 'LG',
       'name': 'IE Mobile',
+      'product': 'LG GW910',
       'version': '7.0'
     },
 
@@ -776,24 +785,30 @@
       'version': '7.0.520.1'
     },
 
-    'Kindle Browser 3.3 (NetFront) on Kindle 1.0 (Linux 2.6.10)': {
+    'Kindle Browser 3.3 (NetFront) on Amazon Kindle 1.0 (Linux 2.6.10)': {
       'ua': 'Mozilla/4.0 (compatible; Linux 2.6.10) NetFront/3.3 Kindle/1.0 (screen 600x800)',
       'layout': 'NetFront',
+      'manufacturer': 'Amazon',
       'name': 'Kindle Browser',
+      'product': 'Kindle 1.0',
       'version': '3.3'
     },
 
-    'Kindle Browser 3.4 (NetFront) on Kindle 2.0 (Linux 2.6.22)': {
+    'Kindle Browser 3.4 (NetFront) on Amazon Kindle 2.0 (Linux 2.6.22)': {
       'ua': 'Mozilla/4.0 (compatible; Linux 2.6.22) NetFront/3.4 Kindle/2.0 (screen 600x800)',
       'layout': 'NetFront',
+      'manufacturer': 'Amazon',
       'name': 'Kindle Browser',
+      'product': 'Kindle 2.0',
       'version': '3.4'
     },
 
-    'Kindle Browser 4.0 (like Safari 4.x) on Kindle 3.0 (Linux)': {
+    'Kindle Browser 4.0 (like Safari 4.x) on Amazon Kindle 3.0 (Linux)': {
       'ua': 'Mozilla/5.0 (Linux; U; en-US) AppleWebKit/528.5+ (KHTML, like Gecko, Safari/528.5+) Version/4.0 Kindle/3.0 (screen 600x800; rotate)',
       'layout': 'WebKit',
+      'manufacturer': 'Amazon',
       'name': 'Kindle Browser',
+      'product': 'Kindle 3.0',
       'version': '4.0'
     },
 
@@ -947,13 +962,17 @@
     'Nokia Browser (like Safari 3.x) on Nokia 5530c (SymbianOS)': {
       'ua': 'Mozilla/5.0 (SymbianOS/9.4; U; Series60/5.0 Nokia5530c-2/10.0.050; Profile MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) Safari/525',
       'layout': 'WebKit',
-      'name': 'Nokia Browser'
+      'manufacturer': 'Nokia',
+      'name': 'Nokia Browser',
+      'product': 'Nokia 5530c'
     },
 
-    'Nook Browser 1.0': {
+    'Nook Browser 1.0 on Barnes & Noble Nook': {
       'ua': 'nook browser/1.0',
       'layout': 'WebKit',
+      'manufacturer': 'Barnes & Noble',
       'name': 'Nook Browser',
+      'product': 'Nook',
       'version': '1.0'
     },
 
@@ -965,12 +984,14 @@
       'version': '4.1.11355'
     },
 
-    'Opera Mini 6.1.15738 on iPhone': {
+    'Opera Mini 6.1.15738 on Apple iPhone': {
       'ua': 'Opera/9.80 (iPhone; Opera Mini/6.1.15738/25.669; U; en) Presto/2.5.25 Version/10.54.544',
       'layout': 'Presto',
+      'manufacturer': 'Apple',
       'name': 'Opera Mini',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
       'operamini': { '[[Class]]': 'OperaMini' },
+      'product': 'iPhone',
       'version': '6.1.15738'
     },
 
@@ -1014,10 +1035,12 @@
       'version': '1.0.0'
     },
 
-    'PlayBook Browser 0.0.1 (like Safari 4+)': {
+    'PlayBook Browser 0.0.1 (like Safari 4+) on BlackBerry PlayBook (Tablet OS 1.0.0)': {
       'ua': 'Mozilla/5.0 (PlayBook; U; RIM Tablet OS 1.0.0; en-US) AppleWebKit/534.8+ (KHTML, like Gecko) Version/0.0.1 Safari/534.8+',
       'layout': 'WebKit',
+      'manufacturer': 'BlackBerry',
       'name': 'PlayBook Browser',
+      'product': 'PlayBook',
       'version': '0.0.1'
     },
 
@@ -1070,24 +1093,30 @@
       'version': '2.x'
     },
 
-    'Safari 3.x on iPod (iOS 2.2.1)': {
+    'Safari 3.x on Apple iPod (iOS 2.2.1)': {
       'ua': 'Mozilla/5.0 (iPod; U; CPU iPhone OS 2_2_1 like Mac OS X; en-us) AppleWebKit/525.18.1 (KHTML, like Gecko) Mobile/5H11a',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPod',
       'version': '3.x'
     },
 
-    'Safari 3.0 on iPod (iOS)': {
+    'Safari 3.0 on Apple iPod (iOS)': {
       'ua': 'Mozila/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3A101a Safari/419.3',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPod',
       'version': '3.0'
     },
 
-    'Safari 3.1.1 on iPhone (iOS 2.0.1)': {
+    'Safari 3.1.1 on Apple iPhone (iOS 2.0.1)': {
       'ua': 'Mozilla/5.0 (Mozilla/5.0 (iPhone; U; CPU iPhone OS 2_0_1 like Mac OS X; fr-fr) AppleWebKit/525.18.1 (KHTML, like Gecko) Version/3.1.1 Mobile/5G77 Safari/525.20',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '3.1.1'
     },
 
@@ -1196,24 +1225,30 @@
       'version': '3.2.3'
     },
 
-    'Safari 4.x on iPhone (iOS 3.1)': {
+    'Safari 4.x on Apple iPhone (iOS 3.1)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Mobile/7E18,gzip(gfe),gzip(gfe)',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '4.x'
     },
 
-    'Safari 4.x on iPhone Simulator (iOS 4.0)': {
+    'Safari 4.x on Apple iPhone Simulator (iOS 4.0)': {
       'ua': 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Mobile/8A293',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone Simulator',
       'version': '4.x'
     },
 
-    'Safari 4.x on iPhone (iOS 4.1)': {
+    'Safari 4.x on Apple iPhone (iOS 4.1)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Mobile/8B117',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '4.x'
     },
 
@@ -1245,38 +1280,48 @@
       'version': '4.0#{alpha}1'
     },
 
-    'Safari 4.0 on iPhone (iOS 3.0)': {
+    'Safari 4.0 on Apple iPhone (iOS 3.0)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; ko-kr) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '4.0'
     },
 
-    'Safari 4.0 on iPod (iOS 3.0)': {
+    'Safari 4.0 on Apple iPod (iOS 3.0)': {
       'ua': 'Mozilla/5.0 (iPod; U; CPU iPhone OS 3_0 like Mac OS X; ja-jp) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPod',
       'version': '4.0'
     },
 
-    'Safari 4.0 on iPhone (iOS 3.1)': {
+    'Safari 4.0 on Apple iPhone (iOS 3.1)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7C97d Safari/528.16',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '4.0'
     },
 
-    'Safari 4.0 on iPhone (iOS 3.1.3)': {
+    'Safari 4.0 on Apple iPhone (iOS 3.1.3)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_3 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7E18 Safari/528.16 Cydia/1.0.3201-71',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '4.0'
     },
 
-    'Safari 4.0 on iPhone (iOS 4.1.1)': {
+    'Safari 4.0 on Apple iPhone (iOS 4.1.1)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1_1 like Mac OS X; en-en) AppleWebKit/548.18 (KHTML, like Gecko) Version/4.0 Mobile/8F12 Safari/548.16',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '4.0'
     },
 
@@ -1385,24 +1430,30 @@
       'version': '4.0.3'
     },
 
-    'Safari 4.0.4 on iPad (iOS 3.2)': {
+    'Safari 4.0.4 on Apple iPad (iOS 3.2)': {
       'ua': 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPad',
       'version': '4.0.4'
     },
 
-    'Safari 4.0.4 on iPhone (iOS 3.2)': {
+    'Safari 4.0.4 on Apple iPhone (iOS 3.2)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '4.0.4'
     },
 
-    'Safari 4.0.4 on iPhone Simulator (iOS 3.2)': {
+    'Safari 4.0.4 on Apple iPhone Simulator (iOS 3.2)': {
       'ua': 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7D11 Safari/531.21.10',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone Simulator',
       'version': '4.0.4'
     },
 
@@ -1455,10 +1506,12 @@
       'version': '4.0.4'
     },
 
-    'Safari 4.0.5 on iPhone (iOS 4.1)': {
+    'Safari 4.0.5 on Apple iPhone (iOS 4.1)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8B5097d Safari/6531.22.7',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '4.0.5'
     },
 
@@ -1574,17 +1627,21 @@
       'version': '5.0.1'
     },
 
-    'Safari 5.0.2 on iPad (iOS 4.3)': {
+    'Safari 5.0.2 on Apple iPad (iOS 4.3)': {
       'ua': '(iPad; U; CPU OS 4_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8F190 Safari/6533.18.5',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPad',
       'version': '5.0.2'
     },
 
-    'Safari 5.0.2 on iPhone (iOS 4.3)': {
+    'Safari 5.0.2 on Apple iPhone (iOS 4.3)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8F190 Safari/6533.18.5',
       'layout': 'WebKit',
+      'manufacturer': 'Apple',
       'name': 'Safari',
+      'product': 'iPhone',
       'version': '5.0.2'
     },
 
@@ -1614,6 +1671,15 @@
       'layout': 'WebKit',
       'name': 'Safari',
       'version': '5.0.2'
+    },
+
+    'Safari 5.1 on Apple iPad (iOS 5.0)': {
+      'ua': 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A5288d Safari/7534.48.3',
+      'layout': 'WebKit',
+      'manufacturer': 'Apple',
+      'name': 'Safari',
+      'product': 'iPad',
+      'version': '5.1'
     },
 
     'SeaMonkey 1.1.7#{alpha}': {
@@ -1739,9 +1805,11 @@
       'version': '1.0'
     },
 
-    'TouchPad Browser (like Safari 4+) on TouchPad 1.0 (webOS 3.0.0)': {
+    'TouchPad Browser (like Safari 4+) on HP TouchPad 1.0 (webOS 3.0.0)': {
       'ua': 'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-GB) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0',
       'layout': 'WebKit',
+      'manufacturer': 'HP',
+      'product': 'TouchPad 1.0',
       'name': 'TouchPad Browser'
     },
 
@@ -1766,42 +1834,17 @@
 
   /*--------------------------------------------------------------------------*/
 
-  module('platform');
+  QUnit.module('platform');
 
-  test('platform.description', function() {
-    each(Tests, function(value, key) {
-      key = interpolate(key, { 'alpha': '\u03b1', 'beta': '\u03b2' });
-      equals(String(getPlatform(value)), key, key);
+  each(['description', 'layout', 'manufacturer', 'name', 'product', 'version'], function(name) {
+    test('platform.' + name, function() {
+      each(Tests, function(value, key) {
+        var platform = getPlatform(value);
+        value = name == 'description' ? key : value[name];
+        value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2' }) : null;
+        equals(platform && platform[name], value, String(platform));
+      });
     });
-  });
-
-  test('platform.layout', function() {
-    each(Tests, function(value) {
-      var platform = getPlatform(value);
-      equals(platform.layout, value.layout, String(platform));
-    });
-  });
-
-  test('platform.name', function() {
-    each(Tests, function(value) {
-      var platform = getPlatform(value);
-      equals(platform.name, value.name, String(platform));
-    });
-  });
-
-  test('platform.version', function() {
-    each(Tests, function(value) {
-      var platform = getPlatform(value),
-          version = value.version;
-      equals(platform.version, version ? interpolate(version, { 'alpha': '\u03b1', 'beta': '\u03b2' }) : null, String(platform));
-    });
-  });
-
-  test('platform.noConflict', function() {
-    var p = [platform, platform.noConflict()];
-    equals(p[0], p[1], 'returns platform object');
-    strictEqual(1, platform, 'restores overwritten value');
-    platform = p[0];
   });
 
   test('check null values', function() {
@@ -1812,9 +1855,25 @@
     });
   });
 
-  if (isHostType(window, 'require')) {
-    test('require("platform")', function() {
-      equals((platform2 || {}).description, platform.description, 'require("platform")');
+  if (window.document) {
+    test('platform.noConflict', function() {
+      var p = [platform, platform.noConflict()];
+      equals(p[0], p[1], 'returns platform object');
+      strictEqual(window.platform, 1, 'restores overwritten value');
+      window.platform = p[0];
     });
+
+    if (window.require) {
+      test('require("platform")', function() {
+        equals((platform2 || {}).description, platform.description, 'require("platform")');
+      });
+    }
   }
-}(this));
+
+  /*--------------------------------------------------------------------------*/
+
+  // explicitly call `QUnit.start()` in a CLI environment
+  if (!window.document) {
+    QUnit.start();
+  }
+}(typeof global == 'object' && global || this));
