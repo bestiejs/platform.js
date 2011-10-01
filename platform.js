@@ -15,7 +15,7 @@
   freeExports = typeof exports == 'object' && exports,
 
   /** Detect free variable `global` */
-  freeGlobal = isHostType(thisBinding, 'global') && (freeExports ? (window = global) : global),
+  freeGlobal = typeof global == 'object' && global && (global == global.global ? (window = global) : global),
 
   /** Detect Java environment */
   java = /Java/.test(getClassOf(window.java)) && window.java,
@@ -29,11 +29,17 @@
   /** Browser document object */
   doc = window.document || {},
 
+  /** Used to preserve a pristine reference */
+  hasOwnProperty = {}.hasOwnProperty,
+
   /** Browser navigator object */
   nav = window.navigator || {},
 
   /** Previous platform object */
   old = window.platform,
+
+  /** Used to resolve a value's internal [[Class]] */
+  toString = {}.toString,
 
   /** Browser user agent string */
   userAgent = nav.userAgent || 'unknown platform',
@@ -64,18 +70,37 @@
   }
 
   /**
-   * Copies own/inherited properties of a source object to the destination object.
+   * A bare-bones `Array#forEach`/`for-in` own property solution.
+   * Callbacks may terminate the loop by explicitly returning `false`.
    * @private
-   * @param {Object} destination The destination object.
-   * @param {Object} [source={}] The source object.
-   * @returns {Object} The destination object.
+   * @param {Array|Object} object The object to iterate over.
+   * @param {Function} callback The function called per iteration.
+   * @returns {Array|Object} Returns the object iterated over.
    */
-  function extend(destination, source) {
-    source || (source = {});
-    for (var key in source) {
-      destination[key] = source[key];
+  function each(object, callback) {
+    var i = -1,
+        result = [object, object = Object(object)][0],
+        skipCheck = 'item' in object,
+        length = object.length;
+
+    // in Opera < 10.5 `hasKey(object, 'length')` returns false for NodeLists
+    if (length == length >>> 0) {
+      while (++i < length) {
+        // in Safari 2 `i in object` is always false for NodeLists
+        if ((skipCheck || i in object) &&
+            callback(object[i], i, object) === false) {
+          break;
+        }
+      }
+    } else {
+      for (i in object) {
+        if (hasKey(object, i) &&
+            callback(object[i], i, object) === false) {
+          break;
+        }
+      }
     }
-    return destination;
+    return result;
   }
 
   /**
@@ -90,13 +115,40 @@
   }
 
   /**
-   * Gets the internal [[Class]] value of an object.
+   * Gets the internal [[Class]] of a value.
    * @private
-   * @param {Object} object The object.
-   * @returns {String} The [[Class]] value.
+   * @param {Mixed} value The value.
+   * @returns {String} The [[Class]].
    */
-  function getClassOf(object) {
-    return object == null ? capitalize(String(object)) : {}.toString.call(object).slice(8, -1);
+  function getClassOf(value) {
+    return value == null ? capitalize(String(value)) : toString.call(value).slice(8, -1);
+  }
+
+  /**
+   * Checks if an object has the specified key as a direct property.
+   * @private
+   * @param {Object} object The object to check.
+   * @param {String} key The key to check for.
+   * @returns {Boolean} Returns `true` if key is a direct property, else `false`.
+   */
+  function hasKey(object, key) {
+    var result,
+        parent = (object.constructor || Object).prototype;
+
+    // for modern browsers
+    object = Object(object);
+    if (typeof hasOwnProperty == 'function') {
+      result = hasOwnProperty.call(object, key);
+    }
+    // for Safari 2
+    else if ({}.__proto__ == Object.prototype) {
+      object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
+    }
+    // for others (not as accurate)
+    else {
+      result = key in object && !(key in parent && object[key] === parent[key]);
+    }
+    return result;
   }
 
   /**
@@ -115,22 +167,18 @@
   }
 
   /**
-   * An `Array#reduce` like solution.
+   * A generic bare-bones `Array#reduce` solution.
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
-   * @param {Mixed} [accumulator=undefined] Initial value of the accumulator.
+   * @param {Mixed} accumulator Initial value of the accumulator.
    * @returns {Mixed} The accumulator.
    */
   function reduce(array, callback, accumulator) {
-    var index = -1,
-        length = array.length;
-
-    while (++index < length) {
-      if (index in array) {
-        accumulator = callback(accumulator, array[index], index, array);
-      }
-    }
+    var noaccum = arguments.length < 3;
+    each(array, function(value, index) {
+      accumulator = noaccum ? (noaccum = 0, value) : callback(accumulator, value, index, array);
+    });
     return accumulator;
   }
 
@@ -144,26 +192,216 @@
    */
   function getPlatform(ua) {
 
-    /** Temporary variable used over the script's lifetime */
-    var data = { '6.1': 'Server 2008 R2 / 7', '6.0': 'Server 2008 / Vista', '5.2': 'Server 2003 / XP x64', '5.1': 'XP', '5.0': '2000', '4.0': 'NT', '4.9': 'ME' },
+    ua || (ua = userAgent);
 
-    /** Platform description array  */
+    /** Default manufacturer value */
+    var manufacturer = null,
+
+    /** Platform description array */
     description = [],
 
-    /** String of detectable layout engines */
-    layout = 'AppleWebKit,iCab,Presto,NetFront,Tasman,Trident,KHTML,Gecko',
-
-    /** String of detectable browser names */
-    name = 'Arora,Avant Browser,Camino,Epiphany,Fennec,Flock,Galeon,GreenBrowser,iCab,Iron,K-Meleon,Konqueror,Lunascape,Maxthon,Midori,Minefield,Nook Browser,Rekonq,RockMelt,SeaMonkey,Sleipnir,SlimBrowser,Sunrise,Swiftfox,Opera Mini,Opera,Chrome,Firefox,MSIE,Safari',
-
-    /** String of detectable operating systems */
-    os = 'Android,Cygwin,SymbianOS,(?:hpw|web)OS[ /]\\d,Linux,Mac OS(?: X)?,Macintosh,Mac,Windows 98;,Windows ',
-
-    /** String of detectable products */
-    product = 'BlackBerry\\s?\\d+,iP[ao]d,iPhone,Kindle,LG,Nokia,Nook,PlayBook,Samsung,TouchPad,Xoom',
-
     /** Stores browser/environment version */
-    version = opera && typeof opera.version == 'function' && opera.version();
+    version = opera && typeof opera.version == 'function' && opera.version(),
+
+    /** Temporary variable used over the script's lifetime */
+    data = {
+      '6.1': 'Server 2008 R2 / 7',
+      '6.0': 'Server 2008 / Vista',
+      '5.2': 'Server 2003 / XP x64',
+      '5.1': 'XP',
+      '5.0': '2000',
+      '4.0': 'NT',
+      '4.9': 'ME'
+    },
+
+    /* Detectable layout engines */
+    layout = getLayout([
+      'AppleWebKit',
+      'iCab',
+      'Presto',
+      'NetFront',
+      'Tasman',
+      'Trident',
+      'KHTML',
+      'Gecko'
+    ]),
+
+    /* Detectable products */
+    product = getProduct([
+      'BlackBerry\\s?\\d+',
+      'iP[ao]d',
+      'iPhone',
+      'Kindle',
+      'Nook',
+      'PlayBook',
+      'TouchPad',
+      'Transformer',
+      'Xoom'
+    ]),
+
+    /* Detectable manufacturers */
+    manufacturer = getManufacturer({
+      'Apple': { 'iPad': 1, 'iPhone': 1, 'iPod': 1 },
+      'Amazon': { 'Kindle': 1 },
+      'Asus': { 'Transformer': 1 },
+      'Barnes & Noble': { 'Nook': 1 },
+      'BlackBerry': { 'PlayBook': 1 },
+      'HP': { 'TouchPad': 1 },
+      'LG': { },
+      'Motorola': { 'Xoom': 1 },
+      'Nokia': { },
+      'Samsung': { }
+    }),
+
+    /* Detectable browser names */
+    name = getName([
+      'Arora',
+      'Avant Browser',
+      'Camino',
+      'Epiphany',
+      'Fennec',
+      'Flock',
+      'Galeon',
+      'GreenBrowser',
+      'iCab',
+      'Iron',
+      'K-Meleon',
+      'Konqueror',
+      'Lunascape',
+      'Maxthon',
+      'Midori',
+      'Minefield',
+      'Nook Browser',
+      'Rekonq',
+      'RockMelt',
+      'SeaMonkey',
+      'Sleipnir',
+      'SlimBrowser',
+      'Sunrise',
+      'Swiftfox',
+      'Opera Mini',
+      'Opera',
+      'Chrome',
+      'Firefox',
+      'MSIE',
+      'Safari'
+    ]),
+
+    /* Detectable OSes */
+    os = getOS([
+      'Android',
+      'Cygwin',
+      'SymbianOS',
+      '(?:hpw|web|Tablet)\\s*OS[ /]\\d',
+      'Linux',
+      'Mac OS(?: X)?',
+      'Macintosh',
+      'Mac',
+      'Windows 98;',
+      'Windows '
+    ]);
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Picks the layout from an array of guesses.
+     * @private
+     * @param {Array} guesses An array of guesses.
+     * @returns {String|Null} The detected layout.
+     */
+    function getLayout(guesses){
+      return reduce(guesses, function(layout, guess, index) {
+        return layout || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && [guess == 'AppleWebKit' ? 'WebKit' : guess];
+      }, null);
+    }
+
+    /**
+     * Picks the manufacturer from an array of guesses.
+     * @private
+     * @param {Array} guesses An array of guesses.
+     * @returns {String|Null} The detected manufacturer.
+     */
+    function getManufacturer(guesses) {
+      var result,
+          prod = product || '';
+
+      each(guesses, function(value, key) {
+        return !(result = (prod.indexOf(key) > -1 || value[/^[a-z]+/i.exec(prod)] || RegExp('\\b' + key + '(?:\\b|\\d)', 'i').exec(ua)) && key);
+      });
+      // attempt to detect the "product" if it's not already detected
+      if ((result = result && String(result) || null) && !prod) {
+        product = getProduct([result]);
+      }
+      return result;
+    }
+
+    /**
+     * Picks the browser name from an array of guesses.
+     * @private
+     * @param {Array} guesses An array of guesses.
+     * @returns {String|Null} The detected browser name.
+     */
+    function getName(guesses) {
+      return reduce(guesses, function(name, guess) {
+        return name || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && (guess == 'MSIE' ? 'IE' : guess);
+      }, null);
+    }
+
+    /**
+     * Picks the OS name from an array of guesses.
+     * @private
+     * @param {Array} guesses An array of guesses.
+     * @returns {String|Null} The detected OS name.
+     */
+    function getOS(guesses) {
+      return reduce(guesses, function(os, guess) {
+        if (!os && (os = RegExp('\\b' + guess + '[^();/-]*', 'i').exec(ua))) {
+          // platform tokens defined at
+          // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
+          if (/^Win/i.test(os) && (data = data[0/*opera fix*/, /[456]\.\d/.exec(os)])) {
+            os = 'Windows ' + data;
+          }
+          // normalize iOS
+          else if (/^i/.test(product)) {
+            name || (name = 'Safari');
+            os = 'iOS' + ((data = /\bOS ([\d_]+)/i.exec(ua)) ? ' ' + data[1] : '');
+          }
+          // cleanup
+          os = String(os).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess)
+            .replace(/Macintosh/i, 'Mac OS').replace(/_PowerPC/i, ' OS').replace(/(OS X) Mach$/i, '$1')
+            .replace(/\/(\d)/, ' $1').replace(/_/g, '.').replace(/x86\.64/gi, 'x86_64')
+            .replace(/hpw/, 'web').split(' on ')[0];
+        }
+        return os;
+      }, null)
+    }
+
+    /**
+     * Picks the product name from an array of guesses.
+     * @private
+     * @param {Array} guesses An array of guesses.
+     * @returns {String|Null} The detected product name.
+     */
+    function getProduct(guesses) {
+      return reduce(guesses, function(product, guess) {
+        if (!product && (product = RegExp('\\b' + guess + '(?:;\\s*[a-z]+[0-9]+|[^ ();-]*)', 'i').exec(ua))) {
+          // correct character case and split by forward slash
+          if ((product = String(product).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess).split('/'))[1]) {
+            if (/[\d.]+/.test(product[0])) {
+              version || (version = product[1]);
+            } else {
+              product[0] += ' ' + product[1];
+            }
+          }
+          if (/;/.test(product)) {
+            product = format(product[0].replace(/;\s+/, ' '));
+          } else {
+            product = format(product[0].replace(/([a-z])(\d)/i, '$1 $2'));
+          }
+        }
+        return product;
+      }, null);
+    }
 
     /*------------------------------------------------------------------------*/
 
@@ -190,52 +428,6 @@
 
     /*------------------------------------------------------------------------*/
 
-    ua || (ua = userAgent);
-
-    layout = reduce(layout.split(','), function(layout, guess, index) {
-      return layout || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && [guess == 'AppleWebKit' ? 'WebKit' : guess];
-    });
-
-    name = reduce(name.split(','), function(name, guess) {
-      return name || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && (guess == 'MSIE' ? 'IE' : guess);
-    });
-
-    product = reduce(product.split(','), function(product, guess) {
-      if (!product && (product = RegExp('\\b' + guess + '[^ ();-]*', 'i').exec(ua))) {
-        // correct character case and split by forward slash
-        if ((product = String(product).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess).split('/'))[1]) {
-          if (/[\d.]+/.test(product[0])) {
-            version || (version = product[1]);
-          } else {
-            product[0] += ' ' + product[1];
-          }
-        }
-        product = format(product[0].replace(/([a-z])(\d)/i, '$1 $2'));
-      }
-      return product;
-    });
-
-    os = reduce(os.split(','), function(os, guess) {
-      if (!os && (os = RegExp('\\b' + guess + '[^();/-]*', 'i').exec(ua))) {
-        // platform tokens defined at
-        // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
-        if (/^Win/i.test(os) && (data = data[0/*opera fix*/, /[456]\.\d/.exec(os)])) {
-          os = 'Windows ' + data;
-        }
-        // normalize iOS
-        else if (/^i/.test(product)) {
-          name || (name = 'Safari');
-          os = 'iOS' + ((data = /\bOS ([\d_]+)/i.exec(ua)) ? ' ' + data[1] : '');
-        }
-        // cleanup
-        os = String(os).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess)
-          .replace(/Macintosh/i, 'Mac OS').replace(/_PowerPC/i, ' OS').replace(/(OS X) Mach$/i, '$1')
-          .replace(/\/(\d)/, ' $1').replace(/_/g, '.').replace(/x86\.64/gi, 'x86_64')
-          .replace(/hpw/, 'web').split(' on ')[0];
-      }
-      return os;
-    });
-
     // detect simulator
     if (/Simulator/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
@@ -245,15 +437,19 @@
       if (name && !product && /[/,]/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         name = null;
       }
-      if ((data = product || os) && !/^(?:iP|Linux|Mac|Win)/.test(data)) {
+      if ((data = product || manufacturer || os) && !/^(?:iP|Linux|Mac|Win)/.test(data)) {
         name = /[a-z]+/i.exec(/Android/.test(os) && os || data) + ' Browser';
       }
+    }
+    // detect Android browsers
+    if (name == 'Chrome' && manufacturer) {
+      name = 'Android Browser';
     }
     // detect non Opera desktop versions
     if (!version) {
       version = reduce([/Mini/.test(opera && name) ? name : 'version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(version, guess) {
         return version || (RegExp(guess + '(?:-[\\d.]+/|[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
-      });
+      }, null);
     }
     // detect stubborn layout engines
     if (data = !layout && (opera && 'Presto' || /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident')) || /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
@@ -261,9 +457,11 @@
     } else if (layout == 'iCab') {
       layout = parseFloat(version) > 3 ? ['WebKit'] : layout;
     }
-    // detect server-side js
-    if (freeGlobal) {
+    // detect server-side environments
+    // Rhino has a global function and others have a global object
+    if (isHostType(thisBinding, 'global')) {
       if (typeof exports == 'object' && exports) {
+        // if `thisBinding` is the [ModuleScope]
         if (thisBinding == oldWin && typeof system == 'object' && (data = system)) {
           name = data.global == freeGlobal ? 'Narwhal' : 'RingoJS';
           os = data.os || null;
@@ -273,7 +471,7 @@
           version = /[\d.]+/.exec(data.version)[0];
           os = data.platform;
         }
-      } else if (getClassOf(thisBinding.environment) == 'Environment') {
+      } else if (typeof environment == 'object' && getClassOf(environment) == 'Environment') {
         name = 'Rhino';
       }
       if (java && !os) {
@@ -331,8 +529,8 @@
       layout = ['Presto'];
     }
     // detect unspecified Chrome/Safari versions
-    else if (data = (/AppleWebKit\/(\d+(?:\.\d+)?)/i.exec(ua) || 0)[1]) {
-      if (/Android|RockMelt/.test(os + name)) {
+    else if ((data = (/AppleWebKit\/(\d+(?:\.\d+)?)/i.exec(ua) || 0)[1])) {
+      if (/Android|Asus|RockMelt/.test(os + name + manufacturer)) {
         layout[1] = 'like Chrome';
         data = data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.10 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : '10';
       } else {
@@ -351,11 +549,15 @@
     if (description.length) {
       description = ['(' + description.join('; ') + ')'];
     }
-    // append product
-    if (product && String(name).indexOf(product) < 0) {
-      description.push('on ' + product);
+    // append manufacturer
+    if (manufacturer && String(product).indexOf(manufacturer) < 0) {
+      description.push('on ' + manufacturer);
     }
-    // add browser/os architecture
+    // append product
+    if (product) {
+      description.push((String(description[description.length -1]).indexOf('on ') < 0 ? 'on ' : '') + product);
+    }
+    // add browser/OS architecture
     if (/\b(?:WOW|x|IA)64\b/i.test(ua)) {
       os = os && os + (/64/.test(os) ? '' : ' x64');
       if (name && (/WOW64/i.test(ua) || /\w(?:86|32)$/.test(nav.cpuClass || nav.platform))) {
@@ -375,42 +577,49 @@
       /**
        * The browser/environment version.
        * @member platform
-       * @type {String|Null}
+       * @type String|Null
        */
       'version': name && version && (description.unshift(version), version),
 
       /**
        * The name of the browser/environment.
        * @member platform
-       * @type {String|Null}
+       * @type String|Null
        */
       'name': name && (description.unshift(name), name),
 
       /**
        * The name of the operating system.
        * @member platform
-       * @type {String|Null}
+       * @type String|Null
        */
       'os': name && (os = os && format(os)) && (description.push(product ? '(' + os + ')' : 'on ' + os), os),
 
       /**
        * The platform description.
        * @member platform
-       * @type {String}
+       * @type String
        */
       'description': description.length ? description.join(' ') : ua,
 
       /**
        * The name of the browser layout engine.
        * @member platform
-       * @type {String|Null}
+       * @type String|Null
        */
       'layout': layout && layout[0],
 
       /**
+       * The name of the product's manufacturer.
+       * @member platform
+       * @type String|Null
+       */
+      'manufacturer': manufacturer,
+
+      /**
        * The name of the product hosting the browser.
        * @member platform
-       * @type {String|Null}
+       * @type String|Null
        */
       'product': product,
 
@@ -427,7 +636,11 @@
   // expose platform
   // in Narwhal, Node.js or Ringo
   if (freeExports) {
-    extend(freeExports, getPlatform());
+    (function(platform) {
+      for (var key in platform) {
+        freeExports[key] = platform[key];
+      }
+    }(getPlatform()));
   }
   // via curl.js or RequireJS
   else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
