@@ -17,6 +17,9 @@
   /** Detect free variable `global` */
   freeGlobal = typeof global == 'object' && global && (global == global.global ? (window = global) : global),
 
+  /** Used to resolve a value's internal [[Class]] */
+  toString = {}.toString,
+
   /** Detect Java environment */
   java = /Java/.test(getClassOf(window.java)) && window.java,
 
@@ -37,9 +40,6 @@
 
   /** Previous platform object */
   old = window.platform,
-
-  /** Used to resolve a value's internal [[Class]] */
-  toString = {}.toString,
 
   /** Browser user agent string */
   userAgent = nav.userAgent || 'unknown platform',
@@ -418,11 +418,12 @@
 
     /**
      * Return platform description when the platform object is coerced to a string.
+     * @name toString
      * @member platform
      * @type Function
      * @returns {String} The platform description.
      */
-    function toString() {
+    function toStringPlatform() {
       return this.description;
     }
 
@@ -627,20 +628,18 @@
       'noConflict': noConflict,
 
       // returns the platform description
-      'toString': toString
+      'toString': toStringPlatform
     };
   }
 
   /*--------------------------------------------------------------------------*/
 
   // expose platform
-  // in Narwhal, Node.js or Ringo
+  // in Narwhal, Node.js, or Ringo
   if (freeExports) {
-    (function(platform) {
-      for (var key in platform) {
-        freeExports[key] = platform[key];
-      }
-    }(getPlatform()));
+    each(getPlatform(), function(value, key) {
+      freeExports[key] = value;
+    });
   }
   // via curl.js or RequireJS
   else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {

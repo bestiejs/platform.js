@@ -116,43 +116,54 @@
    * @returns {Object} The modified string.
    */
   var getPlatform = (function() {
-    var result,
+    var code,
+        result,
         xhr;
 
-    if (isHostType(window, 'ActiveXObject')) {
-      xhr = new ActiveXObject('Microsoft.XMLHTTP');
-    } else if (isHostType(window, 'XMLHttpRequest')) {
-      xhr = new XMLHttpRequest;
-    }
-    each(document.getElementsByTagName('script'), function(element) {
-      var src = element.src;
-      if (/platform\.js$/.test(src)) {
-        xhr.open('get', src + '?t=' + (+new Date), false);
-        xhr.send(null);
-        result = Function('options',
-          ('return ' +
-          /\(function(?:.|\n|\r)+?};\s*}/.exec(xhr.responseText)[0] +
-          ' return getPlatform()}(this))')
-            .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
-            .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
-            .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
-            .replace(/\buserAgent\s*=[^\n]+?(,\n)/, 'userAgent=me.ua$1')
-            .replace(/\b(?:thisBinding|window)\b/g, 'me')
-            .replace(/([^.])\bsystem\b/g, '$1me.system')
-            .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
-            .replace(/\b(?:Environment|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
-            .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
-            .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
-            .replace(/\bnav\.platform/g, 'me.platform')
-            .replace(/\benvironment\b/g, 'me.environment')
-            .replace(/\bexports\b/g, 'me.exports')
-            .replace(/\bexternal/g, 'me.external')
-            .replace(/\bprocess\b/g, 'me.process')
-            .replace(/\bdoc\.documentMode/g, 'me.mode'));
-        return false;
+    if (window.document) {
+      if (isHostType(window, 'ActiveXObject')) {
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+      } else if (isHostType(window, 'XMLHttpRequest')) {
+        xhr = new XMLHttpRequest;
       }
-    });
-    return result;
+      each(document.getElementsByTagName('script'), function(element) {
+        var src = element.src;
+        if (/platform\.js$/.test(src)) {
+          xhr.open('get', src + '?t=' + (+new Date), false);
+          xhr.send(null);
+          code = xhr.responseText;
+        }
+      });
+    }
+    else {
+      try {
+        // Node.js
+        code = require('fs').readFileSync('../platform.js');
+      } catch(e) {
+        // Narwhal, Rhino, and Ringo
+        code = readFile('../platform.js');
+      }
+    }
+    return Function('options',
+      ('return ' +
+      /\(function(?:.|\n|\r)+?};\s*}/.exec(code)[0] +
+      ' return getPlatform()}(this))')
+        .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
+        .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
+        .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
+        .replace(/\buserAgent\s*=[^\n]+?(,\n)/, 'userAgent=me.ua$1')
+        .replace(/\b(?:thisBinding|window)\b/g, 'me')
+        .replace(/([^.])\bsystem\b/g, '$1me.system')
+        .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
+        .replace(/\b(?:Environment|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
+        .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
+        .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
+        .replace(/\bnav\.platform/g, 'me.platform')
+        .replace(/\benvironment\b/g, 'me.environment')
+        .replace(/\bexports\b/g, 'me.exports')
+        .replace(/\bexternal/g, 'me.external')
+        .replace(/\bprocess\b/g, 'me.process')
+        .replace(/\bdoc\.documentMode/g, 'me.mode'));
   }());
 
   /*--------------------------------------------------------------------------*/
