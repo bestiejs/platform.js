@@ -269,6 +269,7 @@
       'Midori',
       'Minefield',
       'Nook Browser',
+      'Raven',
       'Rekonq',
       'RockMelt',
       'SeaMonkey',
