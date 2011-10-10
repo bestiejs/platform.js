@@ -194,13 +194,10 @@
 
     ua || (ua = userAgent);
 
-    /** Default manufacturer value */
-    var manufacturer = null,
-
     /** Platform description array */
-    description = [],
+    var description = [],
 
-    /** Stores browser/environment version */
+    /** The browser/environment version */
     version = opera && typeof opera.version == 'function' && opera.version(),
 
     /** Temporary variable used over the script's lifetime */
@@ -310,8 +307,8 @@
      * @returns {String|Null} The detected layout.
      */
     function getLayout(guesses){
-      return reduce(guesses, function(layout, guess, index) {
-        return layout || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && [guess == 'AppleWebKit' ? 'WebKit' : guess];
+      return reduce(guesses, function(result, guess, index) {
+        return result || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && [guess == 'AppleWebKit' ? 'WebKit' : guess];
       }, null);
     }
 
@@ -322,17 +319,12 @@
      * @returns {String|Null} The detected manufacturer.
      */
     function getManufacturer(guesses) {
-      var result,
-          prod = product || '';
-
-      each(guesses, function(value, key) {
-        return !(result = (prod.indexOf(key) > -1 || value[/^[a-z]+/i.exec(prod)] || RegExp('\\b' + key + '(?:\\b|\\d)', 'i').exec(ua)) && key);
-      });
-      // attempt to detect the "product" if it's not already detected
-      if ((result = result && String(result) || null) && !prod) {
-        product = getProduct([result]);
-      }
-      return result;
+      return reduce(guesses, function(result, value, key) {
+        if (!result && (result = (value[/^[a-z]+/i.exec(product)] || RegExp('\\b' + key + '(?:\\b|\\d)', 'i').exec(ua)) && key)) {
+          product || (product = getProduct([result]));
+        }
+        return result;
+      }, null);
     }
 
     /**
@@ -342,8 +334,8 @@
      * @returns {String|Null} The detected browser name.
      */
     function getName(guesses) {
-      return reduce(guesses, function(name, guess) {
-        return name || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && (guess == 'MSIE' ? 'IE' : guess);
+      return reduce(guesses, function(result, guess) {
+        return result || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && (guess == 'MSIE' ? 'IE' : guess);
       }, null);
     }
 
@@ -354,26 +346,26 @@
      * @returns {String|Null} The detected OS name.
      */
     function getOS(guesses) {
-      return reduce(guesses, function(os, guess) {
-        if (!os && (os = RegExp('\\b' + guess + '[^();/-]*', 'i').exec(ua))) {
+      return reduce(guesses, function(result, guess) {
+        if (!result && (result = RegExp('\\b' + guess + '[^();/-]*', 'i').exec(ua))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
-          if (/^Win/i.test(os) && (data = data[0/*opera fix*/, /[456]\.\d/.exec(os)])) {
-            os = 'Windows ' + data;
+          if (/^Win/i.test(result) && (data = data[0/*opera fix*/, /[456]\.\d/.exec(result)])) {
+            result = 'Windows ' + data;
           }
           // normalize iOS
           else if (/^i/.test(product)) {
             name || (name = 'Safari');
-            os = 'iOS' + ((data = /\bOS ([\d_]+)/i.exec(ua)) ? ' ' + data[1] : '');
+            result = 'iOS' + ((data = /\bOS ([\d_]+)/i.exec(ua)) ? ' ' + data[1] : '');
           }
           // cleanup
-          os = String(os).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess)
+          result = String(result).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess)
             .replace(/Macintosh/i, 'Mac OS').replace(/_PowerPC/i, ' OS').replace(/(OS X) Mach$/i, '$1')
             .replace(/\/(\d)/, ' $1').replace(/_/g, '.').replace(/x86\.64/gi, 'x86_64')
             .replace(/hpw/, 'web').split(' on ')[0];
         }
-        return os;
-      }, null)
+        return result;
+      }, null);
     }
 
     /**
@@ -383,23 +375,21 @@
      * @returns {String|Null} The detected product name.
      */
     function getProduct(guesses) {
-      return reduce(guesses, function(product, guess) {
-        if (!product && (product = RegExp('\\b' + guess + '(?:;\\s*[a-z]+[0-9]+|[^ ();-]*)', 'i').exec(ua))) {
+      return reduce(guesses, function(result, guess) {
+        if (!result && (result = RegExp('\\b' + guess + '(?:;\\s*[a-z]+[0-9]+|[^ ();-]*)', 'i').exec(ua))) {
           // correct character case and split by forward slash
-          if ((product = String(product).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess).split('/'))[1]) {
-            if (/[\d.]+/.test(product[0])) {
-              version || (version = product[1]);
+          if ((result = String(result).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess).split('/'))[1]) {
+            if (/[\d.]+/.test(result[0])) {
+              version || (version = result[1]);
             } else {
-              product[0] += ' ' + product[1];
+              result[0] += ' ' + result[1];
             }
           }
-          if (/;/.test(product)) {
-            product = format(product[0].replace(/;\s+/, ' '));
-          } else {
-            product = format(product[0].replace(/([a-z])(\d)/i, '$1 $2'));
-          }
+          result = format(/;/.test(result)
+            ? result[0].replace(/;\s+/, ' ')
+            : result[0].replace(/([a-z])(\d)/i, '$1 $2'));
         }
-        return product;
+        return result;
       }, null);
     }
 
@@ -407,7 +397,7 @@
 
     /**
      * Restores a previously overwritten platform object.
-     * @member platform
+     * @memberOf platform
      * @type Function
      * @returns {Object} The current platform object.
      */
@@ -419,7 +409,7 @@
     /**
      * Return platform description when the platform object is coerced to a string.
      * @name toString
-     * @member platform
+     * @memberOf platform
      * @type Function
      * @returns {String} The platform description.
      */
@@ -448,8 +438,8 @@
     }
     // detect non Opera desktop versions
     if (!version) {
-      version = reduce([/Mini/.test(opera && name) ? name : 'version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(version, guess) {
-        return version || (RegExp(guess + '(?:-[\\d.]+/|[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
+      version = reduce([/Mini/.test(opera && name) ? name : 'version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(result, guess) {
+        return result || (RegExp(guess + '(?:-[\\d.]+/|[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
       }, null);
     }
     // detect stubborn layout engines
@@ -459,7 +449,7 @@
       layout = parseFloat(version) > 3 ? ['WebKit'] : layout;
     }
     // detect server-side environments
-    // Rhino has a global function and others have a global object
+    // Rhino has a global function while others have a global object
     if (isHostType(thisBinding, 'global')) {
       if (typeof exports == 'object' && exports) {
         // if `thisBinding` is the [ModuleScope]
@@ -531,15 +521,17 @@
     }
     // detect unspecified Chrome/Safari versions
     else if ((data = (/AppleWebKit\/(\d+(?:\.\d+)?)/i.exec(ua) || 0)[1])) {
-      if (/Android|Asus|RockMelt/.test(os + name + manufacturer)) {
-        layout[1] = 'like Chrome';
-        data = data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.10 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : '10';
-      } else {
+      // detect JavaScriptCore vs V8
+      // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
+      if (/\n/.test(toString.toString())) {
         layout[1] = 'like Safari';
-        data = data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : '4';
+        data = data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : '5';
+      } else {
+        layout[1] = 'like Chrome';
+        data = data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.1 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.3 ? 11 : data < 535.1 ? 12 : data < 535.2 ? '13+' : data < 535.5 ? 15 : '16'
       }
       data = (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1] || data;
-      layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /\./.test(data) ? '' : '+');
+      layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+');
       version = name == 'Safari' && (!version || parseInt(version) > 45) ? data : version;
     }
     // add layout engine
@@ -577,49 +569,49 @@
 
       /**
        * The browser/environment version.
-       * @member platform
+       * @memberOf platform
        * @type String|Null
        */
       'version': name && version && (description.unshift(version), version),
 
       /**
        * The name of the browser/environment.
-       * @member platform
+       * @memberOf platform
        * @type String|Null
        */
       'name': name && (description.unshift(name), name),
 
       /**
        * The name of the operating system.
-       * @member platform
+       * @memberOf platform
        * @type String|Null
        */
       'os': name && (os = os && format(os)) && (description.push(product ? '(' + os + ')' : 'on ' + os), os),
 
       /**
        * The platform description.
-       * @member platform
+       * @memberOf platform
        * @type String
        */
       'description': description.length ? description.join(' ') : ua,
 
       /**
        * The name of the browser layout engine.
-       * @member platform
+       * @memberOf platform
        * @type String|Null
        */
       'layout': layout && layout[0],
 
       /**
        * The name of the product's manufacturer.
-       * @member platform
+       * @memberOf platform
        * @type String|Null
        */
       'manufacturer': manufacturer,
 
       /**
        * The name of the product hosting the browser.
-       * @member platform
+       * @memberOf platform
        * @type String|Null
        */
       'product': product,

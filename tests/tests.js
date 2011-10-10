@@ -148,6 +148,7 @@
       ('return ' +
       /\(function(?:.|\n|\r)+?};\s*}/.exec(code)[0] +
       ' return getPlatform()}(this))')
+        .replace('/\\n/.test(toString.toString())', '!me.likeChrome')
         .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
         .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
         .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
@@ -181,7 +182,7 @@
       'version': '2.5'
     },
 
-    'Android Browser (like Chrome 2.x) on Android 2.1': {
+    'Android Browser (like Safari 4.x) on Android 2.1': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Sprint APA9292KT Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko)',
       'layout': 'WebKit',
       'name': 'Android Browser'
@@ -190,6 +191,7 @@
     'Android Browser (like Chrome 8.0) on Asus Transformer (Linux)': {
       'ua': 'Mozilla/5.0 (Linux; U; Linux Ventana; en-us; Transformer TF101 Build/HMJ37) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/8.0 Safari/534.13',
       'layout': 'WebKit',
+      'likeChrome': true,
       'os': 'Linux',
       'name': 'Android Browser',
       'manufacturer': 'Asus',
@@ -199,13 +201,14 @@
     'Android Browser 3.0.4 (like Chrome 1.x) on Motorola Xoom (Android 3.0)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 3.0; xx-xx; Xoom Build/HRI39) AppleWebKit/525.10+ (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2',
       'layout': 'WebKit',
+      'likeChrome': true,
       'manufacturer': 'Motorola',
       'name': 'Android Browser',
       'product': 'Xoom',
       'version': '3.0.4'
     },
 
-    'Android Browser 3.1.2 (like Chrome 1.x) on Android 1.6': {
+    'Android Browser 3.1.2 (like Safari 4.x) on Android 1.6': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 1.6; en-us; HTC_TATTOO_A3288 Build/DRC79) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1',
       'layout': 'WebKit',
       'name': 'Android Browser',
@@ -215,6 +218,7 @@
     'Android Browser 4.0 (like Chrome 5.x) on Android 2.2': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.2; zh-cn;) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
       'layout': 'WebKit',
+      'likeChrome': true,
       'name': 'Android Browser',
       'version': '4.0'
     },
@@ -222,6 +226,7 @@
     'Android Browser 4.0 (like Chrome 5.x) on Android 2.2.1': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
       'layout': 'WebKit',
+      'likeChrome': true,
       'name': 'Android Browser',
       'version': '4.0'
     },
@@ -229,6 +234,7 @@
     'Android Browser 4.1#{alpha} (like Chrome 5.x) on Android 2.2.1': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.1a Mobile Safari/533.1',
       'layout': 'WebKit',
+      'likeChrome': true,
       'name': 'Android Browser',
       'version': '4.1#{alpha}'
     },
@@ -282,7 +288,7 @@
       'product': 'BlackBerry 8900'
     },
 
-    'BlackBerry Browser (like Safari 4+) on BlackBerry 9800 (Device Software 6.0.0.91)': {
+    'BlackBerry Browser (like Safari 5.x) on BlackBerry 9800 (Device Software 6.0.0.91)': {
       'ua': 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en-US) AppleWebKit/534.1  (KHTML, like Gecko) Version/6.0.0.91 Mobile Safari/534.1 ,gzip(gfe),gzip(gfe)',
       'layout': 'WebKit',
       'manufacturer': 'BlackBerry',
@@ -1046,7 +1052,7 @@
       'version': '1.0.0'
     },
 
-    'PlayBook Browser 0.0.1 (like Safari 4+) on BlackBerry PlayBook (Tablet OS 1.0.0)': {
+    'PlayBook Browser 0.0.1 (like Safari 5.x) on BlackBerry PlayBook (Tablet OS 1.0.0)': {
       'ua': 'Mozilla/5.0 (PlayBook; U; RIM Tablet OS 1.0.0; en-US) AppleWebKit/534.8+ (KHTML, like Gecko) Version/0.0.1 Safari/534.8+',
       'layout': 'WebKit',
       'manufacturer': 'BlackBerry',
@@ -1086,6 +1092,7 @@
     'RockMelt 0.8.34.820 (like Chrome 6.0.472.63) on Mac OS X 10.5.8': {
       'ua': 'Mozilla/5.0(Macintosh; U; Intel Mac OS X 10_5_8; en-US)AppleWebKit/534.3(KHTML,like Gecko)RockMelt/0.8.34.820 Chrome/6.0.472.63 Safari/534.3',
       'layout': 'WebKit',
+      'likeChrome': true,
       'name': 'RockMelt',
       'version': '0.8.34.820'
     },
@@ -1802,23 +1809,26 @@
       'version': '3.0.10#{alpha}'
      },
 
-    'webOS Browser 1.0 (like Safari 3.x) on webOS 1.2.9': {
+    'webOS Browser 1.0 (like Chrome 1.x) on webOS 1.2.9': {
       'ua': 'Mozilla/5.0 (webOS/Palm webOS 1.2.9; U; en-US) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/1.0 Safari/525.27.1 Pixi/1.0',
       'layout': 'WebKit',
+      'likeChrome': true,
       'name': 'webOS Browser',
       'version': '1.0'
     },
 
-    'webOS Browser 1.0 (like Safari 4.x) on webOS 1.4.0': {
+    'webOS Browser 1.0 (like Chrome 3.x) on webOS 1.4.0': {
       'ua': 'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pre/1.0',
       'layout': 'WebKit',
+      'likeChrome': true,
       'name': 'webOS Browser',
       'version': '1.0'
     },
 
-    'TouchPad Browser (like Safari 4+) on HP TouchPad 1.0 (webOS 3.0.0)': {
+    'TouchPad Browser (like Chrome 6.x) on HP TouchPad 1.0 (webOS 3.0.0)': {
       'ua': 'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-GB) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0',
       'layout': 'WebKit',
+      'likeChrome': true,
       'manufacturer': 'HP',
       'product': 'TouchPad 1.0',
       'name': 'TouchPad Browser'
