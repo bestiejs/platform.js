@@ -1061,6 +1061,13 @@
       'version': '0.0.1'
     },
 
+    'Raven 0.5.8635 on Mac OS X 10.7.1': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.1) AppleWebKit/7534.48.3 (KHTML, like Gecko) Version/5.1 Safari/7534.48.3 Raven for Mac/0.5.8635',
+      'layout': 'WebKit',
+      'name': 'Raven',
+      'version': '0.5.8635'
+    },
+
     'Rekonq (like Safari 4+) on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-GB) AppleWebKit/533.3 (KHTML, like Gecko) rekonq Safari/533.3',
       'layout': 'WebKit',
@@ -1691,12 +1698,26 @@
       'version': '5.0.2'
     },
 
+    'Safari 5.0.5 on Mac OS X 10.7.1': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_1) AppleWebKit/534.48.3 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
+      'layout': 'WebKit',
+      'name': 'Safari',
+      'version': '5.0.5'
+    },
+
     'Safari 5.1 on Apple iPad (iOS 5.0)': {
       'ua': 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A5288d Safari/7534.48.3',
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
       'product': 'iPad',
+      'version': '5.1'
+    },
+
+    'Safari 5.1 on Windows Server 2008 R2 / 7': {
+      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',
+      'layout': 'WebKit',
+      'name': 'Safari',
       'version': '5.1'
     },
 

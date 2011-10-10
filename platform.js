@@ -439,8 +439,8 @@
     }
     // detect non Opera desktop versions
     if (!version) {
-      version = reduce([/Mini/.test(opera && name) ? name : 'version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(result, guess) {
-        return result || (RegExp(guess + '(?:-[\\d.]+/|[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
+      version = reduce([/Mini|Raven/.test(name) ? name : 'version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(result, guess) {
+        return result || (RegExp(guess + '(?:-[\\d.]+/|(?: for [-\\w]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
       }, null);
     }
     // detect stubborn layout engines
