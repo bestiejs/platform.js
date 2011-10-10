@@ -437,7 +437,7 @@
     if (name == 'Chrome' && manufacturer) {
       name = 'Android Browser';
     }
-    // detect non Opera desktop versions
+    // detect non-Opera versions
     if (!version) {
       version = reduce([/Mini|Raven/.test(name) ? name : 'version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(result, guess) {
         return result || (RegExp(guess + '(?:-[\\d.]+/|(?: for [-\\w]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
@@ -452,11 +452,20 @@
     // detect server-side environments
     // Rhino has a global function while others have a global object
     if (isHostType(thisBinding, 'global')) {
+      if (java && !os) {
+        os = String(java.lang.System.getProperty('os.name')) + ' ' + String(java.lang.System.getProperty('os.version'));
+      }
       if (typeof exports == 'object' && exports) {
         // if `thisBinding` is the [ModuleScope]
-        if (thisBinding == oldWin && typeof system == 'object' && (data = system)) {
-          name = data.global == freeGlobal ? 'Narwhal' : 'RingoJS';
-          os = data.os || null;
+        if (thisBinding == oldWin && typeof system == 'object' && (data = [system])) {
+          os || (os = data[0].os || null);
+          try {
+            data[1] = require('ringo/engine').version;
+            version = data[1].join('.');
+            name = 'RingoJS';
+          } catch(e) {
+            data[0].global == freeGlobal && (name = 'Narwhal');
+          }
         }
         else if (typeof process == 'object' && (data = process)) {
           name = 'Node.js';
@@ -465,9 +474,6 @@
         }
       } else if (typeof environment == 'object' && getClassOf(environment) == 'Environment') {
         name = 'Rhino';
-      }
-      if (java && !os) {
-        os = String(java.lang.System.getProperty('os.name'));
       }
     }
     // detect Adobe AIR
@@ -509,19 +515,24 @@
     }
     // detect BlackBerry OS version
     // http://docs.blackberry.com/en/developers/deliverables/18169/HTTP_headers_sent_by_BB_Browser_1234911_11.jsp
-    else if (/BlackBerry/.test(version != null && product)) {
+    else if (/BlackBerry/.test(version && product)) {
       os = 'Device Software ' + version;
       version = null;
     }
     // detect an Opera identity crisis
     // http://www.opera.com/support/kb/view/843/
-    if (opera && (data = [opera, opera = 0, getPlatform(ua.replace(reOpera, ''))], opera = data[0], data = data[2]).name && !reOpera.test(data.name)) {
+    else if (opera && (data = [opera, opera = 0, getPlatform(ua.replace(reOpera, ''))], opera = data[0], data = data[2]).name && !reOpera.test(data.name)) {
       description.push((reOpera.test(name) ? 'identify' : 'mask') + 'ing as ' + data.name + ((data = data.version) ? ' ' + data : ''));
       name = reOpera.test(name) ? name : format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2'));
       layout = ['Presto'];
     }
-    // detect unspecified Chrome/Safari versions
-    else if ((data = (/AppleWebKit\/(\d+(?:\.\d+)?)/i.exec(ua) || 0)[1])) {
+    // detect unspecified Chrome/Safari versions and WebKit Nightly
+    if ((data = (/AppleWebKit\/(\d+(?:\.\d+)?\+?)/i.exec(ua) || 0)[1])) {
+      // detect WebKit Nightly
+      if (data.slice(-1) == '+' && (data = data.slice(0, -1), name == 'Safari')) {
+        name = 'WebKit Nightly';
+        version = data;
+      }
       // detect JavaScriptCore vs V8
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
       if (/\n/.test(toString.toString())) {
@@ -536,7 +547,7 @@
       version = name == 'Safari' && (!version || parseInt(version) > 45) ? data : version;
     }
     // add layout engine
-    if (layout && !/Avant|Nook/.test(name) && (/Browser|Lunascape|Maxthon/.test(name) || layout[1] && /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir/.test(name))) {
+    if (layout && !/Avant|Nook/.test(name) && (/Browser|Lunascape|Maxthon/.test(name) || layout[1] && /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit/.test(name))) {
       (data = layout[layout.length - 1]) && description.push(data);
     }
     // combine contextual information

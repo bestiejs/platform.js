@@ -164,6 +164,7 @@
         .replace(/\bexports\b/g, 'me.exports')
         .replace(/\bexternal/g, 'me.external')
         .replace(/\bprocess\b/g, 'me.process')
+        .replace(/\brequire\b/g, 'me.require')
         .replace(/\bdoc\.documentMode/g, 'me.mode'));
   }());
 
@@ -958,11 +959,11 @@
       'version': '1.19'
     },
 
-    'Narwhal on Cygwin': (function() {
+    'Narwhal': (function() {
       var object = {
         'exports': {},
         'name': 'Narwhal',
-        'system':  { 'os': 'cygwin' }
+        'system':  {}
       };
       object.global = object.system.global = object;
       return object;
@@ -1086,11 +1087,13 @@
       'name': 'Rhino'
     },
 
-    'RingoJS': (function() {
+    'RingoJS 0.7': (function() {
       var object = {
         'exports': {},
+        'name': 'RingoJS',
         'system':  {},
-        'name': 'RingoJS'
+        'require': function() { return { 'version': [0, 7] }; },
+        'version': '0.7'
       };
       object.global = object;
       return object;
@@ -1194,13 +1197,6 @@
       'version': '3.2.1'
     },
 
-    'Safari 3.2.1 on Mac OS X 10.5.6': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6; it-it) AppleWebKit/528.8+ (KHTML, like Gecko) Version/3.2.1 Safari/525.27.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.1'
-    },
-
     'Safari 3.2.1 on Windows Server 2008 / Vista': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; sv-SE) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/3.2.1 Safari/525.27.1',
       'layout': 'WebKit',
@@ -1277,27 +1273,6 @@
       'version': '4.x'
     },
 
-    'Safari 4.0#{alpha}1 on Mac OS X 10.4.11': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; tr) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0#{alpha}1'
-    },
-
-    'Safari 4.0#{alpha}1 on Mac OS X 10.5.4': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0#{alpha}1'
-    },
-
-    'Safari 4.0#{alpha}1 on Mac OS X 10.5.6': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6; en-gb) AppleWebKit/528.10+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0#{alpha}1'
-    },
-
     'Safari 4.0#{alpha}1 on Windows XP': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8',
       'layout': 'WebKit',
@@ -1350,29 +1325,8 @@
       'version': '4.0'
     },
 
-    'Safari 4.0 on Mac OS X 10.4.11': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_4_11; en) AppleWebKit/530.1+ (KHTML, like Gecko) Version/4.0 Safari/528.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0'
-    },
-
-    'Safari 4.0 on Mac OS X 10.5.4': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; nl-nl) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0 Safari/528.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0'
-    },
-
     'Safari 4.0 on Mac OS X 10.5.6': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_6; tr-TR) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0'
-    },
-
-    'Safari 4.0 on Mac OS X 10.6': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6; en-us) AppleWebKit/530.6+ (KHTML, like Gecko) Version/4.0 Safari/530.6',
       'layout': 'WebKit',
       'name': 'Safari',
       'version': '4.0'
@@ -1390,13 +1344,6 @@
       'layout': 'WebKit',
       'name': 'Safari',
       'version': '4.0'
-    },
-
-    'Safari 4.0.1 on Mac OS X 10.5.7': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; en-us) AppleWebKit/531.2+ (KHTML, like Gecko) Version/4.0.1 Safari/530.18',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.1'
     },
 
     'Safari 4.0.2 on Mac OS X 10.5.7': {
@@ -1425,27 +1372,6 @@
       'layout': 'WebKit',
       'name': 'Safari',
       'version': '4.0.2'
-    },
-
-    'Safari 4.0.2 on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532+ (KHTML, like Gecko) Version/4.0.2 Safari/530.19.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.2'
-    },
-
-    'Safari 4.0.3 on Mac OS X 10.5.8': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_8; en-us) AppleWebKit/532.0+ (KHTML, like Gecko) Version/4.0.3 Safari/531.9.2009',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.3'
-    },
-
-    'Safari 4.0.3 on Mac OS X 10.6.1': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; nl-nl) AppleWebKit/532.3+ (KHTML, like Gecko) Version/4.0.3 Safari/531.9',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.3'
     },
 
     'Safari 4.0.3 on Windows Server 2008 / Vista': {
@@ -1489,22 +1415,8 @@
       'version': '4.0.4'
     },
 
-    'Safari 4.0.4 on Mac OS X 10.6.2': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_2; ru-ru) AppleWebKit/533.2+ (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.4'
-    },
-
     'Safari 4.0.4 on Mac OS X 10.6.3': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) AppleWebKit/531.21.11 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.4'
-    },
-
-    'Safari 4.0.4 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de-DE) AppleWebKit/532+ (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
       'layout': 'WebKit',
       'name': 'Safari',
       'version': '4.0.4'
@@ -1601,13 +1513,6 @@
       'layout': 'WebKit',
       'name': 'Safari',
       'version': '4.1'
-    },
-
-    'Safari 5.0 on Linux x86_64': {
-      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-ca) AppleWebKit/531.2+ (KHTML, like Gecko) Version/5.0 Safari/531.2+',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0'
     },
 
     'Safari 5.0 on Mac OS X 10.5.8': {
@@ -1855,6 +1760,111 @@
       'name': 'TouchPad Browser'
     },
 
+    'WebKit Nightly 528.4 (like Safari 4.x) on Mac OS X 10.4.11': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; tr) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '528.4'
+    },
+
+    'WebKit Nightly 528.4 (like Safari 4.x) on Mac OS X 10.5.4': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '528.4'
+    },
+
+    'WebKit Nightly 528.8 (like Safari 4.x) on Mac OS X 10.5.6': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6; it-it) AppleWebKit/528.8+ (KHTML, like Gecko) Version/3.2.1 Safari/525.27.1',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '528.8'
+    },
+
+    'WebKit Nightly 528.10 (like Safari 4.x) on Mac OS X 10.5.6': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6; en-gb) AppleWebKit/528.10+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '528.10'
+    },
+
+    'WebKit Nightly 530.1 (like Safari 4.x) on Mac OS X 10.4.11': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_4_11; en) AppleWebKit/530.1+ (KHTML, like Gecko) Version/4.0 Safari/528.16',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '530.1'
+    },
+
+    'WebKit Nightly 528.4 (like Safari 4.x) on Mac OS X 10.5.4': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; nl-nl) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0 Safari/528.1',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '528.4'
+    },
+
+    'WebKit Nightly 530.6 (like Safari 4.x) on Mac OS X 10.6': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6; en-us) AppleWebKit/530.6+ (KHTML, like Gecko) Version/4.0 Safari/530.6',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '530.6'
+    },
+
+    'WebKit Nightly 531.2 (like Safari 4.x) on Mac OS X 10.5.7': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; en-us) AppleWebKit/531.2+ (KHTML, like Gecko) Version/4.0.1 Safari/530.18',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '531.2'
+    },
+
+    'WebKit Nightly 532 (like Safari 4.x) on Windows Server 2008 R2 / 7': {
+      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532+ (KHTML, like Gecko) Version/4.0.2 Safari/530.19.1',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '532'
+    },
+
+    'WebKit Nightly 532.0 (like Safari 4.x) on Mac OS X 10.5.8': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_8; en-us) AppleWebKit/532.0+ (KHTML, like Gecko) Version/4.0.3 Safari/531.9.2009',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '532.0'
+    },
+
+    'WebKit Nightly 532.3 (like Safari 4.x) on Mac OS X 10.6.1': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; nl-nl) AppleWebKit/532.3+ (KHTML, like Gecko) Version/4.0.3 Safari/531.9',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '532.3'
+    },
+
+    'WebKit Nightly 533.2 (like Safari 4+) on Mac OS X 10.6.2': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_2; ru-ru) AppleWebKit/533.2+ (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '533.2'
+    },
+
+    'WebKit Nightly 532 (like Safari 4.x) on Windows XP': {
+      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de-DE) AppleWebKit/532+ (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '532'
+    },
+
+    'WebKit Nightly 531.2 (like Safari 4.x) on Linux x86_64': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-ca) AppleWebKit/531.2+ (KHTML, like Gecko) Version/5.0 Safari/531.2+',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '531.2'
+    },
+
+    'WebKit Nightly 535.7 (like Safari 5+) on Mac OS X 10.7.1': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_1) AppleWebKit/535.7+ (KHTML, like Gecko) Version/5.1 Safari/534.48.3',
+      'layout': 'WebKit',
+      'name': 'WebKit Nightly',
+      'version': '535.7'
+    },
+
     'Lynx/2.8.8dev.3 libwww-FM/2.14 SSL-MM/1.4.1': {
       'ua': 'Lynx/2.8.8dev.3 libwww-FM/2.14 SSL-MM/1.4.1'
     },
@@ -1876,7 +1886,7 @@
 
   /*--------------------------------------------------------------------------*/
 
-  QUnit.module('platform');
+  QUnit.module('platform: ' + platform);
 
   each(['description', 'layout', 'manufacturer', 'name', 'product', 'version'], function(name) {
     test('platform.' + name, function() {
