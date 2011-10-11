@@ -1886,7 +1886,7 @@
 
   /*--------------------------------------------------------------------------*/
 
-  QUnit.module('platform: ' + platform);
+  QUnit.module('platform' + (window.document ? '' : ': ' + platform));
 
   each(['description', 'layout', 'manufacturer', 'name', 'product', 'version'], function(name) {
     test('platform.' + name, function() {
