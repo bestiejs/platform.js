@@ -466,8 +466,7 @@
           } catch(e) {
             data[0].global == freeGlobal && (name = 'Narwhal');
           }
-        }
-        else if (typeof process == 'object' && (data = process)) {
+        } else if (typeof process == 'object' && (data = process)) {
           name = 'Node.js';
           version = /[\d.]+/.exec(data.version)[0];
           os = data.platform;
