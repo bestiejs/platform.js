@@ -977,6 +977,14 @@
       'version': '0.3.1'
     },
 
+    'Nokia Browser (like Safari 5+) on Nokia N9': {
+      'ua': 'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/543.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
+      'layout': 'WebKit',
+      'manufacturer': 'Nokia',
+      'name': 'Nokia Browser',
+      'product': 'Nokia N9'
+    },
+
     'Nokia Browser (like Safari 3.x) on Nokia 5530c (SymbianOS)': {
       'ua': 'Mozilla/5.0 (SymbianOS/9.4; U; Series60/5.0 Nokia5530c-2/10.0.050; Profile MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) Safari/525',
       'layout': 'WebKit',

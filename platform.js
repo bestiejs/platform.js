@@ -194,22 +194,14 @@
 
     ua || (ua = userAgent);
 
+    /** Temporary variable used over the script's lifetime */
+    var data = {},
+
     /** Platform description array */
-    var description = [],
+    description = [],
 
     /** The browser/environment version */
     version = opera && typeof opera.version == 'function' && opera.version(),
-
-    /** Temporary variable used over the script's lifetime */
-    data = {
-      '6.1': 'Server 2008 R2 / 7',
-      '6.0': 'Server 2008 / Vista',
-      '5.2': 'Server 2003 / XP x64',
-      '5.1': 'XP',
-      '5.0': '2000',
-      '4.0': 'NT',
-      '4.9': 'ME'
-    },
 
     /* Detectable layout engines */
     layout = getLayout([
@@ -321,7 +313,7 @@
      */
     function getManufacturer(guesses) {
       return reduce(guesses, function(result, value, key) {
-        if (!result && (result = (value[/^[a-z]+/i.exec(product)] || RegExp('\\b' + key + '(?:\\b|\\d)', 'i').exec(ua)) && key)) {
+        if (!result && (result = (value[/^[a-z]+/i.exec(product)] || RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)) && key)) {
           product || (product = getProduct([result]));
         }
         return result;
@@ -351,6 +343,16 @@
         if (!result && (result = RegExp('\\b' + guess + '[^();/-]*', 'i').exec(ua))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
+          data = {
+            '6.1': 'Server 2008 R2 / 7',
+            '6.0': 'Server 2008 / Vista',
+            '5.2': 'Server 2003 / XP x64',
+            '5.1': 'XP',
+            '5.0': '2000',
+            '4.0': 'NT',
+            '4.9': 'ME'
+          };
+          // detect Windows version from platform tokens
           if (/^Win/i.test(result) && (data = data[0/*opera fix*/, /[456]\.\d/.exec(result)])) {
             result = 'Windows ' + data;
           }
@@ -360,7 +362,7 @@
             result = 'iOS' + ((data = /\bOS ([\d_]+)/i.exec(ua)) ? ' ' + data[1] : '');
           }
           // cleanup
-          result = String(result).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess)
+          result = String(result).replace(RegExp(data = /\w+/.exec(guess), 'i'), data)
             .replace(/Macintosh/i, 'Mac OS').replace(/_PowerPC/i, ' OS').replace(/(OS X) Mach$/i, '$1')
             .replace(/\/(\d)/, ' $1').replace(/_/g, '.').replace(/x86\.64/gi, 'x86_64')
             .replace(/hpw/, 'web').split(' on ')[0];
@@ -379,7 +381,7 @@
       return reduce(guesses, function(result, guess) {
         if (!result && (result = RegExp('\\b' + guess + '(?:;\\s*[a-z]+[0-9]+|[^ ();-]*)', 'i').exec(ua))) {
           // correct character case and split by forward slash
-          if ((result = String(result).replace(RegExp(guess = /\w+/.exec(guess), 'i'), guess).split('/'))[1]) {
+          if ((result = String(result).replace(RegExp(data = /\w+/.exec(guess), 'i'), data).split('/'))[1]) {
             if (/[\d.]+/.test(result[0])) {
               version || (version = result[1]);
             } else {
@@ -388,7 +390,7 @@
           }
           result = format(/;/.test(result)
             ? result[0].replace(/;\s+/, ' ')
-            : result[0].replace(/([a-z])(\d)/i, '$1 $2'));
+            : result[0].replace(guess == data ? RegExp('(' + guess + ')(\\w)', 'i') : /([a-z])(\d)/i, '$1 $2'));
         }
         return result;
       }, null);
