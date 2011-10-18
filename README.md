@@ -66,6 +66,24 @@ console.log(platform.description);
 // > Trident
 // > Windows Server 2008 R2 / 7 x64
 // > IE 9.0β x86 (platform preview; running in IE 7 mode) on Windows Server 2008 R2 / 7 x64
+
+// or on an iPad
+console.log(platform.name);
+console.log(platform.version);
+console.log(platform.product);
+console.log(platform.manufacturer);
+console.log(platform.layout);
+console.log(platform.os);
+console.log(platform.description);
+
+// logs:
+// > Safari
+// > 5.1
+// > iPad
+// > Apple
+// > WebKit
+// > iOS 5.0
+// > Safari 5.1 on Apple iPad (iOS 5.0)
 ~~~
 
 ## Cloning this repo

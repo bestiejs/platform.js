@@ -104,7 +104,7 @@
   }
 
   /**
-   * Trims and conditionally capitalizes string values.
+   * Trim and conditionally capitalize string values.
    * @private
    * @param {String} string The string to format.
    * @returns {String} The formatted string.
@@ -203,7 +203,7 @@
     /** The browser/environment version */
     version = opera && typeof opera.version == 'function' && opera.version(),
 
-    /* Detectable layout engines */
+    /* Detectable layout engines (order is important) */
     layout = getLayout([
       'AppleWebKit',
       'iCab',
@@ -215,10 +215,11 @@
       'Gecko'
     ]),
 
-    /* Detectable products */
+    /* Detectable products (order is important) */
     product = getProduct([
-      'BlackBerry\\s?\\d+',
-      'iP[ao]d',
+      'BlackBerry',
+      'iPad',
+      'iPod',
       'iPhone',
       'Kindle',
       'Nook',
@@ -242,7 +243,7 @@
       'Samsung': { }
     }),
 
-    /* Detectable browser names */
+    /* Detectable browser names (order is important) */
     name = getName([
       'Arora',
       'Avant Browser',
@@ -277,14 +278,17 @@
       'Safari'
     ]),
 
-    /* Detectable OSes */
+    /* Detectable OSes (order is important) */
     os = getOS([
       'Android',
       'Cygwin',
       'SymbianOS',
-      '(?:hpw|web|Tablet)\\s*OS[ /]\\d',
+      'hpwOS',
+      'webOS ',
+      'webOS',
+      'Tablet OS',
       'Linux',
-      'Mac OS(?: X)?',
+      'Mac OS X',
       'Macintosh',
       'Mac',
       'Windows 98;',
@@ -301,7 +305,8 @@
      */
     function getLayout(guesses){
       return reduce(guesses, function(result, guess, index) {
-        return result || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && [guess == 'AppleWebKit' ? 'WebKit' : guess];
+        return result || RegExp('\\b' + guess + '\\b', 'i').exec(ua) &&
+          (guess == 'AppleWebKit' ? 'WebKit' : guess);
       }, null);
     }
 
@@ -313,7 +318,9 @@
      */
     function getManufacturer(guesses) {
       return reduce(guesses, function(result, value, key) {
-        if (!result && (result = (value[/^[a-z]+/i.exec(product)] || RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)) && key)) {
+        if (!result && (result =
+            (value[/^[a-z]+/i.exec(product)] ||
+            RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)) && key)) {
           product || (product = getProduct([result]));
         }
         return result;
@@ -328,7 +335,8 @@
      */
     function getName(guesses) {
       return reduce(guesses, function(result, guess) {
-        return result || RegExp('\\b' + guess + '\\b', 'i').exec(ua) && (guess == 'MSIE' ? 'IE' : guess);
+        return result || RegExp('\\b' + guess + '\\b', 'i').exec(ua) &&
+          (guess == 'MSIE' ? 'IE' : guess);
       }, null);
     }
 
@@ -340,7 +348,7 @@
      */
     function getOS(guesses) {
       return reduce(guesses, function(result, guess) {
-        if (!result && (result = RegExp('\\b' + guess + '[^();/-]*', 'i').exec(ua))) {
+        if (!result && (result = RegExp('\\b' + guess + '[^();-]*', 'i').exec(ua))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
@@ -362,10 +370,17 @@
             result = 'iOS' + ((data = /\bOS ([\d_]+)/i.exec(ua)) ? ' ' + data[1] : '');
           }
           // cleanup
-          result = String(result).replace(RegExp(data = /\w+/.exec(guess), 'i'), data)
-            .replace(/Macintosh/i, 'Mac OS').replace(/_PowerPC/i, ' OS').replace(/(OS X) Mach$/i, '$1')
-            .replace(/\/(\d)/, ' $1').replace(/_/g, '.').replace(/x86\.64/gi, 'x86_64')
-            .replace(/hpw/, 'web').split(' on ')[0];
+          result = String(result)
+            .replace(RegExp(guess, 'i'), guess)
+            .replace(/hpw/, 'web')
+            .replace(/Macintosh/i, 'Mac OS')
+            .replace(/_PowerPC/i, ' OS')
+            .replace(/(OS X) Mach$/i, '$1')
+            .replace(/(Symbian)(OS)/, '$1 $2')
+            .replace(/\/(\d)/, ' $1')
+            .replace(/_/g, '.')
+            .replace(/x86\.64/gi, 'x86_64')
+            .split(' on ')[0];
         }
         return result;
       }, null);
@@ -379,9 +394,12 @@
      */
     function getProduct(guesses) {
       return reduce(guesses, function(result, guess) {
-        if (!result && (result = RegExp('\\b' + guess + '(?:;\\s*[a-z]+[0-9]+|[^ ();-]*)', 'i').exec(ua))) {
+        if (!result && (result =
+            RegExp('\\b' + guess + '\\s*\\d+[.\\w]*', 'i').exec(ua) ||
+            RegExp('\\b' + guess + '(?:;\\s*[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua))) {
           // correct character case and split by forward slash
-          if ((result = String(result).replace(RegExp(data = /\w+/.exec(guess), 'i'), data).split('/'))[1]) {
+          if ((result = String(result).replace(RegExp(guess, 'i'), guess).split('/'))[1]) {
+            // set browser version if product already has a version
             if (/[\d.]+/.test(result[0])) {
               version || (version = result[1]);
             } else {
@@ -390,7 +408,7 @@
           }
           result = format(/;/.test(result)
             ? result[0].replace(/;\s+/, ' ')
-            : result[0].replace(guess == data ? RegExp('(' + guess + ')(\\w)', 'i') : /([a-z])(\d)/i, '$1 $2'));
+            : result[0].replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
         }
         return result;
       }, null);
@@ -422,6 +440,9 @@
 
     /*------------------------------------------------------------------------*/
 
+    // convert layout to an array to support the addition of contextual information
+    layout && (layout = [layout]);
+
     // detect simulator
     if (/Simulator/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
@@ -436,7 +457,7 @@
       }
     }
     // detect Android browsers
-    if (name == 'Chrome' && manufacturer) {
+    if (manufacturer && name == 'Chrome') {
       name = 'Android Browser';
     }
     // detect non-Opera versions
@@ -446,20 +467,22 @@
       }, null);
     }
     // detect stubborn layout engines
-    if (data = !layout && (opera && 'Presto' || /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident')) || /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
+    if (data = !layout && (opera && 'Presto' ||
+        /\bMSIE\b/i.test(ua) &&(/^Mac/.test(os) ? 'Tasman' : 'Trident')) ||
+        /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
       layout = [data];
-    } else if (layout == 'iCab') {
-      layout = parseFloat(version) > 3 ? ['WebKit'] : layout;
+    } else if (layout == 'iCab' && parseFloat(version) > 3) {
+      layout = ['WebKit'];
     }
     // detect server-side environments
     // Rhino has a global function while others have a global object
     if (isHostType(thisBinding, 'global')) {
       if (java && !os) {
-        os = String(java.lang.System.getProperty('os.name')) + ' ' + String(java.lang.System.getProperty('os.version'));
+        os = java.lang.System.getProperty('os.name') + ' ' + java.lang.System.getProperty('os.version');
       }
       if (typeof exports == 'object' && exports) {
         // if `thisBinding` is the [ModuleScope]
-        if (thisBinding == oldWin && typeof system == 'object' && (data = [system])) {
+        if (thisBinding == oldWin && typeof system == 'object' && (data = [system])[0]) {
           os || (os = data[0].os || null);
           try {
             data[1] = require('ringo/engine').version;
@@ -473,7 +496,7 @@
           version = /[\d.]+/.exec(data.version)[0];
           os = data.platform;
         }
-      } else if (typeof environment == 'object' && getClassOf(environment) == 'Environment') {
+      } else if (getClassOf(window.environment) == 'Environment') {
         name = 'Rhino';
       }
     }
@@ -494,7 +517,9 @@
       version = name == 'IE' ? String(version[1].toFixed(1)) : version[0];
     }
     // detect release phases
-    if (version && (data = /(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(version) || /(?:alpha|beta)(?: ?\d)?/i.exec(ua + ';' + nav.appMinorVersion))) {
+    if (version && (data =
+        /(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(version) ||
+        /(?:alpha|beta)(?: ?\d)?/i.exec(ua + ';' + nav.appMinorVersion))) {
       version = version.replace(RegExp(data + '\\+?$'), '') + (/b/i.test(data) ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
     // obscure Maxthon's unreliable version info
@@ -516,8 +541,9 @@
     }
     // detect BlackBerry OS version
     // http://docs.blackberry.com/en/developers/deliverables/18169/HTTP_headers_sent_by_BB_Browser_1234911_11.jsp
-    else if (/BlackBerry/.test(version && product)) {
-      os = 'Device Software ' + version;
+    else if (/BlackBerry/.test(product) && (data =
+        (RegExp(product.replace(/\s/g, '') + '/([\\d.]+)', 'i').exec(ua) || 0)[1] || version)) {
+      os = 'Device Software ' + data;
       version = null;
     }
     // detect an Opera identity crisis
@@ -548,7 +574,8 @@
       version = name == 'Safari' && (!version || parseInt(version) > 45) ? data : version;
     }
     // add layout engine
-    if (layout && !/Avant|Nook/.test(name) && (/Browser|Lunascape|Maxthon/.test(name) || layout[1] && /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit/.test(name))) {
+    if (layout && !/Avant|Nook/.test(name) && (/Browser|Lunascape|Maxthon/.test(name) ||
+        layout[1] && /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit/.test(name))) {
       (data = layout[layout.length - 1]) && description.push(data);
     }
     // combine contextual information
