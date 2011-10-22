@@ -205,7 +205,7 @@
 
     /* Detectable layout engines (order is important) */
     layout = getLayout([
-      'AppleWebKit',
+      'WebKit',
       'iCab',
       'Presto',
       'NetFront',
@@ -274,7 +274,7 @@
       'Opera',
       'Chrome',
       'Firefox',
-      'MSIE',
+      'IE',
       'Safari'
     ]),
 
@@ -305,8 +305,8 @@
      */
     function getLayout(guesses){
       return reduce(guesses, function(result, guess, index) {
-        return result || RegExp('\\b' + guess + '\\b', 'i').exec(ua) &&
-          (guess == 'AppleWebKit' ? 'WebKit' : guess);
+        return result || RegExp('\\b' +
+          (guess == 'WebKit' ? 'AppleWebKit' : guess) + '\\b', 'i').exec(ua) && guess;
       }, null);
     }
 
@@ -335,8 +335,8 @@
      */
     function getName(guesses) {
       return reduce(guesses, function(result, guess) {
-        return result || RegExp('\\b' + guess + '\\b', 'i').exec(ua) &&
-          (guess == 'MSIE' ? 'IE' : guess);
+        return result || RegExp('\\b' +
+          (guess == 'IE' ? 'MSIE' : guess) + '\\b', 'i').exec(ua) && guess;
       }, null);
     }
 
@@ -449,9 +449,11 @@
     }
     // detect non Firefox/Safari like browsers
     if (ua && (data = !name || /Firefox|Safari/.exec(name))) {
+      // avoid false positives for Firefox/Safari
       if (name && !product && /[/,]/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         name = null;
       }
+      // detect generic no-name browser
       if ((data = product || manufacturer || os) && !/^(?:iP|Linux|Mac|Win)/.test(data)) {
         name = /[a-z]+/i.exec(/Android/.test(os) && os || data) + ' Browser';
       }
@@ -510,7 +512,7 @@
       name = 'PhantomJS';
       version = (data = data.version || null) && (data.major + '.' + data.minor + '.' + data.patch);
     }
-    // detect IE compatibility mode
+    // detect IE compatibility mode (when the Trident version + 4 doesn't equal the document mode)
     else if (typeof doc.documentMode == 'number' && (data = /Trident\/(\d+)/i.exec(ua))) {
       version = [version, doc.documentMode];
       version[1] = (data = +data[1] + 4) != version[1] ? (layout[1] = '', description.push('running in IE ' + version[1] + ' mode'), data) : version[1];
@@ -529,10 +531,10 @@
     // rename older Firefox nightlies
     else if (name == 'Minefield') {
       name = 'Firefox';
-      version = !version || (RegExp(alpha + '|' + beta).test(version) ? version : version + alpha);
+      version && !RegExp(alpha + '|' + beta).test(version) && (version += alpha);
     }
     // add mobile postfix
-    else if (name && (!product || name == 'IE') && !/Browser/.test(name) && /Mobi/i.test(ua)) {
+    else if ((name == 'IE' || name && !product) && !/Browser/.test(name) && /Mobi/i.test(ua)) {
       name += ' Mobile';
     }
     // detect IE platform preview
@@ -567,11 +569,14 @@
         data = data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : '5';
       } else {
         layout[1] = 'like Chrome';
-        data = data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.1 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.3 ? 11 : data < 535.1 ? 12 : data < 535.2 ? '13+' : data < 535.5 ? 15 : '16'
+        data = data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.1 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.3 ? 11 : data < 535.1 ? 12 : data < 535.2 ? '13+' : data < 535.5 ? 15 : '16';
       }
+      // use the full, instead of the approximate, Chrome version when available
       data = (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1] || data;
+      // add the appropriate postfix of ".x" or "+" for approximate versions
       layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+');
-      version = name == 'Safari' && (!version || parseInt(version) > 45) ? data : version;
+      // handle incorrect version token for some Safari 1-2 releases
+      name == 'Safari' && (!version || parseInt(version) > 45) && (version = data);
     }
     // add layout engine
     if (layout && !/Avant|Nook/.test(name) && (/Browser|Lunascape|Maxthon/.test(name) ||
@@ -588,10 +593,10 @@
     }
     // append product
     if (product) {
-      description.push((String(description[description.length -1]).indexOf('on ') < 0 ? 'on ' : '') + product);
+      description.push((/^on /.test(description[description.length -1]) ? '' : 'on ') + product);
     }
     // add browser/OS architecture
-    if (/\b(?:WOW|x|IA)64\b/i.test(ua)) {
+    if (/\b(?:IA|WOW|x)64\b/i.test(ua)) {
       os = os && os + (/64/.test(os) ? '' : ' x64');
       if (name && (/WOW64/i.test(ua) || /\w(?:86|32)$/.test(nav.cpuClass || nav.platform))) {
         description.unshift('x86');
