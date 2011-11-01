@@ -319,7 +319,7 @@
     function getManufacturer(guesses) {
       return reduce(guesses, function(result, value, key) {
         if (!result && (result =
-            (value[/^[a-z]+/i.exec(product)] ||
+            (value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
             RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)) && key)) {
           product || (product = getProduct([result]));
         }
@@ -361,7 +361,7 @@
             '4.9': 'ME'
           };
           // detect Windows version from platform tokens
-          if (/^Win/i.test(result) && (data = data[0/*opera fix*/, /[456]\.\d/.exec(result)])) {
+          if (/^Win/i.test(result) && (data = data[0/*Opera 9.25 fix*/, /[456]\.\d/.exec(result)])) {
             result = 'Windows ' + data;
           }
           // normalize iOS
