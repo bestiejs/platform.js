@@ -564,7 +564,7 @@
       }
       // detect JavaScriptCore vs V8
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
-      if (/\n/.test(toString.toString())) {
+      if (/internal|\n/i.test(toString.toString())) {
         layout[1] = 'like Safari';
         data = data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : '5';
       } else {
