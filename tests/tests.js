@@ -148,7 +148,7 @@
       ('return ' +
       /\(function(?:.|\n|\r)+?};\s*}/.exec(code)[0] +
       ' return getPlatform()}(this))')
-        .replace('/\\n/.test(toString.toString())', '!me.likeChrome')
+        .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
         .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
         .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
         .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
