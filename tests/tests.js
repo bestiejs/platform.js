@@ -147,7 +147,7 @@
     return Function('options',
       ('return ' +
       /\(function(?:.|\n|\r)+?};\s*}/.exec(code)[0] +
-      ' return getPlatform()}(this))')
+      ' return parse()}(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
         .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
         .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
@@ -1912,6 +1912,28 @@
         !value && strictEqual(value, null, 'platform.' + key);
       });
     });
+  });
+
+  test('platform.parse', function() {
+    var actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2');
+    var expected = 'Chrome 15.0.874.106 on Mac OS X 10.7.2';
+    equals(actual.description, expected, 'parse Chrome');
+
+    actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:8.0) Gecko/20100101 Firefox/8.0');
+    expected = 'Firefox 8.0 on Mac OS X 10.7';
+    equals(actual.description, expected, 'parse Firefox');
+
+    actual = platform.parse('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0)');
+    expected = 'IE 7.0 on Windows XP';
+    equals(actual.description, expected, 'parse IE');
+
+    actual = platform.parse('Opera/9.80 (Macintosh; Intel Mac OS X 10.7.2; U; Edition Next; en) Presto/2.9.220 Version/12.00');
+    expected = 'Opera 12.00 on Mac OS X 10.7.2';
+    equals(actual.description, expected, 'parse Opera');
+
+    actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22');
+    expected = 'Safari 5.1.1 on Mac OS X 10.7.2';
+    equals(actual.description, expected, 'parse Safari');
   });
 
   if (window.document) {

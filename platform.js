@@ -186,11 +186,11 @@
 
   /**
    * Creates a new platform object.
-   * @private
-   * @param {String} ua The user agent string.
+   * @memberOf platform
+   * @param {String} [ua = navigator.userAgent] The user agent string.
    * @returns {Object} A platform object.
    */
-  function getPlatform(ua) {
+  function parse(ua) {
 
     ua || (ua = userAgent);
 
@@ -200,8 +200,11 @@
     /** Platform description array */
     description = [],
 
+    /** A flag to indicate that environment features should be used to resolve the platform */
+    useFeatures = ua == userAgent,
+
     /** The browser/environment version */
-    version = opera && typeof opera.version == 'function' && opera.version(),
+    version = useFeatures && opera && typeof opera.version == 'function' && opera.version(),
 
     /* Detectable layout engines (order is important) */
     layout = getLayout([
@@ -476,52 +479,55 @@
     } else if (layout == 'iCab' && parseFloat(version) > 3) {
       layout = ['WebKit'];
     }
-    // detect server-side environments
-    // Rhino has a global function while others have a global object
-    if (isHostType(thisBinding, 'global')) {
-      if (java && !os) {
-        os = java.lang.System.getProperty('os.name') + ' ' + java.lang.System.getProperty('os.version');
-      }
-      if (typeof exports == 'object' && exports) {
-        // if `thisBinding` is the [ModuleScope]
-        if (thisBinding == oldWin && typeof system == 'object' && (data = [system])[0]) {
-          os || (os = data[0].os || null);
-          try {
-            data[1] = require('ringo/engine').version;
-            version = data[1].join('.');
-            name = 'RingoJS';
-          } catch(e) {
-            data[0].global == freeGlobal && (name = 'Narwhal');
-          }
-        } else if (typeof process == 'object' && (data = process)) {
-          name = 'Node.js';
-          version = /[\d.]+/.exec(data.version)[0];
-          os = data.platform;
+    // leverage environment features
+    if (useFeatures) {
+      // detect server-side environments
+      // Rhino has a global function while others have a global object
+      if (isHostType(thisBinding, 'global')) {
+        if (java && !os) {
+          os = java.lang.System.getProperty('os.name') + ' ' + java.lang.System.getProperty('os.version');
         }
-      } else if (getClassOf(window.environment) == 'Environment') {
-        name = 'Rhino';
+        if (typeof exports == 'object' && exports) {
+          // if `thisBinding` is the [ModuleScope]
+          if (thisBinding == oldWin && typeof system == 'object' && (data = [system])[0]) {
+            os || (os = data[0].os || null);
+            try {
+              data[1] = require('ringo/engine').version;
+              version = data[1].join('.');
+              name = 'RingoJS';
+            } catch(e) {
+              data[0].global == freeGlobal && (name = 'Narwhal');
+            }
+          } else if (typeof process == 'object' && (data = process)) {
+            name = 'Node.js';
+            version = /[\d.]+/.exec(data.version)[0];
+            os = data.platform;
+          }
+        } else if (getClassOf(window.environment) == 'Environment') {
+          name = 'Rhino';
+        }
       }
-    }
-    // detect Adobe AIR
-    else if (getClassOf(data = window.runtime) == 'ScriptBridgingProxyObject') {
-      name = 'Adobe AIR';
-      os = data.flash.system.Capabilities.os;
-    }
-    // detect PhantomJS
-    else if (getClassOf(data = window.phantom) == 'RuntimeObject') {
-      name = 'PhantomJS';
-      version = (data = data.version || null) && (data.major + '.' + data.minor + '.' + data.patch);
-    }
-    // detect IE compatibility mode (when the Trident version + 4 doesn't equal the document mode)
-    else if (typeof doc.documentMode == 'number' && (data = /Trident\/(\d+)/i.exec(ua))) {
-      version = [version, doc.documentMode];
-      version[1] = (data = +data[1] + 4) != version[1] ? (layout[1] = '', description.push('running in IE ' + version[1] + ' mode'), data) : version[1];
-      version = name == 'IE' ? String(version[1].toFixed(1)) : version[0];
+      // detect Adobe AIR
+      else if (getClassOf(data = window.runtime) == 'ScriptBridgingProxyObject') {
+        name = 'Adobe AIR';
+        os = data.flash.system.Capabilities.os;
+      }
+      // detect PhantomJS
+      else if (getClassOf(data = window.phantom) == 'RuntimeObject') {
+        name = 'PhantomJS';
+        version = (data = data.version || null) && (data.major + '.' + data.minor + '.' + data.patch);
+      }
+      // detect IE compatibility mode (when the Trident version + 4 doesn't equal the document mode)
+      else if (typeof doc.documentMode == 'number' && (data = /Trident\/(\d+)/i.exec(ua))) {
+        version = [version, doc.documentMode];
+        version[1] = (data = +data[1] + 4) != version[1] ? (layout[1] = '', description.push('running in IE ' + version[1] + ' mode'), data) : version[1];
+        version = name == 'IE' ? String(version[1].toFixed(1)) : version[0];
+      }
     }
     // detect release phases
     if (version && (data =
         /(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(version) ||
-        /(?:alpha|beta)(?: ?\d)?/i.exec(ua + ';' + nav.appMinorVersion))) {
+        /(?:alpha|beta)(?: ?\d)?/i.exec(ua + ';' + (useFeatures && nav.appMinorVersion)))) {
       version = version.replace(RegExp(data + '\\+?$'), '') + (/b/i.test(data) ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
     // obscure Maxthon's unreliable version info
@@ -550,7 +556,8 @@
     }
     // detect an Opera identity crisis
     // http://www.opera.com/support/kb/view/843/
-    else if (opera && (data = [opera, opera = 0, getPlatform(ua.replace(reOpera, ''))], opera = data[0], data = data[2]).name && !reOpera.test(data.name)) {
+    else if (useFeatures && opera &&
+        (data = parse(ua.replace(reOpera, ''))).name && !reOpera.test(data.name)) {
       description.push((reOpera.test(name) ? 'identify' : 'mask') + 'ing as ' + data.name + ((data = data.version) ? ' ' + data : ''));
       name = reOpera.test(name) ? name : format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2'));
       layout = ['Presto'];
@@ -562,17 +569,17 @@
         name = 'WebKit Nightly';
         version = data;
       }
-      // detect JavaScriptCore vs V8
+      // use the full, instead of the approximate, Chrome version when available
+      data = [data, (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1]];
+      // detect JavaScriptCore vs. V8
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
-      if (/internal|\n/i.test(toString.toString())) {
+      if (!useFeatures || (/internal|\n/i.test(toString.toString()) && !data[1])) {
         layout[1] = 'like Safari';
-        data = data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : '5';
+        data = (data = data[0], data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : '5');
       } else {
         layout[1] = 'like Chrome';
-        data = data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.1 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.3 ? 11 : data < 535.1 ? 12 : data < 535.2 ? '13+' : data < 535.5 ? 15 : data < 535.7 ? 16 : '17';
+        data = data[1] || (data = data[0], data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.1 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.3 ? 11 : data < 535.1 ? 12 : data < 535.2 ? '13+' : data < 535.5 ? 15 : data < 535.7 ? 16 : '17');
       }
-      // use the full, instead of the approximate, Chrome version when available
-      data = (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1] || data;
       // add the appropriate postfix of ".x" or "+" for approximate versions
       layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+');
       // handle incorrect version token for some Safari 1-2 releases
@@ -598,7 +605,8 @@
     // add browser/OS architecture
     if (/\b(?:IA|WOW|x)64\b/i.test(ua)) {
       os = os && os + (/64/.test(os) ? '' : ' x64');
-      if (name && (/WOW64/i.test(ua) || /\w(?:86|32)$/.test(nav.cpuClass || nav.platform))) {
+      if (name && (/WOW64/i.test(ua) ||
+          (useFeatures && /\w(?:86|32)$/.test(nav.cpuClass || nav.platform)))) {
         description.unshift('x86');
       }
     }
@@ -664,6 +672,9 @@
       // avoid platform object conflicts in browsers
       'noConflict': noConflict,
 
+      // parses a user agent string into a platform object
+      'parse': parse,
+
       // returns the platform description
       'toString': toStringPlatform
     };
@@ -674,18 +685,18 @@
   // expose platform
   // in Narwhal, Node.js, or Ringo
   if (freeExports) {
-    each(getPlatform(), function(value, key) {
+    each(parse(), function(value, key) {
       freeExports[key] = value;
     });
   }
   // via curl.js or RequireJS
   else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-    define(function() { return getPlatform(); });
+    define(function() { return parse(); });
   }
   // in a browser or Rhino
   else {
     // use square bracket notation so Closure Compiler won't munge `platform`
     // http://code.google.com/closure/compiler/docs/api-tutorial3.html#export
-    window['platform'] = getPlatform();
+    window['platform'] = parse();
   }
 }(this));
