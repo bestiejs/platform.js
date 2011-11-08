@@ -557,7 +557,7 @@
     // detect an Opera identity crisis
     // http://www.opera.com/support/kb/view/843/
     else if (useFeatures && opera &&
-        (data = parse(ua.replace(reOpera, ''))).name && !reOpera.test(data.name)) {
+        (data = parse(ua.replace(reOpera, '') + ';')).name && !reOpera.test(data.name)) {
       description.push((reOpera.test(name) ? 'identify' : 'mask') + 'ing as ' + data.name + ((data = data.version) ? ' ' + data : ''));
       name = reOpera.test(name) ? name : format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2'));
       layout = ['Presto'];

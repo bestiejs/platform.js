@@ -1052,6 +1052,14 @@
       'version': '11.00'
     },
 
+    'Opera 11.52 (masking as Firefox 4.0) on Mac OS X 10.7.2': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.2; en; rv:2.0) Gecko/20100101 Firefox/4.0',
+      'layout': 'Presto',
+      'name': 'Opera',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '11.52'; } },
+      'version': '11.52'
+    },
+
     'PhantomJS 1.0.0 (like Safari 4.x) on Cygwin': {
       'ua': 'Mozilla/5.0 (X11; U; Cygwin; C -) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3)  PhantomJS/1.0.0',
       'layout': 'WebKit',
@@ -1901,7 +1909,7 @@
         var platform = getPlatform(value);
         value = name == 'description' ? key : value[name];
         value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2' }) : null;
-        equals(platform && platform[name], value, String(platform));
+        equal(platform && platform[name], value, String(platform));
       });
     });
   });
@@ -1917,36 +1925,40 @@
   test('platform.parse', function() {
     var actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2');
     var expected = 'Chrome 15.0.874.106 on Mac OS X 10.7.2';
-    equals(actual.description, expected, 'parse Chrome');
+    equal(actual.description, expected, 'parse Chrome');
 
     actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:8.0) Gecko/20100101 Firefox/8.0');
     expected = 'Firefox 8.0 on Mac OS X 10.7';
-    equals(actual.description, expected, 'parse Firefox');
+    equal(actual.description, expected, 'parse Firefox');
 
     actual = platform.parse('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0)');
     expected = 'IE 7.0 on Windows XP';
-    equals(actual.description, expected, 'parse IE');
+    equal(actual.description, expected, 'parse IE');
 
     actual = platform.parse('Opera/9.80 (Macintosh; Intel Mac OS X 10.7.2; U; Edition Next; en) Presto/2.9.220 Version/12.00');
     expected = 'Opera 12.00 on Mac OS X 10.7.2';
-    equals(actual.description, expected, 'parse Opera');
+    equal(actual.description, expected, 'parse Opera');
+
+    actual = platform.parse('Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 10.10');
+    expected = 'Opera 10.10 on Windows XP';
+    equal(actual.description, expected, 'parse Opera identifying as Firefox');
 
     actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22');
     expected = 'Safari 5.1.1 on Mac OS X 10.7.2';
-    equals(actual.description, expected, 'parse Safari');
+    equal(actual.description, expected, 'parse Safari');
   });
 
   if (window.document) {
     test('platform.noConflict', function() {
       var p = [platform, platform.noConflict()];
-      equals(p[0], p[1], 'returns platform object');
+      equal(p[0], p[1], 'returns platform object');
       strictEqual(window.platform, 1, 'restores overwritten value');
       window.platform = p[0];
     });
 
     if (window.require) {
       test('require("platform")', function() {
-        equals((platform2 || {}).description, platform.description, 'require("platform")');
+        equal((platform2 || {}).description, platform.description, 'require("platform")');
       });
     }
   }
