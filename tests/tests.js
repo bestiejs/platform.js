@@ -178,6 +178,7 @@
       'ua': 'Mozilla/5.0 (Windows; U; en-US) AppleWebKit/531.9 (KHTML, like Gecko) AdobeAIR/2.5',
       'layout': 'WebKit',
       'name': 'Adobe AIR',
+      'os': 'Windows XP',
       'runtime': { 'flash': { 'system': { 'Capabilities': { 'os': 'Windows XP' }}}},
       'version': '2.5'
     },
@@ -185,16 +186,17 @@
     'Android Browser (like Safari 4.x) on Android 2.1': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Sprint APA9292KT Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko)',
       'layout': 'WebKit',
-      'name': 'Android Browser'
+      'name': 'Android Browser',
+      'os': 'Android 2.1'
     },
 
-    'Android Browser (like Chrome 8.0) on Asus Transformer (Linux)': {
+    'Android Browser (like Chrome 8.0) on Asus Transformer': {
       'ua': 'Mozilla/5.0 (Linux; U; Linux Ventana; en-us; Transformer TF101 Build/HMJ37) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/8.0 Safari/534.13',
       'layout': 'WebKit',
       'likeChrome': true,
-      'os': 'Linux',
-      'name': 'Android Browser',
       'manufacturer': 'Asus',
+      'name': 'Android Browser',
+      'os': 'Android',
       'product': 'Transformer'
     },
 
@@ -204,6 +206,7 @@
       'likeChrome': true,
       'manufacturer': 'Motorola',
       'name': 'Android Browser',
+      'os': 'Android 3.0',
       'product': 'Xoom',
       'version': '3.0.4'
     },
@@ -212,22 +215,29 @@
       'ua': 'Mozilla/5.0 (Linux; U; Android 1.6; en-us; HTC_TATTOO_A3288 Build/DRC79) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1',
       'layout': 'WebKit',
       'name': 'Android Browser',
+      'os': 'Android 1.6',
       'version': '3.1.2'
     },
 
-    'Android Browser 4.0 (like Chrome 5.x) on Android 2.2': {
-      'ua': 'Mozilla/5.0 (Linux; U; Android 2.2; zh-cn;) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+    'Android Browser 4.0 (like Chrome 5.x) on Samsung Galaxy S (Android 2.3.3)': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 2.3.3; en-gb; GT-I9000 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
       'layout': 'WebKit',
       'likeChrome': true,
+      'manufacturer': 'Samsung',
       'name': 'Android Browser',
+      'os': 'Android 2.3.3',
+      'product': 'Galaxy S',
       'version': '4.0'
     },
 
-    'Android Browser 4.0 (like Chrome 5.x) on Android 2.2.1': {
-      'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+    'Android Browser 4.0 (like Chrome 5.x) on Samsung Galaxy S2 (Android 2.3)': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 2.3; xx-xx; GT-I9100 Build/GRH78) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
       'layout': 'WebKit',
       'likeChrome': true,
+      'manufacturer': 'Samsung',
       'name': 'Android Browser',
+      'os': 'Android 2.3',
+      'product': 'Galaxy S2',
       'version': '4.0'
     },
 
@@ -236,6 +246,8 @@
       'layout': 'WebKit',
       'likeChrome': true,
       'name': 'Android Browser',
+      'os': 'Android 2.2.1',
+      'prerelease': 'alpha',
       'version': '4.1#{alpha}'
     },
 
@@ -243,6 +255,7 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux; cs-CZ) AppleWebKit/523.15 (KHTML, like Gecko, Safari/419.3) Arora/0.4 (Change: 333 41e3bc6)',
       'layout': 'WebKit',
       'name': 'Arora',
+      'os': 'Linux',
       'version': '0.4'
     },
 
@@ -250,6 +263,7 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.6 (Change: )',
       'layout': 'WebKit',
       'name': 'Arora',
+      'os': 'Windows Server 2008 / Vista',
       'version': '0.6'
     },
 
@@ -257,6 +271,7 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux; de-DE) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.8.0',
       'layout': 'WebKit',
       'name': 'Arora',
+      'os': 'Linux',
       'version': '0.8.0'
     },
 
@@ -264,20 +279,23 @@
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Avant Browser)',
       'layout': 'Trident',
       'mode': 8,
-      'name': 'Avant Browser'
+      'name': 'Avant Browser',
+      'os': 'Windows Server 2008 / Vista'
     },
 
-    'Avant Browser (running in IE 7 mode) on Windows XP': {
+    'Avant Browser (IE 7 mode) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; Avant Browser)',
       'layout': 'Trident',
       'mode': 7,
-      'name': 'Avant Browser'
+      'name': 'Avant Browser',
+      'os': 'Windows XP'
     },
 
     'BlackBerry Browser on BlackBerry 7250 (Device Software 4.0.0)': {
       'ua': 'BlackBerry7250/4.0.0 Profile/MIDP-2.0 Configuration/CLDC-1.1',
       'manufacturer': 'BlackBerry',
       'name': 'BlackBerry Browser',
+      'os': 'Device Software 4.0.0',
       'product': 'BlackBerry 7250'
     },
 
@@ -285,6 +303,7 @@
       'ua': 'BlackBerry8900/4.5.1.231 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/100',
       'manufacturer': 'BlackBerry',
       'name': 'BlackBerry Browser',
+      'os': 'Device Software 4.5.1.231',
       'product': 'BlackBerry 8900'
     },
 
@@ -293,6 +312,7 @@
       'layout': 'WebKit',
       'manufacturer': 'BlackBerry',
       'name': 'BlackBerry Browser',
+      'os': 'Device Software 6.0.0.91',
       'product': 'BlackBerry 9800'
     },
 
@@ -300,6 +320,7 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.0.1) Gecko/20030306 Camino/0.7',
       'layout': 'Gecko',
       'name': 'Camino',
+      'os': 'Mac OS X',
       'version': '0.7'
     },
 
@@ -307,6 +328,8 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.0.1) Gecko/20060119 Camino/1.0b2+',
       'layout': 'Gecko',
       'name': 'Camino',
+      'os': 'Mac OS X',
+      'prerelease': 'beta',
       'version': '1.0#{beta}2+'
     },
 
@@ -314,6 +337,7 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1) Gecko/20061013 Camino/1.0+ (Firefox compatible)',
       'layout': 'Gecko',
       'name': 'Camino',
+      'os': 'Mac OS X',
       'version': '1.0+'
     },
 
@@ -321,6 +345,8 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en; rv:1.8.1.1pre) Gecko/20061126 Camino/1.1a1+',
       'layout': 'Gecko',
       'name': 'Camino',
+      'os': 'Mac OS X',
+      'prerelease': 'alpha',
       'version': '1.1#{alpha}1+'
     },
 
@@ -328,6 +354,8 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en; rv:1.8.1.4pre) Gecko/20070511 Camino/1.6pre',
       'layout': 'Gecko',
       'name': 'Camino',
+      'os': 'Mac OS X',
+      'prerelease': 'alpha',
       'version': '1.6#{alpha}'
     },
 
@@ -335,6 +363,8 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en; rv:1.9.0.10pre) Gecko/2009041800 Camino/2.0b3pre (like Firefox/3.0.10pre)',
       'layout': 'Gecko',
       'name': 'Camino',
+      'os': 'Mac OS X 10.5',
+      'prerelease': 'beta',
       'version': '2.0#{beta}3'
     },
 
@@ -342,6 +372,7 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; nl; rv:1.9.0.19) Gecko/2010051911 Camino/2.0.3 (MultiLang) (like Firefox/3.0.19)',
       'layout': 'Gecko',
       'name': 'Camino',
+      'os': 'Mac OS X 10.6',
       'version': '2.0.3'
     },
 
@@ -349,34 +380,23 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13',
       'layout': 'WebKit',
       'name': 'Chrome',
+      'os': 'Windows 2000',
       'version': '0.2.149.27'
-    },
-
-    'Chrome 5.0.375.99 on Windows Server 2003 / XP x64': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/533.4 (KHTML, like Gecko) Chrome/5.0.375.99 Safari/533.4',
-      'layout': 'WebKit',
-      'name': 'Chrome',
-      'version': '5.0.375.99'
     },
 
     'Chrome 8.1.0.0 on Linux x86_64': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/540.0 (KHTML, like Gecko) Ubuntu/10.10 Chrome/8.1.0.0 Safari/540.0',
       'layout': 'WebKit',
       'name': 'Chrome',
+      'os': 'Linux x86_64',
       'version': '8.1.0.0'
-    },
-
-    'Chrome 10.0.648.133 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.133 Safari/534.16',
-      'layout': 'WebKit',
-      'name': 'Chrome',
-      'version': '10.0.648.133'
     },
 
     'Epiphany 0.9.2 on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.4) Gecko/20030908 Epiphany/0.9.2',
       'layout': 'Gecko',
       'name': 'Epiphany',
+      'os': 'Linux i686',
       'version': '0.9.2'
     },
 
@@ -384,6 +404,7 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en; rv:1.9.0.8) Gecko/20080528 Fedora/2.24.3-4.fc10 Epiphany/2.22 Firefox/3.0',
       'layout': 'Gecko',
       'name': 'Epiphany',
+      'os': 'Linux x86_64',
       'version': '2.22'
     },
 
@@ -391,6 +412,7 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.7 (KHTML, like Gecko) Epiphany/2.30.6 Safari/534.7',
       'layout': 'WebKit',
       'name': 'Epiphany',
+      'os': 'Linux x86_64',
       'version': '2.30.6'
     },
 
@@ -398,6 +420,8 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.9a1) Gecko/20061204 Firefox/3.0a1',
       'layout': 'Gecko',
       'name': 'Firefox',
+      'os': 'Mac OS X',
+      'prerelease': 'alpha',
       'version': '3.0#{alpha}1'
     },
 
@@ -405,6 +429,8 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux armv7l; en-US; rv:1.9.0.1) Gecko/2009010915 Minefield/3.0.1',
       'layout': 'Gecko',
       'name': 'Firefox',
+      'os': 'Linux armv7l',
+      'prerelease': 'alpha',
       'version': '3.0.1#{alpha}'
     },
 
@@ -412,6 +438,7 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.11) Gecko/20101012 Firefox/3.6.11 (.NET CLR 3.5.30729)',
       'layout': 'Gecko',
       'name': 'Firefox',
+      'os': 'Windows XP',
       'version': '3.6.11'
     },
 
@@ -419,6 +446,8 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.3a5pre) Gecko/20100418 Minefield/3.7a5pre',
       'layout': 'Gecko',
       'name': 'Firefox',
+      'os': 'Windows XP',
+      'prerelease': 'alpha',
       'version': '3.7#{alpha}5'
     },
 
@@ -426,7 +455,9 @@
       'ua': 'Mozilla/5.0 (Windows NT 6.0; Win64; IA64; rv:2.0b8pre) Gecko/20101213 Firefox/4.0b8pre',
       'layout': 'Gecko',
       'name': 'Firefox',
+      'os': 'Windows Server 2008 / Vista x64',
       'platform': 'Win64',
+      'prerelease': 'beta',
       'version': '4.0#{beta}8'
     },
 
@@ -434,21 +465,18 @@
       'ua': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0b8pre) Gecko/20101114 Firefox/4.0b8pre',
       'layout': 'Gecko',
       'name': 'Firefox',
+      'os': 'Windows Server 2008 R2 / 7 x64',
       'platform': 'Win32',
+      'prerelease': 'beta',
       'version': '4.0#{beta}8'
-    },
-
-    'Firefox 4.0#{beta}9 on Linux x86_64': {
-      'ua': 'Mozilla/5.0 (X11; Linux x86_64; rv:2.0b9pre) Gecko/20110105 Firefox/4.0b9pre',
-      'layout': 'Gecko',
-      'name': 'Firefox',
-      'version': '4.0#{beta}9'
     },
 
     'Firefox 4.0#{beta}11 on Mac OS X 10.6': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b11pre) Gecko/20110126 Firefox/4.0b11pre',
       'layout': 'Gecko',
       'name': 'Firefox',
+      'os': 'Mac OS X 10.6',
+      'prerelease': 'beta',
       'version': '4.0#{beta}11'
     },
 
@@ -456,6 +484,8 @@
       'ua': 'Mozilla/5.0 (Android; Linux armv7l; rv:2.0b6pre) Gecko/20100907 Firefox/4.0b6pre Fennec/2.0b1pre',
       'layout': 'Gecko',
       'name': 'Fennec',
+      'os': 'Android',
+      'prerelease': 'beta',
       'version': '2.0#{beta}1'
     },
 
@@ -463,6 +493,7 @@
       'ua': 'Mozilla/5.0 (X11; Linux i686 on x86_64; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Fennec/2.0.1',
       'layout': 'Gecko',
       'name': 'Fennec',
+      'os': 'Linux i686',
       'version': '2.0.1'
     },
 
@@ -470,6 +501,8 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9pre) Gecko/2008051917 Firefox/3.0pre Flock/2.0a1pre',
       'layout': 'Gecko',
       'name': 'Flock',
+      'os': 'Linux i686',
+      'prerelease': 'alpha',
       'version': '2.0#{alpha}1'
     },
 
@@ -477,20 +510,16 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; es-AR; rv:1.9.0.2) Gecko/2008091920 Firefox/3.0.2 Flock/2.0b3',
       'layout': 'Gecko',
       'name': 'Flock',
+      'os': 'Linux x86_64',
+      'prerelease': 'beta',
       'version': '2.0#{beta}3'
-    },
-
-    'Flock 2.0.3 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.5) Gecko/2008121620 Firefox/3.0.5 Flock/2.0.3',
-      'layout': 'Gecko',
-      'name': 'Flock',
-      'version': '2.0.3'
     },
 
     'Flock 2.6.0 on Windows XP': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.19) Gecko/2010061201 Firefox/3.0.19 Flock/2.6.0',
       'layout': 'Gecko',
       'name': 'Flock',
+      'os': 'Windows XP',
       'version': '2.6.0'
     },
 
@@ -498,6 +527,7 @@
       'ua': 'Mozilla/5.0 Galeon/1.2.5 (X11; Linux i686; U;) Gecko/20020809',
       'layout': 'Gecko',
       'name': 'Galeon',
+      'os': 'Linux i686',
       'version': '1.2.5'
     },
 
@@ -505,27 +535,31 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.8) Gecko/20090327 Galeon/2.0.7',
       'layout': 'Gecko',
       'name': 'Galeon',
+      'os': 'Linux i686',
       'version': '2.0.7'
     },
 
-    'GreenBrowser (running in IE 7 mode) on Windows XP': {
+    'GreenBrowser (IE 7 mode) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; GreenBrowser)',
       'layout': 'Trident',
       'mode': 7,
-      'name': 'GreenBrowser'
+      'name': 'GreenBrowser',
+      'os': 'Windows XP'
     },
 
-    'GreenBrowser (running in IE 5 mode) on Windows XP': {
+    'GreenBrowser (IE 5 mode) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; GreenBrowser)',
       'layout': 'Trident',
       'mode': 5,
-      'name': 'GreenBrowser'
+      'name': 'GreenBrowser',
+      'os': 'Windows XP'
     },
 
     'iCab 2.8.1 on Mac OS': {
       'ua': 'Mozilla/4.5 (compatible; iCab 2.8.1; Macintosh; I; PPC)',
       'layout': 'iCab',
       'name': 'iCab',
+      'os': 'Mac OS',
       'version': '2.8.1'
     },
 
@@ -533,13 +567,15 @@
       'ua': 'iCab/3.0.2 (Macintosh; U; PPC Mac OS)',
       'layout': 'iCab',
       'name': 'iCab',
+      'os': 'Mac OS',
       'version': '3.0.2'
     },
 
-    'iCab 4.5 on Mac OS X Leopard 10.5.8': {
+    'iCab 4.5 on Mac OS X 10.5.8': {
       'ua': 'iCab/4.5 (Macintosh; U; Mac OS X Leopard 10.5.8)',
       'layout': 'WebKit',
       'name': 'iCab',
+      'os': 'Mac OS X 10.5.8',
       'version': '4.5'
     },
 
@@ -547,6 +583,7 @@
       'ua': 'iCab/4.7 (Macintosh; U; Intel Mac OS X)',
       'layout': 'WebKit',
       'name': 'iCab',
+      'os': 'Mac OS X',
       'version': '4.7'
     },
 
@@ -554,6 +591,7 @@
       'ua': 'Mozilla/4.0 (compatible; MSIE 4.0; Windows 95)',
       'layout': 'Trident',
       'name': 'IE',
+      'os': 'Windows 95',
       'version': '4.0'
     },
 
@@ -561,6 +599,8 @@
       'ua': 'Mozilla/4.0 (compatible; MSIE 5.5b1; Mac_PowerPC)',
       'layout': 'Tasman',
       'name': 'IE',
+      'os': 'Mac OS',
+      'prerelease': 'beta',
       'version': '5.5#{beta}1'
     },
 
@@ -568,6 +608,7 @@
       'ua': 'Mozilla/4.0 (compatible;MSIE 5.5; Windows 98)',
       'layout': 'Trident',
       'name': 'IE',
+      'os': 'Windows 98',
       'version': '5.5'
     },
 
@@ -575,6 +616,7 @@
       'ua': 'Mozilla/4.0 (compatible; MSIE 5.05; Windows NT 4.0)',
       'layout': 'Trident',
       'name': 'IE',
+      'os': 'Windows NT',
       'version': '5.05'
     },
 
@@ -582,6 +624,8 @@
       'ua': 'Mozilla/4.0 (compatible; MSIE 6.0b; Windows 98; Win 9x 4.90)',
       'layout': 'Trident',
       'name': 'IE',
+      'os': 'Windows ME',
+      'prerelease': 'beta',
       'version': '6.0#{beta}'
     },
 
@@ -596,6 +640,7 @@
       'ua': 'Mozilla/4.0 (Windows; MSIE 6.0; Windows NT 5.0)',
       'layout': 'Trident',
       'name': 'IE',
+      'os': 'Windows 2000',
       'version': '6.0'
     },
 
@@ -603,6 +648,8 @@
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.2)',
       'layout': 'Trident',
       'name': 'IE',
+      'os': 'Windows Server 2003 / XP x64',
+      'prerelease': 'beta',
       'version': '7.0#{beta}'
     },
 
@@ -610,6 +657,7 @@
       'ua': 'Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 5.1; en-US)',
       'layout': 'Trident',
       'name': 'IE',
+      'os': 'Windows XP',
       'version': '7.0'
     },
 
@@ -619,6 +667,8 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
+      'os': 'Windows XP',
+      'prerelease': 'beta',
       'version': '8.0#{beta}2'
     },
 
@@ -627,22 +677,25 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
+      'os': 'Windows XP',
       'version': '8.0'
     },
 
-    'IE 8.0 (running in IE 5 mode) on Windows XP': {
+    'IE 8.0 (IE 5 mode) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)',
       'layout': 'Trident',
       'mode': 5,
       'name': 'IE',
+      'os': 'Windows XP',
       'version': '8.0'
     },
 
-    'IE 8.0 (running in IE 7 mode) on Windows XP': {
+    'IE 8.0 (IE 7 mode) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; chromeframe)',
       'layout': 'Trident',
       'mode': 7,
       'name': 'IE',
+      'os': 'Windows XP',
       'version': '8.0'
     },
 
@@ -652,6 +705,7 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
+      'os': 'Windows Server 2008 / Vista x64',
       'platform': 'Win32',
       'version': '8.0'
     },
@@ -662,6 +716,7 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
+      'os': 'Windows Server 2008 R2 / 7 x64',
       'platform': 'Win64',
       'version': '8.0'
     },
@@ -673,31 +728,12 @@
       'layout': 'Trident',
       'mode': 9,
       'name': 'IE',
+      'os': 'Windows Server 2008 R2 / 7',
+      'prerelease': 'beta',
       'version': '9.0#{beta}'
     },
 
-    'IE 9.0#{beta} (platform preview; running in IE 5 mode) on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
-      'appMinorVersion': 'beta',
-      'external': null,
-      'layout': 'Trident',
-      'mode': 5,
-      'name': 'IE',
-      'version': '9.0#{beta}'
-    },
-
-    'IE 9.0#{beta} x86 (platform preview; running in IE 7 mode) on Windows Server 2008 R2 / 7 x64': {
-      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)',
-      'appMinorVersion': 'beta',
-      'external': null,
-      'layout': 'Trident',
-      'mode': 7,
-      'name': 'IE',
-      'platform': 'Win32',
-      'version': '9.0#{beta}'
-    },
-
-    'IE 9.0#{beta} (platform preview; running in IE 8 mode) on Windows Server 2008 R2 / 7': {
+    'IE 9.0#{beta} (platform preview; IE 8 mode) on Windows Server 2008 R2 / 7': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
       'appMinorVersion': 'beta',
       'cpuClass': 'x86',
@@ -705,41 +741,19 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
+      'os': 'Windows Server 2008 R2 / 7',
+      'prerelease': 'beta',
       'version': '9.0#{beta}'
     },
 
-    'IE 9.0#{beta} on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0)',
-      'appMinorVersion': 'beta',
-      'layout': 'Trident',
-      'name': 'IE',
-      'version': '9.0#{beta}'
-    },
-
-    'IE 9.0#{beta} (running in IE 5 mode) on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
-      'appMinorVersion': 'beta',
-      'layout': 'Trident',
-      'mode': 5,
-      'name': 'IE',
-      'version': '9.0#{beta}'
-    },
-
-    'IE 9.0#{beta} (running in IE 7 mode) on Windows Server 2008 R2 / 7': {
+    'IE 9.0#{beta} (IE 7 mode) on Windows Server 2008 R2 / 7': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
       'appMinorVersion': 'beta',
       'layout': 'Trident',
       'mode': 7,
       'name': 'IE',
-      'version': '9.0#{beta}'
-    },
-
-    'IE 9.0#{beta} (running in IE 8 mode) on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
-      'appMinorVersion': 'beta',
-      'layout': 'Trident',
-      'mode': 8,
-      'name': 'IE',
+      'os': 'Windows Server 2008 R2 / 7',
+      'prerelease': 'beta',
       'version': '9.0#{beta}'
     },
 
@@ -748,6 +762,7 @@
       'layout': 'Trident',
       'mode': 9,
       'name': 'IE',
+      'os': 'Windows Server 2008 R2 / 7',
       'version': '9.0'
     },
 
@@ -757,14 +772,16 @@
       'layout': 'Trident',
       'mode': 10,
       'name': 'IE',
+      'os': 'Windows Server 2008 / Vista',
       'version': '10.0'
     },
 
-    'IE 10.0 (running in IE 9 mode) on Windows Server 2008 R2 / 7': {
+    'IE 10.0 (IE 9 mode) on Windows Server 2008 R2 / 7': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)',
       'layout': 'Trident',
       'mode': 9,
       'name': 'IE',
+      'os': 'Windows Server 2008 R2 / 7',
       'version': '10.0'
     },
 
@@ -774,6 +791,7 @@
       'layout': 'Trident',
       'manufacturer': 'Samsung',
       'name': 'IE Mobile',
+      'os': 'Windows Phone OS 7.0',
       'product': 'Samsung OMNIA7',
       'version': '7.0'
     },
@@ -784,31 +802,49 @@
       'layout': 'Trident',
       'manufacturer': 'LG',
       'name': 'IE Mobile',
+     'os': 'Windows Phone OS 7.0',
       'product': 'LG GW910',
       'version': '7.0'
+    },
+
+    'IE Mobile 9.0 (IE 8 mode) on LG E900 (Windows Phone OS 7.5)': {
+      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0; LG; LG-E900)',
+      'external': null,
+      'layout': 'Trident',
+      'manufacturer': 'LG',
+      'mode': 8,
+      'name': 'IE Mobile',
+     'os': 'Windows Phone OS 7.5',
+      'product': 'LG E900',
+      'version': '9.0'
+    },
+
+    'IE Mobile 9.0 (desktop mode) on Windows Phone OS 7.x': {
+      'ua': ' Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; XBLWP7; ZuneWP7)',
+      'external': null,
+      'layout': 'Trident',
+      'mode': 9,
+      'name': 'IE Mobile',
+     'os': 'Windows Phone OS 7.x',
+      'version': '9.0'
+    },
+
+    'IE Mobile 9.0 (desktop mode; IE 8 mode) on Windows Phone OS 7.x': {
+      'ua': ' Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; XBLWP7; ZuneWP7)',
+      'external': null,
+      'layout': 'Trident',
+      'mode': 8,
+      'name': 'IE Mobile',
+      'os': 'Windows Phone OS 7.x',
+      'version': '9.0'
     },
 
     'Iron 0.2.152.0 on Windows Server 2008 / Vista': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Iron/0.2.152.0 Safari/41562480.525',
       'layout': 'WebKit',
       'name': 'Iron',
+      'os': 'Windows Server 2008 / Vista',
       'version': '0.2.152.0'
-    },
-
-    'Iron 7.0.520.1 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.7 (KHTML, like Gecko) Iron/7.0.520.1 Chrome/7.0.520.1 Safari/534.7',
-      'layout': 'WebKit',
-      'name': 'Iron',
-      'version': '7.0.520.1'
-    },
-
-    'Kindle Browser 3.3 (NetFront) on Amazon Kindle 1.0 (Linux 2.6.10)': {
-      'ua': 'Mozilla/4.0 (compatible; Linux 2.6.10) NetFront/3.3 Kindle/1.0 (screen 600x800)',
-      'layout': 'NetFront',
-      'manufacturer': 'Amazon',
-      'name': 'Kindle Browser',
-      'product': 'Kindle 1.0',
-      'version': '3.3'
     },
 
     'Kindle Browser 3.4 (NetFront) on Amazon Kindle 2.0 (Linux 2.6.22)': {
@@ -816,6 +852,7 @@
       'layout': 'NetFront',
       'manufacturer': 'Amazon',
       'name': 'Kindle Browser',
+      'os': 'Linux 2.6.22',
       'product': 'Kindle 2.0',
       'version': '3.4'
     },
@@ -825,6 +862,7 @@
       'layout': 'WebKit',
       'manufacturer': 'Amazon',
       'name': 'Kindle Browser',
+      'os': 'Linux',
       'product': 'Kindle 3.0',
       'version': '4.0'
     },
@@ -833,6 +871,8 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.14) Gecko/20080406 K-Meleon/1.5.0b2',
       'layout': 'Gecko',
       'name': 'K-Meleon',
+      'os': 'Windows XP',
+      'prerelease': 'beta',
       'version': '1.5.0#{beta}2'
     },
 
@@ -840,13 +880,23 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.24pre) Gecko/20100228 K-Meleon/1.5.4',
       'layout': 'Gecko',
       'name': 'K-Meleon',
+      'os': 'Windows XP',
       'version': '1.5.4'
+    },
+
+    'Konqueror 4.7.1 on Linux x86_64': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-GB) AppleWebKit/533.3 (KHTML, like Gecko) konqueror/4.7.1 Safari/533.3',
+      'layout': 'KHTML',
+      'name': 'Konqueror',
+      'os': 'Linux x86_64',
+      'version': '4.7.1'
     },
 
     'Konqueror 4.4 on Linux 2.6.32': {
       'ua': 'Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu',
       'layout': 'KHTML',
       'name': 'Konqueror',
+      'os': 'Linux 2.6.32',
       'version': '4.4'
     },
 
@@ -854,6 +904,8 @@
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.2; Lunascape 5.0 alpha3)',
       'layout': 'Trident',
       'name': 'Lunascape',
+      'os': 'Windows Server 2003 / XP x64',
+      'prerelease': 'alpha',
       'version': '5.0#{alpha}3'
     },
 
@@ -862,6 +914,7 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'Lunascape',
+      'os': 'Windows Server 2008 R2 / 7',
       'version': '6.1.7.21880'
     },
 
@@ -869,6 +922,7 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.13) Gecko/20100917 Firefox/3.5.13 Lunascape/6.2.1.22445',
       'layout': 'Gecko',
       'name': 'Lunascape',
+      'os': 'Windows Server 2008 / Vista',
       'version': '6.2.1.22445'
     },
 
@@ -879,6 +933,8 @@
       'layout': 'Trident',
       'mode': 9,
       'name': 'Lunascape',
+      'os': 'Windows Server 2008 / Vista',
+      'prerelease': 'beta',
       'version': '6.3.1.22729#{beta}'
     },
 
@@ -886,6 +942,7 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/533.3 (KHTML, like Gecko) Lunascape/6.3.2.22803 Safari/533.3',
       'layout': 'WebKit',
       'name': 'Lunascape',
+      'os': 'Windows XP',
       'version': '6.3.2.22803'
     },
 
@@ -894,14 +951,16 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'Maxthon',
+      'os': 'Windows XP',
       'version': '2.x'
     },
 
-    'Maxthon 2.x (running in IE 7 mode) on Windows XP': {
+    'Maxthon 2.x (IE 7 mode) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; Maxthon 2.0)',
       'layout': 'Trident',
       'mode': 7,
       'name': 'Maxthon',
+      'os': 'Windows XP',
       'version': '2.x'
     },
 
@@ -909,15 +968,7 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/533.9 (KHTML, like Gecko) Maxthon/3.0 Safari/533.9',
       'layout': 'WebKit',
       'name': 'Maxthon',
-      'version': '3.x'
-    },
-
-    'Maxthon 3.x (running in IE 7 mode) on Windows XP': {
-      'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; Maxthon/3.0)',
-      'external': null,
-      'layout': 'Trident',
-      'mode': 7,
-      'name': 'Maxthon',
+      'os': 'Windows XP',
       'version': '3.x'
     },
 
@@ -928,19 +979,23 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'Maxthon',
+      'os': 'Windows XP',
+      'prerelease': 'alpha',
       'version': '3.x#{alpha}'
     },
 
     'Midori (like Safari 3.x) on Linux x86_64': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; ru-ru) AppleWebKit/525.1+ (KHTML, like Gecko, Safari/525.1+) midori',
       'layout': 'WebKit',
-      'name': 'Midori'
+      'name': 'Midori',
+      'os': 'Linux x86_64'
     },
 
     'Midori 0.1.10 on Linux i686': {
       'ua': 'Midori/0.1.10 (X11; Linux i686; U; fr-fr) WebKit/532.1+',
       'layout': 'WebKit',
       'name': 'Midori',
+      'os': 'Linux i686',
       'version': '0.1.10'
     },
 
@@ -948,6 +1003,7 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux; en-us; rv:1.8.1) Gecko/20061010 Firefox/2.0 Midori/0.1.6',
       'layout': 'WebKit',
       'name': 'Midori',
+      'os': 'Linux',
       'version': '0.1.6'
     },
 
@@ -955,6 +1011,7 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; fr-fr) AppleWebKit/525.1+ (KHTML, like Gecko, Safari/525.1+) midori/1.19',
       'layout': 'WebKit',
       'name': 'Midori',
+      'os': 'Linux i686',
       'version': '1.19'
     },
 
@@ -972,6 +1029,7 @@
       'exports': {},
       'global': {},
       'name': 'Node.js',
+      'os': 'Cygwin',
       'process': { 'version': 'v0.3.1', 'platform': 'cygwin' },
       'version': '0.3.1'
     },
@@ -989,6 +1047,7 @@
       'layout': 'WebKit',
       'manufacturer': 'Nokia',
       'name': 'Nokia Browser',
+      'os': 'Symbian OS 9.4',
       'product': 'Nokia 5530c'
     },
 
@@ -1016,6 +1075,7 @@
       'name': 'Opera Mini',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
       'operamini': { '[[Class]]': 'OperaMini' },
+      'os': 'iOS',
       'product': 'iPhone',
       'version': '6.1.15738'
     },
@@ -1025,6 +1085,7 @@
       'layout': 'Presto',
       'name': 'Opera Mobile',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'os': 'Linux i686',
       'version': '10.00'
     },
 
@@ -1033,6 +1094,7 @@
       'layout': 'Presto',
       'name': 'Opera',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.10'; } },
+      'os': 'Windows XP',
       'version': '10.10'
     },
 
@@ -1041,6 +1103,7 @@
       'layout': 'Presto',
       'name': 'Opera',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.63'; } },
+      'os': 'Windows XP',
       'version': '10.63'
     },
 
@@ -1049,6 +1112,7 @@
       'layout': 'Presto',
       'name': 'Opera',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '11.00'; } },
+      'os': 'Windows XP',
       'version': '11.00'
     },
 
@@ -1057,6 +1121,7 @@
       'layout': 'Presto',
       'name': 'Opera',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '11.52'; } },
+      'os': 'Mac OS X 10.7.2',
       'version': '11.52'
     },
 
@@ -1064,6 +1129,7 @@
       'ua': 'Mozilla/5.0 (X11; U; Cygwin; C -) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3)  PhantomJS/1.0.0',
       'layout': 'WebKit',
       'name': 'PhantomJS',
+      'os': 'Cygwin',
       'phantom': { 'version': { 'major': 1, 'minor': 0, 'patch': 0 } },
       'version': '1.0.0'
     },
@@ -1073,6 +1139,7 @@
       'layout': 'WebKit',
       'manufacturer': 'BlackBerry',
       'name': 'PlayBook Browser',
+      'os': 'Tablet OS 1.0.0',
       'product': 'PlayBook',
       'version': '0.0.1'
     },
@@ -1081,19 +1148,15 @@
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.1) AppleWebKit/7534.48.3 (KHTML, like Gecko) Version/5.1 Safari/7534.48.3 Raven for Mac/0.5.8635',
       'layout': 'WebKit',
       'name': 'Raven',
+      'os': 'Mac OS X 10.7.1',
       'version': '0.5.8635'
     },
 
     'Rekonq (like Safari 4+) on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-GB) AppleWebKit/533.3 (KHTML, like Gecko) rekonq Safari/533.3',
       'layout': 'WebKit',
-      'name': 'Rekonq'
-    },
-
-    'Rekonq (like Safari 4+) on Linux x86_64': {
-      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; cs-CZ) AppleWebKit/533.3 (KHTML, like Gecko) rekonq Safari/533.3',
-      'layout': 'WebKit',
-      'name': 'Rekonq'
+      'name': 'Rekonq',
+      'os': 'Linux i686'
     },
 
     'Rhino': {
@@ -1119,6 +1182,7 @@
       'layout': 'WebKit',
       'likeChrome': true,
       'name': 'RockMelt',
+      'os': 'Mac OS X 10.5.8',
       'version': '0.8.34.820'
     },
 
@@ -1126,6 +1190,7 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; de-de) AppleWebKit/85.7 (KHTML, like Gecko) Safari/85.5',
       'layout': 'WebKit',
       'name': 'Safari',
+      'os': 'Mac OS X',
       'version': '1.x'
     },
 
@@ -1133,6 +1198,7 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS; en-en) AppleWebKit/412 (KHTML, like Gecko) Safari/412',
       'layout': 'WebKit',
       'name': 'Safari',
+      'os': 'Mac OS',
       'version': '2.x'
     },
 
@@ -1141,15 +1207,17 @@
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
+      'os': 'iOS 2.2.1',
       'product': 'iPod',
       'version': '3.x'
     },
 
-    'Safari 3.0 on Apple iPod (iOS)': {
+    'Safari 3.0 on Apple iPod': {
       'ua': 'Mozila/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3A101a Safari/419.3',
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
+      'os': 'iOS',
       'product': 'iPod',
       'version': '3.0'
     },
@@ -1159,106 +1227,9 @@
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
+      'os': 'iOS 2.0.1',
       'product': 'iPhone',
       'version': '3.1.1'
-    },
-
-    'Safari 3.1.1 on Mac OS X 10.5.7': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; de-de) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.20',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.1.1'
-    },
-
-    'Safari 3.1.1 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.17',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.1.1'
-    },
-
-    'Safari 3.1.2 on Mac OS X 10.5.6': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_6; en-us) AppleWebKit/525.18.1 (KHTML, like Gecko) Version/3.1.2 Safari/525.20.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.1.2'
-    },
-
-    'Safari 3.1.2 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; pl-PL) AppleWebKit/525.19 (KHTML, like Gecko) Version/3.1.2 Safari/525.21',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.1.2'
-    },
-
-    'Safari 3.2 on Mac OS X 10.5.5': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_5; en-us) AppleWebKit/525.26.2 (KHTML, like Gecko) Version/3.2 Safari/525.26.12',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2'
-    },
-
-    'Safari 3.2 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; hu-HU) AppleWebKit/525.26.2 (KHTML, like Gecko) Version/3.2 Safari/525.26.13',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2'
-    },
-
-    'Safari 3.2.1 on Mac OS X 10.4.11': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; pl-pl) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/3.2.1 Safari/525.27.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.1'
-    },
-
-    'Safari 3.2.1 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; sv-SE) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/3.2.1 Safari/525.27.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.1'
-    },
-
-    'Safari 3.2.2 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru-RU) AppleWebKit/525.28 (KHTML, like Gecko) Version/3.2.2 Safari/525.28.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.2'
-    },
-
-    'Safari 3.2.2 on Windows Server 2003 / XP x64': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/525.28 (KHTML, like Gecko) Version/3.2.2 Safari/525.28.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.2'
-    },
-
-    'Safari 3.2.2 on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; de-DE) AppleWebKit/525.28 (KHTML, like Gecko) Version/3.2.2 Safari/525.28.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.2'
-    },
-
-    'Safari 3.2.3 on Mac OS X 10.5.7': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; de-de) AppleWebKit/525.28.3 (KHTML, like Gecko) Version/3.2.3 Safari/525.28.3',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.3'
-    },
-
-    'Safari 3.2.3 on Mac OS X 10.5.8': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_8; ja-jp) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/3.2.3 Safari/525.28.3',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.3'
-    },
-
-    'Safari 3.2.3 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; cs-CZ) AppleWebKit/525.28.3 (KHTML, like Gecko) Version/3.2.3 Safari/525.29',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '3.2.3'
     },
 
     'Safari 4.x on Apple iPhone (iOS 3.1)': {
@@ -1266,6 +1237,7 @@
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
+      'os': 'iOS 3.1',
       'product': 'iPhone',
       'version': '4.x'
     },
@@ -1275,16 +1247,8 @@
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
+      'os': 'iOS 4.0',
       'product': 'iPhone Simulator',
-      'version': '4.x'
-    },
-
-    'Safari 4.x on Apple iPhone (iOS 4.1)': {
-      'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Mobile/8B117',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPhone',
       'version': '4.x'
     },
 
@@ -1292,43 +1256,9 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8',
       'layout': 'WebKit',
       'name': 'Safari',
+      'os': 'Windows XP',
+      'prerelease': 'alpha',
       'version': '4.0#{alpha}1'
-    },
-
-    'Safari 4.0 on Apple iPhone (iOS 3.0)': {
-      'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_0 like Mac OS X; ko-kr) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPhone',
-      'version': '4.0'
-    },
-
-    'Safari 4.0 on Apple iPod (iOS 3.0)': {
-      'ua': 'Mozilla/5.0 (iPod; U; CPU iPhone OS 3_0 like Mac OS X; ja-jp) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7A341 Safari/528.16',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPod',
-      'version': '4.0'
-    },
-
-    'Safari 4.0 on Apple iPhone (iOS 3.1)': {
-      'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7C97d Safari/528.16',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPhone',
-      'version': '4.0'
-    },
-
-    'Safari 4.0 on Apple iPhone (iOS 3.1.3)': {
-      'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_3 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7E18 Safari/528.16 Cydia/1.0.3201-71',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPhone',
-      'version': '4.0'
     },
 
     'Safari 4.0 on Apple iPhone (iOS 4.1.1)': {
@@ -1336,64 +1266,9 @@
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
+      'os': 'iOS 4.1.1',
       'product': 'iPhone',
       'version': '4.0'
-    },
-
-    'Safari 4.0 on Mac OS X 10.5.6': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_6; tr-TR) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0'
-    },
-
-    'Safari 4.0 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-TW) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0'
-    },
-
-    'Safari 4.0 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; ru-RU) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0'
-    },
-
-    'Safari 4.0.2 on Mac OS X 10.5.7': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_7; en-us) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.2'
-    },
-
-    'Safari 4.0.2 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.2'
-    },
-
-    'Safari 4.0.2 on Windows Server 2003 / XP x64': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.2; de-DE) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.2'
-    },
-
-    'Safari 4.0.2 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; zh-TW) AppleWebKit/530.19.2 (KHTML, like Gecko) Version/4.0.2 Safari/530.19.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.2'
-    },
-
-    'Safari 4.0.3 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-us) AppleWebKit/531.9 (KHTML, like Gecko) Version/4.0.3 Safari/531.9',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.3'
     },
 
     'Safari 4.0.4 on Apple iPad (iOS 3.2)': {
@@ -1401,16 +1276,8 @@
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
+      'os': 'iOS 3.2',
       'product': 'iPad',
-      'version': '4.0.4'
-    },
-
-    'Safari 4.0.4 on Apple iPhone (iOS 3.2)': {
-      'ua': 'Mozilla/5.0 (iPhone; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPhone',
       'version': '4.0.4'
     },
 
@@ -1419,225 +1286,16 @@
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
+      'os': 'iOS 3.2',
       'product': 'iPhone Simulator',
       'version': '4.0.4'
-    },
-
-    'Safari 4.0.4 on Mac OS X 10.4.11': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; hu-hu) AppleWebKit/531.21.8 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.4'
-    },
-
-    'Safari 4.0.4 on Mac OS X 10.6.3': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) AppleWebKit/531.21.11 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.4'
-    },
-
-    'Safari 4.0.4 on Windows Server 2003 / XP x64': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/531.21.8 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.4'
-    },
-
-    'Safari 4.0.4 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.4'
-    },
-
-    'Safari 4.0.4 on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; ko-KR) AppleWebKit/531.21.8 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.4'
-    },
-
-    'Safari 4.0.5 on Apple iPhone (iOS 4.1)': {
-      'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8B5097d Safari/6531.22.7',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPhone',
-      'version': '4.0.5'
-    },
-
-    'Safari 4.0.5 on Mac OS X 10.4.11': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; da-dk) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.5'
-    },
-
-    'Safari 4.0.5 on Mac OS X 10.5.8': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_8; en-us) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.5'
-    },
-
-    'Safari 4.0.5 on Mac OS X 10.6.2': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_2; ja-jp) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.5'
-    },
-
-    'Safari 4.0.5 on Mac OS X 10.6.3': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; ja-jp) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.5'
-    },
-
-    'Safari 4.0.5 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; cs-CZ) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.5'
-    },
-
-    'Safari 4.0.5 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.5'
-    },
-
-    'Safari 4.0.5 on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; es-ES) AppleWebKit/531.22.7 (KHTML, like Gecko) Version/4.0.5 Safari/531.22.7',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.0.5'
-    },
-
-    'Safari 4.1 on Mac OS X 10.4.11': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; nl-nl) AppleWebKit/533.16 (KHTML, like Gecko) Version/4.1 Safari/533.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.1'
-    },
-
-    'Safari 4.1 on Mac OS X 10.7': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_7; en-us) AppleWebKit/533.4 (KHTML, like Gecko) Version/4.1 Safari/533.4',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '4.1'
-    },
-
-    'Safari 5.0 on Mac OS X 10.5.8': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_8; ja-jp) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0'
-    },
-
-    'Safari 5.0 on Mac OS X 10.4.11': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; fr) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0'
-    },
-
-    'Safari 5.0 on Mac OS X 10.6.3': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; zh-cn) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0'
-    },
-
-    'Safari 5.0 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; ja-JP) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0'
-    },
-
-    'Safari 5.0 on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; ja-JP) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0'
-    },
-
-    'Safari 5.0.1 on Windows Server 2003 / XP x64': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/533.17.8 (KHTML, like Gecko) Version/5.0.1 Safari/533.17.8',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0.1'
-    },
-
-    'Safari 5.0.2 on Apple iPad (iOS 4.3)': {
-      'ua': '(iPad; U; CPU OS 4_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8F190 Safari/6533.18.5',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPad',
-      'version': '5.0.2'
-    },
-
-    'Safari 5.0.2 on Apple iPhone (iOS 4.3)': {
-      'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8F190 Safari/6533.18.5',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPhone',
-      'version': '5.0.2'
-    },
-
-    'Safari 5.0.2 on Mac OS X 10.5.8': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; zh-cn) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/5.0.2 Safari/533.18.5',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0.2'
-    },
-
-    'Safari 5.0.2 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru-RU) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/5.0.2 Safari/533.18.5',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0.2'
-    },
-
-    'Safari 5.0.2 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; tr-TR) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/5.0.2 Safari/533.18.5',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0.2'
-    },
-
-    'Safari 5.0.2 on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; zh-HK) AppleWebKit/533.18.1 (KHTML, like Gecko) Version/5.0.2 Safari/533.18.5',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0.2'
-    },
-
-    'Safari 5.0.5 on Mac OS X 10.7.1': {
-      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_1) AppleWebKit/534.48.3 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
-      'layout': 'WebKit',
-      'name': 'Safari',
-      'version': '5.0.5'
-    },
-
-    'Safari 5.1 on Apple iPad (iOS 5.0)': {
-      'ua': 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A5288d Safari/7534.48.3',
-      'layout': 'WebKit',
-      'manufacturer': 'Apple',
-      'name': 'Safari',
-      'product': 'iPad',
-      'version': '5.1'
     },
 
     'Safari 5.1 on Windows Server 2008 R2 / 7': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',
       'layout': 'WebKit',
       'name': 'Safari',
+      'os': 'Windows Server 2008 R2 / 7',
       'version': '5.1'
     },
 
@@ -1645,6 +1303,7 @@
       'ua': 'Mozilla/5.0 (BeOS; U; Haiku BePC; en-US; rv:1.8.1.10pre) Gecko/20080112 SeaMonkey/1.1.7pre',
       'layout': 'Gecko',
       'name': 'SeaMonkey',
+      'prerelease': 'alpha',
       'version': '1.1.7#{alpha}'
     },
 
@@ -1659,6 +1318,8 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.1pre) Gecko/20090717 SeaMonkey/2.0b1',
       'layout': 'Gecko',
       'name': 'SeaMonkey',
+      'os': 'Windows Server 2008 / Vista',
+      'prerelease': 'beta',
       'version': '2.0#{beta}1'
     },
 
@@ -1666,20 +1327,15 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.8) Gecko/20100205 SeaMonkey/2.0.3',
       'layout': 'Gecko',
       'name': 'SeaMonkey',
+      'os': 'Linux x86_64',
       'version': '2.0.3'
-    },
-
-    'SeaMonkey 2.0.8 on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.13) Gecko/20100914 Mnenhy/0.8.3 SeaMonkey/2.0.8',
-      'layout': 'Gecko',
-      'name': 'SeaMonkey',
-      'version': '2.0.8'
     },
 
     'Sleipnir 2.8.4 on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; Sleipnir 2.8.4)',
       'layout': 'Trident',
       'name': 'Sleipnir',
+      'os': 'Windows XP',
       'version': '2.8.4'
     },
 
@@ -1689,43 +1345,41 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'Sleipnir',
+      'os': 'Windows XP',
+      'prerelease': 'beta',
       'version': '2.9.2#{beta}'
     },
 
-    'Sleipnir 2.9.4 (running in IE 7 mode) on Windows Server 2008 / Vista': {
+    'Sleipnir 2.9.4 (IE 7 mode) on Windows Server 2008 / Vista': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Trident/4.0; Sleipnir/2.9.4)',
       'layout': 'Trident',
       'mode': 7,
       'name': 'Sleipnir',
+      'os': 'Windows Server 2008 / Vista',
       'version': '2.9.4'
     },
 
-    'Sleipnir 2.9.6 on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; Sleipnir/2.9.6)',
-      'layout': 'Trident',
-      'mode': 8,
-      'name': 'Sleipnir',
-      'version': '2.9.6'
-    },
-
-    'SlimBrowser (running in IE 7 mode) on Windows XP': {
+    'SlimBrowser (IE 7 mode) on Windows XP': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; SlimBrowser)',
       'layout': 'Trident',
       'mode': 7,
-      'name': 'SlimBrowser'
+      'name': 'SlimBrowser',
+      'os': 'Windows XP'
     },
 
-    'SlimBrowser (running in IE 5 mode) on Windows Server 2008 R2 / 7': {
+    'SlimBrowser (IE 5 mode) on Windows Server 2008 R2 / 7': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/4.0; SlimBrowser)',
       'layout': 'Trident',
       'mode': 5,
-      'name': 'SlimBrowser'
+      'name': 'SlimBrowser',
+      'os': 'Windows Server 2008 R2 / 7'
     },
 
     'Sunrise 1.7.5 on Mac OS X 10.5.5': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_5; ja-jp) AppleWebKit/525.18 (KHTML, like Gecko) Sunrise/1.7.5 like Safari/5525.20.1',
       'layout': 'WebKit',
       'name': 'Sunrise',
+      'os': 'Mac OS X 10.5.5',
       'version': '1.7.5'
     },
 
@@ -1733,6 +1387,7 @@
       'ua': 'Mozilla/6.0 (X11; U; Linux x86_64; en-US; rv:2.9.0.3) Gecko/2009022510 FreeBSD/ Sunrise/4.0.1/like Safari',
       'layout': 'WebKit',
       'name': 'Sunrise',
+      'os': 'Linux x86_64',
       'version': '4.0.1'
     },
 
@@ -1740,6 +1395,7 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.6) Gecko/20070803 Firefox/2.0.0.6 (Swiftfox)',
       'layout': 'Gecko',
       'name': 'Swiftfox',
+      'os': 'Linux i686',
       'version': '2.0.0.6'
     },
 
@@ -1747,6 +1403,8 @@
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.10pre) Gecko/2009041814 Firefox/3.0.10pre (Swiftfox)',
       'layout': 'Gecko',
       'name': 'Swiftfox',
+      'os': 'Linux i686',
+      'prerelease': 'alpha',
       'version': '3.0.10#{alpha}'
      },
 
@@ -1755,6 +1413,7 @@
       'layout': 'WebKit',
       'likeChrome': true,
       'name': 'webOS Browser',
+      'os': 'webOS 1.2.9',
       'version': '1.0'
     },
 
@@ -1763,6 +1422,7 @@
       'layout': 'WebKit',
       'likeChrome': true,
       'name': 'webOS Browser',
+      'os': 'webOS 1.4.0',
       'version': '1.0'
     },
 
@@ -1771,6 +1431,7 @@
       'layout': 'WebKit',
       'likeChrome': true,
       'manufacturer': 'HP',
+      'os': 'webOS 3.0.0',
       'product': 'TouchPad 1.0',
       'name': 'TouchPad Browser'
     },
@@ -1779,104 +1440,26 @@
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; tr) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
       'layout': 'WebKit',
       'name': 'WebKit Nightly',
+      'os': 'Mac OS X 10.4.11',
+      'prerelease': 'alpha',
       'version': '528.4'
-    },
-
-    'WebKit Nightly 528.4 (like Safari 4.x) on Mac OS X 10.5.4': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; en-us) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '528.4'
-    },
-
-    'WebKit Nightly 528.8 (like Safari 4.x) on Mac OS X 10.5.6': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6; it-it) AppleWebKit/528.8+ (KHTML, like Gecko) Version/3.2.1 Safari/525.27.1',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '528.8'
-    },
-
-    'WebKit Nightly 528.10 (like Safari 4.x) on Mac OS X 10.5.6': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6; en-gb) AppleWebKit/528.10+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '528.10'
-    },
-
-    'WebKit Nightly 530.1 (like Safari 4.x) on Mac OS X 10.4.11': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_4_11; en) AppleWebKit/530.1+ (KHTML, like Gecko) Version/4.0 Safari/528.16',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '530.1'
-    },
-
-    'WebKit Nightly 528.4 (like Safari 4.x) on Mac OS X 10.5.4': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_4; nl-nl) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0 Safari/528.1',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '528.4'
-    },
-
-    'WebKit Nightly 530.6 (like Safari 4.x) on Mac OS X 10.6': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6; en-us) AppleWebKit/530.6+ (KHTML, like Gecko) Version/4.0 Safari/530.6',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '530.6'
-    },
-
-    'WebKit Nightly 531.2 (like Safari 4.x) on Mac OS X 10.5.7': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; en-us) AppleWebKit/531.2+ (KHTML, like Gecko) Version/4.0.1 Safari/530.18',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '531.2'
-    },
-
-    'WebKit Nightly 532 (like Safari 4.x) on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532+ (KHTML, like Gecko) Version/4.0.2 Safari/530.19.1',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '532'
-    },
-
-    'WebKit Nightly 532.0 (like Safari 4.x) on Mac OS X 10.5.8': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_5_8; en-us) AppleWebKit/532.0+ (KHTML, like Gecko) Version/4.0.3 Safari/531.9.2009',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '532.0'
-    },
-
-    'WebKit Nightly 532.3 (like Safari 4.x) on Mac OS X 10.6.1': {
-      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; nl-nl) AppleWebKit/532.3+ (KHTML, like Gecko) Version/4.0.3 Safari/531.9',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '532.3'
     },
 
     'WebKit Nightly 533.2 (like Safari 4+) on Mac OS X 10.6.2': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_2; ru-ru) AppleWebKit/533.2+ (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
       'layout': 'WebKit',
       'name': 'WebKit Nightly',
+      'os': 'Mac OS X 10.6.2',
+      'prerelease': 'alpha',
       'version': '533.2'
-    },
-
-    'WebKit Nightly 532 (like Safari 4.x) on Windows XP': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; de-DE) AppleWebKit/532+ (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '532'
-    },
-
-    'WebKit Nightly 531.2 (like Safari 4.x) on Linux x86_64': {
-      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-ca) AppleWebKit/531.2+ (KHTML, like Gecko) Version/5.0 Safari/531.2+',
-      'layout': 'WebKit',
-      'name': 'WebKit Nightly',
-      'version': '531.2'
     },
 
     'WebKit Nightly 535.7 (like Safari 5+) on Mac OS X 10.7.1': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_1) AppleWebKit/535.7+ (KHTML, like Gecko) Version/5.1 Safari/534.48.3',
       'layout': 'WebKit',
       'name': 'WebKit Nightly',
+      'os': 'Mac OS X 10.7.1',
+      'prerelease': 'alpha',
       'version': '535.7'
     },
 
@@ -1886,16 +1469,24 @@
 
     'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100728 Firefox/3.6.8 CometBird/3.6.8,gzip(gfe),gzip(gfe)': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100728 Firefox/3.6.8 CometBird/3.6.8,gzip(gfe),gzip(gfe)',
-      'layout': 'Gecko'
+      'layout': 'Gecko',
+      'os': 'Windows XP'
     },
 
     'Mozilla/5.0 (PLAYSTATION 3; 2.00)': {
       'ua': 'Mozilla/5.0 (PLAYSTATION 3; 2.00)'
     },
 
+    'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64',
+      'layout': 'Gecko',
+      'os': 'Windows Server 2008 R2 / 7 x64'
+    },
+
     'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 Prism/1.0b2': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 Prism/1.0b2',
-      'layout': 'Gecko'
+      'layout': 'Gecko',
+      'os': 'Windows XP'
     }
   };
 
@@ -1903,7 +1494,7 @@
 
   QUnit.module('platform' + (window.document ? '' : ': ' + platform));
 
-  each(['description', 'layout', 'manufacturer', 'name', 'product', 'version'], function(name) {
+  each(['description', 'layout', 'manufacturer', 'name', 'os', 'prerelease', 'product', 'version'], function(name) {
     test('platform.' + name, function() {
       each(Tests, function(value, key) {
         var platform = getPlatform(value);

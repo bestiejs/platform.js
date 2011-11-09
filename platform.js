@@ -200,6 +200,9 @@
     /** Platform description array */
     description = [],
 
+    /** Platform alpha/beta indicator */
+    prerelease = null,
+
     /** A flag to indicate that environment features should be used to resolve the platform */
     useFeatures = ua == userAgent,
 
@@ -221,6 +224,8 @@
     /* Detectable products (order is important) */
     product = getProduct([
       'BlackBerry',
+      'Galaxy S',
+      'Galaxy S2',
       'iPad',
       'iPod',
       'iPhone',
@@ -243,7 +248,7 @@
       'LG': { },
       'Motorola': { 'Xoom': 1 },
       'Nokia': { },
-      'Samsung': { }
+      'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1 }
     }),
 
     /* Detectable browser names (order is important) */
@@ -307,7 +312,7 @@
      * @returns {String|Null} The detected layout.
      */
     function getLayout(guesses){
-      return reduce(guesses, function(result, guess, index) {
+      return reduce(guesses, function(result, guess) {
         return result || RegExp('\\b' +
           (guess == 'WebKit' ? 'AppleWebKit' : guess) + '\\b', 'i').exec(ua) && guess;
       }, null);
@@ -321,9 +326,14 @@
      */
     function getManufacturer(guesses) {
       return reduce(guesses, function(result, value, key) {
-        if (!result && (result =
-            (value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
-            RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)) && key)) {
+        // attempt to lookup the manufacturer by product or
+        // scan the UA for the manufacturer
+        if (!result && (value[product] ||
+            value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
+            RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua))) {
+          // if a product name has not been found, check again using the
+          // manufacturer's name in case the product name contains it
+          result = key;
           product || (product = getProduct([result]));
         }
         return result;
@@ -364,22 +374,23 @@
             '4.9': 'ME'
           };
           // detect Windows version from platform tokens
-          if (/^Win/i.test(result) && (data = data[0/*Opera 9.25 fix*/, /[456]\.\d/.exec(result)])) {
+          if (/^Win/i.test(result) &&
+              (data = data[0/*Opera 9.25 fix*/, /[456]\.\d/.exec(result)])) {
             result = 'Windows ' + data;
           }
           // normalize iOS
-          else if (/^i/.test(product)) {
+          else if (/^iP/.test(product)) {
             name || (name = 'Safari');
             result = 'iOS' + ((data = /\bOS ([\d_]+)/i.exec(ua)) ? ' ' + data[1] : '');
           }
           // cleanup
           result = String(result)
             .replace(RegExp(guess, 'i'), guess)
-            .replace(/hpw/, 'web')
+            .replace(/hpw/i, 'web')
             .replace(/Macintosh/i, 'Mac OS')
             .replace(/_PowerPC/i, ' OS')
-            .replace(/(OS X) Mach$/i, '$1')
-            .replace(/(Symbian)(OS)/, '$1 $2')
+            .replace(/(OS X) [^\s\d]+/i, '$1')
+            .replace(/(Symbian)(OS)/i, '$1 $2')
             .replace(/\/(\d)/, ' $1')
             .replace(/_/g, '.')
             .replace(/x86\.64/gi, 'x86_64')
@@ -398,8 +409,10 @@
     function getProduct(guesses) {
       return reduce(guesses, function(result, guess) {
         if (!result && (result =
-            RegExp('\\b' + guess + '\\s*\\d+[.\\w]*', 'i').exec(ua) ||
-            RegExp('\\b' + guess + '(?:;\\s*[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua))) {
+            (guess == 'Galaxy S' && /GT-I9000/i.test(ua) && guess) ||
+            (guess == 'Galaxy S2' && /GT-I9100/i.test(ua) && guess) ||
+            RegExp('\\b' + guess + '\\s*\\d+[.\\w_]*', 'i').exec(ua) ||
+            RegExp('\\b' + guess + '(?:;\\s*(?:[a-z]+[-_])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua))) {
           // correct character case and split by forward slash
           if ((result = String(result).replace(RegExp(guess, 'i'), guess).split('/'))[1]) {
             // set browser version if product already has a version
@@ -410,10 +423,23 @@
             }
           }
           result = format(/;/.test(result)
-            ? result[0].replace(/;\s+/, ' ')
+            ? result[0].replace(RegExp(';\\s*(?:' + guess + '[-_])?', 'i'), ' ')
             : result[0].replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
         }
         return result;
+      }, null);
+    }
+
+    /**
+     * Resolves the version using an array of UA tokens.
+     * @private
+     * @param {Array} tokens An array of UA tokens.
+     * @returns {String|Null} The detected version.
+     */
+    function getVersion(tokens) {
+      return reduce(tokens, function(result, token) {
+        return result || (RegExp(token +
+          '(?:-[\\d.]+/|(?: for [-\\w]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
       }, null);
     }
 
@@ -443,12 +469,16 @@
 
     /*------------------------------------------------------------------------*/
 
-    // convert layout to an array to support the addition of contextual information
+    // convert layout to an array to support additional information
     layout && (layout = [layout]);
 
     // detect simulator
     if (/Simulator/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
+    }
+    // detect iOS from Opera Mini
+    if (!os && /^iP/.test(product)) {
+      os = 'iOS';
     }
     // detect non Firefox/Safari like browsers
     if (ua && (data = !name || /Firefox|Safari/.exec(name))) {
@@ -464,20 +494,29 @@
     // detect Android browsers
     if (manufacturer && name == 'Chrome') {
       name = 'Android Browser';
+      os = /Android/.test(os) ? os : 'Android';
     }
-    // detect non-Opera versions
+    // detect non-Opera versions (order is important)
     if (!version) {
-      version = reduce([/Mini|Raven/.test(name) ? name : 'version', name, 'AdobeAIR', 'Firefox', 'NetFront'], function(result, guess) {
-        return result || (RegExp(guess + '(?:-[\\d.]+/|(?: for [-\\w]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
-      }, null);
+      version = getVersion([
+        /Mini|Raven/.test(name) ? name : 'version',
+        name,
+        'AdobeAIR',
+        'Firefox',
+        'NetFront'
+      ]);
     }
     // detect stubborn layout engines
-    if (data = !layout && (opera && 'Presto' ||
-        /\bMSIE\b/i.test(ua) &&(/^Mac/.test(os) ? 'Tasman' : 'Trident')) ||
-        /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit') {
-      layout = [data];
-    } else if (layout == 'iCab' && parseFloat(version) > 3) {
+    if (layout == 'iCab' && parseFloat(version) > 3) {
       layout = ['WebKit'];
+    }
+    else if (name == 'Konqueror' && /\bKHTML\b/i.test(ua)) {
+      layout = ['KHTML'];
+    }
+    else if (data =
+        /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
+        !layout && (opera && 'Presto' || /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident'))) {
+      layout = [data];
     }
     // leverage environment features
     if (useFeatures) {
@@ -485,7 +524,8 @@
       // Rhino has a global function while others have a global object
       if (isHostType(thisBinding, 'global')) {
         if (java && !os) {
-          os = java.lang.System.getProperty('os.name') + ' ' + java.lang.System.getProperty('os.version');
+          data = java.lang.System;
+          os = data.getProperty('os.name') + ' ' + data.getProperty('os.version');
         }
         if (typeof exports == 'object' && exports) {
           // if `thisBinding` is the [ModuleScope]
@@ -496,7 +536,9 @@
               version = data[1].join('.');
               name = 'RingoJS';
             } catch(e) {
-              data[0].global == freeGlobal && (name = 'Narwhal');
+              if (data[0].global == freeGlobal) {
+                name = 'Narwhal';
+              }
             }
           } else if (typeof process == 'object' && (data = process)) {
             name = 'Node.js';
@@ -520,28 +562,40 @@
       // detect IE compatibility mode (when the Trident version + 4 doesn't equal the document mode)
       else if (typeof doc.documentMode == 'number' && (data = /Trident\/(\d+)/i.exec(ua))) {
         version = [version, doc.documentMode];
-        version[1] = (data = +data[1] + 4) != version[1] ? (layout[1] = '', description.push('running in IE ' + version[1] + ' mode'), data) : version[1];
+        version[1] = (data = +data[1] + 4) != version[1] ? (layout[1] = '', description.push('IE ' + version[1] + ' mode'), data) : version[1];
         version = name == 'IE' ? String(version[1].toFixed(1)) : version[0];
       }
     }
-    // detect release phases
+    // detect prerelease phases
     if (version && (data =
         /(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(version) ||
         /(?:alpha|beta)(?: ?\d)?/i.exec(ua + ';' + (useFeatures && nav.appMinorVersion)))) {
-      version = version.replace(RegExp(data + '\\+?$'), '') + (/b/i.test(data) ? beta : alpha) + (/\d+\+?/.exec(data) || '');
+      prerelease = /b/i.test(data) ? 'beta' : 'alpha';
+      version = version.replace(RegExp(data + '\\+?$'), '') +
+        (prerelease == 'beta' ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
     // obscure Maxthon's unreliable version info
-    if (name == 'Maxthon') {
-      version = version && version.replace(/\.[.\d]+/, '.x');
+    if (name == 'Maxthon' && version) {
+      version = version.replace(/\.[.\d]+/, '.x');
     }
     // rename older Firefox nightlies
     else if (name == 'Minefield') {
       name = 'Firefox';
-      version && !RegExp(alpha + '|' + beta).test(version) && (version += alpha);
+      if (version && !prerelease) {
+        prerelease = 'alpha';
+        version += alpha;
+      }
     }
     // add mobile postfix
-    else if ((name == 'IE' || name && !product) && !/Browser/.test(name) && /Mobi/i.test(ua)) {
+    else if (data =
+        (name && !product && !/Browser/.test(name) && /Mobi/i.test(ua)) ||
+        (name == 'IE' && (/Mobi/i.test(ua) || (/;\s*(?:XBLWP|ZuneWP)(\d+)/i.exec(ua) || 0)[1]))) {
       name += ' Mobile';
+      // detect Windows Phone desktop mode
+      if (typeof data == 'string') {
+        os = 'Windows Phone OS ' + data + '.x';
+        description.unshift('desktop mode');
+      }
     }
     // detect IE platform preview
     else if (name == 'IE' && typeof external == 'object' && !external) {
@@ -550,26 +604,33 @@
     // detect BlackBerry OS version
     // http://docs.blackberry.com/en/developers/deliverables/18169/HTTP_headers_sent_by_BB_Browser_1234911_11.jsp
     else if (/BlackBerry/.test(product) && (data =
-        (RegExp(product.replace(/\s/g, '') + '/([\\d.]+)', 'i').exec(ua) || 0)[1] || version)) {
+        (RegExp(product.replace(/\s/g, '') + '/([\\d.]+)', 'i').exec(ua) || 0)[1] ||
+        version)) {
       os = 'Device Software ' + data;
       version = null;
     }
     // detect an Opera identity crisis
+    // (we postfix a `;` to the UA passed to `parse()` to avoid infinite recursion when Opera is masking)
     // http://www.opera.com/support/kb/view/843/
     else if (useFeatures && opera &&
         (data = parse(ua.replace(reOpera, '') + ';')).name && !reOpera.test(data.name)) {
-      description.push((reOpera.test(name) ? 'identify' : 'mask') + 'ing as ' + data.name + ((data = data.version) ? ' ' + data : ''));
-      name = reOpera.test(name) ? name : format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2'));
+      // when masking, resolve Opera's name from the Opera object's [[Class]] value
       layout = ['Presto'];
+      description.push(
+        (reOpera.test(name)
+          ? 'identify'
+          : (name = format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2')), 'mask')
+        ) + 'ing as ' + data.name + ((data = data.version) ? ' ' + data : ''));
     }
     // detect unspecified Chrome/Safari versions and WebKit Nightly
     if ((data = (/AppleWebKit\/(\d+(?:\.\d+)?\+?)/i.exec(ua) || 0)[1])) {
       // detect WebKit Nightly
       if (data.slice(-1) == '+' && (data = data.slice(0, -1), name == 'Safari')) {
         name = 'WebKit Nightly';
+        prerelease = 'alpha';
         version = data;
       }
-      // use the full, instead of the approximate, Chrome version when available
+      // use the full, instead of approximate, Chrome version when available
       data = [data, (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1]];
       // detect JavaScriptCore vs. V8
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
@@ -582,12 +643,16 @@
       }
       // add the appropriate postfix of ".x" or "+" for approximate versions
       layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+');
-      // handle incorrect version token for some Safari 1-2 releases
-      name == 'Safari' && (!version || parseInt(version) > 45) && (version = data);
+      // handle incorrect version for some Safari 1-2 releases
+      if (name == 'Safari' && (!version || parseInt(version) > 45)) {
+        version = data;
+      }
     }
     // add layout engine
-    if (layout && !/Avant|Nook/.test(name) && (/Browser|Lunascape|Maxthon/.test(name) ||
-        layout[1] && /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit/.test(name))) {
+    if (layout && !/Avant|Nook/.test(name) && (
+        /Browser|Lunascape|Maxthon/.test(name) ||
+        /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit/.test(name) && layout[1])) {
+      // don't add extra layout details to description if layout item is falsey
       (data = layout[layout.length - 1]) && description.push(data);
     }
     // combine contextual information
@@ -595,7 +660,7 @@
       description = ['(' + description.join('; ') + ')'];
     }
     // append manufacturer
-    if (manufacturer && String(product).indexOf(manufacturer) < 0) {
+    if (manufacturer && product && product.indexOf(manufacturer) < 0) {
       description.push('on ' + manufacturer);
     }
     // append product
@@ -639,7 +704,9 @@
        * @memberOf platform
        * @type String|Null
        */
-      'os': name && (os = os && format(os)) && (description.push(product ? '(' + os + ')' : 'on ' + os), os),
+      'os': (os = os && format(os)) && (name &&
+        !(os == os.split(' ')[0] && (os == name.split(' ')[0] || /^i/.test(product))) &&
+          description.push(product ? '(' + os + ')' : 'on ' + os), os),
 
       /**
        * The platform description.
@@ -661,6 +728,13 @@
        * @type String|Null
        */
       'manufacturer': manufacturer,
+
+      /**
+       * The alpha/beta release indicator.
+       * @memberOf platform
+       * @type String|Null
+       */
+      'prerelease': prerelease,
 
       /**
        * The name of the product hosting the browser.
