@@ -118,7 +118,7 @@
    * @returns {String} The formatted string.
    */
   function format(string) {
-    string = string.replace(/^\s+|\s+$/g, '');
+    string = string.replace(/^ +| +$/g, '');
     return /^(?:webOS|i(?:OS|P))/.test(string) ? string : capitalize(string);
   }
 
@@ -392,7 +392,7 @@
             .replace(/hpw/i, 'web')
             .replace(/Macintosh/i, 'Mac OS')
             .replace(/_PowerPC/i, ' OS')
-            .replace(/(OS X) [^\s\d]+/i, '$1')
+            .replace(/(OS X) [^ \d]+/i, '$1')
             .replace(/(Symbian)(OS)/i, '$1 $2')
             .replace(/\/(\d)/, ' $1')
             .replace(/_/g, '.')
@@ -415,8 +415,8 @@
             (guess == 'Galaxy S' && /\bGT-I9000\b/i.test(ua) && guess) ||
             (guess == 'Galaxy S2' && /\bGT-I9100\b/i.test(ua) && guess) ||
             (guess == 'Kindle Fire' && /\b(?:Cloud9|Silk)\b/i.test(ua) && guess) ||
-            RegExp('\\b' + guess + '\\s*\\d+[.\\w_]*', 'i').exec(ua) ||
-            RegExp('\\b' + guess + '(?:;\\s*(?:[a-z]+[-_])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua))) {
+            RegExp('\\b' + guess + ' *\\d+[.\\w_]*', 'i').exec(ua) ||
+            RegExp('\\b' + guess + '(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua))) {
 
           // correct character case and split by forward slash
           if ((result = String(result).replace(RegExp(guess, 'i'), guess).split('/'))[1]) {
@@ -428,7 +428,7 @@
             }
           }
           result = format(/;/.test(result)
-            ? result[0].replace(RegExp(';\\s*(?:' + guess + '[-_])?', 'i'), ' ')
+            ? result[0].replace(RegExp('; *(?:' + guess + '[_-])?', 'i'), ' ')
             : result[0].replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
         }
         return result;
@@ -590,7 +590,7 @@
     // detect prerelease phases
     if (version && (data =
         /(?:[ab]|dp|pre|[ab]\d+pre)(?:\d+\+?)?$/i.exec(version) ||
-        /(?:alpha|beta)(?:\s?\d)?/i.exec(ua + ';' + (useFeatures && nav.appMinorVersion)) ||
+        /(?:alpha|beta)(?: ?\d)?/i.exec(ua + ';' + (useFeatures && nav.appMinorVersion)) ||
         /\bMinefield\b/i.test(ua) && 'a')) {
       prerelease = /b/i.test(data) ? 'beta' : 'alpha';
       version = version.replace(RegExp(data + '\\+?$'), '') +
@@ -606,12 +606,12 @@
         os = 'Android';
         description.unshift('desktop mode');
       }
-      if (/Accelerated\s*=\s*true/i.test(ua)) {
+      if (/Accelerated *= *true/i.test(ua)) {
         description.unshift('accelerated');
       }
     }
     // detect Windows Phone desktop mode
-    else if (name == 'IE' && (data = (/;\s*(?:XBLWP|ZuneWP)(\d+)/i.exec(ua) || 0)[1])) {
+    else if (name == 'IE' && (data = (/; *(?:XBLWP|ZuneWP)(\d+)/i.exec(ua) || 0)[1])) {
       name += ' Mobile';
       os = 'Windows Phone OS ' + data + '.x';
       description.unshift('desktop mode');
@@ -627,7 +627,7 @@
     // detect BlackBerry OS version
     // http://docs.blackberry.com/en/developers/deliverables/18169/HTTP_headers_sent_by_BB_Browser_1234911_11.jsp
     else if (/BlackBerry/.test(product) && (data =
-        (RegExp(product.replace(/\s/g, '') + '/([\\d.]+)', 'i').exec(ua) || 0)[1] ||
+        (RegExp(product.replace(/ +/g, ' *') + '/([.\\d]+)', 'i').exec(ua) || 0)[1] ||
         version)) {
       os = 'Device Software ' + data;
       version = null;
