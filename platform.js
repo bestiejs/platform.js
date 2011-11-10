@@ -320,7 +320,7 @@
      * @param {Array} guesses An array of guesses.
      * @returns {String|Null} The detected layout.
      */
-    function getLayout(guesses){
+    function getLayout(guesses) {
       return reduce(guesses, function(result, guess) {
         return result || RegExp('\\b' +
           (guess == 'WebKit' ? 'AppleWebKit' : guess) + '\\b', 'i').exec(ua) && guess;

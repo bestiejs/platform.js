@@ -54,28 +54,28 @@ Usage example:
 
 ~~~ js
 // on IE10 x86 platform preview running in IE7 compatibility mode on Windows 7 64 bit edition
-console.log(platform.name); // IE
-console.log(platform.version); // 10.0
-console.log(platform.layout); // Trident
-console.log(platform.os); // Windows Server 2008 R2 / 7 x64
-console.log(platform.description); // IE 10.0 x86 (platform preview; running in IE 7 mode) on Windows Server 2008 R2 / 7 x64
+platform.name; // IE
+platform.version; // 10.0
+platform.layout; // Trident
+platform.os; // Windows Server 2008 R2 / 7 x64
+platform.description; // IE 10.0 x86 (platform preview; running in IE 7 mode) on Windows Server 2008 R2 / 7 x64
 
 // or on an iPad
-console.log(platform.name); // Safari
-console.log(platform.version); // 5.1
-console.log(platform.product); // iPad
-console.log(platform.manufacturer); // Apple
-console.log(platform.layout); // WebKit
-console.log(platform.os); // iOS 5.0
-console.log(platform.description); // Safari 5.1 on Apple iPad (iOS 5.0)
+platform.name; // Safari
+platform.version; // 5.1
+platform.product; // iPad
+platform.manufacturer; // Apple
+platform.layout; // WebKit
+platform.os; // iOS 5.0
+platform.description; // Safari 5.1 on Apple iPad (iOS 5.0)
 
 // or parsing a given UA string
 var info = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.2; en; rv:2.0) Gecko/20100101 Firefox/4.0 Opera 11.52');
-console.log(info.name); // Opera
-console.log(info.version); // 11.52
-console.log(info.layout); // Presto
-console.log(info.os); // Mac OS X 10.7.2
-console.log(info.description); // Opera 11.52 on Mac OS X 10.7.2
+info.name; // Opera
+info.version; // 11.52
+info.layout; // Presto
+info.os; // Mac OS X 10.7.2
+info.description; // Opera 11.52 on Mac OS X 10.7.2
 ~~~
 
 ## Cloning this repo
