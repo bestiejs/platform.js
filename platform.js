@@ -70,7 +70,7 @@
   }
 
   /**
-   * A bare-bones `Array#forEach`/`for-in` own property solution.
+   * An iteration utility for arrays and objects.
    * Callbacks may terminate the loop by explicitly returning `false`.
    * @private
    * @param {Array|Object} object The object to iterate over.
@@ -78,29 +78,37 @@
    * @returns {Array|Object} Returns the object iterated over.
    */
   function each(object, callback) {
-    var i = -1,
-        result = [object, object = Object(object)][0],
-        skipCheck = 'item' in object,
+    var index = -1,
         length = object.length;
 
-    // in Opera < 10.5 `hasKey(object, 'length')` returns false for NodeLists
     if (length == length >>> 0) {
-      while (++i < length) {
-        // in Safari 2 `i in object` is always false for NodeLists
-        if ((skipCheck || i in object) &&
-            callback(object[i], i, object) === false) {
+      while (++index < length) {
+        if (index in object &&
+            callback(object[index], index, object) === false) {
           break;
         }
       }
     } else {
-      for (i in object) {
-        if (hasKey(object, i) &&
-            callback(object[i], i, object) === false) {
-          break;
-        }
+      forIn(object, callback);
+    }
+    return object;
+  }
+
+  /**
+   * Iterates over an object's own properties, executing the `callback` for each.
+   * @private
+   * @param {Object} object The object to iterate over.
+   * @param {Function} callback The function executed per own property.
+   * @returns {Object} Returns the object iterated over.
+   */
+  function forIn(object, callback){
+    for(var key in object){
+      if(hasKey(object, key) &&
+        callback(object[key], key, object) === false){
+        break;
       }
     }
-    return result;
+    return object;
   }
 
   /**
@@ -167,7 +175,7 @@
   }
 
   /**
-   * A generic bare-bones `Array#reduce` solution.
+   * A bare-bones` Array#reduce` utility function.
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
@@ -469,16 +477,16 @@
 
     /*------------------------------------------------------------------------*/
 
-    // convert layout to an array to support additional information
+    // convert layout to an array so we can add extra details
     layout && (layout = [layout]);
 
-    // detect simulator
-    if (/\bSimulator\b/i.test(ua)) {
-      product = (product ? product + ' ' : '') + 'Simulator';
-    }
     // detect product names that contain their manufacturer's name
     if (manufacturer && !product) {
       product = getProduct([manufacturer]);
+    }
+    // detect simulator
+    if (/\bSimulator\b/i.test(ua)) {
+      product = (product ? product + ' ' : '') + 'Simulator';
     }
     // detect iOS
     if (/^iP/.test(product)) {
@@ -487,8 +495,13 @@
         ? ' ' + data[1].replace(/_/g, '.')
         : '');
     }
+    // detect Android browsers
+    else if (name == 'Chrome' && manufacturer) {
+      name = 'Android Browser';
+      os = /Android/.test(os) ? os : 'Android';
+    }
     // detect non-Firefox/Safari like browsers
-    if (!name || (data = !/\bMinefield\b/i.test(ua) && /Firefox|Safari/.exec(name))) {
+    else if (!name || (data = !/\bMinefield\b/i.test(ua) && /Firefox|Safari/.exec(name))) {
       // avoid false positives for Firefox/Safari
       if (name && !product && /[/,]/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         name = null;
@@ -497,11 +510,6 @@
       if ((data = product || manufacturer || os) && !/^(?:iP|Linux|Mac|Win)/.test(data)) {
         name = /[a-z]+/i.exec(/Android/.test(os) && os || data) + ' Browser';
       }
-    }
-    // detect Android browsers
-    if (name == 'Chrome' && manufacturer) {
-      name = 'Android Browser';
-      os = /Android/.test(os) ? os : 'Android';
     }
     // detect non-Opera versions (order is important)
     if (!version) {
@@ -624,7 +632,7 @@
       os = 'Device Software ' + data;
       version = null;
     }
-    // detect an Opera identity crisis
+    // detect Opera identifying/masking itself as another browser
     // we postfix a `;` to the UA passed to `parse()` to avoid infinite recursion when Opera is masking
     // http://www.opera.com/support/kb/view/843/
     else if (useFeatures && opera &&
@@ -777,7 +785,7 @@
   // expose platform
   // in Narwhal, Node.js, or Ringo
   if (freeExports) {
-    each(parse(), function(value, key) {
+    forIn(parse(), function(value, key) {
       freeExports[key] = value;
     });
   }
