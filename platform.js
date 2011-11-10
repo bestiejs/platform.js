@@ -101,10 +101,10 @@
    * @param {Function} callback The function executed per own property.
    * @returns {Object} Returns the object iterated over.
    */
-  function forIn(object, callback){
-    for(var key in object){
-      if(hasKey(object, key) &&
-        callback(object[key], key, object) === false){
+  function forIn(object, callback) {
+    for (var key in object) {
+      if (hasKey(object, key) &&
+        callback(object[key], key, object) === false) {
         break;
       }
     }
@@ -530,7 +530,8 @@
     }
     else if (data =
         /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
-        !layout && (opera && 'Presto' || /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident'))) {
+        /Opera/.test(name) && 'Presto' ||
+        !layout && /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident')) {
       layout = [data];
     }
     // leverage environment features
@@ -633,7 +634,7 @@
       version = null;
     }
     // detect Opera identifying/masking itself as another browser
-    // we postfix a `;` to the UA passed to `parse()` to avoid infinite recursion when Opera is masking
+    // postfix a `;` to the UA passed to `parse()` to avoid infinite recursion when Opera is masking
     // http://www.opera.com/support/kb/view/843/
     else if (useFeatures && opera &&
         (data = parse(ua.replace(reOpera, '') + ';')).name &&
