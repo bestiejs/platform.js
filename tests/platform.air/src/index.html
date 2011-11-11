@@ -13,12 +13,15 @@ var console = air.Introspector.Console,
 <body>
 <script>
 (function() {
-  console.log('platform.description', platform.description);
-  console.log('platform.layout',      platform.layout);
-  console.log('platform.name',        platform.name);
-  console.log('platform.product',     platform.product);
-  console.log('platform.version',     platform.version);
-  console.log('platform.toString()',  platform);
+  console.log('platform.description',  platform.description);
+  console.log('platform.layout',       platform.layout);
+  console.log('platform.manufacturer', platform.manufacturer);
+  console.log('platform.name',         platform.name);
+  console.log('platform.os',           platform.os);
+  console.log('platform.prerelease',   platform.prerelease);
+  console.log('platform.product',      platform.product);
+  console.log('platform.version',      platform.version);
+  console.log('platform.toString()',   platform);
 
   var p = [platform, platform.noConflict(), platform];
   console.log('Check result of platform.noConflict()', p[0] == p[1] ? 'pass' : 'fail');

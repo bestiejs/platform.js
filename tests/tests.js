@@ -14,6 +14,11 @@
     window.platform ||
     (load('../platform.js') || window.platform);
 
+  /** Adds Safari 2 support */
+  QUnit.hasOwnProperty || (Qunit.hasOwnProperty = function(property) {
+    return hasKey(this, property);
+  });
+
   /*--------------------------------------------------------------------------*/
 
   /**
@@ -146,7 +151,7 @@
     }
     return Function('options',
       ('return ' +
-      /\(function(?:.|\n|\r)+?};\s*}/.exec(code)[0] +
+      /\(function[\s\S]+?};\s*}/.exec(code)[0] +
       ' return parse()}(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
         .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')

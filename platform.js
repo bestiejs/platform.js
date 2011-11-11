@@ -524,13 +524,11 @@
     // detect stubborn layout engines
     if (layout == 'iCab' && parseFloat(version) > 3) {
       layout = ['WebKit'];
-    }
-    else if (name == 'Konqueror' && /\bKHTML\b/i.test(ua)) {
+    } else if (name == 'Konqueror' && /\bKHTML\b/i.test(ua)) {
       layout = ['KHTML'];
-    }
-    else if (data =
-        /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
+    } else if (data =
         /Opera/.test(name) && 'Presto' ||
+        /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
         !layout && /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident')) {
       layout = [data];
     }
@@ -744,6 +742,7 @@
 
       /**
        * The name of the browser layout engine.
+       * Testing toooooo.
        * @memberOf platform
        * @type String|Null
        */
