@@ -399,7 +399,7 @@
             result = 'Windows ' + data;
           }
           // correct character case and cleanup
-          result = String(result)
+          result = format(String(result)
             .replace(RegExp(guess, 'i'), guess)
             .replace(/hpw/i, 'web')
             .replace(/Macintosh/i, 'Mac OS')
@@ -410,7 +410,7 @@
             .replace(/_/g, '.')
             .replace(/[ .]*fc[ \d.]+$/, '')
             .replace(/x86\.64/gi, 'x86_64')
-            .split(' on ')[0];
+            .split(' on ')[0]);
         }
         return result;
       }, null);
@@ -600,6 +600,7 @@
         }
         version = name == 'IE' ? String(version[1].toFixed(1)) : version[0];
       }
+      os = os && format(os);
     }
     // detect prerelease phases
     if (version && (data =
@@ -749,7 +750,7 @@
        * @memberOf platform
        * @type String|Null
        */
-      'os': (os = os && format(os)) && (name &&
+      'os': os && (name &&
         !(os == os.split(' ')[0] && (os == name.split(' ')[0] || product)) &&
           description.push(product ? '(' + os + ')' : 'on ' + os), os),
 
