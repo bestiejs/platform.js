@@ -94,8 +94,7 @@
 
     if (length == length >>> 0) {
       while (++index < length) {
-        if (index in object &&
-            callback(object[index], index, object) === false) {
+        if (callback(object[index], index, object) === false) {
           break;
         }
       }
@@ -197,10 +196,10 @@
    * @param {Mixed} accumulator Initial value of the accumulator.
    * @returns {Mixed} The accumulator.
    */
-  function reduce(array, callback, accumulator) {
-    var noaccum = arguments.length < 3;
+  function reduce(array, callback) {
+    var accumulator = null;
     each(array, function(value, index) {
-      accumulator = noaccum ? (noaccum = 0, value) : callback(accumulator, value, index, array);
+      accumulator = callback(accumulator, value, index, array);
     });
     return accumulator;
   }
@@ -360,7 +359,7 @@
       return reduce(guesses, function(result, guess) {
         return result || RegExp('\\b' +
           (guess == 'WebKit' ? 'AppleWebKit' : guess) + '\\b', 'i').exec(ua) && guess;
-      }, null);
+      });
     }
 
     /**
@@ -378,8 +377,8 @@
             value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
             RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)
           );
-        }, null) && key;
-      }, null);
+        }) && key;
+      });
     }
 
     /**
@@ -397,8 +396,8 @@
             (guess == 'Silk' && '(?:Cloud9|Silk)') ||
             guess
           ) + '\\b', 'i').exec(ua);
-        }, null) && guess;
-      }, null);
+        }) && guess;
+      });
     }
 
     /**
@@ -412,7 +411,7 @@
         if (!result && (result =
             reduce([guess, camelCase(guess)], function(result, guess) {
               return result || RegExp('\\b' + guess + '(?:/[\\d.]+|[ \\w.]*)', 'i').exec(ua);
-            }, null))) {
+            }))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
@@ -444,7 +443,7 @@
             .split(' on ')[0]);
         }
         return result;
-      }, null);
+      });
     }
 
     /**
@@ -463,7 +462,7 @@
                 (guess == 'Kindle Fire' && /\b(?:Cloud9|Silk)\b/i.test(ua) && guess) ||
                 RegExp('\\b' + guess + ' *\\d+[.\\w_]*', 'i').exec(ua) ||
                 RegExp('\\b' + guess + '(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua);
-            }, null))) {
+            }))) {
           // split by forward slash and append product version if needed
           if ((result = String(result).split('/'))[1] && !/[\d.]+/.test(result[0])) {
             result[0] += ' ' + result[1];
@@ -475,7 +474,7 @@
             .replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
         }
         return result;
-      }, null);
+      });
     }
 
     /**
@@ -492,8 +491,8 @@
             (token == 'Silk' && '(?:Cloud9|Silk)') ||
             token
           ) + '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
-        }, null);
-      }, null);
+        });
+      });
     }
 
     /*------------------------------------------------------------------------*/
