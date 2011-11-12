@@ -326,10 +326,10 @@
     /*------------------------------------------------------------------------*/
 
     /**
-     * Picks the layout from an array of guesses.
+     * Picks the layout engine from an array of guesses.
      * @private
      * @param {Array} guesses An array of guesses.
-     * @returns {String|Null} The detected layout.
+     * @returns {String|Null} The detected layout engine.
      */
     function getLayout(guesses) {
       return reduce(guesses, function(result, guess) {
@@ -497,7 +497,7 @@
     if (manufacturer && !product) {
       product = getProduct([manufacturer]);
     }
-    // detect simulator
+    // detect simulators
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
     }
@@ -517,13 +517,13 @@
       name = 'Android Browser';
       os = /Android/.test(os) ? os : 'Android';
     }
-    // detect non-Firefox/Safari like browsers
+    // detect false positives for Firefox/Safari
     else if (!name || (data = !/\bMinefield\b/i.test(ua) && /Firefox|Safari/.exec(name))) {
-      // avoid false positives for Firefox/Safari
+      // clear name of false positives
       if (name && !product && /[/,]/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         name = null;
       }
-      // assign generic name
+      // reassign a generic name
       if ((data = product || manufacturer || os) &&
           (product || manufacturer || /Android|SymbianOS|Tablet OS|webOS/.test(os))) {
         name = /[a-z]+/i.exec(/Android/.test(os) && os || data) + ' Browser';
@@ -591,7 +591,7 @@
         name = 'PhantomJS';
         version = (data = data.version || null) && (data.major + '.' + data.minor + '.' + data.patch);
       }
-      // detect IE compatibility mode
+      // detect IE compatibility modes
       else if (typeof doc.documentMode == 'number' && (data = /\bTrident\/(\d+)/i.exec(ua))) {
         version = [version, doc.documentMode];
         // we're in compatibility mode when the Trident version + 4 doesn't
@@ -613,7 +613,7 @@
       version = version.replace(RegExp(data + '\\+?$'), '') +
         (prerelease == 'beta' ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
-    // obscure Maxthon's unreliable version info
+    // obscure Maxthon's unreliable version
     if (name == 'Maxthon' && version) {
       version = version.replace(/\.[.\d]+/, '.x');
     }
@@ -664,15 +664,15 @@
       }
       description.push(data);
     }
-    // detect unspecified Chrome/Safari versions and WebKit Nightly
+    // detect WebKit Nightly and approximate Chrome/Safari versions
     if ((data = (/AppleWebKit\/(\d+(?:\.\d+)?\+?)/i.exec(ua) || 0)[1])) {
-      // detect WebKit Nightly
+      // nightly builds are postfixed with a `+`
       if (data.slice(-1) == '+' && (data = data.slice(0, -1), name == 'Safari')) {
         name = 'WebKit Nightly';
         prerelease = 'alpha';
         version = data;
       }
-      // use the full, instead of approximate, Chrome version when available
+      // use the full Chrome version when available
       data = [data, (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1]];
       // detect JavaScriptCore
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
@@ -683,14 +683,14 @@
         layout[1] = 'like Chrome';
         data = data[1] || (data = data[0], data < 530 ? 1 : data < 532 ? 2 : data < 532.5 ? 3 : data < 533 ? 4 : data < 534.3 ? 5 : data < 534.7 ? 6 : data < 534.1 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.3 ? 11 : data < 535.1 ? 12 : data < 535.2 ? '13+' : data < 535.5 ? 15 : data < 535.7 ? 16 : '17');
       }
-      // add the appropriate postfix of ".x" or "+" for approximate versions
+      // add the postfix of ".x" or "+" for approximate versions
       layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+');
-      // handle incorrect version for some Safari 1-2 releases
+      // obscure version for some Safari 1-2 releases
       if (name == 'Safari' && (!version || parseInt(version) > 45)) {
         version = data;
       }
     }
-    // remove incorrect OS version
+    // strip incorrect OS versions
     if (version && version.indexOf(data = /[.\d]+$/.exec(os)) == 0 &&
         ua.indexOf('/' + data + '-') > -1) {
       os = format(os.replace(data, ''));
