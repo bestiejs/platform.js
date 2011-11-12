@@ -380,7 +380,7 @@
      */
     function getOS(guesses) {
       return reduce(guesses, function(result, guess) {
-        if (!result && (result = RegExp('\\b' + guess + '(?:/[.\\d]+|[ .\\w]*)', 'i').exec(ua))) {
+        if (!result && (result = RegExp('\\b' + guess + '(?:/[\\d.]+|[ \\w.]*)', 'i').exec(ua))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
@@ -398,7 +398,7 @@
               (data = data[0/*Opera 9.25 fix*/, /[456]\.\d/.exec(result)])) {
             result = 'Windows ' + data;
           }
-          // cleanup
+          // correct character case and cleanup
           result = String(result)
             .replace(RegExp(guess, 'i'), guess)
             .replace(/hpw/i, 'web')
@@ -408,7 +408,7 @@
             .replace(/(Symbian)(OS)/i, '$1 $2')
             .replace(/\/(\d)/, ' $1')
             .replace(/_/g, '.')
-            .replace(/[ .]*fc[ .\d]+$/, '')
+            .replace(/[ .]*fc[ \d.]+$/, '')
             .replace(/x86\.64/gi, 'x86_64')
             .split(' on ')[0];
         }
@@ -431,18 +431,15 @@
             RegExp('\\b' + guess + ' *\\d+[.\\w_]*', 'i').exec(ua) ||
             RegExp('\\b' + guess + '(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua))) {
 
-          // correct character case and split by forward slash
-          if ((result = String(result).replace(RegExp(guess, 'i'), guess).split('/'))[1]) {
-            // set browser version if product already has a version
-            if (/[\d.]+/.test(result[0])) {
-              version || (version = result[1]);
-            } else {
-              result[0] += ' ' + result[1];
-            }
+          // split by forward slash and append product version if needed
+          if ((result = String(result).split('/'))[1] && !/[\d.]+/.test(result[0])) {
+            result[0] += ' ' + result[1];
           }
-          result = format(/;/.test(result)
-            ? result[0].replace(RegExp('; *(?:' + guess + '[_-])?', 'i'), ' ')
-            : result[0].replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
+          // correct character case and cleanup
+          result = format(result[0]
+            .replace(RegExp(guess, 'i'), guess)
+            .replace(RegExp('; *(?:' + guess + '[_-])?', 'i'), ' ')
+            .replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
         }
         return result;
       }, null);
@@ -460,7 +457,7 @@
           (token == 'Firefox' && '(?:Firefox|Minefield)') ||
           (token == 'Silk' && '(?:Cloud9|Silk)') ||
           token
-        ) + '(?:-[\\d.]+/|(?: for [-\\w]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
+        ) + '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
       }, null);
     }
 
@@ -526,7 +523,7 @@
       // reassign a generic name
       if ((data = product || manufacturer || os) &&
           (product || manufacturer || /Android|SymbianOS|Tablet OS|webOS/.test(os))) {
-        name = /[a-z]+/i.exec(/Android/.test(os) && os || data) + ' Browser';
+        name = /[a-z]+(?: Hat)?/i.exec(/Android/.test(os) ? os : data) + ' Browser';
       }
     }
     // detect non-Opera versions (order is important)
@@ -615,7 +612,7 @@
     }
     // obscure Maxthon's unreliable version
     if (name == 'Maxthon' && version) {
-      version = version.replace(/\.[.\d]+/, '.x');
+      version = version.replace(/\.[\d.]+/, '.x');
     }
     // detect Silk desktop/accelerated modes
     else if (name == 'Silk') {
@@ -665,15 +662,16 @@
       description.push(data);
     }
     // detect WebKit Nightly and approximate Chrome/Safari versions
-    if ((data = (/AppleWebKit\/(\d+(?:\.\d+)?\+?)/i.exec(ua) || 0)[1])) {
+    if ((data = (/AppleWebKit\/([\d.]+\+?)/i.exec(ua) || 0)[1])) {
       // nightly builds are postfixed with a `+`
-      if (data.slice(-1) == '+' && (data = data.slice(0, -1), name == 'Safari')) {
+      data = [parseFloat(data), data];
+      if (data[1].slice(-1) == '+' && name == 'Safari') {
         name = 'WebKit Nightly';
         prerelease = 'alpha';
-        version = data;
+        version = data[1].slice(0, -1);
       }
       // use the full Chrome version when available
-      data = [data, (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1]];
+      data = [data[0], (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1]];
       // detect JavaScriptCore
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
       if (!useFeatures || (/internal|\n/i.test(toString.toString()) && !data[1])) {
@@ -691,7 +689,7 @@
       }
     }
     // strip incorrect OS versions
-    if (version && version.indexOf(data = /[.\d]+$/.exec(os)) == 0 &&
+    if (version && version.indexOf(data = /[\d.]+$/.exec(os)) == 0 &&
         ua.indexOf('/' + data + '-') > -1) {
       os = format(os.replace(data, ''));
     }
@@ -699,7 +697,7 @@
     if (layout && !/Avant|Nook/.test(name) && (
         /Browser|Lunascape|Maxthon/.test(name) ||
         /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit/.test(name) && layout[1])) {
-      // don't add extra layout details to description if layout item is falsey
+      // don't add layout details to description if they are falsey
       (data = layout[layout.length - 1]) && description.push(data);
     }
     // combine contextual information
