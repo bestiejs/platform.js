@@ -62,11 +62,22 @@
   /**
    * Capitalizes a string value.
    * @private
-   * @param {String} string The string.
+   * @param {String} string The string to capitalize.
    * @returns {String} The capitalized string.
    */
   function capitalize(string) {
+    string = String(string);
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  /**
+   * Camel cases a spaced separated string.
+   * @private
+   * @param {String} string The string to camel case.
+   * @returns {String} The camel casesed string.
+   */
+  function camelCase(string) {
+    return String(string).replace(/([a-z\d]) +([a-z])/ig, '$1$2');
   }
 
   /**
@@ -118,8 +129,10 @@
    * @returns {String} The formatted string.
    */
   function format(string) {
-    string = string.replace(/^ +| +$/g, '');
-    return /^(?:webOS|i(?:OS|P))/.test(string) ? string : capitalize(string);
+    string = trim(string);
+    return /^(?:webOS|i(?:OS|P))/.test(string)
+      ? string
+      : capitalize(string);
   }
 
   /**
@@ -129,7 +142,9 @@
    * @returns {String} The [[Class]].
    */
   function getClassOf(value) {
-    return value == null ? capitalize(String(value)) : toString.call(value).slice(8, -1);
+    return value == null
+      ? capitalize(value)
+      : toString.call(value).slice(8, -1);
   }
 
   /**
@@ -188,6 +203,16 @@
       accumulator = noaccum ? (noaccum = 0, value) : callback(accumulator, value, index, array);
     });
     return accumulator;
+  }
+
+  /**
+   * Removes leading and trailing whitespace from a string.
+   * @private
+   * @param {String} string The string to trim.
+   * @returns {String} The trimmed string.
+   */
+  function trim(string) {
+    return String(string).replace(/^ +| +$/g, '');
   }
 
   /*--------------------------------------------------------------------------*/
@@ -310,7 +335,7 @@
       'Ubuntu',
       'Xubuntu',
       'Cygwin',
-      'SymbianOS',
+      'Symbian OS',
       'hpwOS',
       'webOS ',
       'webOS',
@@ -347,11 +372,13 @@
     function getManufacturer(guesses) {
       return reduce(guesses, function(result, value, key) {
         // lookup the manufacturer by product or scan the UA for the manufacturer
-        return result || (
-          value[product] ||
-          value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
-          RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)
-        ) && key;
+        return result || reduce([key, camelCase(key)], function(result, key) {
+          return result || (
+            value[product] ||
+            value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
+            RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)
+          );
+        }, null) && key;
       }, null);
     }
 
@@ -363,12 +390,14 @@
      */
     function getName(guesses) {
       return reduce(guesses, function(result, guess) {
-        return result || RegExp('\\b' + (
-          (guess == 'Firefox' && '(?:Firefox|Minefield)') ||
-          (guess == 'IE' && 'MSIE') ||
-          (guess == 'Silk' && '(?:Cloud9|Silk)') ||
-          guess
-        ) + '\\b', 'i').exec(ua) && guess;
+        return result || reduce([guess, camelCase(guess)], function(result, guess) {
+          return result || RegExp('\\b' + (
+            (guess == 'Firefox' && '(?:Firefox|Minefield)') ||
+            (guess == 'IE' && 'MSIE') ||
+            (guess == 'Silk' && '(?:Cloud9|Silk)') ||
+            guess
+          ) + '\\b', 'i').exec(ua);
+        }, null) && guess;
       }, null);
     }
 
@@ -380,7 +409,10 @@
      */
     function getOS(guesses) {
       return reduce(guesses, function(result, guess) {
-        if (!result && (result = RegExp('\\b' + guess + '(?:/[\\d.]+|[ \\w.]*)', 'i').exec(ua))) {
+        if (!result && (result =
+            reduce([guess, camelCase(guess)], function(result, guess) {
+              return result || RegExp('\\b' + guess + '(?:/[\\d.]+|[ \\w.]*)', 'i').exec(ua);
+            }, null))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
@@ -400,12 +432,11 @@
           }
           // correct character case and cleanup
           result = format(String(result)
-            .replace(RegExp(guess, 'i'), guess)
+            .replace(RegExp(guess + '|' + camelCase(guess), 'i'), guess)
             .replace(/hpw/i, 'web')
-            .replace(/Macintosh/i, 'Mac OS')
+            .replace(/Macintosh/, 'Mac OS')
             .replace(/_PowerPC/i, ' OS')
             .replace(/(OS X) [^ \d]+/i, '$1')
-            .replace(/(Symbian)(OS)/i, '$1 $2')
             .replace(/\/(\d)/, ' $1')
             .replace(/_/g, '.')
             .replace(/[ .]*fc[ \d.]+$/, '')
@@ -425,19 +456,21 @@
     function getProduct(guesses) {
       return reduce(guesses, function(result, guess) {
         if (!result && (result =
-            (guess == 'Galaxy S' && /\bGT-I9000\b/i.test(ua) && guess) ||
-            (guess == 'Galaxy S2' && /\bGT-I9100\b/i.test(ua) && guess) ||
-            (guess == 'Kindle Fire' && /\b(?:Cloud9|Silk)\b/i.test(ua) && guess) ||
-            RegExp('\\b' + guess + ' *\\d+[.\\w_]*', 'i').exec(ua) ||
-            RegExp('\\b' + guess + '(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua))) {
-
+            reduce([guess, camelCase(guess)], function(result, guess) {
+              return result ||
+                (guess == 'Galaxy S' && /\bGT-I9000\b/i.test(ua) && guess) ||
+                (guess == 'Galaxy S2' && /\bGT-I9100\b/i.test(ua) && guess) ||
+                (guess == 'Kindle Fire' && /\b(?:Cloud9|Silk)\b/i.test(ua) && guess) ||
+                RegExp('\\b' + guess + ' *\\d+[.\\w_]*', 'i').exec(ua) ||
+                RegExp('\\b' + guess + '(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua);
+            }, null))) {
           // split by forward slash and append product version if needed
           if ((result = String(result).split('/'))[1] && !/[\d.]+/.test(result[0])) {
             result[0] += ' ' + result[1];
           }
           // correct character case and cleanup
           result = format(result[0]
-            .replace(RegExp(guess, 'i'), guess)
+            .replace(RegExp(guess + '|' + camelCase(guess), 'i'), guess)
             .replace(RegExp('; *(?:' + guess + '[_-])?', 'i'), ' ')
             .replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
         }
@@ -453,11 +486,13 @@
      */
     function getVersion(tokens) {
       return reduce(tokens, function(result, token) {
-        return result || (RegExp((
-          (token == 'Firefox' && '(?:Firefox|Minefield)') ||
-          (token == 'Silk' && '(?:Cloud9|Silk)') ||
-          token
-        ) + '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
+        return result || reduce([token, camelCase(token)], function(result, token) {
+          return result || (RegExp((
+            (token == 'Firefox' && '(?:Firefox|Minefield)') ||
+            (token == 'Silk' && '(?:Cloud9|Silk)') ||
+            token
+          ) + '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
+        }, null);
       }, null);
     }
 
@@ -522,7 +557,7 @@
       }
       // reassign a generic name
       if ((data = product || manufacturer || os) &&
-          (product || manufacturer || /Android|SymbianOS|Tablet OS|webOS/.test(os))) {
+          (product || manufacturer || /Android|Symbian OS|Tablet OS|webOS/.test(os))) {
         name = /[a-z]+(?: Hat)?/i.exec(/Android/.test(os) ? os : data) + ' Browser';
       }
     }
@@ -692,7 +727,7 @@
     // strip incorrect OS versions
     if (version && version.indexOf(data = /[\d.]+$/.exec(os)) == 0 &&
         ua.indexOf('/' + data + '-') > -1) {
-      os = format(os.replace(data, ''));
+      os = trim(os.replace(data, ''));
     }
     // add layout engine
     if (layout && !/Avant|Nook/.test(name) && (
