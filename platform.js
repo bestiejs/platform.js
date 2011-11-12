@@ -298,6 +298,17 @@
     /* Detectable OSes (order is important) */
     os = getOS([
       'Android',
+      'CentOS',
+      'Debian',
+      'Fedora',
+      'FreeBSD',
+      'Gentoo',
+      'Kubuntu',
+      'Linux Mint',
+      'Red Hat',
+      'SuSE',
+      'Ubuntu',
+      'Xubuntu',
       'Cygwin',
       'SymbianOS',
       'hpwOS',
@@ -369,13 +380,14 @@
      */
     function getOS(guesses) {
       return reduce(guesses, function(result, guess) {
-        if (!result && (result = RegExp('\\b' + guess + '[^();-]*', 'i').exec(ua))) {
+        if (!result && (result = RegExp('\\b' + guess + '(?:/[.\\d]+|[ .\\w]*)', 'i').exec(ua))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
+            '6.2': '8',
             '6.1': 'Server 2008 R2 / 7',
             '6.0': 'Server 2008 / Vista',
-            '5.2': 'Server 2003 / XP x64',
+            '5.2': 'Server 2003 / XP 64-bit',
             '5.1': 'XP',
             '5.0': '2000',
             '4.0': 'NT',
@@ -396,6 +408,7 @@
             .replace(/(Symbian)(OS)/i, '$1 $2')
             .replace(/\/(\d)/, ' $1')
             .replace(/_/g, '.')
+            .replace(/[ .]*fc[ .\d]+$/, '')
             .replace(/x86\.64/gi, 'x86_64')
             .split(' on ')[0];
         }
@@ -495,6 +508,10 @@
         ? ' ' + data[1].replace(/_/g, '.')
         : '');
     }
+    // detect Kubuntu
+    else if (name == 'Konqueror' && !/buntu/i.test(os)) {
+      os = 'Kubuntu';
+    }
     // detect Android browsers
     else if (name == 'Chrome' && manufacturer) {
       name = 'Android Browser';
@@ -506,8 +523,9 @@
       if (name && !product && /[/,]/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         name = null;
       }
-      // detect generic no-name browser
-      if ((data = product || manufacturer || os) && !/^(?:iP|Linux|Mac|Win)/.test(data)) {
+      // assign generic name
+      if ((data = product || manufacturer || os) &&
+          (product || manufacturer || /Android|SymbianOS|Tablet OS|webOS/.test(os))) {
         name = /[a-z]+/i.exec(/Android/.test(os) && os || data) + ' Browser';
       }
     }
@@ -632,7 +650,6 @@
       version = null;
     }
     // detect Opera identifying/masking itself as another browser
-    // postfix a `;` to the UA passed to `parse()` to avoid infinite recursion when Opera is masking
     // http://www.opera.com/support/kb/view/843/
     else if (useFeatures && opera &&
         (data = parse(ua.replace(reOpera, '') + ';')).name &&
@@ -657,7 +674,7 @@
       }
       // use the full, instead of approximate, Chrome version when available
       data = [data, (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1]];
-      // detect JavaScriptCore vs. V8
+      // detect JavaScriptCore
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
       if (!useFeatures || (/internal|\n/i.test(toString.toString()) && !data[1])) {
         layout[1] = 'like Safari';
@@ -672,6 +689,11 @@
       if (name == 'Safari' && (!version || parseInt(version) > 45)) {
         version = data;
       }
+    }
+    // remove incorrect OS version
+    if (version && version.indexOf(data = /[.\d]+$/.exec(os)) == 0 &&
+        ua.indexOf('/' + data + '-') > -1) {
+      os = format(os.replace(data, ''));
     }
     // add layout engine
     if (layout && !/Avant|Nook/.test(name) && (
@@ -693,11 +715,11 @@
       description.push((/^on /.test(description[description.length -1]) ? '' : 'on ') + product);
     }
     // add browser/OS architecture
-    if (/\b(?:IA|WOW|x)64\b/i.test(ua)) {
-      os = os && os + (/64/.test(os) ? '' : ' x64');
+    if ((data = /\b(?:AMD|IA|Win|WOW|x86_|x)64\b/i).test(ua) && !/\bi686\b/i.test(ua)) {
+      os = os && os + (data.test(os) ? '' : ' 64-bit');
       if (name && (/WOW64/i.test(ua) ||
           (useFeatures && /\w(?:86|32)$/.test(nav.cpuClass || nav.platform)))) {
-        description.unshift('x86');
+        description.unshift('32-bit');
       }
     }
 
@@ -742,7 +764,6 @@
 
       /**
        * The name of the browser layout engine.
-       * Testing toooooo.
        * @memberOf platform
        * @type String|Null
        */

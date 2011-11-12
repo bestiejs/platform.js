@@ -389,11 +389,11 @@
       'version': '0.2.149.27'
     },
 
-    'Chrome 8.1.0.0 on Linux x86_64': {
+    'Chrome 8.1.0.0 on Ubuntu 10.10 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/540.0 (KHTML, like Gecko) Ubuntu/10.10 Chrome/8.1.0.0 Safari/540.0',
       'layout': 'WebKit',
       'name': 'Chrome',
-      'os': 'Linux x86_64',
+      'os': 'Ubuntu 10.10 64-bit',
       'version': '8.1.0.0'
     },
 
@@ -405,11 +405,11 @@
       'version': '0.9.2'
     },
 
-    'Epiphany 2.22 on Linux x86_64': {
+    'Epiphany 2.22 on Fedora 2.24.3 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en; rv:1.9.0.8) Gecko/20080528 Fedora/2.24.3-4.fc10 Epiphany/2.22 Firefox/3.0',
       'layout': 'Gecko',
       'name': 'Epiphany',
-      'os': 'Linux x86_64',
+      'os': 'Fedora 2.24.3 64-bit',
       'version': '2.22'
     },
 
@@ -421,6 +421,14 @@
       'version': '2.30.6'
     },
 
+    'Firefox 2.0.0.7 on Gentoo': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux Gentoo; pl-PL; rv:1.8.1.7) Gecko/20070914 Firefox/2.0.0.7',
+	  'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'Gentoo',
+      'version': '2.0.0.7'
+    },
+
     'Firefox 3.0#{alpha}1 on Mac OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.9a1) Gecko/20061204 Firefox/3.0a1',
       'layout': 'Gecko',
@@ -428,6 +436,22 @@
       'os': 'Mac OS X',
       'prerelease': 'alpha',
       'version': '3.0#{alpha}1'
+    },
+
+    'Firefox 3.0 on Debian 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9) Gecko/2008062908 Firefox/3.0 (Debian-3.0~rc2-2)',
+	  'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'Debian 64-bit',
+      'version': '3.0'
+    },
+
+    'Firefox 3.0 on SuSE': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux i686; tr-TR; rv:1.9.0) Gecko/2008061600 SUSE/3.0-1.2 Firefox/3.0',
+	  'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'SuSE',
+      'version': '3.0'
     },
 
     'Firefox 3.0.1#{alpha} on Linux armv7l': {
@@ -439,12 +463,44 @@
       'version': '3.0.1#{alpha}'
     },
 
+    'Firefox 3.0.13 on Xubuntu 9.04 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; zh-TW; rv:1.9.0.13) Gecko/2009080315 Xubuntu/9.04 (jaunty) Firefox/3.0.13',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'Xubuntu 9.04 64-bit',
+      'version': '3.0.13'
+    },
+
+    'Firefox 3.5.1 on Linux Mint 7 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.1) Gecko/20090716 Linux Mint/7 (Gloria) Firefox/3.5.1',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'Linux Mint 7 64-bit',
+      'version': '3.5.1'
+    },
+
+    'Firefox 3.6.7 on CentOS': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.7) Gecko/20100726 CentOS/3.6-3.el5.centos Firefox/3.6.7',
+	  'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'CentOS',
+      'version': '3.6.7'
+    },
+
     'Firefox 3.6.11 on Windows XP': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.11) Gecko/20101012 Firefox/3.6.11 (.NET CLR 3.5.30729)',
       'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'Windows XP',
       'version': '3.6.11'
+    },
+
+    'Firefox 3.6.20 on Red Hat 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20',
+	  'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'Red Hat 64-bit',
+      'version': '3.6.20'
     },
 
     'Firefox 3.7#{alpha}5 on Windows XP': {
@@ -456,21 +512,21 @@
       'version': '3.7#{alpha}5'
     },
 
-    'Firefox 4.0#{beta}8 on Windows Server 2008 / Vista x64': {
+    'Firefox 4.0#{beta}8 on Windows Server 2008 / Vista 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 6.0; Win64; IA64; rv:2.0b8pre) Gecko/20101213 Firefox/4.0b8pre',
       'layout': 'Gecko',
       'name': 'Firefox',
-      'os': 'Windows Server 2008 / Vista x64',
+      'os': 'Windows Server 2008 / Vista 64-bit',
       'platform': 'Win64',
       'prerelease': 'beta',
       'version': '4.0#{beta}8'
     },
 
-    'Firefox 4.0#{beta}8 x86 on Windows Server 2008 R2 / 7 x64': {
+    'Firefox 4.0#{beta}8 32-bit on Windows Server 2008 R2 / 7 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0b8pre) Gecko/20101114 Firefox/4.0b8pre',
       'layout': 'Gecko',
       'name': 'Firefox',
-      'os': 'Windows Server 2008 R2 / 7 x64',
+      'os': 'Windows Server 2008 R2 / 7 64-bit',
       'platform': 'Win32',
       'prerelease': 'beta',
       'version': '4.0#{beta}8'
@@ -483,6 +539,14 @@
       'os': 'Mac OS X 10.6',
       'prerelease': 'beta',
       'version': '4.0#{beta}11'
+    },
+
+    'Firefox 5.0 on FreeBSD amd64': {
+      'ua': 'Mozilla/5.0 (X11; FreeBSD amd64; rv:5.0) Gecko/20100101 Firefox/5.0',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'FreeBSD amd64',
+      'version': '5.0'
     },
 
     'Fennec 2.0#{beta}1 on Android': {
@@ -649,11 +713,11 @@
       'version': '6.0'
     },
 
-    'IE 7.0#{beta} on Windows Server 2003 / XP x64': {
+    'IE 7.0#{beta} on Windows Server 2003 / XP 64-bit': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.2)',
       'layout': 'Trident',
       'name': 'IE',
-      'os': 'Windows Server 2003 / XP x64',
+      'os': 'Windows Server 2003 / XP 64-bit',
       'prerelease': 'beta',
       'version': '7.0#{beta}'
     },
@@ -704,24 +768,24 @@
       'version': '8.0'
     },
 
-    'IE 8.0 x86 on Windows Server 2008 / Vista x64': {
+    'IE 8.0 32-bit on Windows Server 2008 / Vista 64-bit': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; WOW64; Trident/4.0)',
       'cpuClass': 'x86',
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
-      'os': 'Windows Server 2008 / Vista x64',
+      'os': 'Windows Server 2008 / Vista 64-bit',
       'platform': 'Win32',
       'version': '8.0'
     },
 
-    'IE 8.0 on Windows Server 2008 R2 / 7 x64': {
+    'IE 8.0 on Windows Server 2008 R2 / 7 64-bit': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64; Trident/4.0)',
       'cpuClass': 'x64',
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7 x64',
+      'os': 'Windows Server 2008 R2 / 7 64-bit',
       'platform': 'Win64',
       'version': '8.0'
     },
@@ -760,12 +824,12 @@
       'version': '9.0#{beta}'
     },
 
-    'IE 9.0 on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
+    'IE 9.0 on Windows Server 2008 R2 / 7 64-bit': {
+      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; AMD64; Trident/5.0)',
       'layout': 'Trident',
       'mode': 9,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7',
+      'os': 'Windows Server 2008 R2 / 7 64-bit',
       'version': '9.0'
     },
 
@@ -779,12 +843,12 @@
       'version': '10.0'
     },
 
-    'IE 10.0 (IE 9 mode) on Windows Server 2008 R2 / 7': {
-      'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)',
+    'IE 10.0 32-bit on Windows 8 64-bit': {
+      'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0; .NET4.0E; .NET4.0C',
       'layout': 'Trident',
-      'mode': 9,
+      'mode': 10,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7',
+      'os': 'Windows 8 64-bit',
       'version': '10.0'
     },
 
@@ -887,27 +951,27 @@
       'version': '1.5.4'
     },
 
-    'Konqueror 4.7.1 on Linux x86_64': {
+    'Konqueror 4.7.1 on Kubuntu 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-GB) AppleWebKit/533.3 (KHTML, like Gecko) konqueror/4.7.1 Safari/533.3',
       'layout': 'KHTML',
       'name': 'Konqueror',
-      'os': 'Linux x86_64',
+      'os': 'Kubuntu 64-bit',
       'version': '4.7.1'
     },
 
-    'Konqueror 4.4 on Linux 2.6.32': {
+    'Konqueror 4.4 on Kubuntu': {
       'ua': 'Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu',
       'layout': 'KHTML',
       'name': 'Konqueror',
-      'os': 'Linux 2.6.32',
+      'os': 'Kubuntu',
       'version': '4.4'
     },
 
-    'Lunascape 5.0#{alpha}3 (Trident) on Windows Server 2003 / XP x64': {
+    'Lunascape 5.0#{alpha}3 (Trident) on Windows Server 2003 / XP 64-bit': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.2; Lunascape 5.0 alpha3)',
       'layout': 'Trident',
       'name': 'Lunascape',
-      'os': 'Windows Server 2003 / XP x64',
+      'os': 'Windows Server 2003 / XP 64-bit',
       'prerelease': 'alpha',
       'version': '5.0#{alpha}3'
     },
@@ -1310,10 +1374,11 @@
       'version': '1.1.7#{alpha}'
     },
 
-    'SeaMonkey 1.1.13': {
+    'SeaMonkey 1.1.13 on Fedora': {
       'ua': 'Seamonkey-1.1.13-1(X11; U; GNU Fedora fc 10) Gecko/20081112',
       'layout': 'Gecko',
       'name': 'SeaMonkey',
+      'os': 'Fedora',
       'version': '1.1.13'
     },
 
@@ -1332,6 +1397,14 @@
       'name': 'SeaMonkey',
       'os': 'Linux x86_64',
       'version': '2.0.3'
+    },
+
+    'SeaMonkey 2.0.6 on Linux ia64': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux ia64; de; rv:1.9.1.11) Gecko/20100820 Lightning/1.0b2pre SeaMonkey/2.0.6',
+      'layout': 'Gecko',
+      'name': 'SeaMonkey',
+      'os': 'Linux ia64',
+      'version': '2.0.6'
     },
 
     'Silk 1.0.0 on Amazon Kindle Fire (Android 2.3.4)': {
@@ -1446,11 +1519,11 @@
       'version': '1.7.5'
     },
 
-    'Sunrise 4.0.1 on Linux x86_64': {
+    'Sunrise 4.0.1 on FreeBSD 64-bit': {
       'ua': 'Mozilla/6.0 (X11; U; Linux x86_64; en-US; rv:2.9.0.3) Gecko/2009022510 FreeBSD/ Sunrise/4.0.1/like Safari',
       'layout': 'WebKit',
       'name': 'Sunrise',
-      'os': 'Linux x86_64',
+      'os': 'FreeBSD 64-bit',
       'version': '4.0.1'
     },
 
@@ -1543,7 +1616,7 @@
     'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64': {
       'ua': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64',
       'layout': 'Gecko',
-      'os': 'Windows Server 2008 R2 / 7 x64'
+      'os': 'Windows Server 2008 R2 / 7 64-bit'
     },
 
     'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 Prism/1.0b2': {
