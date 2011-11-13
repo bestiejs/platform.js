@@ -670,7 +670,7 @@
       name += ' Mobile';
     }
     // detect IE platform preview
-    else if (name == 'IE' && typeof external == 'object' && !external) {
+    else if (name == 'IE' && useFeatures && typeof external == 'object' && !external) {
       description.unshift('platform preview');
     }
     // detect BlackBerry OS version
