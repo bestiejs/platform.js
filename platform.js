@@ -414,19 +414,21 @@
             }))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
+          // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
-            '6.2': '8',
-            '6.1': 'Server 2008 R2 / 7',
-            '6.0': 'Server 2008 / Vista',
-            '5.2': 'Server 2003 / XP 64-bit',
-            '5.1': 'XP',
-            '5.0': '2000',
-            '4.0': 'NT',
-            '4.9': 'ME'
+            '6.2':  '8',
+            '6.1':  'Server 2008 R2 / 7',
+            '6.0':  'Server 2008 / Vista',
+            '5.2':  'Server 2003 / XP 64-bit',
+            '5.1':  'XP',
+            '5.01': '2000 SP1',
+            '5.0':  '2000',
+            '4.0':  'NT',
+            '4.90': 'ME'
           };
           // detect Windows version from platform tokens
           if (/^Win/i.test(result) &&
-              (data = data[0/*Opera 9.25 fix*/, /[456]\.\d/.exec(result)])) {
+              (data = data[0/*Opera 9.25 fix*/, /[\d.]+$/.exec(result)])) {
             result = 'Windows ' + data;
           }
           // correct character case and cleanup
@@ -666,7 +668,8 @@
       description.unshift('desktop mode');
     }
     // add mobile postfix
-    else if ((name == 'IE' || name && !product) && !/Browser/.test(name) && /Mobi/i.test(ua)) {
+    else if ((name == 'IE' || name && !product && !/Browser/.test(name)) &&
+        (os == 'Windows CE' || /Mobi/i.test(ua))) {
       name += ' Mobile';
     }
     // detect IE platform preview

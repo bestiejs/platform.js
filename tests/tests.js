@@ -715,6 +715,14 @@
       'version': '6.0'
     },
 
+    'IE 6.1 on Windows 2000 SP1': {
+      'ua': 'Mozilla/4.0 (Windows; MSIE 6.1; Windows NT 5.01)',
+      'layout': 'Trident',
+      'name': 'IE',
+      'os': 'Windows 2000 SP1',
+      'version': '6.1'
+    },
+
     'IE 7.0#{beta} on Windows Server 2003 / XP 64-bit': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.2)',
       'layout': 'Trident',
@@ -852,6 +860,14 @@
       'name': 'IE',
       'os': 'Windows 8 64-bit',
       'version': '10.0'
+    },
+
+    'IE Mobile 4.01 on Windows CE': {
+      'ua' : 'Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320)',
+      'layout': 'Trident',
+      'name': 'IE Mobile',
+      'os': 'Windows CE',
+      'version': '4.01'
     },
 
     'IE Mobile 7.0 on Samsung OMNIA7 (Windows Phone OS 7.0)': {
