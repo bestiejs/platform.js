@@ -1696,20 +1696,25 @@
     equal(actual.description, expected, 'parse Safari');
   });
 
-  if (window.document) {
-    test('platform.noConflict', function() {
+  test('platform.noConflict', function() {
+    if (window.document) {
       var p = [platform, platform.noConflict()];
       equal(p[0], p[1], 'returns platform object');
       strictEqual(window.platform, 1, 'restores overwritten value');
       window.platform = p[0];
-    });
-
-    if (window.require) {
-      test('require("platform")', function() {
-        equal((platform2 || {}).description, platform.description, 'require("platform")');
-      });
+    } else {
+      ok(true, 'test skipped');
+      ok(true, 'test skipped');
     }
-  }
+  });
+
+  test('require("platform")', function() {
+    if (window.document && window.require) {
+      equal((platform2 || {}).description, platform.description, 'require("platform")');
+    } else {
+      ok(true, 'test skipped');
+    }
+  });
 
   /*--------------------------------------------------------------------------*/
 
