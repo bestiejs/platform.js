@@ -3,6 +3,26 @@
 	<head>
 		<title>Platform.js Test Suite</title>
 		<link rel="stylesheet" href="../vendor/qunit/qunit/qunit.css">
+		<script>
+		(function() {
+			var hasOwnProperty = function hasOwnProperty(object, key) {
+				var parent = (object.constructor || Object).prototype;
+				return key in Object(object) && !(key in parent && object[key] === parent[key]);
+			};
+			if (typeof {}.hasOwnProperty != 'function') {
+				// redefine for Safari 2, else use the less accurate fallback for others
+				if ({}.__proto__ == Object.prototype) {
+					hasOwnProperty = function hasOwnProperty(object, key) {
+						var result;
+						object = Object(object);
+						object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
+						return result;
+					};
+				}
+				Object.prototype.hasOwnProperty = hasOwnProperty;
+			}
+		}());
+		</script>
 		<script src="../vendor/qunit/qunit/qunit.js"></script>
 		<script>var platform2, platform = 1;</script>
 		<script src="../platform.js"></script>

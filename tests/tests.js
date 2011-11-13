@@ -14,15 +14,10 @@
     window.platform ||
     (load('../platform.js') || window.platform);
 
-  /** Adds Safari 2 support */
-  QUnit.hasOwnProperty || (Qunit.hasOwnProperty = function(property) {
-    return hasKey(this, property);
-  });
-
   /*--------------------------------------------------------------------------*/
 
   /**
-   * A bare-bones `Array#forEach`/`for-in` own property solution.
+   * An iteration utility for arrays and objects.
    * Callbacks may terminate the loop by explicitly returning `false`.
    * @private
    * @param {Array|Object} object The object to iterate over.
@@ -30,29 +25,36 @@
    * @returns {Array|Object} Returns the object iterated over.
    */
   function each(object, callback) {
-    var i = -1,
-        result = [object, object = Object(object)][0],
-        skipCheck = 'item' in object,
+    var index = -1,
         length = object.length;
 
-    // in Opera < 10.5 `hasKey(object, 'length')` returns false for NodeLists
     if (length == length >>> 0) {
-      while (++i < length) {
-        // in Safari 2 `i in object` is always false for NodeLists
-        if ((skipCheck || i in object) &&
-            callback(object[i], i, object) === false) {
+      while (++index < length) {
+        if (callback(object[index], index, object) === false) {
           break;
         }
       }
     } else {
-      for (i in object) {
-        if (hasKey(object, i) &&
-            callback(object[i], i, object) === false) {
-          break;
-        }
+      forIn(object, callback);
+    }
+    return object;
+  }
+
+  /**
+   * Iterates over an object's own properties, executing the `callback` for each.
+   * @private
+   * @param {Object} object The object to iterate over.
+   * @param {Function} callback The function executed per own property.
+   * @returns {Object} Returns the object iterated over.
+   */
+  function forIn(object, callback) {
+    for (var key in object) {
+      if (hasKey(object, key) &&
+        callback(object[key], key, object) === false) {
+        break;
       }
     }
-    return result;
+    return object;
   }
 
   /**

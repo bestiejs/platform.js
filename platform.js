@@ -159,7 +159,7 @@
 
     // for modern browsers
     object = Object(object);
-    if (typeof hasOwnProperty == 'function') {
+    if (getClassOf(hasOwnProperty) == 'Function') {
       result = hasOwnProperty.call(object, key);
     }
     // for Safari 2
