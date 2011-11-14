@@ -255,6 +255,7 @@
 
     /* Detectable browser names (order is important) */
     name = getName([
+      'Adobe AIR',
       'Arora',
       'Avant Browser',
       'Camino',
@@ -271,6 +272,7 @@
       'Maxthon',
       'Midori',
       'Nook Browser',
+      'PhantomJS',
       'Raven',
       'Rekonq',
       'RockMelt',
@@ -434,6 +436,7 @@
           // correct character case and cleanup
           result = format(String(result)
             .replace(RegExp(guess + '|' + camelCase(guess), 'i'), guess)
+            .replace(/ ce$/, ' CE')
             .replace(/hpw/i, 'web')
             .replace(/Macintosh/, 'Mac OS')
             .replace(/_PowerPC/i, ' OS')

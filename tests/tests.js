@@ -1669,8 +1669,12 @@
   });
 
   test('platform.parse', function() {
-    var actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2');
-    var expected = 'Chrome 15.0.874.106 on Mac OS X 10.7.2';
+    var actual = platform.parse('Mozilla/5.0 (Windows; U; en-US) AppleWebKit/531.9 (KHTML, like Gecko) AdobeAIR/2.5');
+    var expected = 'Adobe AIR 2.5 (like Safari 4.x)';
+    equal(actual.description, expected, 'parse Adobe Air');
+
+    actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2');
+    expected = 'Chrome 15.0.874.106 on Mac OS X 10.7.2';
     equal(actual.description, expected, 'parse Chrome');
 
     actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:8.0) Gecko/20100101 Firefox/8.0');
@@ -1694,6 +1698,10 @@
     actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22');
     expected = 'Safari 5.1.1 on Mac OS X 10.7.2';
     equal(actual.description, expected, 'parse Safari');
+
+    actual = platform.parse('Mozilla/5.0 (X11; U; Cygwin; C -) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3)  PhantomJS/1.0.0');
+    expected = 'PhantomJS 1.0.0 (like Safari 4.x) on Cygwin';
+    equal(actual.description, expected, 'parse PhantomJS');
   });
 
   test('platform.noConflict', function() {
