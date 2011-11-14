@@ -17,6 +17,9 @@
   /** Detect free variable `global` */
   freeGlobal = typeof global == 'object' && global && (global == global.global ? (window = global) : global),
 
+  /** Used to check for own properties of an object */
+  hasOwnProperty = {}.hasOwnProperty,
+
   /** Used to resolve a value's internal [[Class]] */
   toString = {}.toString,
 
@@ -31,9 +34,6 @@
 
   /** Browser document object */
   doc = window.document || {},
-
-  /** Used to preserve a pristine reference */
-  hasOwnProperty = {}.hasOwnProperty,
 
   /** Browser navigator object */
   nav = window.navigator || {},
@@ -153,24 +153,28 @@
    * @param {String} key The key to check for.
    * @returns {Boolean} Returns `true` if key is a direct property, else `false`.
    */
-  function hasKey(object, key) {
-    var result,
-        parent = (object.constructor || Object).prototype;
-
+  function hasKey() {
+    // lazy define for others (not as accurate)
+    hasKey = function(object, key) {
+      var parent = (object.constructor || Object).prototype;
+      return key in Object(object) && !(key in parent && object[key] === parent[key]);
+    };
     // for modern browsers
-    object = Object(object);
     if (getClassOf(hasOwnProperty) == 'Function') {
-      result = hasOwnProperty.call(object, key);
+      hasKey = function(object, key) {
+        return hasOwnProperty.call(object, key);
+      };
     }
     // for Safari 2
     else if ({}.__proto__ == Object.prototype) {
-      object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
+      hasKey = function(object, key) {
+        var result;
+        object = Object(object);
+        object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
+        return result;
+      };
     }
-    // for others (not as accurate)
-    else {
-      result = key in object && !(key in parent && object[key] === parent[key]);
-    }
-    return result;
+    return hasKey.apply(this, arguments);
   }
 
   /**

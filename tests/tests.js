@@ -153,7 +153,7 @@
     }
     return Function('options',
       ('return ' +
-      /\(function[\s\S]+?};\s*}/.exec(code)[0] +
+      /\(function[\s\S]+?(?=if\s*\(freeExports)/.exec(code)[0] +
       ' return parse()}(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
         .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
