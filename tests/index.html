@@ -42,9 +42,11 @@
 			require({
 				'baseUrl': '../vendor/requirejs/',
 				'urlArgs': 't=' + (+new Date),
-				'paths': { 'src': '../../' }
+				'paths': {
+					'platform': '../../platform'
+				}
 			},
-			['src/platform'], function(platform) {
+			['platform'], function(platform) {
 				platform2 = platform;
 				require(['tests.js']);
 			});

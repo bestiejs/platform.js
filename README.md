@@ -45,7 +45,12 @@ load('platform.js');
 In [RequireJS](http://requirejs.org/):
 
 ~~~ js
-require(['path/to/platform'], function(platform) {
+require({
+  'paths': {
+    'platform': 'path/to/platform'
+  }
+},
+['platform'], function(platform) {
   console.log(platform.name);
 });
 ~~~
