@@ -71,16 +71,6 @@
   }
 
   /**
-   * Camel cases a spaced separated string.
-   * @private
-   * @param {String} string The string to camel case.
-   * @returns {String} The camel casesed string.
-   */
-  function camelCase(string) {
-    return String(string).replace(/([a-z\d]) +([a-z])/ig, '$1$2');
-  }
-
-  /**
    * An iteration utility for arrays and objects.
    * Callbacks may terminate the loop by explicitly returning `false`.
    * @private
@@ -209,6 +199,16 @@
   }
 
   /**
+   * Prepares a string for use in a RegExp constructor by making hyphens and spaces optional.
+   * @private
+   * @param {String} string The string to qualify.
+   * @returns {String} The qualified string.
+   */
+  function qualify(string) {
+    return String(string).replace(/([ -])(?!$)/g, '$1?');
+  }
+
+  /**
    * Removes leading and trailing whitespace from a string.
    * @private
    * @param {String} string The string to trim.
@@ -247,7 +247,7 @@
 
     /* Detectable layout engines (order is important) */
     layout = getLayout([
-      'WebKit',
+      { 'label': 'WebKit', 'pattern': 'AppleWebKit' },
       'iCab',
       'Presto',
       'NetFront',
@@ -281,7 +281,7 @@
       'Rekonq',
       'RockMelt',
       'SeaMonkey',
-      'Silk',
+      { 'label': 'Silk', 'pattern': '(?:Cloud9|Silk)' },
       'Sleipnir',
       'SlimBrowser',
       'Sunrise',
@@ -289,21 +289,21 @@
       'Opera Mini',
       'Opera',
       'Chrome',
-      'Firefox',
-      'IE',
+      { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
+      { 'label': 'IE', 'pattern': 'MSIE' },
       'Safari'
     ]),
 
     /* Detectable products (order is important) */
     product = getProduct([
       'BlackBerry',
-      'Galaxy S',
-      'Galaxy S2',
+      { 'label': 'Galaxy S', 'pattern': 'GT-I9000' },
+      { 'label': 'Galaxy S2', 'pattern': 'GT-I9100' },
       'iPad',
       'iPod',
       'iPhone',
       'Kindle',
-      'Kindle Fire',
+      { 'label': 'Kindle Fire', 'pattern': '(?:Cloud9|Silk)' },
       'Nook',
       'PlayBook',
       'TouchPad',
@@ -363,8 +363,9 @@
      */
     function getLayout(guesses) {
       return reduce(guesses, function(result, guess) {
-        return result || RegExp('\\b' +
-          (guess == 'WebKit' ? 'AppleWebKit' : guess) + '\\b', 'i').exec(ua) && guess;
+        return result || RegExp('\\b' + (
+          guess.pattern || qualify(guess)
+        ) + '\\b', 'i').exec(ua) && (guess.label || guess);
       });
     }
 
@@ -377,13 +378,11 @@
     function getManufacturer(guesses) {
       return reduce(guesses, function(result, value, key) {
         // lookup the manufacturer by product or scan the UA for the manufacturer
-        return result || reduce([key, camelCase(key)], function(result, key) {
-          return result || (
-            value[product] ||
-            value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
-            RegExp('\\b' + key + '(?:\\b|\\w*\\d)', 'i').exec(ua)
-          );
-        }) && key;
+        return result || (
+          value[product] ||
+          value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
+          RegExp('\\b' + (key.pattern || qualify(key)) + '(?:\\b|\\w*\\d)', 'i').exec(ua)
+        ) && (key.label || key);
       });
     }
 
@@ -395,14 +394,9 @@
      */
     function getName(guesses) {
       return reduce(guesses, function(result, guess) {
-        return result || reduce([guess, camelCase(guess)], function(result, guess) {
-          return result || RegExp('\\b' + (
-            (guess == 'Firefox' && '(?:Firefox|Minefield)') ||
-            (guess == 'IE' && 'MSIE') ||
-            (guess == 'Silk' && '(?:Cloud9|Silk)') ||
-            guess
-          ) + '\\b', 'i').exec(ua);
-        }) && guess;
+        return result || RegExp('\\b' + (
+          guess.pattern || qualify(guess)
+        ) + '\\b', 'i').exec(ua) && (guess.label || guess);
       });
     }
 
@@ -414,10 +408,9 @@
      */
     function getOS(guesses) {
       return reduce(guesses, function(result, guess) {
+        var pattern = guess.pattern || qualify(guess);
         if (!result && (result =
-            reduce([guess, camelCase(guess)], function(result, guess) {
-              return result || RegExp('\\b' + guess + '(?:/[\\d.]+|[ \\w.]*)', 'i').exec(ua);
-            }))) {
+            RegExp('\\b' + pattern + '(?:/[\\d.]+|[ \\w.]*)', 'i').exec(ua))) {
           // platform tokens defined at
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
@@ -439,7 +432,7 @@
           }
           // correct character case and cleanup
           result = format(String(result)
-            .replace(RegExp(guess + '|' + camelCase(guess), 'i'), guess)
+            .replace(RegExp(pattern, 'i'), guess.label || guess)
             .replace(/ ce$/, ' CE')
             .replace(/hpw/i, 'web')
             .replace(/Macintosh/, 'Mac OS')
@@ -463,22 +456,19 @@
      */
     function getProduct(guesses) {
       return reduce(guesses, function(result, guess) {
+        var pattern = guess.pattern || qualify(guess);
         if (!result && (result =
-            reduce([guess, camelCase(guess)], function(result, guess) {
-              return result ||
-                (guess == 'Galaxy S' && /\bGT-I9000\b/i.test(ua) && guess) ||
-                (guess == 'Galaxy S2' && /\bGT-I9100\b/i.test(ua) && guess) ||
-                (guess == 'Kindle Fire' && /\b(?:Cloud9|Silk)\b/i.test(ua) && guess) ||
-                RegExp('\\b' + guess + ' *\\d+[.\\w_]*', 'i').exec(ua) ||
-                RegExp('\\b' + guess + '(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua);
-            }))) {
+              RegExp('\\b' + pattern + ' *\\d+[.\\w_]*', 'i').exec(ua) ||
+              RegExp('\\b' + pattern + '(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua)
+            )) {
           // split by forward slash and append product version if needed
-          if ((result = String(result).split('/'))[1] && !/[\d.]+/.test(result[0])) {
+          if ((result = String(guess.label || result).split('/'))[1] && !/[\d.]+/.test(result[0])) {
             result[0] += ' ' + result[1];
           }
           // correct character case and cleanup
+          guess = guess.label || guess;
           result = format(result[0]
-            .replace(RegExp(guess + '|' + camelCase(guess), 'i'), guess)
+            .replace(RegExp(pattern, 'i'), guess)
             .replace(RegExp('; *(?:' + guess + '[_-])?', 'i'), ' ')
             .replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
         }
@@ -487,20 +477,15 @@
     }
 
     /**
-     * Resolves the version using an array of UA tokens.
+     * Resolves the version using an array of UA patterns.
      * @private
-     * @param {Array} tokens An array of UA tokens.
+     * @param {Array} patterns An array of UA patterns.
      * @returns {String|Null} The detected version.
      */
-    function getVersion(tokens) {
-      return reduce(tokens, function(result, token) {
-        return result || reduce([token, camelCase(token)], function(result, token) {
-          return result || (RegExp((
-            (token == 'Firefox' && '(?:Firefox|Minefield)') ||
-            (token == 'Silk' && '(?:Cloud9|Silk)') ||
-            token
-          ) + '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
-        });
+    function getVersion(patterns) {
+      return reduce(patterns, function(result, pattern) {
+        return result || (RegExp(pattern +
+          '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
       });
     }
 
@@ -572,11 +557,10 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        /Mini|Raven|Silk/.test(name) ? name : 'version',
-        name,
-        'AdobeAIR',
-        'Firefox',
-        'NetFront'
+        '(?:Cloud9|Opera ?Mini|Raven|Silk)',
+        'Version',
+        qualify(name),
+        '(?:Firefox|Minefield|NetFront)'
       ]);
     }
     // detect stubborn layout engines
