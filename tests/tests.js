@@ -1385,10 +1385,11 @@
       'version': '5.1'
     },
 
-    'SeaMonkey 1.1.7#{alpha}': {
+    'SeaMonkey 1.1.7#{alpha} on Haiku': {
       'ua': 'Mozilla/5.0 (BeOS; U; Haiku BePC; en-US; rv:1.8.1.10pre) Gecko/20080112 SeaMonkey/1.1.7pre',
       'layout': 'Gecko',
       'name': 'SeaMonkey',
+      'os': 'Haiku',
       'prerelease': 'alpha',
       'version': '1.1.7#{alpha}'
     },
@@ -1616,6 +1617,13 @@
       'os': 'Mac OS X 10.7.1',
       'prerelease': 'alpha',
       'version': '535.7'
+    },
+
+    'WebPositive (like Safari 4.x) on Haiku': {
+      'ua': 'Mozilla/5.0 (compatible; U; InfiNet 0.1; Haiku) AppleWebKit/527+ (KHTML, like Gecko) WebPositive/527+ Safari/527+',
+      'layout': 'WebKit',
+      'name': 'WebPositive',
+      'os': 'Haiku'
     },
 
     'Lynx/2.8.8dev.3 libwww-FM/2.14 SSL-MM/1.4.1': {

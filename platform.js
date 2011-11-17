@@ -286,6 +286,7 @@
       'SlimBrowser',
       'Sunrise',
       'Swiftfox',
+      'WebPositive',
       'Opera Mini',
       'Opera',
       'Chrome',
@@ -333,6 +334,7 @@
       'Fedora',
       'FreeBSD',
       'Gentoo',
+      'Haiku',
       'Kubuntu',
       'Linux Mint',
       'Red Hat',
@@ -433,14 +435,14 @@
           // correct character case and cleanup
           result = format(String(result)
             .replace(RegExp(pattern, 'i'), guess.label || guess)
-            .replace(/ ce$/, ' CE')
+            .replace(/ ce$/i, ' CE')
             .replace(/hpw/i, 'web')
             .replace(/Macintosh/, 'Mac OS')
             .replace(/_PowerPC/i, ' OS')
             .replace(/(OS X) [^ \d]+/i, '$1')
             .replace(/\/(\d)/, ' $1')
             .replace(/_/g, '.')
-            .replace(/[ .]*fc[ \d.]+$/, '')
+            .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
             .replace(/x86\.64/gi, 'x86_64')
             .split(' on ')[0]);
         }
@@ -694,13 +696,19 @@
     if ((data = (/AppleWebKit\/([\d.]+\+?)/i.exec(ua) || 0)[1])) {
       // nightly builds are postfixed with a `+`
       data = [parseFloat(data), data];
-      if (data[1].slice(-1) == '+' && name == 'Safari') {
+      if (name == 'Safari' && data[1].slice(-1) == '+') {
         name = 'WebKit Nightly';
         prerelease = 'alpha';
         version = data[1].slice(0, -1);
       }
+      // clear incorrect browser versions
+      else if (version == data[1] ||
+          version == (/Safari\/([\d.]+\+?)/i.exec(ua) || 0)[1]) {
+        version = null;
+      }
       // use the full Chrome version when available
       data = [data[0], (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1]];
+
       // detect JavaScriptCore
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
       if (!useFeatures || (/internal|\n/i.test(toString.toString()) && !data[1])) {
@@ -725,7 +733,7 @@
     // add layout engine
     if (layout && !/Avant|Nook/.test(name) && (
         /Browser|Lunascape|Maxthon/.test(name) ||
-        /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit/.test(name) && layout[1])) {
+        /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit|WebPositive/.test(name) && layout[1])) {
       // don't add layout details to description if they are falsey
       (data = layout[layout.length - 1]) && description.push(data);
     }
