@@ -5,14 +5,19 @@
 
   /** The unit testing framework */
   var QUnit =
-    window.QUnit ||
-    (window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit) &&
-    (load('../vendor/qunit-clib/qunit-clib.js'), window.QUnit);
+    window.QUnit || (
+      window.setTimeout || (window.addEventListener = window.setTimeout = / /),
+      window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit,
+      load('../vendor/qunit-clib/qunit-clib.js'),
+      window.addEventListener.test && delete window.addEventListener,
+      window.QUnit
+    );
 
   /** The `platform` object to test */
   var platform =
     window.platform ||
-    (load('../platform.js') || window.platform);
+    load('../platform.js') ||
+    window.platform;
 
   /*--------------------------------------------------------------------------*/
 
