@@ -9,7 +9,7 @@
       window.setTimeout || (window.addEventListener = window.setTimeout = / /),
       window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit,
       load('../vendor/qunit-clib/qunit-clib.js'),
-      window.addEventListener.test && delete window.addEventListener,
+      (window.addEventListener || 0).test && delete window.addEventListener,
       window.QUnit
     );
 
@@ -40,7 +40,7 @@
         }
       }
     } else {
-      forIn(object, callback);
+      forOwn(object, callback);
     }
     return object;
   }
@@ -52,7 +52,7 @@
    * @param {Function} callback The function executed per own property.
    * @returns {Object} Returns the object iterated over.
    */
-  function forIn(object, callback) {
+  function forOwn(object, callback) {
     for (var key in object) {
       if (hasKey(object, key) &&
         callback(object[key], key, object) === false) {
@@ -1703,10 +1703,31 @@
     equal(actual.description, expected, 'parse Opera');
 
     actual = platform.parse('Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 10.10');
-    expected = 'Opera 10.10 on Windows XP';
-    equal(actual.description, expected, 'parse Opera description identifying as Firefox');
+    expected = 'Opera 10.10 (identifying as Firefox 2.0.0) on Windows XP';
+    equal(actual.description, expected, 'parse Opera description identifying as Firefox 2.0.0');
+
     expected = 'Presto';
-    equal(actual.layout, expected, 'parse Opera layout identifying as Firefox');
+    equal(actual.layout, expected, 'parse Opera layout identifying as Firefox 2.0.0');
+
+    actual = platform.parse('Mozilla/4.0 (compatible; MSIE 8.0; Mac_PowerPC; en) Opera 10.52');
+    expected = 'Opera 10.52 (identifying as IE 8.0)';
+    equal(actual.description, expected, 'parse Opera description identifying as IE 8.0');
+
+    actual = platform.parse('Mozilla/5.0 (compatible; MSIE 9.0; Mac_PowerPC; en) Opera 12.00');
+    expected = 'Opera 12.00 (identifying as IE 9.0)';
+    equal(actual.description, expected, 'parse Opera description identifying as IE 9.0');
+
+    actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.2; en; rv:2.0) Gecko/20100101 Firefox/4.0');
+    expected = 'Opera (masking as Firefox 4.0) on Mac OS X 10.7.2';
+    equal(actual.description, expected, 'parse Opera description masking as Firefox 4.0');
+
+    actual = platform.parse('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; en)');
+    expected = 'Opera (masking as IE 8.0)';
+    equal(actual.description, expected, 'parse Opera description masking as IE 8.0');
+
+    actual = platform.parse('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 5.1; Trident/5.0; en)');
+    expected = 'Opera (masking as IE 9.0)';
+    equal(actual.description, expected, 'parse Opera description masking as IE 9.0');
 
     actual = platform.parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22');
     expected = 'Safari 5.1.1 on Mac OS X 10.7.2';

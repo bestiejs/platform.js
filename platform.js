@@ -89,7 +89,7 @@
         }
       }
     } else {
-      forIn(object, callback);
+      forOwn(object, callback);
     }
     return object;
   }
@@ -101,7 +101,7 @@
    * @param {Function} callback The function executed per own property.
    * @returns {Object} Returns the object iterated over.
    */
-  function forIn(object, callback) {
+  function forOwn(object, callback) {
     for (var key in object) {
       if (hasKey(object, key) &&
         callback(object[key], key, object) === false) {
@@ -231,7 +231,7 @@
     ua || (ua = userAgent);
 
     /** Temporary variable used over the script's lifetime */
-    var data = {},
+    var data,
 
     /** Platform description array */
     description = [],
@@ -619,9 +619,9 @@
       }
       // detect IE compatibility modes
       else if (typeof doc.documentMode == 'number' && (data = /\bTrident\/(\d+)/i.exec(ua))) {
-        version = [version, doc.documentMode];
         // we're in compatibility mode when the Trident version + 4 doesn't
         // equal the document mode
+        version = [version, doc.documentMode];
         if ((data = +data[1] + 4) != version[1]) {
           description.push('IE ' + version[1] + ' mode');
           layout[1] = '';
@@ -679,17 +679,39 @@
     }
     // detect Opera identifying/masking itself as another browser
     // http://www.opera.com/support/kb/view/843/
-    else if (useFeatures && opera &&
-        (data = parse(ua.replace(reOpera, '') + ';')).name &&
-        !reOpera.test(data.name)) {
-      layout = ['Presto'];
+    else if (this != forOwn && (
+          (useFeatures && opera) ||
+          (/Opera/.test(name) && /\b(?:MSIE|Firefox)\b/i.test(ua)) ||
+          (name == 'Firefox' && /OS X (?:\d+\.){2,}/.test(os)) ||
+          (name == 'IE' && (
+            (os && !/^Win/.test(os) && version > 5.5) ||
+            / XP/.test(os) && version > 8 ||
+            version == 8 && !/Trident/.test(ua)
+          ))
+        ) && !reOpera.test(data = parse.call(forOwn, ua.replace(reOpera, '') + ';')) && data.name) {
+
+      // when "indentifying" the UA contains both Opera and the other browser's name
       data = 'ing as ' + data.name + ((data = data.version) ? ' ' + data : '');
       if (reOpera.test(name)) {
+        if (/IE/.test(data) && os == 'Mac OS') {
+          os = null;
+        }
         data = 'identify' + data;
-      } else {
-        data = 'mask' + data;
-        name = format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2'));
       }
+      // when "masking" the UA contains only the other browser's name
+      else {
+        data = 'mask' + data;
+        if (/IE/.test(data)) {
+          os = null;
+        }
+        if (operaClass) {
+          name = format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2'));
+        } else {
+          name = 'Opera';
+          version = null;
+        }
+      }
+      layout = ['Presto'];
       description.push(data);
     }
     // detect WebKit Nightly and approximate Chrome/Safari versions
@@ -733,7 +755,7 @@
     // add layout engine
     if (layout && !/Avant|Nook/.test(name) && (
         /Browser|Lunascape|Maxthon/.test(name) ||
-        /Adobe|Arora|Midori|Phantom|Rekonq|RockMelt|Sleipnir|WebKit|WebPositive/.test(name) && layout[1])) {
+        /^(?:Adobe|Arora|Midori|Phantom|Rekonq|Rock|Sleipnir|Web)/.test(name) && layout[1])) {
       // don't add layout details to description if they are falsey
       (data = layout[layout.length - 1]) && description.push(data);
     }
@@ -841,7 +863,7 @@
   // expose platform
   // in Narwhal, Node.js, or Ringo
   if (freeExports) {
-    forIn(parse(), function(value, key) {
+    forOwn(parse(), function(value, key) {
       freeExports[key] = value;
     });
   }
