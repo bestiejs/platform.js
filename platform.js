@@ -685,7 +685,7 @@
           (name == 'Firefox' && /OS X (?:\d+\.){2,}/.test(os)) ||
           (name == 'IE' && (
             (os && !/^Win/.test(os) && version > 5.5) ||
-            / XP/.test(os) && version > 8 ||
+            /Windows XP/.test(os) && version > 8 ||
             version == 8 && !/Trident/.test(ua)
           ))
         ) && !reOpera.test(data = parse.call(forOwn, ua.replace(reOpera, '') + ';')) && data.name) {
@@ -701,13 +701,15 @@
       // when "masking" the UA contains only the other browser's name
       else {
         data = 'mask' + data;
-        if (/IE/.test(data)) {
-          os = null;
-        }
         if (operaClass) {
           name = format(operaClass.replace(/([a-z])([A-Z])/g, '$1 $2'));
         } else {
           name = 'Opera';
+        }
+        if (/IE/.test(data)) {
+          os = null;
+        }
+        if (!useFeatures) {
           version = null;
         }
       }
@@ -861,7 +863,7 @@
   /*--------------------------------------------------------------------------*/
 
   // expose platform
-  // in Narwhal, Node.js, or Ringo
+  // in Narwhal, Node.js, or RingoJS
   if (freeExports) {
     forOwn(parse(), function(value, key) {
       freeExports[key] = value;
@@ -869,7 +871,9 @@
   }
   // via curl.js or RequireJS
   else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-    define('platform', function() { return parse(); });
+    define('platform', function() {
+      return parse();
+    });
   }
   // in a browser or Rhino
   else {
