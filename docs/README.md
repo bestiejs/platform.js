@@ -14,6 +14,7 @@
 * [`platform.os`](#platform.os)
 * [`platform.prerelease`](#platform.prerelease)
 * [`platform.product`](#platform.product)
+* [`platform.ua`](#platform.ua)
 * [`platform.version`](#platform.version)
 * [`platform.noConflict`](#platform.noConflict)
 * [`platform.parse`](#platform.parse)
@@ -34,7 +35,7 @@
 
 <!-- div -->
 
-### <a id="platform" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L782" title="View in source">`platform`</a>
+### <a id="platform" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L784" title="View in source">`platform`</a>
 *(Object)*: The platform object.
 [&#9650;][1]
 
@@ -43,8 +44,8 @@
 
 <!-- div -->
 
-### <a id="platform.description" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L812" title="View in source">`platform.description`</a>
-*(String)*: The platform description.
+### <a id="platform.description" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L814" title="View in source">`platform.description`</a>
+*(String, Null)*: The platform description.
 [&#9650;][1]
 
 <!-- /div -->
@@ -52,7 +53,7 @@
 
 <!-- div -->
 
-### <a id="platform.layout" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L819" title="View in source">`platform.layout`</a>
+### <a id="platform.layout" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L821" title="View in source">`platform.layout`</a>
 *(String, Null)*: The name of the browser layout engine.
 [&#9650;][1]
 
@@ -61,7 +62,7 @@
 
 <!-- div -->
 
-### <a id="platform.manufacturer" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L826" title="View in source">`platform.manufacturer`</a>
+### <a id="platform.manufacturer" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L828" title="View in source">`platform.manufacturer`</a>
 *(String, Null)*: The name of the product's manufacturer.
 [&#9650;][1]
 
@@ -70,7 +71,7 @@
 
 <!-- div -->
 
-### <a id="platform.name" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L796" title="View in source">`platform.name`</a>
+### <a id="platform.name" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L798" title="View in source">`platform.name`</a>
 *(String, Null)*: The name of the browser/environment.
 [&#9650;][1]
 
@@ -79,7 +80,7 @@
 
 <!-- div -->
 
-### <a id="platform.os" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L803" title="View in source">`platform.os`</a>
+### <a id="platform.os" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L805" title="View in source">`platform.os`</a>
 *(String, Null)*: The name of the operating system.
 [&#9650;][1]
 
@@ -88,7 +89,7 @@
 
 <!-- div -->
 
-### <a id="platform.prerelease" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L833" title="View in source">`platform.prerelease`</a>
+### <a id="platform.prerelease" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L835" title="View in source">`platform.prerelease`</a>
 *(String, Null)*: The alpha/beta release indicator.
 [&#9650;][1]
 
@@ -97,7 +98,7 @@
 
 <!-- div -->
 
-### <a id="platform.product" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L840" title="View in source">`platform.product`</a>
+### <a id="platform.product" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L842" title="View in source">`platform.product`</a>
 *(String, Null)*: The name of the product hosting the browser.
 [&#9650;][1]
 
@@ -106,7 +107,16 @@
 
 <!-- div -->
 
-### <a id="platform.version" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L789" title="View in source">`platform.version`</a>
+### <a id="platform.ua" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L849" title="View in source">`platform.ua`</a>
+*(String, Null)*: The browser's user agent string.
+[&#9650;][1]
+
+<!-- /div -->
+
+
+<!-- div -->
+
+### <a id="platform.version" href="https://github.com/bestiejs/platform.js/blob/master/platform.js#L791" title="View in source">`platform.version`</a>
 *(String, Null)*: The browser/environment version.
 [&#9650;][1]
 

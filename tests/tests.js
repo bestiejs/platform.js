@@ -1667,6 +1667,14 @@
     });
   });
 
+  test('no ua', function() {
+    forOwn(getPlatform({}), function(value, key) {
+      if (typeof value != 'function') {
+        strictEqual(value, null, 'platform.' + key);
+      }
+    });
+  });
+
   test('platform.parse', function() {
     var actual = platform.parse('Mozilla/5.0 (Windows; U; en-US) AppleWebKit/531.9 (KHTML, like Gecko) AdobeAIR/2.5');
     var expected = 'Adobe AIR 2.5 (like Safari 4.x)';

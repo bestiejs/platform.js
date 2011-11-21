@@ -42,7 +42,7 @@
   old = window.platform,
 
   /** Browser user agent string */
-  userAgent = nav.userAgent || 'unknown platform',
+  userAgent = nav.userAgent || '',
 
   /**
    * Detect Opera browser
@@ -772,6 +772,8 @@
       }
     }
 
+    ua || (ua = null);
+
     /*------------------------------------------------------------------------*/
 
     /**
@@ -807,7 +809,7 @@
       /**
        * The platform description.
        * @memberOf platform
-       * @type String
+       * @type String|Null
        */
       'description': description.length ? description.join(' ') : ua,
 
@@ -838,6 +840,13 @@
        * @type String|Null
        */
       'product': product,
+
+      /**
+       * The browser's user agent string.
+       * @memberOf platform
+       * @type String|Null
+       */
+      'ua': ua,
 
       // avoid platform object conflicts in browsers
       'noConflict': noConflict,

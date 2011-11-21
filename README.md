@@ -80,7 +80,7 @@ info.name; // 'Opera'
 info.version; // '11.52'
 info.layout; // 'Presto'
 info.os; // 'Mac OS X 10.7.2'
-info.description; // 'Opera 11.52 on Mac OS X 10.7.2'
+info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.2'
 ~~~
 
 ## Cloning this repo
