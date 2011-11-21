@@ -22,27 +22,18 @@
   /*--------------------------------------------------------------------------*/
 
   /**
-   * An iteration utility for arrays and objects.
-   * Callbacks may terminate the loop by explicitly returning `false`.
+   * An iteration utility for arrays.
    * @private
-   * @param {Array|Object} object The object to iterate over.
+   * @param {Array} object The array to iterate over.
    * @param {Function} callback The function called per iteration.
-   * @returns {Array|Object} Returns the object iterated over.
    */
-  function each(object, callback) {
+  function each(array, callback) {
     var index = -1,
-        length = object.length;
+        length = array.length;
 
-    if (length == length >>> 0) {
-      while (++index < length) {
-        if (callback(object[index], index, object) === false) {
-          break;
-        }
-      }
-    } else {
-      forOwn(object, callback);
+    while (++index < length) {
+      callback(array[index], index, array);
     }
-    return object;
   }
 
   /**
@@ -50,16 +41,11 @@
    * @private
    * @param {Object} object The object to iterate over.
    * @param {Function} callback The function executed per own property.
-   * @returns {Object} Returns the object iterated over.
    */
   function forOwn(object, callback) {
     for (var key in object) {
-      if (hasKey(object, key) &&
-        callback(object[key], key, object) === false) {
-        break;
-      }
+      hasKey(object, key) && callback(object[key], key, object);
     }
-    return object;
   }
 
   /**
@@ -100,7 +86,7 @@
    */
   function interpolate(string, object) {
     string = string == null ? '' : string;
-    each(object || {}, function(value, key) {
+    forOwn(object || {}, function(value, key) {
       string = string.replace(RegExp('#\\{' + key + '\\}', 'g'), String(value));
     });
     return string;
@@ -1664,7 +1650,7 @@
 
   each(['description', 'layout', 'manufacturer', 'name', 'os', 'prerelease', 'product', 'version'], function(name) {
     test('platform.' + name, function() {
-      each(Tests, function(value, key) {
+      forOwn(Tests, function(value, key) {
         var platform = getPlatform(value);
         value = name == 'description' ? key : value[name];
         value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2' }) : null;
@@ -1674,8 +1660,8 @@
   });
 
   test('check null values', function() {
-    each(Tests, function(value) {
-      each(getPlatform(value), function(value, key) {
+    forOwn(Tests, function(value) {
+      forOwn(getPlatform(value), function(value, key) {
         !value && strictEqual(value, null, 'platform.' + key);
       });
     });

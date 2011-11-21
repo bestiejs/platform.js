@@ -72,11 +72,9 @@
 
   /**
    * An iteration utility for arrays and objects.
-   * Callbacks may terminate the loop by explicitly returning `false`.
    * @private
    * @param {Array|Object} object The object to iterate over.
    * @param {Function} callback The function called per iteration.
-   * @returns {Array|Object} Returns the object iterated over.
    */
   function each(object, callback) {
     var index = -1,
@@ -84,14 +82,11 @@
 
     if (length == length >>> 0) {
       while (++index < length) {
-        if (callback(object[index], index, object) === false) {
-          break;
-        }
+        callback(object[index], index, object);
       }
     } else {
       forOwn(object, callback);
     }
-    return object;
   }
 
   /**
@@ -99,16 +94,11 @@
    * @private
    * @param {Object} object The object to iterate over.
    * @param {Function} callback The function executed per own property.
-   * @returns {Object} Returns the object iterated over.
    */
   function forOwn(object, callback) {
     for (var key in object) {
-      if (hasKey(object, key) &&
-        callback(object[key], key, object) === false) {
-        break;
-      }
+      hasKey(object, key) && callback(object[key], key, object);
     }
-    return object;
   }
 
   /**
