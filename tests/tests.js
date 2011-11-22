@@ -1676,7 +1676,9 @@
   });
 
   test('platform.parse', function() {
+    // avoid false negative when the UA string being tested matches the browser's
     var parse = function(ua) { return platform.parse(ua + ';'); };
+
     var actual = parse('Mozilla/5.0 (Windows; U; en-US) AppleWebKit/531.9 (KHTML, like Gecko) AdobeAIR/2.5');
     var expected = 'Adobe AIR 2.5 (like Safari 4.x)';
     equal(actual.description, expected, 'parse Adobe Air');
