@@ -649,6 +649,22 @@
       'version': '4.7'
     },
 
+    'Iceweasel 3.5.5 on Debian': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.1.5) Gecko/20091112 Iceweasel/3.5.5 (like Firefox/3.5.5; Debian-3.5.5-1)',
+      'layout': 'Gecko',
+      'name': 'Iceweasel',
+      'os': 'Debian',
+      'version': '3.5.5'
+    },
+
+    'Iceweasel 5.0 on Linux x86_64': {
+      'ua': 'Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 Iceweasel/5.0',
+      'layout': 'Gecko',
+      'name': 'Iceweasel',
+      'os': 'Linux x86_64',
+      'version': '5.0'
+    },
+
     'IE 4.0 on Windows 95': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 4.0; Windows 95)',
       'layout': 'Trident',
@@ -1619,6 +1635,12 @@
 
     'Lynx/2.8.8dev.3 libwww-FM/2.14 SSL-MM/1.4.1': {
       'ua': 'Lynx/2.8.8dev.3 libwww-FM/2.14 SSL-MM/1.4.1'
+    },
+
+    'Mozilla/5.0 (X11; U; Linux x86_64; fr; rv:1.9.2.13) Gecko/20101203 FalsePositive/3.6.7 (like Firefox/3.6.13)': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; fr; rv:1.9.2.13) Gecko/20101203 FalsePositive/3.6.7 (like Firefox/3.6.13)',
+      'layout': 'Gecko',
+      'os': 'Linux x86_64'
     },
 
     'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100728 Firefox/3.6.8 CometBird/3.6.8,gzip(gfe),gzip(gfe)': {

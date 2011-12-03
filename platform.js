@@ -259,6 +259,7 @@
       'Galeon',
       'GreenBrowser',
       'iCab',
+      'Iceweasel',
       'Iron',
       'K-Meleon',
       'Konqueror',
@@ -537,7 +538,7 @@
     // detect false positives for Firefox/Safari
     else if (!name || (data = !/\bMinefield\b/i.test(ua) && /Firefox|Safari/.exec(name))) {
       // clear name of false positives
-      if (name && !product && /[/,]/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
+      if (name && !product && /[/,]|^[^(]+?\)/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         name = null;
       }
       // reassign a generic name
