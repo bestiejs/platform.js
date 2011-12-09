@@ -1769,6 +1769,13 @@
     }
   });
 
+  test('platform.toString', function() {
+    var description = platform.description;
+    platform.description = null;
+    ok(typeof platform.toString() == 'string', 'returns a string');
+    platform.description = description;
+  });
+
   test('require("platform")', function() {
     if (window.document && window.require) {
       equal((platform2 || {}).description, platform.description, 'require("platform")');

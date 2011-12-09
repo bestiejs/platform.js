@@ -503,7 +503,7 @@
      * @returns {String} The platform description.
      */
     function toStringPlatform() {
-      return this.description;
+      return this.description || '';
     }
 
     /*------------------------------------------------------------------------*/
