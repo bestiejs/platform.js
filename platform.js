@@ -223,6 +223,9 @@
     /** Temporary variable used over the script's lifetime */
     var data,
 
+    /** The CPU architecture */
+    arch = ua,
+
     /** Platform description array */
     description = [],
 
@@ -572,9 +575,10 @@
       // detect server-side environments
       // Rhino has a global function while others have a global object
       if (isHostType(thisBinding, 'global')) {
-        if (java && !os) {
+        if (java) {
           data = java.lang.System;
-          os = data.getProperty('os.name') + ' ' + data.getProperty('os.version');
+          arch = data.getProperty('os.arch');
+          os = os || data.getProperty('os.name') + ' ' + data.getProperty('os.version');
         }
         if (typeof exports == 'object' && exports) {
           // if `thisBinding` is the [ModuleScope]
@@ -591,8 +595,9 @@
             }
           } else if (typeof process == 'object' && (data = process)) {
             name = 'Node.js';
-            version = /[\d.]+/.exec(data.version)[0];
+            arch = data.arch;
             os = data.platform;
+            version = /[\d.]+/.exec(data.version)[0];
           }
         } else if (getClassOf(window.environment) == 'Environment') {
           name = 'Rhino';
@@ -765,7 +770,7 @@
       description.push((/^on /.test(description[description.length -1]) ? '' : 'on ') + product);
     }
     // add browser/OS architecture
-    if ((data = /\b(?:AMD|IA|Win|WOW|x86_|x)64\b/i).test(ua) && !/\bi686\b/i.test(ua)) {
+    if ((data = /\b(?:AMD|IA|Win|WOW|x86_|x)64\b/i).test(arch) && !/\bi686\b/i.test(arch)) {
       os = os && os + (data.test(os) ? '' : ' 64-bit');
       if (name && (/WOW64/i.test(ua) ||
           (useFeatures && /\w(?:86|32)$/.test(nav.cpuClass || nav.platform)))) {
