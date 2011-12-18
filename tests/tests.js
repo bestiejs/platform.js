@@ -56,23 +56,25 @@
    * @returns {Boolean} Returns `true` if key is a direct property, else `false`.
    */
   function hasKey(object, key) {
-    var result,
-        o = {},
+    var o = {},
         hasOwnProperty = o.hasOwnProperty,
-        parent = (object.constructor || Object).prototype;
+        parent = object != null && (object.constructor || Object).prototype,
+        result = false;
 
-    // for modern browsers
-    object = Object(object);
-    if (typeof hasOwnProperty == 'function') {
-      result = hasOwnProperty.call(object, key);
-    }
-    // for Safari 2
-    else if (o.__proto__ == Object.prototype) {
-      object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
-    }
-    // for others (not as accurate)
-    else {
-      result = key in object && !(key in parent && object[key] === parent[key]);
+    if (parent) {
+      // for modern browsers
+      object = Object(object);
+      if (typeof hasOwnProperty == 'function') {
+        result = hasOwnProperty.call(object, key);
+      }
+      // for Safari 2
+      else if (o.__proto__ == Object.prototype) {
+        object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
+      }
+      // for others (not as accurate)
+      else {
+        result = key in object && !(key in parent && object[key] === parent[key]);
+      }
     }
     return result;
   }
@@ -85,9 +87,8 @@
    * @returns {String} The modified string.
    */
   function interpolate(string, object) {
-    string = string == null ? '' : string;
     forOwn(object || {}, function(value, key) {
-      string = string.replace(RegExp('#\\{' + key + '\\}', 'g'), String(value));
+      string = string.replace(RegExp('#\\{' + key + '\\}', 'g'), value);
     });
     return string;
   }

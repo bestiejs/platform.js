@@ -136,21 +136,23 @@
   function hasKey() {
     // lazy define for others (not as accurate)
     hasKey = function(object, key) {
-      var parent = (object.constructor || Object).prototype;
-      return key in Object(object) && !(key in parent && object[key] === parent[key]);
+      var parent = object != null && (object.constructor || Object).prototype;
+      return !!parent && key in Object(object) && !(key in parent && object[key] === parent[key]);
     };
     // for modern browsers
     if (getClassOf(hasOwnProperty) == 'Function') {
       hasKey = function(object, key) {
-        return hasOwnProperty.call(object, key);
+        return object != null && hasOwnProperty.call(object, key);
       };
     }
     // for Safari 2
     else if ({}.__proto__ == Object.prototype) {
       hasKey = function(object, key) {
-        var result;
-        object = Object(object);
-        object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
+        var result = false;
+        if (object != null) {
+          object = Object(object);
+          object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
+        }
         return result;
       };
     }
