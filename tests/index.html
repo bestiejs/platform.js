@@ -3,6 +3,13 @@
 	<head>
 		<title>Platform.js Test Suite</title>
 		<link rel="stylesheet" href="../vendor/qunit/qunit/qunit.css">
+	</head>
+	<body>
+		<h1 id="qunit-header">Platform.js Test Suite</h1>
+		<h2 id="qunit-banner"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
 		<script>
 		(function() {
 			var hasOwnProperty = function hasOwnProperty(key) {
@@ -26,13 +33,6 @@
 		<script>var platform2, platform = 1;</script>
 		<script src="../platform.js"></script>
 		<script src="../vendor/requirejs/require.js"></script>
-	</head>
-	<body>
-		<h1 id="qunit-header">Platform.js Test Suite</h1>
-		<h2 id="qunit-banner"></h2>
-		<div id="qunit-testrunner-toolbar"></div>
-		<h2 id="qunit-userAgent"></h2>
-		<ol id="qunit-tests"></ol>
 		<script>
 		if (/[?&]norequire=true(?:&|$)/.test(location.search)) {
 			require = define = null;
