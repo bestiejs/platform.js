@@ -1,6 +1,6 @@
 /*!
  * Platform.js <http://mths.be/platform>
- * Copyright 2010-2011 John-David Dalton <http://allyoucanleet.com/>
+ * Copyright 2010-2012 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <http://mths.be/mit>
  */
 ;(function(window) {
