@@ -45,7 +45,7 @@
     "rhino"
   ],
   "directories": {
-    "doc": "docs",
-    "test": "tests"
+    "doc": "./doc",
+    "test": "./test"
   }
 }
