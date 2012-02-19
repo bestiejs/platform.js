@@ -877,7 +877,7 @@
       freeExports[key] = value;
     });
   }
-  // via curl.js or RequireJS
+  // via an AMD loader
   else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     define('platform', function() {
       return parse();
