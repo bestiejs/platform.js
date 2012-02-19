@@ -1758,18 +1758,6 @@
     equal(actual.description, expected, 'parse PhantomJS');
   });
 
-  test('platform.noConflict', function() {
-    if (window.document) {
-      var p = [platform, platform.noConflict()];
-      equal(p[0], p[1], 'returns platform object');
-      strictEqual(window.platform, 1, 'restores overwritten value');
-      window.platform = p[0];
-    } else {
-      ok(true, 'test skipped');
-      ok(true, 'test skipped');
-    }
-  });
-
   test('platform.toString', function() {
     var description = platform.description;
     platform.description = null;

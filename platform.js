@@ -175,7 +175,7 @@
   }
 
   /**
-   * A bare-bones` Array#reduce` utility function.
+   * A bare-bones` Array#reduce` like utility function.
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
@@ -488,17 +488,6 @@
     }
 
     /*------------------------------------------------------------------------*/
-
-    /**
-     * Restores a previously overwritten platform object.
-     * @memberOf platform
-     * @type Function
-     * @returns {Object} The current platform object.
-     */
-    function noConflict() {
-      window['platform'] = old;
-      return this;
-    }
 
     /**
      * Return platform description when the platform object is coerced to a string.
@@ -856,9 +845,6 @@
        * @type String|Null
        */
       'ua': ua,
-
-      // avoid platform object conflicts in browsers
-      'noConflict': noConflict,
 
       // parses a user agent string into a platform object
       'parse': parse,
