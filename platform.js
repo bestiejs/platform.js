@@ -6,56 +6,57 @@
 ;(function(window) {
 
   /** Backup possible window/global object */
-  var oldWin = window,
+  var oldWin = window;
 
   /** Possible global object */
-  thisBinding = this,
+  var thisBinding = this;
 
   /** Detect free variable `exports` */
-  freeExports = typeof exports == 'object' && exports,
+  var freeExports = typeof exports == 'object' && exports;
 
   /** Detect free variable `global` */
-  freeGlobal = typeof global == 'object' && global && (global == global.global ? (window = global) : global),
+  var freeGlobal = typeof global == 'object' && global &&
+    (global == global.global ? (window = global) : global);
 
   /** Used to check for own properties of an object */
-  hasOwnProperty = {}.hasOwnProperty,
+  var hasOwnProperty = {}.hasOwnProperty;
 
   /** Used to resolve a value's internal [[Class]] */
-  toString = {}.toString,
+  var toString = {}.toString;
 
   /** Detect Java environment */
-  java = /Java/.test(getClassOf(window.java)) && window.java,
+  var java = /Java/.test(getClassOf(window.java)) && window.java;
 
   /** A character to represent alpha */
-  alpha = java ? 'a' : '\u03b1',
+  var alpha = java ? 'a' : '\u03b1';
 
   /** A character to represent beta */
-  beta = java ? 'b' : '\u03b2',
+  var beta = java ? 'b' : '\u03b2';
 
   /** Browser document object */
-  doc = window.document || {},
+  var doc = window.document || {};
 
   /** Browser navigator object */
-  nav = window.navigator || {},
+  var nav = window.navigator || {};
 
   /** Previous platform object */
-  old = window.platform,
+  var old = window.platform;
+
+  /** Opera regexp */
+  var reOpera = /Opera/;
 
   /** Browser user agent string */
-  userAgent = nav.userAgent || '',
+  var userAgent = nav.userAgent || '';
 
   /**
    * Detect Opera browser
    * http://www.howtocreate.co.uk/operaStuff/operaObject.html
    * http://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
    */
-  opera = window.operamini || window.opera,
-
-  /** Opera regexp */
-  reOpera = /Opera/,
+  var opera = window.operamini || window.opera;
 
   /** Opera [[Class]] */
-  operaClass = reOpera.test(operaClass = getClassOf(opera)) ? operaClass : (opera = null);
+  var operaClass = reOpera.test(operaClass = getClassOf(opera)) ? operaClass : (opera = null);
 
   /*--------------------------------------------------------------------------*/
 

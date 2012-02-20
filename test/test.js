@@ -148,10 +148,10 @@
       /\(function[\s\S]+?(?=if\s*\(freeExports)/.exec(code)[0] +
       ' return parse()}(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
-        .replace(/\bfreeGlobal\s*=[^\n]+?(,\n)/, 'freeGlobal=options.global$1')
-        .replace(/\boldWin\s*=[^\n]+?(,\n)/, 'oldWin=options$1')
-        .replace(/\bthisBinding\s*=[^\n]+?(,\n)/, 'me=options$1')
-        .replace(/\buserAgent\s*=[^\n]+?(,\n)/, 'userAgent=me.ua$1')
+        .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)/, 'freeGlobal=options.global$1')
+        .replace(/\boldWin\s*=[^\n]+?(;\n)/, 'oldWin=options$1')
+        .replace(/\bthisBinding\s*=[^\n]+?(;\n)/, 'me=options$1')
+        .replace(/\buserAgent\s*=[^\n]+?(;\n)/, 'userAgent=me.ua$1')
         .replace(/\b(?:thisBinding|window)\b/g, 'me')
         .replace(/([^.])\bsystem\b/g, '$1me.system')
         .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
@@ -1112,6 +1112,7 @@
       var object = {
         'exports': {},
         'name': 'Narwhal',
+        'require': function() { },
         'system':  {}
       };
       object.global = object.system.global = object;
@@ -1263,8 +1264,8 @@
       var object = {
         'exports': {},
         'name': 'RingoJS',
-        'system':  {},
         'require': function() { return { 'version': [0, 7] }; },
+        'system':  {},
         'version': '0.7'
       };
       object.global = object;
