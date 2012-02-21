@@ -1394,6 +1394,14 @@
       'version': '5.1'
     },
 
+    'Safari 5.2 on Mac OS X 10.8': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8) AppleWebKit/535.18.5 (KHTML, like Gecko) Version/5.2 Safari/535.18.',
+      'layout': 'WebKit',
+      'name': 'Safari',
+      'os': 'Mac OS X 10.8',
+      'version': '5.2'
+    },
+
     'SeaMonkey 1.1.7#{alpha} on Haiku': {
       'ua': 'Mozilla/5.0 (BeOS; U; Haiku BePC; en-US; rv:1.8.1.10pre) Gecko/20080112 SeaMonkey/1.1.7pre',
       'layout': 'Gecko',
