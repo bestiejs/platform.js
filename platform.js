@@ -39,9 +39,6 @@
   /** Browser navigator object */
   var nav = window.navigator || {};
 
-  /** Previous platform object */
-  var old = window.platform;
-
   /** Opera regexp */
   var reOpera = /Opera/;
 
