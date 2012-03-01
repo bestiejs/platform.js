@@ -1,4 +1,4 @@
-# Platform.js API documentation
+# Platform.js <sup>v1.0.0-pre</sup>
 
 <!-- div -->
 
