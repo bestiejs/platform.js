@@ -8,9 +8,6 @@
   /** Backup possible window/global object */
   var oldWin = window;
 
-  /** Possible global object */
-  var thisBinding = this;
-
   /** Detect free variable `exports` */
   var freeExports = typeof exports == 'object' && exports;
 
@@ -18,8 +15,8 @@
   var freeGlobal = typeof global == 'object' && global &&
     (global == global.global ? (window = global) : global);
 
-  /** Used to check for own properties of an object */
-  var hasOwnProperty = {}.hasOwnProperty;
+  /** Opera regexp */
+  var reOpera = /Opera/;
 
   /** Used to resolve a value's internal [[Class]] */
   var toString = {}.toString;
@@ -36,14 +33,11 @@
   /** Browser document object */
   var doc = window.document || {};
 
+  /** Used to check for own properties of an object */
+  var hasOwnProperty = {}.hasOwnProperty;
+
   /** Browser navigator object */
   var nav = window.navigator || {};
-
-  /** Opera regexp */
-  var reOpera = /Opera/;
-
-  /** Browser user agent string */
-  var userAgent = nav.userAgent || '';
 
   /**
    * Detect Opera browser
@@ -54,6 +48,12 @@
 
   /** Opera [[Class]] */
   var operaClass = reOpera.test(operaClass = getClassOf(opera)) ? operaClass : (opera = null);
+
+  /** Possible global object */
+  var thisBinding = this;
+
+  /** Browser user agent string */
+  var userAgent = nav.userAgent || '';
 
   /*--------------------------------------------------------------------------*/
 
@@ -173,6 +173,16 @@
   }
 
   /**
+   * Prepares a string for use in a RegExp constructor by making hyphens and spaces optional.
+   * @private
+   * @param {String} string The string to qualify.
+   * @returns {String} The qualified string.
+   */
+  function qualify(string) {
+    return String(string).replace(/([ -])(?!$)/g, '$1?');
+  }
+
+  /**
    * A bare-bones` Array#reduce` like utility function.
    * @private
    * @param {Array} array The array to iterate over.
@@ -186,16 +196,6 @@
       accumulator = callback(accumulator, value, index, array);
     });
     return accumulator;
-  }
-
-  /**
-   * Prepares a string for use in a RegExp constructor by making hyphens and spaces optional.
-   * @private
-   * @param {String} string The string to qualify.
-   * @returns {String} The qualified string.
-   */
-  function qualify(string) {
-    return String(string).replace(/([ -])(?!$)/g, '$1?');
   }
 
   /**
@@ -221,25 +221,25 @@
     ua || (ua = userAgent);
 
     /** Temporary variable used over the script's lifetime */
-    var data,
+    var data;
 
     /** The CPU architecture */
-    arch = ua,
+    var arch = ua;
 
     /** Platform description array */
-    description = [],
+    var description = [];
 
     /** Platform alpha/beta indicator */
-    prerelease = null,
+    var prerelease = null;
 
     /** A flag to indicate that environment features should be used to resolve the platform */
-    useFeatures = ua == userAgent,
+    var useFeatures = ua == userAgent;
 
     /** The browser/environment version */
-    version = useFeatures && opera && typeof opera.version == 'function' && opera.version(),
+    var version = useFeatures && opera && typeof opera.version == 'function' && opera.version();
 
     /* Detectable layout engines (order is important) */
-    layout = getLayout([
+    var layout = getLayout([
       { 'label': 'WebKit', 'pattern': 'AppleWebKit' },
       'iCab',
       'Presto',
@@ -248,10 +248,10 @@
       'Trident',
       'KHTML',
       'Gecko'
-    ]),
+    ]);
 
     /* Detectable browser names (order is important) */
-    name = getName([
+    var name = getName([
       'Adobe AIR',
       'Arora',
       'Avant Browser',
@@ -287,10 +287,10 @@
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
       { 'label': 'IE', 'pattern': 'MSIE' },
       'Safari'
-    ]),
+    ]);
 
     /* Detectable products (order is important) */
-    product = getProduct([
+    var product = getProduct([
       'BlackBerry',
       { 'label': 'Galaxy S', 'pattern': 'GT-I9000' },
       { 'label': 'Galaxy S2', 'pattern': 'GT-I9100' },
@@ -304,10 +304,10 @@
       'TouchPad',
       'Transformer',
       'Xoom'
-    ]),
+    ]);
 
     /* Detectable manufacturers */
-    manufacturer = getManufacturer({
+    var manufacturer = getManufacturer({
       'Apple': { 'iPad': 1, 'iPhone': 1, 'iPod': 1 },
       'Amazon': { 'Kindle': 1, 'Kindle Fire': 1 },
       'Asus': { 'Transformer': 1 },
@@ -318,10 +318,10 @@
       'Motorola': { 'Xoom': 1 },
       'Nokia': { },
       'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1 }
-    }),
+    });
 
     /* Detectable OSes (order is important) */
-    os = getOS([
+    var os = getOS([
       'Android',
       'CentOS',
       'Debian',

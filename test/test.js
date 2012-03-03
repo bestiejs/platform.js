@@ -148,9 +148,10 @@
       /\(function[\s\S]+?(?=if\s*\(freeExports)/.exec(code)[0] +
       ' return parse()}(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
-        .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)/, 'freeGlobal=options.global$1')
+        .replace(/(function\s*\(\s*window\s*\)[^\n]+\n)/, '$1me=options;\n')
+        .replace(/\bvar thisBinding\s*=[^\n]+?(;\n)/, '')
         .replace(/\boldWin\s*=[^\n]+?(;\n)/, 'oldWin=options$1')
-        .replace(/\bthisBinding\s*=[^\n]+?(;\n)/, 'me=options$1')
+        .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)/, 'freeGlobal=options.global$1')
         .replace(/\buserAgent\s*=[^\n]+?(;\n)/, 'userAgent=me.ua$1')
         .replace(/\b(?:thisBinding|window)\b/g, 'me')
         .replace(/([^.])\bsystem\b/g, '$1me.system')
