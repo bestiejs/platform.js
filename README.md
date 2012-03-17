@@ -4,7 +4,7 @@ A platform detection library that works on nearly all JavaScript platforms<sup><
 
 ## Disclaimer
 
-Platform.js is for informational purposes only and **not** intended as a substitution for [feature detection/inference](http://www.screenr.com/5Ab) checks.
+Platform.js is for informational purposes only and **not** intended as a substitution for [feature detection/inference](http://allyoucanleet.com/post/18087210413/feature-testing-costs#screencast2) checks.
 
 ## BestieJS
 

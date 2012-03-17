@@ -88,18 +88,6 @@
   }
 
   /**
-   * Iterates over an object's own properties, executing the `callback` for each.
-   * @private
-   * @param {Object} object The object to iterate over.
-   * @param {Function} callback The function executed per own property.
-   */
-  function forOwn(object, callback) {
-    for (var key in object) {
-      hasKey(object, key) && callback(object[key], key, object);
-    }
-  }
-
-  /**
    * Trim and conditionally capitalize string values.
    * @private
    * @param {String} string The string to format.
@@ -110,6 +98,18 @@
     return /^(?:webOS|i(?:OS|P))/.test(string)
       ? string
       : capitalize(string);
+  }
+
+  /**
+   * Iterates over an object's own properties, executing the `callback` for each.
+   * @private
+   * @param {Object} object The object to iterate over.
+   * @param {Function} callback The function executed per own property.
+   */
+  function forOwn(object, callback) {
+    for (var key in object) {
+      hasKey(object, key) && callback(object[key], key, object);
+    }
   }
 
   /**
