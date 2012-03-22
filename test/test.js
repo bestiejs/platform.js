@@ -200,6 +200,15 @@
       'product': 'Transformer'
     },
 
+    'Android Browser (like Safari 4.x) on Sony PlayStation Vita 1.00': {
+      'ua': 'Mozilla/5.0 (PlayStation Vita 1.00) AppleWebKit/531.22.8 (KHTML, like Gecko) Silk/3.2',
+      'layout': 'WebKit',
+      'manufacturer': 'Sony',
+      'name': 'Android Browser',
+      'product': 'PlayStation Vita 1.00',
+      'os': 'Android'
+    },
+
     'Android Browser 3.0.4 (like Chrome 1.x) on Motorola Xoom (Android 3.0)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 3.0; xx-xx; Xoom Build/HRI39) AppleWebKit/525.10+ (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2',
       'layout': 'WebKit',
@@ -1443,6 +1452,26 @@
       'name': 'SeaMonkey',
       'os': 'Linux ia64',
       'version': '2.0.6'
+    },
+
+    'Silk 1.0.13.81 on Amazon Kindle Fire (Android 2.3.4)': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; Silk/1.0.13.81_10003810) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 Silk-Accelerated=false',
+      'layout': 'WebKit',
+      'manufacturer': 'Amazon',
+      'name': 'Silk',
+      'os': 'Android 2.3.4',
+      'product': 'Kindle Fire',
+      'version': '1.0.13.81'
+    },
+
+    'Silk 1.0.13.81 (accelerated; desktop mode) on Amazon Kindle Fire': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; zh-cn; Silk/1.0.13.81_10003810) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16 Silk-Accelerated=true',
+      'layout': 'WebKit',
+      'manufacturer': 'Amazon',
+      'name': 'Silk',
+      'os': 'Android',
+      'product': 'Kindle Fire',
+      'version': '1.0.13.81'
     },
 
     'Silk 1.0.0 on Amazon Kindle Fire (Android 2.3.4)': {

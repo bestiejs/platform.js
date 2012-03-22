@@ -275,7 +275,7 @@
       'Rekonq',
       'RockMelt',
       'SeaMonkey',
-      { 'label': 'Silk', 'pattern': '(?:Cloud9|Silk)' },
+      { 'label': 'Silk', 'pattern': '(?:Cloud9|Silk-Accelerated)' },
       'Sleipnir',
       'SlimBrowser',
       'Sunrise',
@@ -298,9 +298,10 @@
       'iPod',
       'iPhone',
       'Kindle',
-      { 'label': 'Kindle Fire', 'pattern': '(?:Cloud9|Silk)' },
+      { 'label': 'Kindle Fire', 'pattern': '(?:Cloud9|Silk-Accelerated)' },
       'Nook',
       'PlayBook',
+      'PlayStation Vita',
       'TouchPad',
       'Transformer',
       'Xoom'
@@ -317,7 +318,8 @@
       'LG': { },
       'Motorola': { 'Xoom': 1 },
       'Nokia': { },
-      'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1 }
+      'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1 },
+      'Sony': { 'PlayStation Vita': 1 }
     });
 
     /* Detectable OSes (order is important) */
@@ -376,7 +378,7 @@
         // lookup the manufacturer by product or scan the UA for the manufacturer
         return result || (
           value[product] ||
-          value[0/*Opera 9.25 fix*/, /^[a-z]+/i.exec(product)] ||
+          value[0/*Opera 9.25 fix*/, /^[a-z]+(?: +[a-z]+)*/i.exec(product)] ||
           RegExp('\\b' + (key.pattern || qualify(key)) + '(?:\\b|\\w*\\d)', 'i').exec(ua)
         ) && (key.label || key);
       });
@@ -481,7 +483,7 @@
     function getVersion(patterns) {
       return reduce(patterns, function(result, pattern) {
         return result || (RegExp(pattern +
-          '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/-]*)', 'i').exec(ua) || 0)[1] || null;
+          '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/_-]*)', 'i').exec(ua) || 0)[1] || null;
       });
     }
 
@@ -523,7 +525,7 @@
       os = 'Kubuntu';
     }
     // detect Android browsers
-    else if (name == 'Chrome' && manufacturer) {
+    else if (/Chrome|Vita/.test(name + ';' + product) && manufacturer) {
       name = 'Android Browser';
       os = /Android/.test(os) ? os : 'Android';
     }
@@ -543,7 +545,7 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|Opera ?Mini|Raven|Silk)',
+        '(?:Cloud9|Opera ?Mini|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
