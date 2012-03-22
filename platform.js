@@ -555,8 +555,6 @@
     // detect stubborn layout engines
     if (layout == 'iCab' && parseFloat(version) > 3) {
       layout = ['WebKit'];
-    } else if (name == 'Konqueror' && /\bKHTML\b/i.test(ua)) {
-      layout = ['KHTML'];
     } else if (data =
         /Opera/.test(name) && 'Presto' ||
         /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
@@ -706,7 +704,7 @@
       description.push(data);
     }
     // detect WebKit Nightly and approximate Chrome/Safari versions
-    if ((data = (/AppleWebKit\/([\d.]+\+?)/i.exec(ua) || 0)[1])) {
+    if ((data = (/\bAppleWebKit\/([\d.]+\+?)/i.exec(ua) || 0)[1])) {
       // correct build for numeric comparison
       // (e.g. "532.5" becomes "532.05")
       data = [parseFloat(data.replace(/\.(\d)$/, '.0$1')), data];
@@ -718,11 +716,11 @@
       }
       // clear incorrect browser versions
       else if (version == data[1] ||
-          version == (/Safari\/([\d.]+\+?)/i.exec(ua) || 0)[1]) {
+          version == (/\bSafari\/([\d.]+\+?)/i.exec(ua) || 0)[1]) {
         version = null;
       }
       // use the full Chrome version when available
-      data = [data[0], (/Chrome\/([\d.]+)/i.exec(ua) || 0)[1]];
+      data = [data[0], (/\bChrome\/([\d.]+)/i.exec(ua) || 0)[1]];
 
       // detect JavaScriptCore
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi

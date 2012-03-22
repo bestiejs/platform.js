@@ -995,20 +995,20 @@
       'version': '1.5.4'
     },
 
-    'Konqueror 4.7.1 on Kubuntu 64-bit': {
-      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-GB) AppleWebKit/533.3 (KHTML, like Gecko) konqueror/4.7.1 Safari/533.3',
-      'layout': 'KHTML',
-      'name': 'Konqueror',
-      'os': 'Kubuntu 64-bit',
-      'version': '4.7.1'
-    },
-
     'Konqueror 4.4 on Kubuntu': {
       'ua': 'Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu',
       'layout': 'KHTML',
       'name': 'Konqueror',
       'os': 'Kubuntu',
       'version': '4.4'
+    },
+
+    'Konqueror 4.7.1 on Kubuntu 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-GB) AppleWebKit/533.3 (KHTML, like Gecko) konqueror/4.7.1 Safari/533.3',
+      'layout': 'WebKit',
+      'name': 'Konqueror',
+      'os': 'Kubuntu 64-bit',
+      'version': '4.7.1'
     },
 
     'Lunascape 5.0#{alpha}3 (Trident) on Windows Server 2003 / XP 64-bit': {
