@@ -401,6 +401,14 @@
       'version': '8.1.0.0'
     },
 
+    'Chrome Mobile 16.0.912.77 on Android 4.0.3': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
+      'layout': 'WebKit',
+      'name': 'Chrome Mobile',
+      'os': 'Android 4.0.3',
+      'version': '16.0.912.77'
+    },
+
     'Epiphany 0.9.2 on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.4) Gecko/20030908 Epiphany/0.9.2',
       'layout': 'Gecko',

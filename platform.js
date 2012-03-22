@@ -284,6 +284,7 @@
       'Opera Mini',
       'Opera',
       'Chrome',
+      { 'label': 'Chrome Mobile', 'pattern': 'CrMo' },
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
       { 'label': 'IE', 'pattern': 'MSIE' },
       'Safari'
@@ -545,7 +546,7 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|Opera ?Mini|Raven|Silk(?!/[\\d.]+$))',
+        '(?:Cloud9|CrMo|Opera ?Mini|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
@@ -649,7 +650,7 @@
       description.unshift('desktop mode');
     }
     // add mobile postfix
-    else if ((name == 'IE' || name && !product && !/Browser/.test(name)) &&
+    else if ((name == 'IE' || name && !product && !/Browser|Mobi/.test(name)) &&
         (os == 'Windows CE' || /Mobi/i.test(ua))) {
       name += ' Mobile';
     }
