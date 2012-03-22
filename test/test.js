@@ -393,12 +393,32 @@
       'version': '0.2.149.27'
     },
 
+    'Chrome 5.0.375.127 on Google TV (Linux i686)': {
+      'ua': 'Mozilla/5.0 (X11; U: Linux i686; en-US) AppleWebKit/533.4 (KHTML, like Gecko) Chrome/5.0.375.127 Large Screen Safari/533.4 GoogleTV/b39389',
+      'layout': 'WebKit',
+      'manufacturer': 'Google',
+      'name': 'Chrome',
+      'os': 'Linux i686',
+      'product': 'Google TV',
+      'version': '5.0.375.127'
+    },
+
     'Chrome 8.1.0.0 on Ubuntu 10.10 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/540.0 (KHTML, like Gecko) Ubuntu/10.10 Chrome/8.1.0.0 Safari/540.0',
       'layout': 'WebKit',
       'name': 'Chrome',
       'os': 'Ubuntu 10.10 64-bit',
       'version': '8.1.0.0'
+    },
+
+    'Chrome 11.0.696.77 on Google TV (Linux armv7l)': {
+      'ua': 'Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.77 Large Screen Safari/534.24 GoogleTV/192312',
+      'layout': 'WebKit',
+      'manufacturer': 'Google',
+      'name': 'Chrome',
+      'os': 'Linux armv7l',
+      'product': 'Google TV',
+      'version': '11.0.696.77'
     },
 
     'Chrome Mobile 16.0.912.77 on Android 4.0.3': {

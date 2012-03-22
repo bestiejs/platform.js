@@ -295,6 +295,7 @@
       'BlackBerry',
       { 'label': 'Galaxy S', 'pattern': 'GT-I9000' },
       { 'label': 'Galaxy S2', 'pattern': 'GT-I9100' },
+      'Google TV',
       'iPad',
       'iPod',
       'iPhone',
@@ -315,6 +316,7 @@
       'Asus': { 'Transformer': 1 },
       'Barnes & Noble': { 'Nook': 1 },
       'BlackBerry': { 'PlayBook': 1 },
+      'Google': { 'Google TV': 1 },
       'HP': { 'TouchPad': 1 },
       'LG': { },
       'Motorola': { 'Xoom': 1 },
@@ -379,7 +381,7 @@
         // lookup the manufacturer by product or scan the UA for the manufacturer
         return result || (
           value[product] ||
-          value[0/*Opera 9.25 fix*/, /^[a-z]+(?: +[a-z]+)*/i.exec(product)] ||
+          value[0/*Opera 9.25 fix*/, /^[a-z]+(?: +[a-z]+\b)*/i.exec(product)] ||
           RegExp('\\b' + (key.pattern || qualify(key)) + '(?:\\b|\\w*\\d)', 'i').exec(ua)
         ) && (key.label || key);
       });
@@ -510,6 +512,10 @@
     if (manufacturer && !product) {
       product = getProduct([manufacturer]);
     }
+    // clean up Google TV
+    if ((data = /Google TV/.exec(product))) {
+      product = data[0];
+    }
     // detect simulators
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
@@ -526,7 +532,8 @@
       os = 'Kubuntu';
     }
     // detect Android browsers
-    else if (/Chrome|Vita/.test(name + ';' + product) && manufacturer) {
+    else if (manufacturer && manufacturer != 'Google' &&
+        /Chrome|Vita/.test(name + ';' + product)) {
       name = 'Android Browser';
       os = /Android/.test(os) ? os : 'Android';
     }
