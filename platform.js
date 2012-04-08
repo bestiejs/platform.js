@@ -59,6 +59,7 @@
 
   /**
    * Capitalizes a string value.
+   *
    * @private
    * @param {String} string The string to capitalize.
    * @returns {String} The capitalized string.
@@ -70,6 +71,7 @@
 
   /**
    * An iteration utility for arrays and objects.
+   *
    * @private
    * @param {Array|Object} object The object to iterate over.
    * @param {Function} callback The function called per iteration.
@@ -89,6 +91,7 @@
 
   /**
    * Trim and conditionally capitalize string values.
+   *
    * @private
    * @param {String} string The string to format.
    * @returns {String} The formatted string.
@@ -102,6 +105,7 @@
 
   /**
    * Iterates over an object's own properties, executing the `callback` for each.
+   *
    * @private
    * @param {Object} object The object to iterate over.
    * @param {Function} callback The function executed per own property.
@@ -114,6 +118,7 @@
 
   /**
    * Gets the internal [[Class]] of a value.
+   *
    * @private
    * @param {Mixed} value The value.
    * @returns {String} The [[Class]].
@@ -126,6 +131,7 @@
 
   /**
    * Checks if an object has the specified key as a direct property.
+   *
    * @private
    * @param {Object} object The object to check.
    * @param {String} key The key to check for.
@@ -161,6 +167,7 @@
    * Host objects can return type values that are different from their actual
    * data type. The objects we are concerned with usually return non-primitive
    * types of object, function, or unknown.
+   *
    * @private
    * @param {Mixed} object The owner of the property.
    * @param {String} property The property to check.
@@ -173,7 +180,9 @@
   }
 
   /**
-   * Prepares a string for use in a RegExp constructor by making hyphens and spaces optional.
+   * Prepares a string for use in a RegExp constructor by making hyphens and
+   * spaces optional.
+   *
    * @private
    * @param {String} string The string to qualify.
    * @returns {String} The qualified string.
@@ -184,6 +193,7 @@
 
   /**
    * A bare-bones` Array#reduce` like utility function.
+   *
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
@@ -200,6 +210,7 @@
 
   /**
    * Removes leading and trailing whitespace from a string.
+   *
    * @private
    * @param {String} string The string to trim.
    * @returns {String} The trimmed string.
@@ -212,6 +223,7 @@
 
   /**
    * Creates a new platform object.
+   *
    * @memberOf platform
    * @param {String} [ua = navigator.userAgent] The user agent string.
    * @returns {Object} A platform object.
@@ -358,6 +370,7 @@
 
     /**
      * Picks the layout engine from an array of guesses.
+     *
      * @private
      * @param {Array} guesses An array of guesses.
      * @returns {String|Null} The detected layout engine.
@@ -372,6 +385,7 @@
 
     /**
      * Picks the manufacturer from an array of guesses.
+     *
      * @private
      * @param {Array} guesses An array of guesses.
      * @returns {String|Null} The detected manufacturer.
@@ -389,6 +403,7 @@
 
     /**
      * Picks the browser name from an array of guesses.
+     *
      * @private
      * @param {Array} guesses An array of guesses.
      * @returns {String|Null} The detected browser name.
@@ -403,6 +418,7 @@
 
     /**
      * Picks the OS name from an array of guesses.
+     *
      * @private
      * @param {Array} guesses An array of guesses.
      * @returns {String|Null} The detected OS name.
@@ -451,6 +467,7 @@
 
     /**
      * Picks the product name from an array of guesses.
+     *
      * @private
      * @param {Array} guesses An array of guesses.
      * @returns {String|Null} The detected product name.
@@ -479,6 +496,7 @@
 
     /**
      * Resolves the version using an array of UA patterns.
+     *
      * @private
      * @param {Array} patterns An array of UA patterns.
      * @returns {String|Null} The detected version.
@@ -494,6 +512,7 @@
 
     /**
      * Return platform description when the platform object is coerced to a string.
+     *
      * @name toString
      * @memberOf platform
      * @type Function
@@ -784,6 +803,7 @@
 
     /**
      * The platform object.
+     *
      * @name platform
      * @type Object
      */
@@ -791,6 +811,7 @@
 
       /**
        * The browser/environment version.
+       *
        * @memberOf platform
        * @type String|Null
        */
@@ -798,6 +819,7 @@
 
       /**
        * The name of the browser/environment.
+       *
        * @memberOf platform
        * @type String|Null
        */
@@ -805,6 +827,7 @@
 
       /**
        * The name of the operating system.
+       *
        * @memberOf platform
        * @type String|Null
        */
@@ -814,6 +837,7 @@
 
       /**
        * The platform description.
+       *
        * @memberOf platform
        * @type String|Null
        */
@@ -821,6 +845,7 @@
 
       /**
        * The name of the browser layout engine.
+       *
        * @memberOf platform
        * @type String|Null
        */
@@ -828,6 +853,7 @@
 
       /**
        * The name of the product's manufacturer.
+       *
        * @memberOf platform
        * @type String|Null
        */
@@ -835,6 +861,7 @@
 
       /**
        * The alpha/beta release indicator.
+       *
        * @memberOf platform
        * @type String|Null
        */
@@ -842,6 +869,7 @@
 
       /**
        * The name of the product hosting the browser.
+       *
        * @memberOf platform
        * @type String|Null
        */
@@ -849,6 +877,7 @@
 
       /**
        * The browser's user agent string.
+       *
        * @memberOf platform
        * @type String|Null
        */
