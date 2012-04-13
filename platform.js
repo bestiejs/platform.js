@@ -4,6 +4,7 @@
  * Available under MIT license <http://mths.be/mit>
  */
 ;(function(window) {
+  'use strict';
 
   /** Backup possible window/global object */
   var oldWin = window;
