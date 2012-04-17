@@ -1,5 +1,5 @@
 .*
 vendor/
-docs/*.php
-tests/*.air
-tests/*.html
+doc/*.php
+test/*.air
+test/*.html
