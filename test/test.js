@@ -1353,7 +1353,7 @@
     },
 
     'Safari 3.0 on Apple iPod': {
-      'ua': 'Mozila/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3A101a Safari/419.3',
+      'ua': 'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/3A101a Safari/419.3',
       'layout': 'WebKit',
       'manufacturer': 'Apple',
       'name': 'Safari',
