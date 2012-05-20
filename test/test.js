@@ -1743,6 +1743,8 @@
 
   /*--------------------------------------------------------------------------*/
 
+  // explicitly call `QUnit.module()` instead of `module()`
+  // in case we are in a CLI environment
   QUnit.module('platform' + (window.document ? '' : ': ' + platform));
 
   (function() {
@@ -1903,5 +1905,10 @@
       platform.description = description;
     });
   }());
+
+  /*--------------------------------------------------------------------------*/
+
+  // explicitly call `QUnit.start()` for Narwhal, Rhino, and RingoJS
+  QUnit.start();
 
 }(typeof global == 'object' && global || this));
