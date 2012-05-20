@@ -1904,10 +1904,4 @@
     });
   }());
 
-  /*--------------------------------------------------------------------------*/
-
-  // explicitly call `QUnit.start()` in a CLI environment
-  if (!window.document) {
-    QUnit.start();
-  }
 }(typeof global == 'object' && global || this));

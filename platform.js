@@ -592,7 +592,7 @@
     if (useFeatures) {
       // detect server-side environments
       // Rhino has a global function while others have a global object
-      if (isHostType(thisBinding, 'global')) {
+      if (isHostType(window, 'global')) {
         if (java) {
           data = java.lang.System;
           arch = data.getProperty('os.arch');
