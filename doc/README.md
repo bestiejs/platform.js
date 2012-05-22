@@ -34,9 +34,6 @@
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="platform"></a>`platform`
 <a href="#platform">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/master/platform.js#L811 "View in source") [&#x24C9;][1]
 
@@ -45,9 +42,6 @@
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -64,9 +58,6 @@
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="platformlayout"></a>`platform.layout`
 <a href="#platformlayout">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/master/platform.js#L853 "View in source") [&#x24C9;][1]
 
@@ -75,9 +66,6 @@
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -94,9 +82,6 @@
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="platformname"></a>`platform.name`
 <a href="#platformname">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/master/platform.js#L827 "View in source") [&#x24C9;][1]
 
@@ -105,9 +90,6 @@
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -124,9 +106,6 @@
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="platformprerelease"></a>`platform.prerelease`
 <a href="#platformprerelease">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/master/platform.js#L869 "View in source") [&#x24C9;][1]
 
@@ -135,9 +114,6 @@
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -154,9 +130,6 @@
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="platformua"></a>`platform.ua`
 <a href="#platformua">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/master/platform.js#L885 "View in source") [&#x24C9;][1]
 
@@ -169,9 +142,6 @@
 
 <!-- div -->
 
-
-<!-- div -->
-
 ### <a id="platformversion"></a>`platform.version`
 <a href="#platformversion">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/master/platform.js#L819 "View in source") [&#x24C9;][1]
 
@@ -180,9 +150,6 @@
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
@@ -201,9 +168,6 @@ Creates a new platform object.
 * * *
 
 <!-- /div -->
-
-
-<!-- div -->
 
 
 <!-- div -->
