@@ -895,16 +895,18 @@
   /*--------------------------------------------------------------------------*/
 
   // expose platform
-  // in Narwhal, Node.js, or RingoJS
-  if (freeExports) {
-    forOwn(parse(), function(value, key) {
-      freeExports[key] = value;
+  // some AMD build optimizers, like r.js, check for specific condition patterns like the following:
+  if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+    // define as an anonymous module so, through path mapping, it can be aliased
+    define(function() {
+      return parse();
     });
   }
-  // via an AMD loader
-  else if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-    define('platform', function() {
-      return parse();
+  // check for `exports` after `define` in case a build optimizer adds an `exports` object
+  else if (freeExports) {
+    // in Narwhal, Node.js, or RingoJS
+    forOwn(parse(), function(value, key) {
+      freeExports[key] = value;
     });
   }
   // in a browser or Rhino

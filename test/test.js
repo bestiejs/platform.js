@@ -151,7 +151,7 @@
     }
     return Function('options',
       ('return ' +
-      /\(function[\s\S]+?(?=if\s*\(freeExports)/.exec(code)[0] +
+      /\(function[\s\S]+?(?=if\s*\(typeof define)/.exec(code)[0] +
       ' return parse()}(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
         .replace(/(function\s*\(\s*window\s*\)[^\n]+\n)/, '$1me=options;\n')
