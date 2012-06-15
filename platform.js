@@ -654,8 +654,12 @@
       version = version.replace(RegExp(data + '\\+?$'), '') +
         (prerelease == 'beta' ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
+    // rename code name "Fennec"
+    if (name == 'Fennec') {
+      name = 'Firefox Mobile';
+    }
     // obscure Maxthon's unreliable version
-    if (name == 'Maxthon' && version) {
+    else if (name == 'Maxthon' && version) {
       version = version.replace(/\.[\d.]+/, '.x');
     }
     // detect Silk desktop/accelerated modes

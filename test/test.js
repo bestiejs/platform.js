@@ -588,21 +588,29 @@
       'version': '5.0'
     },
 
-    'Fennec 2.0#{beta}1 on Android': {
+    'Firefox Mobile 2.0#{beta}1 on Android': {
       'ua': 'Mozilla/5.0 (Android; Linux armv7l; rv:2.0b6pre) Gecko/20100907 Firefox/4.0b6pre Fennec/2.0b1pre',
       'layout': 'Gecko',
-      'name': 'Fennec',
+      'name': 'Firefox Mobile',
       'os': 'Android',
       'prerelease': 'beta',
       'version': '2.0#{beta}1'
     },
 
-    'Fennec 2.0.1 on Linux i686': {
+    'Firefox Mobile 2.0.1 on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; Linux i686 on x86_64; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Fennec/2.0.1',
       'layout': 'Gecko',
-      'name': 'Fennec',
+      'name': 'Firefox Mobile',
       'os': 'Linux i686',
       'version': '2.0.1'
+    },
+
+    'Firefox Mobile 10.0.5 on Android': {
+      'ua': 'Mozilla/5.0 (Android; Mobile; rv:10.0.5) Gecko/10.0.5 Firefox/10.0.5 Fennec/10.0.5',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android',
+      'version': '10.0.5'
     },
 
     'Flock 2.0#{alpha}1 on Linux i686': {
