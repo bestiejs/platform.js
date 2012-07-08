@@ -83,23 +83,6 @@ info.os; // 'Mac OS X 10.7.2'
 info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.2'
 ~~~
 
-## Cloning this repo
-
-To clone this repository including all submodules, using Git 1.6.5 or later:
-
-~~~ bash
-git clone --recursive https://github.com/bestiejs/platform.js.git
-cd platform.js
-~~~
-
-For older Git versions, just use:
-
-~~~ bash
-git clone https://github.com/bestiejs/platform.js.git
-cd platform.js
-git submodule update --init
-~~~
-
 Feel free to fork and send pull requests if you see improvements!
 
 ## Footnotes
