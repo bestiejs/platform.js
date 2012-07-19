@@ -7,6 +7,7 @@
 	</head>
 	<body>
 		<div id="qunit"></div>
+		<script src="../platform.js"></script>
 		<script>
 			(function() {
 				var hasOwnProperty = function hasOwnProperty(key) {
@@ -25,32 +26,44 @@
 					Object.prototype.hasOwnProperty = hasOwnProperty;
 				}
 			}());
+
+			// avoid syntax errors for `QUnit.throws` in older Firefoxes
+			document.write(platform.name == 'Firefox' && /^1\b/.test(platform.version)
+				? '<script src="../vendor/qunit/qunit/qunit-1.8.0.js"><\/script>'
+				: '<script src="../vendor/qunit/qunit/qunit.js"><\/script>'
+			);
 		</script>
-		<script src="../vendor/qunit/qunit/qunit.js"></script>
-		<script>var platform2;</script>
-		<script src="../platform.js"></script>
-		<script src="../vendor/requirejs/require.js"></script>
 		<script>
-			if (/[?&]norequire=true(?:&|$)/.test(location.search)) {
-				require = define = null;
-				document.write('<script src="test.js"><\/script>');
-			}
-			else {
-				require({
-					'baseUrl': '../vendor/requirejs/',
-					'urlArgs': 't=' + (+new Date),
-					'paths': {
-						'platform': '../../platform'
-					}
-				},
-				['platform'], function(platform) {
-					platform2 = platform;
-					require(['test.js']);
-				});
-			}
+			// load test.js if not using require.js
+			document.write(/[?&]norequire=true(?:&|$)/.test(location.search)
+				? '<script src="test.js"><\/script>'
+				: '<script src="../vendor/requirejs/require.js"><\/script>'
+			);
+		</script>
+		<script>
+			// load Platform as a module
+			var platform2;
+
+			window.require && require({
+				'baseUrl': '../vendor/requirejs/',
+				'urlArgs': 't=' + (+new Date),
+				'paths': {
+					'platform': '../../platform'
+				}
+			},
+			['platform'], function(platform) {
+				platform2 = platform;
+				require(['test.js']);
+			});
+
+			// set a more readable browser name
 			window.onload = function() {
-				setTimeout(function() {
-					document.getElementById('qunit-userAgent').innerHTML = platform;
+				var timeoutId = setInterval(function() {
+					var ua = document.getElementById('qunit-userAgent');
+					if (ua) {
+						ua.innerHTML = platform;
+						clearInterval(timeoutId);
+					}
 				}, 15);
 			};
 		</script>

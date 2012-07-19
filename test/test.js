@@ -3,21 +3,21 @@
   /** Use a single load function */
   var load = typeof require == 'function' ? require : window.load;
 
-  /** The unit testing framework */
-  var QUnit =
-    window.QUnit || (
-      window.setTimeout || (window.addEventListener = window.setTimeout = / /),
-      window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit,
-      load('../vendor/qunit-clib/qunit-clib.js'),
-      (window.addEventListener || 0).test && delete window.addEventListener,
-      window.QUnit
-    );
-
   /** The `platform` object to test */
   var platform =
     window.platform ||
     load('../platform.js') ||
     window.platform;
+
+  /** The unit testing framework */
+  var QUnit =
+    window.QUnit || (
+      window.setTimeout || (window.addEventListener = window.setTimeout = / /),
+      window.QUnit = load('../vendor/qunit/qunit/qunit' + (platform.name == 'Narwhal' ? '-1.8.0' : '') + '.js') || window.QUnit,
+      load('../vendor/qunit-clib/qunit-clib.js'),
+      (window.addEventListener || 0).test && delete window.addEventListener,
+      window.QUnit
+    );
 
   /*--------------------------------------------------------------------------*/
 
