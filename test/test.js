@@ -437,6 +437,25 @@
       'version': '16.0.912.77'
     },
 
+    'Chrome Mobile 19.0.1084.60 on Apple iPhone (iOS 5.1.1)': {
+      'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; en-gb) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/19.0.1084.60 Mobile/9B206 Safari/7534.48.3',
+      'layout': 'WebKit',
+      'manufacturer': 'Apple',
+      'name': 'Chrome Mobile',
+      'os': 'iOS 5.1.1',
+      'product': 'iPhone',
+      'version': '19.0.1084.60'
+    },
+
+    'Chrome Mobile (desktop mode) on iOS 4.3+': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.53.11 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10',
+      'layout': 'WebKit',
+      'likeChrome': true,
+      'manufacturer': 'Apple',
+      'name': 'Chrome Mobile',
+      'os': 'iOS 4.3+'
+    },
+
     'Epiphany 0.9.2 on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.4) Gecko/20030908 Epiphany/0.9.2',
       'layout': 'Gecko',

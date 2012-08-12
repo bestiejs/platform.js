@@ -297,7 +297,7 @@
       'Opera Mini',
       'Opera',
       'Chrome',
-      { 'label': 'Chrome Mobile', 'pattern': 'CrMo' },
+      { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
       { 'label': 'IE', 'pattern': 'MSIE' },
       'Safari'
@@ -573,7 +573,7 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|CrMo|Opera ?Mini|Raven|Silk(?!/[\\d.]+$))',
+        '(?:Cloud9|CriOS|CrMo|Opera ?Mini|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
@@ -734,17 +734,6 @@
       layout = ['Presto'];
       description.push(data);
     }
-    // detect Opera desktop modes
-    if (name == 'Opera' &&  (data = /(?:zbov|zvav)$/.exec(os))) {
-      name += ' ';
-      description.unshift('desktop mode');
-      if (data == 'zvav') {
-        name += 'Mini';
-        version = null;
-      } else {
-        name += 'Mobile';
-      }
-    }
     // detect WebKit Nightly and approximate Chrome/Safari versions
     if ((data = (/\bAppleWebKit\/([\d.]+\+?)/i.exec(ua) || 0)[1])) {
       // correct build for numeric comparison
@@ -771,13 +760,37 @@
         data = (data = data[0], data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : '5');
       } else {
         layout[1] = 'like Chrome';
-        data = data[1] || (data = data[0], data < 530 ? 1 : data < 532 ? 2 : data < 532.05 ? 3 : data < 533 ? 4 : data < 534.03 ? 5 : data < 534.07 ? 6 : data < 534.10 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.30 ? 11 : data < 535.01 ? 12 : data < 535.02 ? '13+' : data < 535.07 ? 15 : data < 535.11 ? 16 : data < 535.19 ? 17 : data < 535.21 ? 18 : '19');
+        data = data[1] || (data = data[0], data < 530 ? 1 : data < 532 ? 2 : data < 532.05 ? 3 : data < 533 ? 4 : data < 534.03 ? 5 : data < 534.07 ? 6 : data < 534.10 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.30 ? 11 : data < 535.01 ? 12 : data < 535.02 ? '13+' : data < 535.07 ? 15 : data < 535.11 ? 16 : data < 535.19 ? 17 : data < 536.05 ? 18 : data < 536.10 ? 19 : data < 537.01 ? 20 : '21');
       }
       // add the postfix of ".x" or "+" for approximate versions
       layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+');
       // obscure version for some Safari 1-2 releases
       if (name == 'Safari' && (!version || parseInt(version) > 45)) {
         version = data;
+      }
+    }
+    // detect Opera desktop modes
+    if (name == 'Opera' &&  (data = /(?:zbov|zvav)$/.exec(os))) {
+      name += ' ';
+      description.unshift('desktop mode');
+      if (data == 'zvav') {
+        name += 'Mini';
+        version = null;
+      } else {
+        name += 'Mobile';
+      }
+    }
+    // detect Chrome desktop mode
+    else if (name == 'Safari' && /Chrome/.exec(layout[1])) {
+      description.unshift('desktop mode');
+      name = 'Chrome Mobile';
+      version = null;
+
+      if (/Mac OS X/.test(os)) {
+        manufacturer = 'Apple';
+        os = 'iOS 4.3+';
+      } else {
+        os = null;
       }
     }
     // strip incorrect OS versions
