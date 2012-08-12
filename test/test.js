@@ -1,4 +1,5 @@
-(function(window) {
+;(function(window) {
+  'use strict';
 
   /** Use a single load function */
   var load = typeof require == 'function' ? require : window.load;
@@ -1228,6 +1229,15 @@
       'version': '6.1.15738'
     },
 
+    'Opera Mini (desktop mode) on Linux zvav': {
+      'ua': 'Opera/9.80 (X11; Linux zvav; U; en) Presto/2.8.119 Version/10.54',
+      'layout': 'Presto',
+      'name': 'Opera Mini',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'operamini': { '[[Class]]': 'OperaMini' },
+      'os': 'Linux zvav',
+    },
+
     'Opera Mobile 10.00 on Linux i686': {
       'ua': 'Opera/9.80 (Linux i686; Opera Mobi/1038; U; en) Presto/2.5.24 Version/10.00',
       'layout': 'Presto',
@@ -1235,6 +1245,15 @@
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
       'os': 'Linux i686',
       'version': '10.00'
+    },
+
+    'Opera Mobile 12.00 (desktop mode) on Linux zbov': {
+      'ua': 'Opera/9.80 (X11; Linux zbov; U; ar) Presto/2.10.254 Version/12.00',
+      'layout': 'Presto',
+      'name': 'Opera Mobile',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '12.00'; } },
+      'os': 'Linux zbov',
+      'version': '12.00'
     },
 
     'Opera 10.10 (identifying as Firefox 2.0.0) on Windows XP': {

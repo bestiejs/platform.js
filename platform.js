@@ -708,7 +708,7 @@
           ))
         ) && !reOpera.test(data = parse.call(forOwn, ua.replace(reOpera, '') + ';')) && data.name) {
 
-      // when "indentifying" the UA contains both Opera and the other browser's name
+      // when "indentifying", the UA contains both Opera and the other browser's name
       data = 'ing as ' + data.name + ((data = data.version) ? ' ' + data : '');
       if (reOpera.test(name)) {
         if (/IE/.test(data) && os == 'Mac OS') {
@@ -716,7 +716,7 @@
         }
         data = 'identify' + data;
       }
-      // when "masking" the UA contains only the other browser's name
+      // when "masking", the UA contains only the other browser's name
       else {
         data = 'mask' + data;
         if (operaClass) {
@@ -733,6 +733,17 @@
       }
       layout = ['Presto'];
       description.push(data);
+    }
+    // detect Opera desktop modes
+    if (name == 'Opera' &&  (data = /(?:zbov|zvav)$/.exec(os))) {
+      name += ' ';
+      description.unshift('desktop mode');
+      if (data == 'zvav') {
+        name += 'Mini';
+        version = null;
+      } else {
+        name += 'Mobile';
+      }
     }
     // detect WebKit Nightly and approximate Chrome/Safari versions
     if ((data = (/\bAppleWebKit\/([\d.]+\+?)/i.exec(ua) || 0)[1])) {
