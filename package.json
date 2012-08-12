@@ -1,6 +1,6 @@
 {
   "name": "platform",
-  "version": "1.0.0-pre",
+  "version": "1.0.0",
   "description": "A platform detection library that works on nearly all JavaScript platforms.",
   "homepage": "https://github.com/bestiejs/platform.js",
   "main": "platform",
@@ -24,7 +24,7 @@
   "maintainers": [
     {
       "name": "John-David Dalton",
-      "email": "john@fusejs.com",
+      "email": "john.david.dalton@gmail.com",
       "web": "http://allyoucanleet.com/"
     },
     {

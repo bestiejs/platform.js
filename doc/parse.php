@@ -21,7 +21,7 @@
   // generate Markdown
   $markdown = docdown(array(
     'path' => '../' . $file,
-    'title' => 'Platform.js <sup>v1.0.0-pre</sup>',
+    'title' => 'Platform.js <sup>v1.0.0</sup>',
     'url'  => 'https://github.com/bestiejs/platform.js/blob/master/platform.js'
   ));
 

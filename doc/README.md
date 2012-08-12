@@ -1,4 +1,4 @@
-# Platform.js <sup>v1.0.0-pre</sup>
+# Platform.js <sup>v1.0.0</sup>
 
 <!-- div -->
 
