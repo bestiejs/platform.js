@@ -472,11 +472,11 @@
       'version': '2.22'
     },
 
-    'Epiphany 2.30.6 on Linux x86_64': {
+    'Epiphany 2.30.6 on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.7 (KHTML, like Gecko) Epiphany/2.30.6 Safari/534.7',
       'layout': 'WebKit',
       'name': 'Epiphany',
-      'os': 'Linux x86_64',
+      'os': 'Linux 64-bit',
       'version': '2.30.6'
     },
 
@@ -600,11 +600,11 @@
       'version': '4.0#{beta}11'
     },
 
-    'Firefox 5.0 on FreeBSD amd64': {
+    'Firefox 5.0 on FreeBSD 64-bit': {
       'ua': 'Mozilla/5.0 (X11; FreeBSD amd64; rv:5.0) Gecko/20100101 Firefox/5.0',
       'layout': 'Gecko',
       'name': 'Firefox',
-      'os': 'FreeBSD amd64',
+      'os': 'FreeBSD 64-bit',
       'version': '5.0'
     },
 
@@ -642,11 +642,11 @@
       'version': '2.0#{alpha}1'
     },
 
-    'Flock 2.0#{beta}3 on Linux x86_64': {
+    'Flock 2.0#{beta}3 on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; es-AR; rv:1.9.0.2) Gecko/2008091920 Firefox/3.0.2 Flock/2.0b3',
       'layout': 'Gecko',
       'name': 'Flock',
-      'os': 'Linux x86_64',
+      'os': 'Linux 64-bit',
       'prerelease': 'beta',
       'version': '2.0#{beta}3'
     },
@@ -731,11 +731,11 @@
       'version': '3.5.5'
     },
 
-    'Iceweasel 5.0 on Linux x86_64': {
+    'Iceweasel 5.0 on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 Iceweasel/5.0',
       'layout': 'Gecko',
       'name': 'Iceweasel',
-      'os': 'Linux x86_64',
+      'os': 'Linux 64-bit',
       'version': '5.0'
     },
 
@@ -1150,11 +1150,11 @@
       'version': '3.x#{alpha}'
     },
 
-    'Midori (like Safari 3.x) on Linux x86_64': {
+    'Midori (like Safari 3.x) on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; ru-ru) AppleWebKit/525.1+ (KHTML, like Gecko, Safari/525.1+) midori',
       'layout': 'WebKit',
       'name': 'Midori',
-      'os': 'Linux x86_64'
+      'os': 'Linux 64-bit'
     },
 
     'Midori 0.1.10 on Linux i686': {
@@ -1519,19 +1519,19 @@
       'version': '2.0#{beta}1'
     },
 
-    'SeaMonkey 2.0.3 on Linux x86_64': {
+    'SeaMonkey 2.0.3 on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.8) Gecko/20100205 SeaMonkey/2.0.3',
       'layout': 'Gecko',
       'name': 'SeaMonkey',
-      'os': 'Linux x86_64',
+      'os': 'Linux 64-bit',
       'version': '2.0.3'
     },
 
-    'SeaMonkey 2.0.6 on Linux ia64': {
+    'SeaMonkey 2.0.6 on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux ia64; de; rv:1.9.1.11) Gecko/20100820 Lightning/1.0b2pre SeaMonkey/2.0.6',
       'layout': 'Gecko',
       'name': 'SeaMonkey',
-      'os': 'Linux ia64',
+      'os': 'Linux 64-bit',
       'version': '2.0.6'
     },
 
@@ -1761,7 +1761,7 @@
     'Mozilla/5.0 (X11; U; Linux x86_64; fr; rv:1.9.2.13) Gecko/20101203 FalsePositive/3.6.7 (like Firefox/3.6.13)': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; fr; rv:1.9.2.13) Gecko/20101203 FalsePositive/3.6.7 (like Firefox/3.6.13)',
       'layout': 'Gecko',
-      'os': 'Linux x86_64'
+      'os': 'Linux 64-bit'
     },
 
     'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100728 Firefox/3.6.8 CometBird/3.6.8,gzip(gfe),gzip(gfe)': {
@@ -1800,7 +1800,7 @@
           var platform = getPlatform(value);
           value = name == 'description' ? key : value[name];
           value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2' }) : null;
-          equal(platform && platform[name], value, String(platform));
+          equal(platform && String(platform[name]), String(value), String(platform));
         });
       });
     });
@@ -1816,7 +1816,7 @@
     test('handles no user agent', function() {
       forOwn(getPlatform({}), function(value, key) {
         if (typeof value != 'function') {
-          strictEqual(value, null, 'platform.' + key);
+          equal(String(value), 'null', 'platform.' + key);
         }
       });
     });

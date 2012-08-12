@@ -512,12 +512,11 @@
     /*------------------------------------------------------------------------*/
 
     /**
-     * Return platform description when the platform object is coerced to a string.
+     * Returns `platform.description` when the platform object is coerced to a string.
      *
      * @name toString
      * @memberOf platform
-     * @type Function
-     * @returns {String} The platform description.
+     * @returns {String} Returns `platform.description` if available, else an empty string.
      */
     function toStringPlatform() {
       return this.description || '';
@@ -817,9 +816,25 @@
     if (product) {
       description.push((/^on /.test(description[description.length -1]) ? '' : 'on ') + product);
     }
+    // parse OS into an object
+    if (os) {
+      data = / ([\d.+]+)$/.exec(os);
+      os = {
+        'architecture': 32,
+        'family': data ? os.replace(data[0], '') : os,
+        'version': data ? data[1] : null,
+        'toString': function() {
+          var version = this.version;
+          return this.family + (version ? ' ' + version : '') + (this.architecture == 64 ? ' 64-bit' : '');
+        }
+      };
+    }
     // add browser/OS architecture
-    if ((data = /\b(?:AMD|IA|Win|WOW|x86_|x)64\b/i).test(arch) && !/\bi686\b/i.test(arch)) {
-      os = os && os + (data.test(os) ? '' : ' 64-bit');
+    if ((data = / (?:AMD|IA|Win|WOW|x86_|x)64\b/i.exec(arch)) && !/\bi686\b/i.test(arch)) {
+      if (os) {
+        os.architecture = 64;
+        os.family = os.family.replace(data, '');
+      }
       if (name && (/WOW64/i.test(ua) ||
           (useFeatures && /\w(?:86|32)$/.test(nav.cpuClass || nav.platform)))) {
         description.unshift('32-bit');
@@ -858,11 +873,46 @@
        * The name of the operating system.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type Object
        */
-      'os': os && (name &&
-        !(os == os.split(' ')[0] && (os == name.split(' ')[0] || product)) &&
-          description.push(product ? '(' + os + ')' : 'on ' + os), os),
+      'os': os
+        ? (name &&
+            !(os == String(os).split(' ')[0] && (os == name.split(' ')[0] || product)) &&
+              description.push(product ? '(' + os + ')' : 'on ' + os), os)
+        : {
+
+          /**
+           * The CPU architecture the OS is built for.
+           *
+           * @memberOf platform.os
+           * @type String|Null
+           */
+          'architecture': null,
+
+          /**
+           * The family of the OS.
+           *
+           * @memberOf platform.os
+           * @type String|Null
+           */
+          'family': null,
+
+          /**
+           * The version of the OS.
+           *
+           * @memberOf platform.os
+           * @type String|Null
+           */
+          'version': null,
+
+          /**
+           * Returns the OS string.
+           *
+           * @memberOf platform.os
+           * @returns {String} The OS string.
+           */
+          'toString': function() { return 'null'; }
+        },
 
       /**
        * The platform description.
