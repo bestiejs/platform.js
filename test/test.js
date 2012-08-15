@@ -1254,7 +1254,7 @@
       'name': 'Opera Mini',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
       'operamini': { '[[Class]]': 'OperaMini' },
-      'os': 'Linux zvav',
+      'os': 'Linux zvav'
     },
 
     'Opera Mobile 10.00 on Linux i686': {
