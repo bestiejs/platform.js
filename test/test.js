@@ -1197,8 +1197,17 @@
       'global': {},
       'name': 'Node.js',
       'os': 'Cygwin',
-      'process': { 'version': 'v0.3.1', 'platform': 'cygwin' },
+      'process': { 'platform': 'cygwin', 'version': 'v0.3.1' },
       'version': '0.3.1'
+    },
+
+    'Node.js 0.8.9 on Darwin 64-bit': {
+      'exports': {},
+      'global': {},
+      'name': 'Node.js',
+      'os': 'Darwin 64-bit',
+      'process': { 'arch': 'x64', 'version': 'v0.8.9', 'platform': 'darwin' },
+      'version': '0.8.9'
     },
 
     'Nokia Browser 8.5.0 (like Safari 5+) on Nokia N9': {
