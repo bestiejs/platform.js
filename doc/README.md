@@ -208,7 +208,7 @@ Returns `platform.description` when the platform object is coerced to a string.
 ### <a id="platformosarchitecture"></a>`platform.os.architecture`
 <a href="#platformosarchitecture">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/master/platform.js#L890 "View in source") [&#x24C9;][1]
 
-*(String, Null)*: The CPU architecture the OS is built for.
+*(Number, Null)*: The CPU architecture the OS is built for.
 
 * * *
 
