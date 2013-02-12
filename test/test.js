@@ -127,7 +127,8 @@
         result,
         xhr;
 
-    if (window.document) {
+    // for browsers
+    if (window.document && !window.phantom) {
       if (isHostType(window, 'ActiveXObject')) {
         xhr = new ActiveXObject('Microsoft.XMLHTTP');
       } else if (isHostType(window, 'XMLHttpRequest')) {
@@ -146,7 +147,7 @@
     else if (typeof readFile == 'function') {
       code = readFile('../platform.js');
     }
-    // for Node.js and RingoJS
+    // for Node.js, PhantomJS, and RingoJS
     else if (typeof require == 'function') {
       code = (require('fs').readFileSync || require('fs').read)('../platform.js');
     }
@@ -1831,7 +1832,7 @@
     });
 
     test('supports loading Platform.js as a module', function() {
-      if (window.document && window.require) {
+      if (window.define && define.amd) {
         equal((platform2 || {}).description, platform.description);
       } else {
         ok(true, 'test skipped');
@@ -1963,8 +1964,9 @@
 
   /*--------------------------------------------------------------------------*/
 
-  // explicitly call `QUnit.start()` for Narwhal, Rhino, and RingoJS
-  if (!window.document) {
+  // configure QUnit and call `QUnit.start()` for Narwhal, Node.js, PhantomJS, Rhino, and RingoJS
+  if (!window.document || window.phantom) {
+    QUnit.config.noglobals = true;
     QUnit.start();
   }
 }(typeof global == 'object' && global || this));
