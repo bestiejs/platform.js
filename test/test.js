@@ -1,7 +1,7 @@
 ;(function(window) {
   'use strict';
 
-  /** Use a single load function */
+  /** Use a single "load" function */
   var load = typeof require == 'function' ? require : window.load;
 
   /** The `platform` object to test */
@@ -13,10 +13,11 @@
   /** The unit testing framework */
   var QUnit =
     window.QUnit || (
-      window.setTimeout || (window.addEventListener = window.setTimeout = / /),
-      window.QUnit = load('../vendor/qunit/qunit/qunit' + (platform.name == 'Narwhal' ? '-1.8.0' : '') + '.js') || window.QUnit,
+      window.addEventListener || (window.addEventListener = Function.prototype),
+      window.setTimeout || (window.setTimeout = Function.prototype),
+      window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit,
       load('../vendor/qunit-clib/qunit-clib.js'),
-      (window.addEventListener || 0).test && delete window.addEventListener,
+      window.addEventListener === Function.prototype && delete window.addEventListener,
       window.QUnit
     );
 
@@ -141,14 +142,13 @@
         }
       });
     }
-    else {
-      try {
-        // Node.js
-        code = require('fs').readFileSync('../platform.js');
-      } catch(e) {
-        // Narwhal, Rhino, and Ringo
-        code = readFile('../platform.js');
-      }
+    // for Narwhal and Rhino
+    else if (typeof readFile == 'function') {
+      code = readFile('../platform.js');
+    }
+    // for Node.js and RingoJS
+    else if (typeof require == 'function') {
+      code = (require('fs').readFileSync || require('fs').read)('../platform.js');
     }
     return Function('options',
       ('return ' +
