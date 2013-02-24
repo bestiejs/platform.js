@@ -25,6 +25,9 @@
   /** Detect Java environment */
   var java = /Java/.test(getClassOf(window.java)) && window.java;
 
+  /** Detect Rhino */
+  var rhino = java && getClassOf(window.environment) == 'Environment';
+
   /** A character to represent alpha */
   var alpha = java ? 'a' : '\u03b1';
 
@@ -581,10 +584,11 @@
     // detect stubborn layout engines
     if (layout == 'iCab' && parseFloat(version) > 3) {
       layout = ['WebKit'];
-    } else if (data =
-        /Opera/.test(name) && 'Presto' ||
-        /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
-        !layout && /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident')) {
+    } else if ((data =
+          /Opera/.test(name) && 'Presto' ||
+          /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
+          !layout && /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident')
+        )) {
       layout = [data];
     }
     // leverage environment features
@@ -597,7 +601,7 @@
           arch = data.getProperty('os.arch');
           os = os || data.getProperty('os.name') + ' ' + data.getProperty('os.version');
         }
-        if (typeof exports == 'object' && exports) {
+        if (freeExports) {
           // if `thisBinding` is the [ModuleScope]
           if (thisBinding == oldWin && typeof system == 'object' && (data = [system])[0]) {
             os || (os = data[0].os || null);
@@ -610,13 +614,18 @@
                 name = 'Narwhal';
               }
             }
-          } else if (typeof process == 'object' && (data = process)) {
+          }
+          else if (typeof process == 'object' && (data = process)) {
             name = 'Node.js';
             arch = data.arch;
             os = data.platform;
             version = /[\d.]+/.exec(data.version)[0];
           }
-        } else if (getClassOf(window.environment) == 'Environment') {
+          else if (rhino) {
+            name = 'Rhino';
+          }
+        }
+        else if (rhino) {
           name = 'Rhino';
         }
       }

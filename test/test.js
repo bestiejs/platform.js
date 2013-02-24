@@ -164,7 +164,7 @@
         .replace(/\b(?:thisBinding|window)\b/g, 'me')
         .replace(/([^.])\bsystem\b/g, '$1me.system')
         .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
-        .replace(/\b(?:Environment|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
+        .replace(/\b(?:Environment|Java|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
         .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
         .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
         .replace(/\bnav\.platform/g, 'me.platform')
@@ -1355,10 +1355,12 @@
       'os': 'Linux i686'
     },
 
-    'Rhino': {
-      'global': {},
+    'Rhino on Mac OS X 64-bit': {
       'environment': {},
-      'name': 'Rhino'
+      'global': {},
+      'java': { 'lang': { 'System': { 'getProperty': function(property) { return /name/.test(property) ? 'Mac OS X' : 'x86_64'; } } } },
+      'name': 'Rhino',
+      'os': 'Mac OS X 64-bit'
     },
 
     'RingoJS 0.7': (function() {
