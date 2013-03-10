@@ -4,22 +4,27 @@
   /** Use a single "load" function */
   var load = typeof require == 'function' ? require : window.load;
 
-  /** The `platform` object to test */
-  var platform =
-    window.platform ||
-    load('../platform.js') ||
-    window.platform;
-
   /** The unit testing framework */
-  var QUnit =
-    window.QUnit || (
-      window.addEventListener || (window.addEventListener = Function.prototype),
-      window.setTimeout || (window.setTimeout = Function.prototype),
+  var QUnit = (function() {
+    var noop = Function.prototype;
+    return  window.QUnit || (
+      window.addEventListener || (window.addEventListener = noop),
+      window.setTimeout || (window.setTimeout = noop),
       window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit,
-      load('../vendor/qunit-clib/qunit-clib.js'),
-      window.addEventListener === Function.prototype && delete window.addEventListener,
+      (load('../vendor/qunit-clib/qunit-clib.js') || { 'runInContext': noop }).runInContext(window),
+      addEventListener === noop && delete window.addEventListener,
       window.QUnit
     );
+  }());
+
+  /** The `platform` object to check */
+  var platform = window.platform || (window.platform =
+    load('../platform.js') ||
+    window.platform
+  );
+
+  /** Shortcut used to check for own properties of objects */
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
 
   /*--------------------------------------------------------------------------*/
 
@@ -48,40 +53,8 @@
    */
   function forOwn(object, callback) {
     for (var key in object) {
-      hasKey(object, key) && callback(object[key], key, object);
+      hasOwnProperty.call(object, key) && callback(object[key], key, object);
     }
-  }
-
-  /**
-   * Checks if an object has the specified key as a direct property.
-   *
-   * @private
-   * @param {Object} object The object to check.
-   * @param {String} key The key to check for.
-   * @returns {Boolean} Returns `true` if key is a direct property, else `false`.
-   */
-  function hasKey(object, key) {
-    var o = {},
-        hasOwnProperty = o.hasOwnProperty,
-        parent = object != null && (object.constructor || Object).prototype,
-        result = false;
-
-    if (parent) {
-      // for modern browsers
-      object = Object(object);
-      if (typeof hasOwnProperty == 'function') {
-        result = hasOwnProperty.call(object, key);
-      }
-      // for Safari 2
-      else if (o.__proto__ == Object.prototype) {
-        object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
-      }
-      // for others (not as accurate)
-      else {
-        result = key in object && !(key in parent && object[key] === parent[key]);
-      }
-    }
-    return result;
   }
 
   /**
@@ -1966,7 +1939,8 @@
 
   /*--------------------------------------------------------------------------*/
 
-  // configure QUnit and call `QUnit.start()` for Narwhal, Node.js, PhantomJS, Rhino, and RingoJS
+  // configure QUnit and call `QUnit.start()` for
+  // Narwhal, Node.js, PhantomJS, Rhino, and RingoJS
   if (!window.document || window.phantom) {
     QUnit.config.noglobals = true;
     QUnit.start();
