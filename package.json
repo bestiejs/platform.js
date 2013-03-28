@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A platform detection library that works on nearly all JavaScript platforms.",
   "homepage": "https://github.com/bestiejs/platform.js",
+  "license": "MIT",
   "main": "platform",
   "keywords": [
     "environment",
