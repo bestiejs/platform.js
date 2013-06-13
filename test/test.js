@@ -1294,6 +1294,14 @@
       'version': '11.52'
     },
 
+    'Opera 15.0.1147.18 on OS X 10.8.4': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.20 Safari/537.36  OPR/15.0.1147.18 (Edition Next)',
+      'layout': 'Blink',
+      'name': 'Opera',
+      'os': 'OS X 10.8.4',
+      'version': '15.0.1147.18'
+    },
+
     'PhantomJS 1.0.0 (like Safari 4.x) on Cygwin': {
       'ua': 'Mozilla/5.0 (X11; U; Cygwin; C -) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3)  PhantomJS/1.0.0',
       'layout': 'WebKit',

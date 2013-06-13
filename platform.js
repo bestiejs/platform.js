@@ -299,6 +299,7 @@
       'WebPositive',
       'Opera Mini',
       'Opera',
+      { 'label': 'Opera', 'pattern': 'OPR' },
       'Chrome',
       { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
@@ -576,7 +577,7 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|CriOS|CrMo|Opera ?Mini|Raven|Silk(?!/[\\d.]+$))',
+        '(?:Cloud9|CriOS|CrMo|Opera ?Mini|OPR|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
@@ -586,7 +587,7 @@
     if (layout == 'iCab' && parseFloat(version) > 3) {
       layout = ['WebKit'];
     } else if ((data =
-          /Opera/.test(name) && 'Presto' ||
+          /Opera/.test(name) && (/OPR/.test(ua) ? 'Blink' : 'Presto') ||
           /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
           !layout && /\bMSIE\b/i.test(ua) && (os == 'Mac OS' ? 'Tasman' : 'Trident')
         )) {
