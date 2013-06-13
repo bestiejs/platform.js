@@ -307,63 +307,63 @@
       'product': 'BlackBerry 9800'
     },
 
-    'Camino 0.7 on Mac OS X': {
+    'Camino 0.7 on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.0.1) Gecko/20030306 Camino/0.7',
       'layout': 'Gecko',
       'name': 'Camino',
-      'os': 'Mac OS X',
+      'os': 'OS X',
       'version': '0.7'
     },
 
-    'Camino 1.0#{beta}2+ on Mac OS X': {
+    'Camino 1.0#{beta}2+ on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.0.1) Gecko/20060119 Camino/1.0b2+',
       'layout': 'Gecko',
       'name': 'Camino',
-      'os': 'Mac OS X',
+      'os': 'OS X',
       'prerelease': 'beta',
       'version': '1.0#{beta}2+'
     },
 
-    'Camino 1.0+ on Mac OS X': {
+    'Camino 1.0+ on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.1) Gecko/20061013 Camino/1.0+ (Firefox compatible)',
       'layout': 'Gecko',
       'name': 'Camino',
-      'os': 'Mac OS X',
+      'os': 'OS X',
       'version': '1.0+'
     },
 
-    'Camino 1.1#{alpha}1+ on Mac OS X': {
+    'Camino 1.1#{alpha}1+ on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en; rv:1.8.1.1pre) Gecko/20061126 Camino/1.1a1+',
       'layout': 'Gecko',
       'name': 'Camino',
-      'os': 'Mac OS X',
+      'os': 'OS X',
       'prerelease': 'alpha',
       'version': '1.1#{alpha}1+'
     },
 
-    'Camino 1.6#{alpha} on Mac OS X': {
+    'Camino 1.6#{alpha} on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en; rv:1.8.1.4pre) Gecko/20070511 Camino/1.6pre',
       'layout': 'Gecko',
       'name': 'Camino',
-      'os': 'Mac OS X',
+      'os': 'OS X',
       'prerelease': 'alpha',
       'version': '1.6#{alpha}'
     },
 
-    'Camino 2.0#{beta}3 on Mac OS X 10.5': {
+    'Camino 2.0#{beta}3 on OS X 10.5': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en; rv:1.9.0.10pre) Gecko/2009041800 Camino/2.0b3pre (like Firefox/3.0.10pre)',
       'layout': 'Gecko',
       'name': 'Camino',
-      'os': 'Mac OS X 10.5',
+      'os': 'OS X 10.5',
       'prerelease': 'beta',
       'version': '2.0#{beta}3'
     },
 
-    'Camino 2.0.3 on Mac OS X 10.6': {
+    'Camino 2.0.3 on OS X 10.6': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; nl; rv:1.9.0.19) Gecko/2010051911 Camino/2.0.3 (MultiLang) (like Firefox/3.0.19)',
       'layout': 'Gecko',
       'name': 'Camino',
-      'os': 'Mac OS X 10.6',
+      'os': 'OS X 10.6',
       'version': '2.0.3'
     },
 
@@ -462,11 +462,11 @@
       'version': '2.0.0.7'
     },
 
-    'Firefox 3.0#{alpha}1 on Mac OS X': {
+    'Firefox 3.0#{alpha}1 on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.9a1) Gecko/20061204 Firefox/3.0a1',
       'layout': 'Gecko',
       'name': 'Firefox',
-      'os': 'Mac OS X',
+      'os': 'OS X',
       'prerelease': 'alpha',
       'version': '3.0#{alpha}1'
     },
@@ -565,11 +565,11 @@
       'version': '4.0#{beta}8'
     },
 
-    'Firefox 4.0#{beta}11 on Mac OS X 10.6': {
+    'Firefox 4.0#{beta}11 on OS X 10.6': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b11pre) Gecko/20110126 Firefox/4.0b11pre',
       'layout': 'Gecko',
       'name': 'Firefox',
-      'os': 'Mac OS X 10.6',
+      'os': 'OS X 10.6',
       'prerelease': 'beta',
       'version': '4.0#{beta}11'
     },
@@ -681,19 +681,19 @@
       'version': '3.0.2'
     },
 
-    'iCab 4.5 on Mac OS X 10.5.8': {
+    'iCab 4.5 on OS X 10.5.8': {
       'ua': 'iCab/4.5 (Macintosh; U; Mac OS X Leopard 10.5.8)',
       'layout': 'WebKit',
       'name': 'iCab',
-      'os': 'Mac OS X 10.5.8',
+      'os': 'OS X 10.5.8',
       'version': '4.5'
     },
 
-    'iCab 4.7 on Mac OS X': {
+    'iCab 4.7 on OS X': {
       'ua': 'iCab/4.7 (Macintosh; U; Intel Mac OS X)',
       'layout': 'WebKit',
       'name': 'iCab',
-      'os': 'Mac OS X',
+      'os': 'OS X',
       'version': '4.7'
     },
 
@@ -1285,12 +1285,12 @@
       'version': '11.00'
     },
 
-    'Opera 11.52 (masking as Firefox 4.0) on Mac OS X 10.7.2': {
+    'Opera 11.52 (masking as Firefox 4.0) on OS X 10.7.2': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.2; en; rv:2.0) Gecko/20100101 Firefox/4.0',
       'layout': 'Presto',
       'name': 'Opera',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '11.52'; } },
-      'os': 'Mac OS X 10.7.2',
+      'os': 'OS X 10.7.2',
       'version': '11.52'
     },
 
@@ -1313,11 +1313,11 @@
       'version': '0.0.1'
     },
 
-    'Raven 0.5.8635 on Mac OS X 10.7.1': {
+    'Raven 0.5.8635 on OS X 10.7.1': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.1) AppleWebKit/7534.48.3 (KHTML, like Gecko) Version/5.1 Safari/7534.48.3 Raven for Mac/0.5.8635',
       'layout': 'WebKit',
       'name': 'Raven',
-      'os': 'Mac OS X 10.7.1',
+      'os': 'OS X 10.7.1',
       'version': '0.5.8635'
     },
 
@@ -1328,12 +1328,12 @@
       'os': 'Linux i686'
     },
 
-    'Rhino on Mac OS X 64-bit': {
+    'Rhino on OS X 64-bit': {
       'environment': {},
       'global': {},
-      'java': { 'lang': { 'System': { 'getProperty': function(property) { return /name/.test(property) ? 'Mac OS X' : 'x86_64'; } } } },
+      'java': { 'lang': { 'System': { 'getProperty': function(property) { return /name/.test(property) ? 'OS X' : 'x86_64'; } } } },
       'name': 'Rhino',
-      'os': 'Mac OS X 64-bit'
+      'os': 'OS X 64-bit'
     },
 
     'RingoJS 0.7': (function() {
@@ -1348,20 +1348,20 @@
       return object;
     }()),
 
-    'RockMelt 0.8.34.820 (like Chrome 6.0.472.63) on Mac OS X 10.5.8': {
+    'RockMelt 0.8.34.820 (like Chrome 6.0.472.63) on OS X 10.5.8': {
       'ua': 'Mozilla/5.0(Macintosh; U; Intel Mac OS X 10_5_8; en-US)AppleWebKit/534.3(KHTML,like Gecko)RockMelt/0.8.34.820 Chrome/6.0.472.63 Safari/534.3',
       'layout': 'WebKit',
       'likeChrome': true,
       'name': 'RockMelt',
-      'os': 'Mac OS X 10.5.8',
+      'os': 'OS X 10.5.8',
       'version': '0.8.34.820'
     },
 
-    'Safari 1.x on Mac OS X': {
+    'Safari 1.x on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; de-de) AppleWebKit/85.7 (KHTML, like Gecko) Safari/85.5',
       'layout': 'WebKit',
       'name': 'Safari',
-      'os': 'Mac OS X',
+      'os': 'OS X',
       'version': '1.x'
     },
 
@@ -1470,11 +1470,11 @@
       'version': '5.1'
     },
 
-    'Safari 5.2 on Mac OS X 10.8': {
+    'Safari 5.2 on OS X 10.8': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8) AppleWebKit/535.18.5 (KHTML, like Gecko) Version/5.2 Safari/535.18.',
       'layout': 'WebKit',
       'name': 'Safari',
-      'os': 'Mac OS X 10.8',
+      'os': 'OS X 10.8',
       'version': '5.2'
     },
 
@@ -1644,11 +1644,11 @@
       'os': 'Windows Server 2008 R2 / 7'
     },
 
-    'Sunrise 1.7.5 on Mac OS X 10.5.5': {
+    'Sunrise 1.7.5 on OS X 10.5.5': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_5; ja-jp) AppleWebKit/525.18 (KHTML, like Gecko) Sunrise/1.7.5 like Safari/5525.20.1',
       'layout': 'WebKit',
       'name': 'Sunrise',
-      'os': 'Mac OS X 10.5.5',
+      'os': 'OS X 10.5.5',
       'version': '1.7.5'
     },
 
@@ -1705,29 +1705,29 @@
       'name': 'TouchPad Browser'
     },
 
-    'WebKit Nightly 528.4 (like Safari 4.x) on Mac OS X 10.4.11': {
+    'WebKit Nightly 528.4 (like Safari 4.x) on OS X 10.4.11': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; tr) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
       'layout': 'WebKit',
       'name': 'WebKit Nightly',
-      'os': 'Mac OS X 10.4.11',
+      'os': 'OS X 10.4.11',
       'prerelease': 'alpha',
       'version': '528.4'
     },
 
-    'WebKit Nightly 533.2 (like Safari 4+) on Mac OS X 10.6.2': {
+    'WebKit Nightly 533.2 (like Safari 4+) on OS X 10.6.2': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_2; ru-ru) AppleWebKit/533.2+ (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10',
       'layout': 'WebKit',
       'name': 'WebKit Nightly',
-      'os': 'Mac OS X 10.6.2',
+      'os': 'OS X 10.6.2',
       'prerelease': 'alpha',
       'version': '533.2'
     },
 
-    'WebKit Nightly 535.7 (like Safari 5+) on Mac OS X 10.7.1': {
+    'WebKit Nightly 535.7 (like Safari 5+) on OS X 10.7.1': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_1) AppleWebKit/535.7+ (KHTML, like Gecko) Version/5.1 Safari/534.48.3',
       'layout': 'WebKit',
       'name': 'WebKit Nightly',
-      'os': 'Mac OS X 10.7.1',
+      'os': 'OS X 10.7.1',
       'prerelease': 'alpha',
       'version': '535.7'
     },
@@ -1834,14 +1834,14 @@
 
     test('parses Chrome', function() {
       var actual = parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2'),
-          expected = 'Chrome 15.0.874.106 on Mac OS X 10.7.2';
+          expected = 'Chrome 15.0.874.106 on OS X 10.7.2';
 
       equal(actual.description, expected);
     });
 
     test('parses Firefox', function() {
       var actual = parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:8.0) Gecko/20100101 Firefox/8.0'),
-          expected = 'Firefox 8.0 on Mac OS X 10.7';
+          expected = 'Firefox 8.0 on OS X 10.7';
 
       equal(actual.description, expected);
     });
@@ -1855,7 +1855,7 @@
 
     test('parses Opera', function() {
       var actual = parse('Opera/9.80 (Macintosh; Intel Mac OS X 10.7.2; U; Edition Next; en) Presto/2.9.220 Version/12.00'),
-          expected = 'Opera 12.00 on Mac OS X 10.7.2';
+          expected = 'Opera 12.00 on OS X 10.7.2';
 
       equal(actual.description, expected);
     });
@@ -1890,7 +1890,7 @@
 
     test('parses Opera description masking as Firefox 4.0', function() {
       var actual = parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.2; en; rv:2.0) Gecko/20100101 Firefox/4.0'),
-          expected = 'Opera (masking as Firefox 4.0) on Mac OS X 10.7.2';
+          expected = 'Opera (masking as Firefox 4.0) on OS X 10.7.2';
 
       equal(actual.description, expected);
     });
@@ -1911,7 +1911,7 @@
 
     test('parses Safari', function() {
       var actual = parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22'),
-          expected = 'Safari 5.1.1 on Mac OS X 10.7.2';
+          expected = 'Safari 5.1.1 on OS X 10.7.2';
 
       equal(actual.description, expected);
     });

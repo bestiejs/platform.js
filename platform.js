@@ -459,6 +459,7 @@
             .replace(/Macintosh/, 'Mac OS')
             .replace(/_PowerPC/i, ' OS')
             .replace(/(OS X) [^ \d]+/i, '$1')
+            .replace(/Mac (OS X)/, '$1')
             .replace(/\/(\d)/, ' $1')
             .replace(/_/g, '.')
             .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
@@ -587,7 +588,7 @@
     } else if ((data =
           /Opera/.test(name) && 'Presto' ||
           /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
-          !layout && /\bMSIE\b/i.test(ua) && (/^Mac/.test(os) ? 'Tasman' : 'Trident')
+          !layout && /\bMSIE\b/i.test(ua) && (os == 'Mac OS' ? 'Tasman' : 'Trident')
         )) {
       layout = [data];
     }
@@ -796,7 +797,7 @@
       name = 'Chrome Mobile';
       version = null;
 
-      if (/Mac OS X/.test(os)) {
+      if (/OS X/.test(os)) {
         manufacturer = 'Apple';
         os = 'iOS 4.3+';
       } else {
