@@ -421,6 +421,16 @@
       'version': '19.0.1084.60'
     },
 
+    'Chrome Mobile 27.0.1453.90 on Samsung Galaxy S2 (Android 4.0.4)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.0.4; GT-I9100 Build/IMM76D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.90 Mobile Safari/537.36',
+      'layout': 'WebKit',
+      'manufacturer': 'Samsung',
+      'name': 'Chrome Mobile',
+      'os': 'Android 4.0.4',
+      'product': 'Galaxy S2',
+      'version': '27.0.1453.90',
+    },
+
     'Chrome Mobile (desktop mode) on iOS 4.3+': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.53.11 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10',
       'layout': 'WebKit',

@@ -557,7 +557,7 @@
     }
     // detect Android browsers
     else if (manufacturer && manufacturer != 'Google' &&
-        /Chrome|Vita/.test(name + ';' + product)) {
+        ((/Chrome/.test(name) && !/Mobile Safari/.test(ua)) || /Vita/.test(product))) {
       name = 'Android Browser';
       os = /Android/.test(os) ? os : 'Android';
     }
@@ -690,7 +690,7 @@
       description.unshift('desktop mode');
     }
     // add mobile postfix
-    else if ((name == 'IE' || name && !product && !/Browser|Mobi/.test(name)) &&
+    else if ((name == 'Chrome' || name == 'IE' || name && !product && !/Browser|Mobi/.test(name)) &&
         (os == 'Windows CE' || /Mobi/i.test(ua))) {
       name += ' Mobile';
     }
