@@ -35,6 +35,9 @@
     "type": "git",
     "url": "https://github.com/bestiejs/platform.js.git"
   },
+  "jam": {
+    "main": "./platform.js"
+  },
   "engines": [
     "node",
     "rhino"
