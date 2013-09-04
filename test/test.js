@@ -1,26 +1,26 @@
-;(function(window) {
+;(function(root) {
   'use strict';
 
   /** Use a single "load" function */
-  var load = typeof require == 'function' ? require : window.load;
+  var load = typeof require == 'function' ? require : root.load;
 
   /** The unit testing framework */
   var QUnit = (function() {
     var noop = Function.prototype;
-    return  window.QUnit || (
-      window.addEventListener || (window.addEventListener = noop),
-      window.setTimeout || (window.setTimeout = noop),
-      window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit,
-      (load('../vendor/qunit-clib/qunit-clib.js') || { 'runInContext': noop }).runInContext(window),
-      addEventListener === noop && delete window.addEventListener,
-      window.QUnit
+    return  root.QUnit || (
+      root.addEventListener || (root.addEventListener = noop),
+      root.setTimeout || (root.setTimeout = noop),
+      root.QUnit = load('../vendor/qunit/qunit/qunit.js') || root.QUnit,
+      (load('../vendor/qunit-clib/qunit-clib.js') || { 'runInContext': noop }).runInContext(root),
+      addEventListener === noop && delete root.addEventListener,
+      root.QUnit
     );
   }());
 
   /** The `platform` object to check */
-  var platform = window.platform || (window.platform =
+  var platform = root.platform || (root.platform =
     load('../platform.js') ||
-    window.platform
+    root.platform
   );
 
   /** Shortcut used to check for own properties of objects */
@@ -101,10 +101,10 @@
         xhr;
 
     // for browsers
-    if (window.document && !window.phantom) {
-      if (isHostType(window, 'ActiveXObject')) {
+    if (root.document && !root.phantom) {
+      if (isHostType(root, 'ActiveXObject')) {
         xhr = new ActiveXObject('Microsoft.XMLHTTP');
-      } else if (isHostType(window, 'XMLHttpRequest')) {
+      } else if (isHostType(root, 'XMLHttpRequest')) {
         xhr = new XMLHttpRequest;
       }
       each(document.getElementsByTagName('script'), function(element) {
@@ -129,12 +129,12 @@
       /\(function[\s\S]+?(?=if\s*\(typeof define)/.exec(code)[0] +
       ' return parse()}(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
-        .replace(/(function\s*\(\s*window\s*\)[^\n]+\n)/, '$1me=options;\n')
+        .replace(/(function\s*\(\s*root\s*\)[^\n]+\n)/, '$1me=options;\n')
         .replace(/\bvar thisBinding\s*=[^\n]+?(;\n)/, '')
         .replace(/\boldWin\s*=[^\n]+?(;\n)/, 'oldWin=options$1')
         .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)/, 'freeGlobal=options.global$1')
         .replace(/\buserAgent\s*=[^\n]+?(;\n)/, 'userAgent=me.ua$1')
-        .replace(/\b(?:thisBinding|window)\b/g, 'me')
+        .replace(/\b(?:thisBinding|root)\b/g, 'me')
         .replace(/([^.])\bsystem\b/g, '$1me.system')
         .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
         .replace(/\b(?:Environment|Java|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
@@ -1794,7 +1794,7 @@
 
   // explicitly call `QUnit.module()` instead of `module()`
   // in case we are in a CLI environment
-  QUnit.module('platform' + (window.document ? '' : ': ' + platform));
+  QUnit.module('platform' + (root.document ? '' : ': ' + platform));
 
   (function() {
     each(['description', 'layout', 'manufacturer', 'name', 'os', 'prerelease', 'product', 'version'], function(name) {
@@ -1825,7 +1825,7 @@
     });
 
     test('supports loading Platform.js as a module', function() {
-      if (window.define && define.amd) {
+      if (root.define && define.amd) {
         equal((platform2 || {}).description, platform.description);
       } else {
         ok(true, 'test skipped');
@@ -1959,7 +1959,7 @@
 
   // configure QUnit and call `QUnit.start()` for
   // Narwhal, Node.js, PhantomJS, Rhino, and RingoJS
-  if (!window.document || window.phantom) {
+  if (!root.document || root.phantom) {
     QUnit.config.noglobals = true;
     QUnit.start();
   }
