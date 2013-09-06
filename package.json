@@ -4,7 +4,7 @@
   "description": "A platform detection library that works on nearly all JavaScript platforms.",
   "homepage": "https://github.com/bestiejs/platform.js",
   "license": "MIT",
-  "main": "platform",
+  "main": "platform.js",
   "keywords": [
     "environment",
     "platform",
@@ -16,9 +16,7 @@
     "John-David Dalton <john.david.dalton@gmail.com> (http://allyoucanleet.com/)",
     "Mathias Bynens <mathias@qiwi.be> (http://mathiasbynens.be/)"
   ],
-  "bugs": {
-    "url": "https://github.com/bestiejs/platform.js/issues"
-  },
+  "bugs": "https://github.com/bestiejs/platform.js/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/bestiejs/platform.js.git"
@@ -27,8 +25,8 @@
     "node",
     "rhino"
   ],
-  "directories": {
-    "doc": "./doc",
-    "test": "./test"
-  }
+  "files": [
+    "LICENSE.txt",
+    "platform.js"
+  ]
 }
