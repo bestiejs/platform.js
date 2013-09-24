@@ -600,6 +600,14 @@
       'version': '18.0'
     },
 
+    'Firefox Mobile 26.0 on Firefox OS': {
+      'ua': 'Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Firefox OS',
+      'version': '26.0'
+    },
+
     'Firefox Mobile 2.0#{beta}1 on Android': {
       'ua': 'Mozilla/5.0 (Android; Linux armv7l; rv:2.0b6pre) Gecko/20100907 Firefox/4.0b6pre Fennec/2.0b1pre',
       'layout': 'Gecko',
