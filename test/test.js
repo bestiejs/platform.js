@@ -625,6 +625,14 @@
       'version': '24.0'
     },
 
+    'Firefox Mobile 24.0 on Android': {
+      'ua': 'Mozilla/5.0 (Android; Tablet; rv:24.0) Gecko/24.0 Firefox/24.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android',
+      'version': '24.0'
+    },
+
     'Flock 2.0#{alpha}1 on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9pre) Gecko/2008051917 Firefox/3.0pre Flock/2.0a1pre',
       'layout': 'Gecko',
