@@ -4,7 +4,6 @@
  * Available under MIT license <http://mths.be/mit>
  */
 
-var test = {};
 ;(function(root) {
   'use strict';
 
