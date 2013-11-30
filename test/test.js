@@ -11,7 +11,7 @@
       root.addEventListener || (root.addEventListener = noop),
       root.setTimeout || (root.setTimeout = noop),
       root.QUnit = load('../vendor/qunit/qunit/qunit.js') || root.QUnit,
-      (load('../vendor/qunit-clib/qunit-clib.js') || { 'runInContext': noop }).runInContext(root),
+      (load('../vendor/qunit-extras/qunit-extras.js') || { 'runInContext': noop }).runInContext(root),
       addEventListener === noop && delete root.addEventListener,
       root.QUnit
     );
@@ -431,6 +431,15 @@
       'version': '27.0.1453.90',
     },
 
+    'Chrome Mobile 1.0 on Samsung (Android 4.2.2)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobie Safari/535.19',
+      'layout': 'WebKit',
+      'manufacturer': 'Samsung',
+      'name': 'Chrome Mobile',
+      'os': '',
+      'product': ''
+    },
+
     'Chrome Mobile (desktop mode) on iOS 4.3+': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.53.11 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10',
       'layout': 'WebKit',
@@ -466,7 +475,7 @@
 
     'Firefox 2.0.0.7 on Gentoo': {
       'ua': 'Mozilla/5.0 (X11; U; Linux Gentoo; pl-PL; rv:1.8.1.7) Gecko/20070914 Firefox/2.0.0.7',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'Gentoo',
       'version': '2.0.0.7'
@@ -483,7 +492,7 @@
 
     'Firefox 3.0 on Debian 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9) Gecko/2008062908 Firefox/3.0 (Debian-3.0~rc2-2)',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'Debian 64-bit',
       'version': '3.0'
@@ -491,7 +500,7 @@
 
     'Firefox 3.0 on SuSE': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; tr-TR; rv:1.9.0) Gecko/2008061600 SUSE/3.0-1.2 Firefox/3.0',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'SuSE',
       'version': '3.0'
@@ -524,7 +533,7 @@
 
     'Firefox 3.6.7 on CentOS': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.7) Gecko/20100726 CentOS/3.6-3.el5.centos Firefox/3.6.7',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'CentOS',
       'version': '3.6.7'
@@ -540,7 +549,7 @@
 
     'Firefox 3.6.20 on Red Hat 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'Red Hat 64-bit',
       'version': '3.6.20'
@@ -590,6 +599,22 @@
       'name': 'Firefox',
       'os': 'FreeBSD 64-bit',
       'version': '5.0'
+    },
+
+    'Firefox Mobile 18.0 on Firefox OS': {
+      'ua': 'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Firefox OS',
+      'version': '18.0'
+    },
+
+    'Firefox Mobile 24.0 on Android': {
+      'ua': 'Mozilla/5.0 (Android; Mobile; rv:24.0) Gecko/24.0 Firefox/24.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android',
+      'version': '24.0'
     },
 
     'Firefox Mobile 2.0#{beta}1 on Android': {

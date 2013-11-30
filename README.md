@@ -22,7 +22,7 @@ Platform.js has been tested in at least Chrome 5~29, Firefox 2~24, IE 6-10, Oper
 
 ## Installation and usage
 
-In a browser or Adobe AIR:
+In a browser:
 
 ```html
 <script src="platform.js"></script>
