@@ -7,16 +7,16 @@
 
 ## <a id="platform"></a>`platform`
 * [`platform`](#platform)
-* [`platform.description`](#platformdescription)
-* [`platform.layout`](#platformlayout)
-* [`platform.manufacturer`](#platformmanufacturer)
-* [`platform.name`](#platformname)
-* [`platform.prerelease`](#platformprerelease)
-* [`platform.product`](#platformproduct)
-* [`platform.ua`](#platformua)
-* [`platform.version`](#platformversion)
-* [`platform.parse`](#platformparseuanavigatoruseragent)
-* [`platform.toString`](#platformtostring)
+* <a href="#platformdescription">`platform.description`</a>
+* <a href="#platformlayout">`platform.layout`</a>
+* <a href="#platformmanufacturer">`platform.manufacturer`</a>
+* <a href="#platformname">`platform.name`</a>
+* <a href="#platformprerelease">`platform.prerelease`</a>
+* <a href="#platformproduct">`platform.product`</a>
+* <a href="#platformua">`platform.ua`</a>
+* <a href="#platformversion">`platform.version`</a>
+* <a href="#platformparseuanavigatoruseragent">`platform.parse`</a>
+* <a href="#platformtostring">`platform.toString`</a>
 
 <!-- /div -->
 
@@ -25,10 +25,10 @@
 
 ## `platform.os`
 * [`platform.os`](#platformos)
-* [`platform.os.architecture`](#platformosarchitecture)
-* [`platform.os.family`](#platformosfamily)
-* [`platform.os.version`](#platformosversion)
-* [`platform.os.toString`](#platformostostring)
+* <a href="#platformosarchitecture">`platform.os.architecture`</a>
+* <a href="#platformosfamily">`platform.os.family`</a>
+* <a href="#platformosversion">`platform.os.version`</a>
+* <a href="#platformostostring">`platform.os.toString`</a>
 
 <!-- /div -->
 
