@@ -19,6 +19,10 @@
     "platform.js"
   ],
   "jam": {
-    "main": "platform.js"
+    "main": "platform.js",
+    "include": [
+      "LICENSE.txt",
+      "platform.js"
+    ]
   },
 }
