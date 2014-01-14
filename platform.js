@@ -9,12 +9,24 @@
   /** Backup possible global object */
   var oldRoot = root;
 
+  /** Used to determine if values are of the language type Object */
+  var objectTypes = {
+    'boolean': false,
+    'function': true,
+    'object': true,
+    'number': false,
+    'string': false,
+    'undefined': false
+  };
+
   /** Detect free variable `exports` */
-  var freeExports = typeof exports == 'object' && exports;
+  var freeExports = objectTypes[typeof exports] && exports;
 
   /** Detect free variable `global` */
-  var freeGlobal = typeof global == 'object' && global &&
-    (global == global.global ? (root = global) : global);
+  var freeGlobal = objectTypes[typeof global] && global;
+  if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
+    root = freeGlobal;
+  }
 
   /** Opera regexp */
   var reOpera = /Opera/;
