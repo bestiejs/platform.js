@@ -619,7 +619,7 @@
           if (thisBinding == oldRoot && typeof system == 'object' && (data = [system])[0]) {
             os || (os = data[0].os || null);
             try {
-              data[1] = require('ringo/engine').version;
+              data[1] = (data[1] = require) && data[1]('ringo/engine').version;
               version = data[1].join('.');
               name = 'RingoJS';
             } catch(e) {
