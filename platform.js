@@ -3,26 +3,25 @@
  * Copyright 2010-2014 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <http://mths.be/mit>
  */
-;(function(root) {
+;(function() {
   'use strict';
+
+  /** Used to determine if values are of the language type Object */
+  var objectTypes = {
+    'function': true,
+    'object': true
+  };
+
+  /** Used as a reference to the global object */
+  var root = (objectTypes[typeof window] && window) || this;
 
   /** Backup possible global object */
   var oldRoot = root;
 
-  /** Used to determine if values are of the language type Object */
-  var objectTypes = {
-    'boolean': false,
-    'function': true,
-    'object': true,
-    'number': false,
-    'string': false,
-    'undefined': false
-  };
-
   /** Detect free variable `exports` */
   var freeExports = objectTypes[typeof exports] && exports;
 
-  /** Detect free variable `global` */
+  /** Detect free variable `global`, from Node.js or Browserified code, and use it as `root` */
   var freeGlobal = objectTypes[typeof global] && global;
   if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
     root = freeGlobal;
@@ -1016,4 +1015,4 @@
   else {
     root.platform = parse();
   }
-}(this));
+}.call(this));

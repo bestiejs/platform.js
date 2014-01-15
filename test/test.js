@@ -127,12 +127,12 @@
     return Function('options',
       ('return ' +
       /\(function[\s\S]+?(?=if\s*\(typeof define)/.exec(code)[0] +
-      ' return parse()}(this))')
+      ' return parse()}.call(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
-        .replace(/(function\s*\(\s*root\s*\)[^\n]+\n)/, '$1me=options;\n')
+        .replace(/\broot\s*=[^\n]+?(;\n)/, 'root=options$1')
+        .replace(/\boldRoot\s*=[^\n]+?(;\n)/, 'oldRoot=options$1')
         .replace(/\bvar thisBinding\s*=[^\n]+?(;\n)/, '')
-        .replace(/\boldWin\s*=[^\n]+?(;\n)/, 'oldWin=options$1')
-        .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)/, 'freeGlobal=options.global$1')
+        .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)\s*if[^}]+\}/, 'freeGlobal=options.global$1')
         .replace(/\buserAgent\s*=[^\n]+?(;\n)/, 'userAgent=me.ua$1')
         .replace(/\b(?:thisBinding|root)\b/g, 'me')
         .replace(/([^.])\bsystem\b/g, '$1me.system')
