@@ -448,6 +448,7 @@
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
+            '6.3':  '8.1', 
             '6.2':  '8',
             '6.1':  'Server 2008 R2 / 7',
             '6.0':  'Server 2008 / Vista',
