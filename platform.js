@@ -573,7 +573,7 @@
       os = /Android/.test(os) ? os : 'Android';
     }
     // detect false positives for Firefox/Safari
-    else if (!name || (data = !/\bMinefield\b/i.test(ua) && /Firefox|Safari/.exec(name))) {
+    else if (!name || (data = !/\bMinefield\b|\(Android;/i.test(ua) && /Firefox|Safari/.exec(name))) {
       // escape the `/` for Firefox 1
       if (name && !product && /[\/,]|^[^(]+?\)/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         // clear name of false positives
