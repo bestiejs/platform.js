@@ -555,6 +555,10 @@
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
     }
+    // detect Firefox OS
+    if ((/\(Mobile|Tablet.*Firefox/i).test(ua)) {
+      os = 'Firefox OS';
+    }
     // detect iOS
     if (/^iP/.test(product)) {
       name || (name = 'Safari');
@@ -676,8 +680,8 @@
       version = version.replace(RegExp(data + '\\+?$'), '') +
         (prerelease == 'beta' ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
-    // rename code name "Fennec"
-    if (name == 'Fennec') {
+    // detect Firefox Mobile
+    if (name == 'Fennec' || name == 'Firefox' && /Android|Firefox OS/.test(os)) {
       name = 'Firefox Mobile';
     }
     // obscure Maxthon's unreliable version
