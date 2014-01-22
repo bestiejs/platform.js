@@ -212,7 +212,6 @@
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
-   * @param {*} accumulator Initial value of the accumulator.
    * @returns {*} The accumulator.
    */
   function reduce(array, callback) {
@@ -412,8 +411,8 @@
         return result || (
           value[product] ||
           value[0/*Opera 9.25 fix*/, /^[a-z]+(?: +[a-z]+\b)*/i.exec(product)] ||
-          RegExp('\\b' + (key.pattern || qualify(key)) + '(?:\\b|\\w*\\d)', 'i').exec(ua)
-        ) && (key.label || key);
+          RegExp('\\b' + qualify(key) + '(?:\\b|\\w*\\d)', 'i').exec(ua)
+        ) && key;
       });
     }
 
@@ -557,7 +556,7 @@
       product = (product ? product + ' ' : '') + 'Simulator';
     }
     // detect Firefox OS
-    if ((/\(Mobile|Tablet.*Firefox/i).test(ua)) {
+    if ((/\((?:Mobile|Tablet).*?Firefox/i).test(ua)) {
       os = 'Firefox OS';
     }
     // detect iOS
