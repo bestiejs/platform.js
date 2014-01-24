@@ -322,6 +322,8 @@
       'BlackBerry',
       { 'label': 'Galaxy S', 'pattern': 'GT-I9000' },
       { 'label': 'Galaxy S2', 'pattern': 'GT-I9100' },
+      { 'label': 'Galaxy S3', 'pattern': 'GT-I9300' },
+      { 'label': 'Galaxy S4', 'pattern': 'GT-I9500' },
       'Google TV',
       'iPad',
       'iPod',
@@ -345,10 +347,11 @@
       'BlackBerry': { 'PlayBook': 1 },
       'Google': { 'Google TV': 1 },
       'HP': { 'TouchPad': 1 },
+      'HTC': { },
       'LG': { },
       'Motorola': { 'Xoom': 1 },
       'Nokia': { },
-      'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1 },
+      'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1, 'Galaxy S3': 1, 'Galaxy S4': 1 },
       'Sony': { 'PlayStation Vita': 1 }
     });
 

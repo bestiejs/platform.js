@@ -182,13 +182,13 @@
       'product': 'Transformer'
     },
 
-    'Android Browser 1.0 (like Chrome 18.0.1025.308) on Samsung (Android 4.2.2)': {
+    'Android Browser 1.0 (like Chrome 18.0.1025.308) on Samsung Galaxy S4 (Android 4.2.2)': {
       'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobie Safari/535.19',
       'layout': 'WebKit',
       'manufacturer': 'Samsung',
       'name': 'Android Browser',
       'os': 'Android 4.2.2',
-      'product': 'Samsung',
+      'product': 'Galaxy S4',
       'version': '1.0'
     },
 
@@ -212,11 +212,13 @@
       'version': '3.0.4'
     },
 
-    'Android Browser 3.1.2 (like Safari 4.x) on Android 1.6': {
+    'Android Browser 3.1.2 (like Safari 4.x) on HTC _TATTOO_A3288 (Android 1.6)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 1.6; en-us; HTC_TATTOO_A3288 Build/DRC79) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1',
       'layout': 'WebKit',
+      'manufacturer': 'HTC',
       'name': 'Android Browser',
       'os': 'Android 1.6',
+      'product': 'HTC _TATTOO_A3288',
       'version': '3.1.2'
     },
 
@@ -239,6 +241,17 @@
       'name': 'Android Browser',
       'os': 'Android 2.3',
       'product': 'Galaxy S2',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 12.x) on Samsung Galaxy S3 (Android 4.0.4)': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.4; en-gb; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
+      'layout': 'WebKit',
+      'likeChrome': true,
+      'manufacturer': 'Samsung',
+      'name': 'Android Browser',
+      'os': 'Android 4.0.4',
+      'product': 'Galaxy S3',
       'version': '4.0'
     },
 
@@ -413,11 +426,13 @@
       'version': '11.0.696.77'
     },
 
-    'Chrome Mobile 16.0.912.77 on Android 4.0.3': {
+    'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
       'layout': 'WebKit',
+      'manufacturer': 'HTC',
       'name': 'Chrome Mobile',
       'os': 'Android 4.0.3',
+      'product': 'HTC',
       'version': '16.0.912.77'
     },
 
