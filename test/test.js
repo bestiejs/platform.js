@@ -182,6 +182,16 @@
       'product': 'Transformer'
     },
 
+    'Android Browser 1.0 (like Chrome 18.0.1025.308) on Samsung (Android 4.2.2)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobie Safari/535.19',
+      'layout': 'WebKit',
+      'manufacturer': 'Samsung',
+      'name': 'Android Browser',
+      'os': 'Android 4.2.2',
+      'product': 'Samsung',
+      'version': '1.0'
+    },
+
     'Android Browser (like Safari 4.x) on Sony PlayStation Vita 1.00': {
       'ua': 'Mozilla/5.0 (PlayStation Vita 1.00) AppleWebKit/531.22.8 (KHTML, like Gecko) Silk/3.2',
       'layout': 'WebKit',
@@ -431,15 +441,6 @@
       'version': '27.0.1453.90',
     },
 
-    'Chrome Mobile 1.0 on Samsung (Android 4.2.2)': {
-      'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobie Safari/535.19',
-      'layout': 'WebKit',
-      'manufacturer': 'Samsung',
-      'name': 'Chrome Mobile',
-      'os': '',
-      'product': ''
-    },
-
     'Chrome Mobile (desktop mode) on iOS 4.3+': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/534.53.11 (KHTML, like Gecko) Version/5.1.3 Safari/534.53.10',
       'layout': 'WebKit',
@@ -601,6 +602,31 @@
       'version': '5.0'
     },
 
+    'Firefox Mobile 2.0#{beta}1 on Android': {
+      'ua': 'Mozilla/5.0 (Android; Linux armv7l; rv:2.0b6pre) Gecko/20100907 Firefox/4.0b6pre Fennec/2.0b1pre',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android',
+      'prerelease': 'beta',
+      'version': '2.0#{beta}1'
+    },
+
+    'Firefox Mobile 2.0.1 on Linux i686': {
+      'ua': 'Mozilla/5.0 (X11; Linux i686 on x86_64; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Fennec/2.0.1',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Linux i686',
+      'version': '2.0.1'
+    },
+
+    'Firefox Mobile 10.0.5 on Android': {
+      'ua': 'Mozilla/5.0 (Android; Mobile; rv:10.0.5) Gecko/10.0.5 Firefox/10.0.5 Fennec/10.0.5',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android',
+      'version': '10.0.5'
+    },
+
     'Firefox Mobile 18.0 on Firefox OS': {
       'ua': 'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0',
       'layout': 'Gecko',
@@ -631,31 +657,6 @@
       'name': 'Firefox Mobile',
       'os': 'Firefox OS',
       'version': '26.0'
-    },
-
-    'Firefox Mobile 2.0#{beta}1 on Android': {
-      'ua': 'Mozilla/5.0 (Android; Linux armv7l; rv:2.0b6pre) Gecko/20100907 Firefox/4.0b6pre Fennec/2.0b1pre',
-      'layout': 'Gecko',
-      'name': 'Firefox Mobile',
-      'os': 'Android',
-      'prerelease': 'beta',
-      'version': '2.0#{beta}1'
-    },
-
-    'Firefox Mobile 2.0.1 on Linux i686': {
-      'ua': 'Mozilla/5.0 (X11; Linux i686 on x86_64; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Fennec/2.0.1',
-      'layout': 'Gecko',
-      'name': 'Firefox Mobile',
-      'os': 'Linux i686',
-      'version': '2.0.1'
-    },
-
-    'Firefox Mobile 10.0.5 on Android': {
-      'ua': 'Mozilla/5.0 (Android; Mobile; rv:10.0.5) Gecko/10.0.5 Firefox/10.0.5 Fennec/10.0.5',
-      'layout': 'Gecko',
-      'name': 'Firefox Mobile',
-      'os': 'Android',
-      'version': '10.0.5'
     },
 
     'Flock 2.0#{alpha}1 on Linux i686': {
@@ -1843,7 +1844,7 @@
         forOwn(Tests, function(value, key) {
           var platform = getPlatform(value);
           value = name == 'description' ? key : value[name];
-          value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2' }) : null;
+          value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2', ' ': ' ' }) : null;
           equal(platform && String(platform[name]), String(value), String(platform));
         });
       });
