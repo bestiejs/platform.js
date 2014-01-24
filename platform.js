@@ -611,6 +611,11 @@
         )) {
       layout = [data];
     }
+    // detect IE 11 and above
+    if (!name && layout == 'Trident') {
+      name = 'IE';
+      version = (/\brv:([\d.]+)/.exec(ua) || 0)[1];
+    }
     // leverage environment features
     if (useFeatures) {
       // detect server-side environments

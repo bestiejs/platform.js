@@ -984,6 +984,14 @@
       'version': '10.0'
     },
 
+    'IE 11.0 on Windows 8.1': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko',
+      'layout': 'Trident',
+      'name': 'IE',
+      'os': 'Windows 8.1',
+      'version': '11.0'
+    },
+
     'IE Mobile 4.01 on Windows CE': {
       'ua' : 'Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320)',
       'layout': 'Trident',
