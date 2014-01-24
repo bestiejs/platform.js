@@ -1,20 +1,31 @@
 /*!
  * Platform.js v1.0.0 <http://mths.be/platform>
- * Copyright 2010-2013 John-David Dalton <http://allyoucanleet.com/>
+ * Copyright 2010-2014 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <http://mths.be/mit>
  */
-;(function(window) {
+;(function() {
   'use strict';
 
-  /** Backup possible window/global object */
-  var oldWin = window;
+  /** Used to determine if values are of the language type Object */
+  var objectTypes = {
+    'function': true,
+    'object': true
+  };
+
+  /** Used as a reference to the global object */
+  var root = (objectTypes[typeof window] && window) || this;
+
+  /** Backup possible global object */
+  var oldRoot = root;
 
   /** Detect free variable `exports` */
-  var freeExports = typeof exports == 'object' && exports;
+  var freeExports = objectTypes[typeof exports] && exports;
 
-  /** Detect free variable `global` */
-  var freeGlobal = typeof global == 'object' && global &&
-    (global == global.global ? (window = global) : global);
+  /** Detect free variable `global`, from Node.js or Browserified code, and use it as `root` */
+  var freeGlobal = objectTypes[typeof global] && global;
+  if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
+    root = freeGlobal;
+  }
 
   /** Opera regexp */
   var reOpera = /Opera/;
@@ -23,10 +34,10 @@
   var toString = Object.prototype.toString;
 
   /** Detect Java environment */
-  var java = /Java/.test(getClassOf(window.java)) && window.java;
+  var java = /Java/.test(getClassOf(root.java)) && root.java;
 
   /** Detect Rhino */
-  var rhino = java && getClassOf(window.environment) == 'Environment';
+  var rhino = java && getClassOf(root.environment) == 'Environment';
 
   /** A character to represent alpha */
   var alpha = java ? 'a' : '\u03b1';
@@ -35,20 +46,20 @@
   var beta = java ? 'b' : '\u03b2';
 
   /** Browser document object */
-  var doc = window.document || {};
+  var doc = root.document || {};
 
   /** Used to check for own properties of an object */
   var hasOwnProperty = {}.hasOwnProperty;
 
   /** Browser navigator object */
-  var nav = window.navigator || {};
+  var nav = root.navigator || {};
 
   /**
    * Detect Opera browser
    * http://www.howtocreate.co.uk/operaStuff/operaObject.html
    * http://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
    */
-  var opera = window.operamini || window.opera;
+  var opera = root.operamini || root.opera;
 
   /** Opera [[Class]] */
   var operaClass = reOpera.test(operaClass = getClassOf(opera)) ? operaClass : (opera = null);
@@ -65,8 +76,8 @@
    * Capitalizes a string value.
    *
    * @private
-   * @param {String} string The string to capitalize.
-   * @returns {String} The capitalized string.
+   * @param {string} string The string to capitalize.
+   * @returns {string} The capitalized string.
    */
   function capitalize(string) {
     string = String(string);
@@ -97,8 +108,8 @@
    * Trim and conditionally capitalize string values.
    *
    * @private
-   * @param {String} string The string to format.
-   * @returns {String} The formatted string.
+   * @param {string} string The string to format.
+   * @returns {string} The formatted string.
    */
   function format(string) {
     string = trim(string);
@@ -124,8 +135,8 @@
    * Gets the internal [[Class]] of a value.
    *
    * @private
-   * @param {Mixed} value The value.
-   * @returns {String} The [[Class]].
+   * @param {*} value The value.
+   * @returns {string} The [[Class]].
    */
   function getClassOf(value) {
     return value == null
@@ -138,8 +149,8 @@
    *
    * @private
    * @param {Object} object The object to check.
-   * @param {String} key The key to check for.
-   * @returns {Boolean} Returns `true` if key is a direct property, else `false`.
+   * @param {string} key The key to check for.
+   * @returns {boolean} Returns `true` if key is a direct property, else `false`.
    */
   function hasKey() {
     // lazy define for others (not as accurate)
@@ -173,9 +184,9 @@
    * types of object, function, or unknown.
    *
    * @private
-   * @param {Mixed} object The owner of the property.
-   * @param {String} property The property to check.
-   * @returns {Boolean} Returns `true` if the property value is a non-primitive, else `false`.
+   * @param {*} object The owner of the property.
+   * @param {string} property The property to check.
+   * @returns {boolean} Returns `true` if the property value is a non-primitive, else `false`.
    */
   function isHostType(object, property) {
     var type = object != null ? typeof object[property] : 'number';
@@ -188,8 +199,8 @@
    * spaces optional.
    *
    * @private
-   * @param {String} string The string to qualify.
-   * @returns {String} The qualified string.
+   * @param {string} string The string to qualify.
+   * @returns {string} The qualified string.
    */
   function qualify(string) {
     return String(string).replace(/([ -])(?!$)/g, '$1?');
@@ -201,8 +212,7 @@
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
-   * @param {Mixed} accumulator Initial value of the accumulator.
-   * @returns {Mixed} The accumulator.
+   * @returns {*} The accumulator.
    */
   function reduce(array, callback) {
     var accumulator = null;
@@ -216,8 +226,8 @@
    * Removes leading and trailing whitespace from a string.
    *
    * @private
-   * @param {String} string The string to trim.
-   * @returns {String} The trimmed string.
+   * @param {string} string The string to trim.
+   * @returns {string} The trimmed string.
    */
   function trim(string) {
     return String(string).replace(/^ +| +$/g, '');
@@ -229,7 +239,7 @@
    * Creates a new platform object.
    *
    * @memberOf platform
-   * @param {String} [ua = navigator.userAgent] The user agent string.
+   * @param {string} [ua = navigator.userAgent] The user agent string.
    * @returns {Object} A platform object.
    */
   function parse(ua) {
@@ -312,6 +322,8 @@
       'BlackBerry',
       { 'label': 'Galaxy S', 'pattern': 'GT-I9000' },
       { 'label': 'Galaxy S2', 'pattern': 'GT-I9100' },
+      { 'label': 'Galaxy S3', 'pattern': 'GT-I9300' },
+      { 'label': 'Galaxy S4', 'pattern': 'GT-I9500' },
       'Google TV',
       'iPad',
       'iPod',
@@ -335,10 +347,11 @@
       'BlackBerry': { 'PlayBook': 1 },
       'Google': { 'Google TV': 1 },
       'HP': { 'TouchPad': 1 },
+      'HTC': { },
       'LG': { },
       'Motorola': { 'Xoom': 1 },
       'Nokia': { },
-      'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1 },
+      'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1, 'Galaxy S3': 1, 'Galaxy S4': 1 },
       'Sony': { 'PlayStation Vita': 1 }
     });
 
@@ -378,7 +391,7 @@
      *
      * @private
      * @param {Array} guesses An array of guesses.
-     * @returns {String|Null} The detected layout engine.
+     * @returns {null|string} The detected layout engine.
      */
     function getLayout(guesses) {
       return reduce(guesses, function(result, guess) {
@@ -393,7 +406,7 @@
      *
      * @private
      * @param {Array} guesses An array of guesses.
-     * @returns {String|Null} The detected manufacturer.
+     * @returns {null|string} The detected manufacturer.
      */
     function getManufacturer(guesses) {
       return reduce(guesses, function(result, value, key) {
@@ -401,8 +414,8 @@
         return result || (
           value[product] ||
           value[0/*Opera 9.25 fix*/, /^[a-z]+(?: +[a-z]+\b)*/i.exec(product)] ||
-          RegExp('\\b' + (key.pattern || qualify(key)) + '(?:\\b|\\w*\\d)', 'i').exec(ua)
-        ) && (key.label || key);
+          RegExp('\\b' + qualify(key) + '(?:\\b|\\w*\\d)', 'i').exec(ua)
+        ) && key;
       });
     }
 
@@ -411,7 +424,7 @@
      *
      * @private
      * @param {Array} guesses An array of guesses.
-     * @returns {String|Null} The detected browser name.
+     * @returns {null|string} The detected browser name.
      */
     function getName(guesses) {
       return reduce(guesses, function(result, guess) {
@@ -426,7 +439,7 @@
      *
      * @private
      * @param {Array} guesses An array of guesses.
-     * @returns {String|Null} The detected OS name.
+     * @returns {null|string} The detected OS name.
      */
     function getOS(guesses) {
       return reduce(guesses, function(result, guess) {
@@ -437,6 +450,7 @@
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
+            '6.3':  '8.1', 
             '6.2':  '8',
             '6.1':  'Server 2008 R2 / 7',
             '6.0':  'Server 2008 / Vista',
@@ -476,7 +490,7 @@
      *
      * @private
      * @param {Array} guesses An array of guesses.
-     * @returns {String|Null} The detected product name.
+     * @returns {null|string} The detected product name.
      */
     function getProduct(guesses) {
       return reduce(guesses, function(result, guess) {
@@ -505,7 +519,7 @@
      *
      * @private
      * @param {Array} patterns An array of UA patterns.
-     * @returns {String|Null} The detected version.
+     * @returns {null|string} The detected version.
      */
     function getVersion(patterns) {
       return reduce(patterns, function(result, pattern) {
@@ -521,7 +535,7 @@
      *
      * @name toString
      * @memberOf platform
-     * @returns {String} Returns `platform.description` if available, else an empty string.
+     * @returns {string} Returns `platform.description` if available, else an empty string.
      */
     function toStringPlatform() {
       return this.description || '';
@@ -544,6 +558,10 @@
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
     }
+    // detect Firefox OS
+    if ((/\((?:Mobile|Tablet).*?Firefox/i).test(ua)) {
+      os = 'Firefox OS';
+    }
     // detect iOS
     if (/^iP/.test(product)) {
       name || (name = 'Safari');
@@ -562,7 +580,7 @@
       os = /Android/.test(os) ? os : 'Android';
     }
     // detect false positives for Firefox/Safari
-    else if (!name || (data = !/\bMinefield\b/i.test(ua) && /Firefox|Safari/.exec(name))) {
+    else if (!name || (data = !/\bMinefield\b|\(Android;/i.test(ua) && /Firefox|Safari/.exec(name))) {
       // escape the `/` for Firefox 1
       if (name && !product && /[\/,]|^[^(]+?\)/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         // clear name of false positives
@@ -593,11 +611,16 @@
         )) {
       layout = [data];
     }
+    // detect IE 11 and above
+    if (!name && layout == 'Trident') {
+      name = 'IE';
+      version = (/\brv:([\d.]+)/.exec(ua) || 0)[1];
+    }
     // leverage environment features
     if (useFeatures) {
       // detect server-side environments
       // Rhino has a global function while others have a global object
-      if (isHostType(window, 'global')) {
+      if (isHostType(root, 'global')) {
         if (java) {
           data = java.lang.System;
           arch = data.getProperty('os.arch');
@@ -605,10 +628,10 @@
         }
         if (freeExports) {
           // if `thisBinding` is the [ModuleScope]
-          if (thisBinding == oldWin && typeof system == 'object' && (data = [system])[0]) {
+          if (thisBinding == oldRoot && typeof system == 'object' && (data = [system])[0]) {
             os || (os = data[0].os || null);
             try {
-              data[1] = require('ringo/engine').version;
+              data[1] = (data[1] = require) && data[1]('ringo/engine').version;
               version = data[1].join('.');
               name = 'RingoJS';
             } catch(e) {
@@ -632,12 +655,12 @@
         }
       }
       // detect Adobe AIR
-      else if (getClassOf((data = window.runtime)) == 'ScriptBridgingProxyObject') {
+      else if (getClassOf((data = root.runtime)) == 'ScriptBridgingProxyObject') {
         name = 'Adobe AIR';
         os = data.flash.system.Capabilities.os;
       }
       // detect PhantomJS
-      else if (getClassOf((data = window.phantom)) == 'RuntimeObject') {
+      else if (getClassOf((data = root.phantom)) == 'RuntimeObject') {
         name = 'PhantomJS';
         version = (data = data.version || null) && (data.major + '.' + data.minor + '.' + data.patch);
       }
@@ -665,8 +688,8 @@
       version = version.replace(RegExp(data + '\\+?$'), '') +
         (prerelease == 'beta' ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
-    // rename code name "Fennec"
-    if (name == 'Fennec') {
+    // detect Firefox Mobile
+    if (name == 'Fennec' || name == 'Firefox' && /Android|Firefox OS/.test(os)) {
       name = 'Firefox Mobile';
     }
     // obscure Maxthon's unreliable version
@@ -870,7 +893,7 @@
        * The browser/environment version.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type string|null
        */
       'version': name && version && (description.unshift(version), version),
 
@@ -878,7 +901,7 @@
        * The name of the browser/environment.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type string|null
        */
       'name': name && (description.unshift(name), name),
 
@@ -898,7 +921,7 @@
            * The CPU architecture the OS is built for.
            *
            * @memberOf platform.os
-           * @type Number|Null
+           * @type number|null
            */
           'architecture': null,
 
@@ -906,7 +929,7 @@
            * The family of the OS.
            *
            * @memberOf platform.os
-           * @type String|Null
+           * @type string|null
            */
           'family': null,
 
@@ -914,7 +937,7 @@
            * The version of the OS.
            *
            * @memberOf platform.os
-           * @type String|Null
+           * @type string|null
            */
           'version': null,
 
@@ -922,7 +945,7 @@
            * Returns the OS string.
            *
            * @memberOf platform.os
-           * @returns {String} The OS string.
+           * @returns {string} The OS string.
            */
           'toString': function() { return 'null'; }
         },
@@ -931,7 +954,7 @@
        * The platform description.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type string|null
        */
       'description': description.length ? description.join(' ') : ua,
 
@@ -939,7 +962,7 @@
        * The name of the browser layout engine.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type string|null
        */
       'layout': layout && layout[0],
 
@@ -947,7 +970,7 @@
        * The name of the product's manufacturer.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type string|null
        */
       'manufacturer': manufacturer,
 
@@ -955,7 +978,7 @@
        * The alpha/beta release indicator.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type string|null
        */
       'prerelease': prerelease,
 
@@ -963,7 +986,7 @@
        * The name of the product hosting the browser.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type string|null
        */
       'product': product,
 
@@ -971,7 +994,7 @@
        * The browser's user agent string.
        *
        * @memberOf platform
-       * @type String|Null
+       * @type string|null
        */
       'ua': ua,
 
@@ -986,7 +1009,7 @@
   /*--------------------------------------------------------------------------*/
 
   // expose platform
-  // some AMD build optimizers, like r.js, check for specific condition patterns like the following:
+  // some AMD build optimizers, like r.js, check for condition patterns like the following:
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     // define as an anonymous module so, through path mapping, it can be aliased
     define(function() {
@@ -1002,6 +1025,6 @@
   }
   // in a browser or Rhino
   else {
-    window.platform = parse();
+    root.platform = parse();
   }
-}(this));
+}.call(this));

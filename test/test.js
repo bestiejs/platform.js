@@ -1,26 +1,26 @@
-;(function(window) {
+;(function(root) {
   'use strict';
 
   /** Use a single "load" function */
-  var load = typeof require == 'function' ? require : window.load;
+  var load = typeof require == 'function' ? require : root.load;
 
   /** The unit testing framework */
   var QUnit = (function() {
     var noop = Function.prototype;
-    return  window.QUnit || (
-      window.addEventListener || (window.addEventListener = noop),
-      window.setTimeout || (window.setTimeout = noop),
-      window.QUnit = load('../vendor/qunit/qunit/qunit.js') || window.QUnit,
-      (load('../vendor/qunit-clib/qunit-clib.js') || { 'runInContext': noop }).runInContext(window),
-      addEventListener === noop && delete window.addEventListener,
-      window.QUnit
+    return  root.QUnit || (
+      root.addEventListener || (root.addEventListener = noop),
+      root.setTimeout || (root.setTimeout = noop),
+      root.QUnit = load('../vendor/qunit/qunit/qunit.js') || root.QUnit,
+      (load('../vendor/qunit-extras/qunit-extras.js') || { 'runInContext': noop }).runInContext(root),
+      addEventListener === noop && delete root.addEventListener,
+      root.QUnit
     );
   }());
 
   /** The `platform` object to check */
-  var platform = window.platform || (window.platform =
+  var platform = root.platform || (root.platform =
     load('../platform.js') ||
-    window.platform
+    root.platform
   );
 
   /** Shortcut used to check for own properties of objects */
@@ -101,10 +101,10 @@
         xhr;
 
     // for browsers
-    if (window.document && !window.phantom) {
-      if (isHostType(window, 'ActiveXObject')) {
+    if (root.document && !root.phantom) {
+      if (isHostType(root, 'ActiveXObject')) {
         xhr = new ActiveXObject('Microsoft.XMLHTTP');
-      } else if (isHostType(window, 'XMLHttpRequest')) {
+      } else if (isHostType(root, 'XMLHttpRequest')) {
         xhr = new XMLHttpRequest;
       }
       each(document.getElementsByTagName('script'), function(element) {
@@ -127,14 +127,14 @@
     return Function('options',
       ('return ' +
       /\(function[\s\S]+?(?=if\s*\(typeof define)/.exec(code)[0] +
-      ' return parse()}(this))')
+      ' return parse()}.call(this))')
         .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
-        .replace(/(function\s*\(\s*window\s*\)[^\n]+\n)/, '$1me=options;\n')
+        .replace(/\broot\s*=[^\n]+?(;\n)/, 'root=options$1')
+        .replace(/\boldRoot\s*=[^\n]+?(;\n)/, 'oldRoot=options$1')
         .replace(/\bvar thisBinding\s*=[^\n]+?(;\n)/, '')
-        .replace(/\boldWin\s*=[^\n]+?(;\n)/, 'oldWin=options$1')
-        .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)/, 'freeGlobal=options.global$1')
+        .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)\s*if[^}]+\}/, 'freeGlobal=options.global$1')
         .replace(/\buserAgent\s*=[^\n]+?(;\n)/, 'userAgent=me.ua$1')
-        .replace(/\b(?:thisBinding|window)\b/g, 'me')
+        .replace(/\b(?:thisBinding|root)\b/g, 'me')
         .replace(/([^.])\bsystem\b/g, '$1me.system')
         .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
         .replace(/\b(?:Environment|Java|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
@@ -182,6 +182,16 @@
       'product': 'Transformer'
     },
 
+    'Android Browser 1.0 (like Chrome 18.0.1025.308) on Samsung Galaxy S4 (Android 4.2.2)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobie Safari/535.19',
+      'layout': 'WebKit',
+      'manufacturer': 'Samsung',
+      'name': 'Android Browser',
+      'os': 'Android 4.2.2',
+      'product': 'Galaxy S4',
+      'version': '1.0'
+    },
+
     'Android Browser (like Safari 4.x) on Sony PlayStation Vita 1.00': {
       'ua': 'Mozilla/5.0 (PlayStation Vita 1.00) AppleWebKit/531.22.8 (KHTML, like Gecko) Silk/3.2',
       'layout': 'WebKit',
@@ -202,11 +212,13 @@
       'version': '3.0.4'
     },
 
-    'Android Browser 3.1.2 (like Safari 4.x) on Android 1.6': {
+    'Android Browser 3.1.2 (like Safari 4.x) on HTC _TATTOO_A3288 (Android 1.6)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 1.6; en-us; HTC_TATTOO_A3288 Build/DRC79) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1',
       'layout': 'WebKit',
+      'manufacturer': 'HTC',
       'name': 'Android Browser',
       'os': 'Android 1.6',
+      'product': 'HTC _TATTOO_A3288',
       'version': '3.1.2'
     },
 
@@ -229,6 +241,17 @@
       'name': 'Android Browser',
       'os': 'Android 2.3',
       'product': 'Galaxy S2',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 12.x) on Samsung Galaxy S3 (Android 4.0.4)': {
+      'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.4; en-gb; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
+      'layout': 'WebKit',
+      'likeChrome': true,
+      'manufacturer': 'Samsung',
+      'name': 'Android Browser',
+      'os': 'Android 4.0.4',
+      'product': 'Galaxy S3',
       'version': '4.0'
     },
 
@@ -403,11 +426,13 @@
       'version': '11.0.696.77'
     },
 
-    'Chrome Mobile 16.0.912.77 on Android 4.0.3': {
+    'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
       'layout': 'WebKit',
+      'manufacturer': 'HTC',
       'name': 'Chrome Mobile',
       'os': 'Android 4.0.3',
+      'product': 'HTC',
       'version': '16.0.912.77'
     },
 
@@ -466,7 +491,7 @@
 
     'Firefox 2.0.0.7 on Gentoo': {
       'ua': 'Mozilla/5.0 (X11; U; Linux Gentoo; pl-PL; rv:1.8.1.7) Gecko/20070914 Firefox/2.0.0.7',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'Gentoo',
       'version': '2.0.0.7'
@@ -483,7 +508,7 @@
 
     'Firefox 3.0 on Debian 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9) Gecko/2008062908 Firefox/3.0 (Debian-3.0~rc2-2)',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'Debian 64-bit',
       'version': '3.0'
@@ -491,7 +516,7 @@
 
     'Firefox 3.0 on SuSE': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; tr-TR; rv:1.9.0) Gecko/2008061600 SUSE/3.0-1.2 Firefox/3.0',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'SuSE',
       'version': '3.0'
@@ -524,7 +549,7 @@
 
     'Firefox 3.6.7 on CentOS': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.7) Gecko/20100726 CentOS/3.6-3.el5.centos Firefox/3.6.7',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'CentOS',
       'version': '3.6.7'
@@ -540,7 +565,7 @@
 
     'Firefox 3.6.20 on Red Hat 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.20) Gecko/20110804 Red Hat/3.6-2.el5 Firefox/3.6.20',
-	  'layout': 'Gecko',
+      'layout': 'Gecko',
       'name': 'Firefox',
       'os': 'Red Hat 64-bit',
       'version': '3.6.20'
@@ -615,6 +640,38 @@
       'name': 'Firefox Mobile',
       'os': 'Android',
       'version': '10.0.5'
+    },
+
+    'Firefox Mobile 18.0 on Firefox OS': {
+      'ua': 'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Firefox OS',
+      'version': '18.0'
+    },
+
+    'Firefox Mobile 24.0 on Android': {
+      'ua': 'Mozilla/5.0 (Android; Mobile; rv:24.0) Gecko/24.0 Firefox/24.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android',
+      'version': '24.0'
+    },
+
+    'Firefox Mobile#{ }24.0 on Android': {
+      'ua': 'Mozilla/5.0 (Android; Tablet; rv:24.0) Gecko/24.0 Firefox/24.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android',
+      'version': '24.0'
+    },
+
+    'Firefox Mobile 26.0 on Firefox OS': {
+      'ua': 'Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Firefox OS',
+      'version': '26.0'
     },
 
     'Flock 2.0#{alpha}1 on Linux i686': {
@@ -925,6 +982,14 @@
       'name': 'IE',
       'os': 'Windows 8 64-bit',
       'version': '10.0'
+    },
+
+    'IE 11.0 on Windows 8.1': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko',
+      'layout': 'Trident',
+      'name': 'IE',
+      'os': 'Windows 8.1',
+      'version': '11.0'
     },
 
     'IE Mobile 4.01 on Windows CE': {
@@ -1794,7 +1859,7 @@
 
   // explicitly call `QUnit.module()` instead of `module()`
   // in case we are in a CLI environment
-  QUnit.module('platform' + (window.document ? '' : ': ' + platform));
+  QUnit.module('platform' + (root.document ? '' : ': ' + platform));
 
   (function() {
     each(['description', 'layout', 'manufacturer', 'name', 'os', 'prerelease', 'product', 'version'], function(name) {
@@ -1802,7 +1867,7 @@
         forOwn(Tests, function(value, key) {
           var platform = getPlatform(value);
           value = name == 'description' ? key : value[name];
-          value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2' }) : null;
+          value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2', ' ': ' ' }) : null;
           equal(platform && String(platform[name]), String(value), String(platform));
         });
       });
@@ -1825,7 +1890,7 @@
     });
 
     test('supports loading Platform.js as a module', function() {
-      if (window.define && define.amd) {
+      if (root.define && define.amd) {
         equal((platform2 || {}).description, platform.description);
       } else {
         ok(true, 'test skipped');
@@ -1957,9 +2022,7 @@
 
   /*--------------------------------------------------------------------------*/
 
-  // configure QUnit and call `QUnit.start()` for
-  // Narwhal, Node.js, PhantomJS, Rhino, and RingoJS
-  if (!window.document || window.phantom) {
+  if (!root.document || root.phantom) {
     QUnit.config.noglobals = true;
     QUnit.start();
   }

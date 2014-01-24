@@ -1,0 +1,16 @@
+{
+  "name": "platform.js",
+  "version": "1.0.0",
+  "main": "./platform.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bestiejs/platform.js.git"
+  },
+  "ignore": [
+    ".*",
+    "*.md",
+    "doc",
+    "test",
+    "vendor"
+  ]
+}
