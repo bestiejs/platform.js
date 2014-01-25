@@ -671,7 +671,7 @@
         version = [version, doc.documentMode];
         if ((data = +data[1] + 4) != version[1]) {
           description.push('IE ' + version[1] + ' mode');
-          layout[1] = '';
+          layout && (layout[1] = '');
           version[1] = data;
         }
         version = name == 'IE' ? String(version[1].toFixed(1)) : version[0];
@@ -791,14 +791,14 @@
       // detect JavaScriptCore
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
       if (!useFeatures || (/internal|\n/i.test(toString.toString()) && !data[1])) {
-        layout[1] = 'like Safari';
+        layout && (layout[1] = 'like Safari');
         data = (data = data[0], data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : '5');
       } else {
-        layout[1] = 'like Chrome';
+        layout && (layout[1] = 'like Chrome');
         data = data[1] || (data = data[0], data < 530 ? 1 : data < 532 ? 2 : data < 532.05 ? 3 : data < 533 ? 4 : data < 534.03 ? 5 : data < 534.07 ? 6 : data < 534.10 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.30 ? 11 : data < 535.01 ? 12 : data < 535.02 ? '13+' : data < 535.07 ? 15 : data < 535.11 ? 16 : data < 535.19 ? 17 : data < 536.05 ? 18 : data < 536.10 ? 19 : data < 537.01 ? 20 : '21');
       }
       // add the postfix of ".x" or "+" for approximate versions
-      layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+');
+      layout && (layout[1] += ' ' + (data += typeof data == 'number' ? '.x' : /[.+]/.test(data) ? '' : '+'));
       // obscure version for some Safari 1-2 releases
       if (name == 'Safari' && (!version || parseInt(version) > 45)) {
         version = data;
@@ -816,7 +816,7 @@
       }
     }
     // detect Chrome desktop mode
-    else if (name == 'Safari' && /Chrome/.exec(layout[1])) {
+    else if (name == 'Safari' && /Chrome/.exec(layout && layout[1])) {
       description.unshift('desktop mode');
       name = 'Chrome Mobile';
       version = null;
