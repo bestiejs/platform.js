@@ -4,8 +4,13 @@
  * Based on a gist by Jörn Zaefferer <https://gist.github.com/722381>
  * Available under MIT license <http://mths.be/mit>
  */
-;(function(root, undefined) {
-  'use strict';
+;(function() {
+
+  /** Used as a safe reference for `undefined` in pre ES5 environments */
+  var undefined;
+
+  /** Used as a horizontal rule in console output */
+  var hr = '----------------------------------------';
 
   /** Native method shortcut */
   var unshift = Array.prototype.unshift;
@@ -27,15 +32,21 @@
     '&#39;': "'"
   };
 
-  /** Used as a horizontal rule in console output */
-  var hr = '----------------------------------------';
+  /** Used to determine if values are of the language type Object */
+  var objectTypes = {
+    'function': true,
+    'object': true
+  };
+
+  /** Used as a reference to the global object */
+  var root = (objectTypes[typeof window] && window) || this;
 
   /** Detect free variable `exports` */
-  var freeExports = typeof exports == 'object' && exports;
+  var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
 
-  /** Detect free variable `global`, from Node.js or Browserified code, and use it as `root` */
-  var freeGlobal = typeof global == 'object' && global;
-  if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
+  /** Detect free variable `global` from Node.js or Browserified code and use it as `root` */
+  var freeGlobal = objectTypes[typeof global] && global;
+  if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal || freeGlobal.self === freeGlobal)) {
     root = freeGlobal;
   }
 
@@ -155,7 +166,7 @@
      * @param {number} delay The number of milliseconds to delay the `fn` call.
      * @param [arg1, arg2, ...] Arguments to invoke `fn` with.
      * @param {boolean} repeated A flag to specify whether `fn` is called repeatedly.
-     * @returns {number} The the ID of the timeout.
+     * @returns {number} The ID of the timeout.
      */
     function schedule(fn, delay, args, repeated) {
       // Rhino 1.7RC4 will error assigning `task` below
@@ -204,7 +215,7 @@
      * @param {Function|string} fn The function to call or string to evaluate.
      * @param {number} delay The number of milliseconds to delay each `fn` call.
      * @param [arg1, arg2, ...] Arguments to invoke `fn` with.
-     * @returns {number} The the ID of the timeout.
+     * @returns {number} The ID of the timeout.
      */
     function setInterval(fn, delay) {
       return schedule(fn, delay, slice.call(arguments, 2), true);
@@ -217,7 +228,7 @@
      * @param {Function|string} fn The function to call or string to evaluate.
      * @param {number} delay The number of milliseconds to delay the `fn` call.
      * @param [arg1, arg2, ...] Arguments to invoke `fn` with.
-     * @returns {number} The the ID of the timeout.
+     * @returns {number} The ID of the timeout.
      */
     function setTimeout(fn, delay) {
       return schedule(fn, delay, slice.call(arguments, 2));
@@ -282,20 +293,20 @@
     QUnit.config.excused = {};
 
     /**
-     * An object used to hold information about the current running test.
+     * An object used to hold "extras" information about the current running test.
      *
      * @memberOf QUnit.config
      * @type Object
      */
-    QUnit.config.testStats = {
+    QUnit.config.extrasData = {
 
       /**
-       * An array of test summaries.
+       * An array of assertion logs.
        *
-       * @memberOf QUnit.config.testStats
+       * @memberOf QUnit.config.extrasData
        * @type Array
        */
-      'assertions': []
+      'logs': []
     };
 
     /**
@@ -317,14 +328,17 @@
         test.retries = 0;
         test.finish = function() {
           var asserts = this.assertions,
+              config = QUnit.config,
               index = -1,
               length = asserts.length,
-              queue = QUnit.config.queue;
+              logs = config.extrasData.logs,
+              queue = config.queue;
 
           while (++index < length) {
             var assert = asserts[index];
-            if (!assert.result && this.retries < QUnit.config.asyncRetries) {
+            if (!assert.result && this.retries < config.asyncRetries) {
               this.retries++;
+              logs.length = Math.max(0, logs.length - asserts.length);
               asserts.length = 0;
 
               var oldLength = queue.length;
@@ -430,16 +444,16 @@
             result = details.result,
             type = typeof expected != 'undefined' ? 'EQ' : 'OK';
 
-        var assertion = [
+        var message = [
           result ? 'PASS' : 'FAIL',
           type,
           details.message || 'ok'
         ];
 
         if (!result && type == 'EQ') {
-          assertion.push('Expected: ' + expected + ', Actual: ' + details.actual);
+          message.push('Expected: ' + expected + ', Actual: ' + details.actual);
         }
-        QUnit.config.testStats.assertions.push(assertion.join(' | '));
+        QUnit.config.extrasData.logs.push(message.join(' | '));
       });
 
       /**
@@ -469,7 +483,7 @@
        * @param {Object} details An object with properties `failed`, `name`, `passed`, and `total`.
        */
       QUnit.testDone(function(details) {
-        var assertions = QUnit.config.testStats.assertions,
+        var logs = QUnit.config.extrasData.logs,
             testName = details.name;
 
         if (details.failed > 0) {
@@ -480,12 +494,15 @@
             console.log(moduleName);
             console.log(hr);
           }
-          console.log(' FAIL - '+ testName);
-          assertions.forEach(function(value) {
-            console.log('    ' + value);
-          });
+          var index = -1,
+              length = logs.length;
+
+          console.log(' FAIL - ' + testName);
+          while(++index < length) {
+            console.log('    ' + logs[index]);
+          }
         }
-        assertions.length = 0;
+        logs.length = 0;
       });
 
       /**
@@ -562,9 +579,9 @@
   /*--------------------------------------------------------------------------*/
 
   // expose QUnit extras
-  if (freeExports && !freeExports.nodeType) {
+  if (freeExports) {
     freeExports.runInContext = runInContext;
   } else {
     runInContext(root);
   }
-}(this));
+}.call(this));
