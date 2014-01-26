@@ -21,9 +21,12 @@
   /** Detect free variable `exports` */
   var freeExports = objectTypes[typeof exports] && exports;
 
-  /** Detect free variable `global`, from Node.js or Browserified code, and use it as `root` */
-  var freeGlobal = objectTypes[typeof global] && global;
-  if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
+  /** Detect free variable `module` */
+  var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
+
+  /** Detect free variable `global` from Node.js or Browserified code and use it as `root` */
+  var freeGlobal = freeExports && freeModule && objectTypes[typeof global] && global;
+  if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal || freeGlobal.self === freeGlobal)) {
     root = freeGlobal;
   }
 
@@ -450,7 +453,7 @@
           // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
           data = {
-            '6.3':  '8.1', 
+            '6.3':  '8.1',
             '6.2':  '8',
             '6.1':  'Server 2008 R2 / 7',
             '6.0':  'Server 2008 / Vista',
@@ -1017,8 +1020,8 @@
     });
   }
   // check for `exports` after `define` in case a build optimizer adds an `exports` object
-  else if (freeExports && !freeExports.nodeType) {
-    // in Narwhal, Node.js, or RingoJS
+  else if (freeExports && freeModule) {
+    // in Narwhal, Node.js, RingoJS, or Rhino -require
     forOwn(parse(), function(value, key) {
       freeExports[key] = value;
     });
