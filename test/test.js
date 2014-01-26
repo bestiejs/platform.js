@@ -1,30 +1,48 @@
-;(function(root) {
-  'use strict';
+;(function() {
+
+  /** Used as a safe reference for `undefined` in pre ES5 environments */
+  var undefined;
+
+  /** Used as a reference to the global object */
+  var root = typeof global == 'object' && global || this;
+
+  /** Method and object shortcuts */
+  var phantom = root.phantom,
+      amd = root.define && define.amd,
+      document = !phantom && root.document,
+      hasOwnProperty = Object.prototype.hasOwnProperty,
+      noop = function() {};
+
+  /** Detect if running in Java */
+  var isJava = !document && !!root.java;
 
   /** Use a single "load" function */
-  var load = typeof require == 'function' ? require : root.load;
+  var load = (typeof require == 'function' && !amd)
+    ? require
+    : (isJava && root.load) || noop;
 
   /** The unit testing framework */
   var QUnit = (function() {
-    var noop = Function.prototype;
     return  root.QUnit || (
       root.addEventListener || (root.addEventListener = noop),
       root.setTimeout || (root.setTimeout = noop),
       root.QUnit = load('../vendor/qunit/qunit/qunit.js') || root.QUnit,
-      (load('../vendor/qunit-extras/qunit-extras.js') || { 'runInContext': noop }).runInContext(root),
       addEventListener === noop && delete root.addEventListener,
       root.QUnit
     );
   }());
+
+  /** Load and install QUnit Extras */
+  var qa = load('../vendor/qunit-extras/qunit-extras.js');
+  if (qa) {
+    qa.runInContext(root);
+  }
 
   /** The `platform` object to check */
   var platform = root.platform || (root.platform =
     load('../platform.js') ||
     root.platform
   );
-
-  /** Shortcut used to check for own properties of objects */
-  var hasOwnProperty = Object.prototype.hasOwnProperty;
 
   /*--------------------------------------------------------------------------*/
 
@@ -1890,8 +1908,8 @@
     });
 
     test('supports loading Platform.js as a module', function() {
-      if (root.define && define.amd) {
-        equal((platform2 || {}).description, platform.description);
+      if (amd) {
+        equal((platformModule || {}).description, platform.description);
       } else {
         ok(true, 'test skipped');
       }
@@ -2022,8 +2040,8 @@
 
   /*--------------------------------------------------------------------------*/
 
-  if (!root.document || root.phantom) {
+  if (!document) {
     QUnit.config.noglobals = true;
     QUnit.start();
   }
-}(typeof global == 'object' && global || this));
+}.call(this));

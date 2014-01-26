@@ -19,26 +19,40 @@
 			);
 		</script>
 		<script>
-			var platform2;
+			var platformModule;
 
-			if (window.require) {
+			(function() {
+				if (!window.require) {
+					return;
+				}
 				QUnit.config.autostart = false;
 
-				// load Platform.js as a module
-				require({
-					'baseUrl': '../vendor/requirejs/',
+				requirejs.config({
+					'baseUrl': './',
 					'urlArgs': 't=' + (+new Date),
-					'paths': {
-						'platform': '../../platform'
-					}
-				},
-				['platform'], function(platform) {
-					platform2 = platform;
-					require(['test.js'], function() {
+					'waitSeconds': 0,
+					'packages': [
+						{
+							'name': 'platform',
+							'location': '..',
+							'main': 'platform'
+						},
+						{
+							'name': 'test',
+							'location': '.',
+							'main': 'test'
+						}
+					]
+				});
+
+				// load platform as a module
+				require(['platform'], function(platform) {
+					platformModule = platform;
+					require(['test'], function() {
 						QUnit.start();
 					});
 				});
-			}
+			}());
 
 			// set a more readable browser name
 			window.onload = function() {
