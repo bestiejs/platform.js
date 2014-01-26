@@ -1011,7 +1011,7 @@
 
   /*--------------------------------------------------------------------------*/
 
-  // expose platform
+  // export platform
   // some AMD build optimizers, like r.js, check for condition patterns like the following:
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     // define as an anonymous module so, through path mapping, it can be aliased
@@ -1021,7 +1021,7 @@
   }
   // check for `exports` after `define` in case a build optimizer adds an `exports` object
   else if (freeExports && freeModule) {
-    // in Narwhal, Node.js, RingoJS, or Rhino -require
+    // in Narwhal, Node.js, Rhino -require, or RingoJS
     forOwn(parse(), function(value, key) {
       freeExports[key] = value;
     });
