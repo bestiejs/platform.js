@@ -111,60 +111,68 @@
    *
    * @private
    * @param {Object} options The options object to simulate environment objects.
-   * @returns {Object} The modified string.
+   * @returns {Object} The simulated platform object.
    */
   var getPlatform = (function() {
-    var code,
-        result,
-        xhr;
+    // provides a cache for platform objects
+    var cache = {};
+    var getPlatform = (function() {
+      var code,
+          result,
+          xhr;
 
-    // for browsers
-    if (root.document && !root.phantom) {
-      if (isHostType(root, 'ActiveXObject')) {
-        xhr = new ActiveXObject('Microsoft.XMLHTTP');
-      } else if (isHostType(root, 'XMLHttpRequest')) {
-        xhr = new XMLHttpRequest;
-      }
-      each(document.getElementsByTagName('script'), function(element) {
-        var src = element.src;
-        if (/platform\.js$/.test(src)) {
-          xhr.open('get', src + '?t=' + (+new Date), false);
-          xhr.send(null);
-          code = xhr.responseText;
+      // for browsers
+      if (root.document && !root.phantom) {
+        if (isHostType(root, 'ActiveXObject')) {
+          xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        } else if (isHostType(root, 'XMLHttpRequest')) {
+          xhr = new XMLHttpRequest;
         }
-      });
-    }
-    // for Narwhal and Rhino
-    else if (typeof readFile == 'function') {
-      code = readFile('../platform.js');
-    }
-    // for Node.js, PhantomJS, and RingoJS
-    else if (typeof require == 'function') {
-      code = (require('fs').readFileSync || require('fs').read)('../platform.js');
-    }
-    return Function('options',
-      ('return ' +
-      /\(function[\s\S]+?(?=if\s*\(typeof define)/.exec(code)[0] +
-      ' return parse()}.call(this))')
-        .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
-        .replace(/\broot\s*=[^\n]+?(;\n)/, 'root=options$1')
-        .replace(/\boldRoot\s*=[^\n]+?(;\n)/, 'oldRoot=options$1')
-        .replace(/\bvar thisBinding\s*=[^\n]+?(;\n)/, '')
-        .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)\s*if[^}]+\}/, 'freeGlobal=options.global$1')
-        .replace(/\buserAgent\s*=[^\n]+?(;\n)/, 'userAgent=me.ua$1')
-        .replace(/\b(?:thisBinding|root)\b/g, 'me')
-        .replace(/([^.])\bsystem\b/g, '$1me.system')
-        .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
-        .replace(/\b(?:Environment|Java|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
-        .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
-        .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
-        .replace(/\bnav\.platform/g, 'me.platform')
-        .replace(/\bexports\b/g, 'me.exports')
-        .replace(/\bexternal/g, 'me.external')
-        .replace(/\bprocess\b/g, 'me.process')
-        .replace(/\brequire\b/g, 'me.require')
-        .replace(/\bdoc\.documentMode/g, 'me.mode'));
+        each(document.getElementsByTagName('script'), function(element) {
+          var src = element.src;
+          if (/platform\.js$/.test(src)) {
+            xhr.open('get', src + '?t=' + (+new Date), false);
+            xhr.send(null);
+            code = xhr.responseText;
+          }
+        });
+      }
+      // for Narwhal and Rhino
+      else if (typeof readFile == 'function') {
+        code = readFile('../platform.js');
+      }
+      // for Node.js, PhantomJS, and RingoJS
+      else if (typeof require == 'function') {
+        code = (require('fs').readFileSync || require('fs').read)('../platform.js');
+      }
+      return Function('options',
+        ('return ' +
+        /\(function[\s\S]+?(?=if\s*\(typeof define)/.exec(code)[0] +
+        ' return parse()}.call(this))')
+          .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
+          .replace(/\broot\s*=[^\n]+?(;\n)/, 'root=options$1')
+          .replace(/\boldRoot\s*=[^\n]+?(;\n)/, 'oldRoot=options$1')
+          .replace(/\bvar thisBinding\s*=[^\n]+?(;\n)/, '')
+          .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)\s*if[^}]+\}/, 'freeGlobal=options.global$1')
+          .replace(/\buserAgent\s*=[^\n]+?(;\n)/, 'userAgent=me.ua$1')
+          .replace(/\b(?:thisBinding|root)\b/g, 'me')
+          .replace(/([^.])\bsystem\b/g, '$1me.system')
+          .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
+          .replace(/\b(?:Environment|Java|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
+          .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
+          .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
+          .replace(/\bnav\.platform/g, 'me.platform')
+          .replace(/\bexports\b/g, 'me.exports')
+          .replace(/\bexternal/g, 'me.external')
+          .replace(/\bprocess\b/g, 'me.process')
+          .replace(/\brequire\b/g, 'me.require')
+          .replace(/\bdoc\.documentMode/g, 'me.mode'));
+    }());
+    return function(name, options) {
+      return cache[name] || (cache[name] = getPlatform(options));
+    };
   }());
+
 
   /*--------------------------------------------------------------------------*/
 
@@ -1883,7 +1891,7 @@
     each(['description', 'layout', 'manufacturer', 'name', 'os', 'prerelease', 'product', 'version'], function(name) {
       test('has the correct `platform.' + name + '` property', function() {
         forOwn(Tests, function(value, key) {
-          var platform = getPlatform(value);
+          var platform = getPlatform(key, value);
           value = name == 'description' ? key : value[name];
           value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2', ' ': ' ' }) : null;
           equal(platform && String(platform[name]), String(value), String(platform));
@@ -1892,15 +1900,15 @@
     });
 
     test('has correct null values', function() {
-      forOwn(Tests, function(value) {
-        forOwn(getPlatform(value), function(value, key) {
+      forOwn(Tests, function(value, key) {
+        forOwn(getPlatform(key, value), function(value, key) {
           !value && strictEqual(value, null, 'platform.' + key);
         });
       });
     });
 
     test('handles no user agent', function() {
-      forOwn(getPlatform({}), function(value, key) {
+      forOwn(getPlatform('', {}), function(value, key) {
         if (typeof value != 'function') {
           equal(String(value), 'null', 'platform.' + key);
         }
