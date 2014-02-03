@@ -114,8 +114,9 @@
    * @returns {Object} The simulated platform object.
    */
   var getPlatform = (function() {
-    // provides a cache for platform objects
+    // the cache for memoized platform objects
     var cache = {};
+
     var getPlatform = (function() {
       var code,
           result,
@@ -168,11 +169,11 @@
           .replace(/\brequire\b/g, 'me.require')
           .replace(/\bdoc\.documentMode/g, 'me.mode'));
     }());
+
     return function(name, options) {
       return cache[name] || (cache[name] = getPlatform(options));
     };
   }());
-
 
   /*--------------------------------------------------------------------------*/
 
