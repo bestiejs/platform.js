@@ -184,7 +184,7 @@
   /**
    * Host objects can return type values that are different from their actual
    * data type. The objects we are concerned with usually return non-primitive
-   * types of object, function, or unknown.
+   * types of "object", "function", or "unknown".
    *
    * @private
    * @param {*} object The owner of the property.
@@ -198,8 +198,7 @@
   }
 
   /**
-   * Prepares a string for use in a RegExp constructor by making hyphens and
-   * spaces optional.
+   * Prepares a string for use in a `RegExp` by making hyphens and spaces optional.
    *
    * @private
    * @param {string} string The string to qualify.
@@ -210,12 +209,12 @@
   }
 
   /**
-   * A bare-bones` Array#reduce` like utility function.
+   * A bare-bones `Array#reduce` like utility function.
    *
    * @private
    * @param {Array} array The array to iterate over.
    * @param {Function} callback The function called per iteration.
-   * @returns {*} The accumulator.
+   * @returns {*} The accumulated result.
    */
   function reduce(array, callback) {
     var accumulator = null;
@@ -242,7 +241,7 @@
    * Creates a new platform object.
    *
    * @memberOf platform
-   * @param {string} [ua = navigator.userAgent] The user agent string.
+   * @param {string} [ua=navigator.userAgent] The user agent string.
    * @returns {Object} A platform object.
    */
   function parse(ua) {
@@ -962,7 +961,7 @@
       'description': description.length ? description.join(' ') : ua,
 
       /**
-       * The name of the browser layout engine.
+       * The name of the browser's layout engine.
        *
        * @memberOf platform
        * @type string|null
