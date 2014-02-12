@@ -10,6 +10,7 @@
 		<script src="../platform.js"></script>
 		<script src="../vendor/qunit/qunit/qunit.js"></script>
 		<script>
+			QUnit.config.hidepassed = true;
 			QUnit.urlParams.norequire = /[?&]norequire=true(?:&|$)/.test(location.search);
 
 			// load test.js if not using require.js
