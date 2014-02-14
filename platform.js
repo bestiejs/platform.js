@@ -334,9 +334,15 @@
       { 'label': 'Kindle Fire', 'pattern': '(?:Cloud9|Silk-Accelerated)' },
       'Nook',
       'PlayBook',
+      'PlayStation 4',
+      'PlayStation 3',
       'PlayStation Vita',
       'TouchPad',
       'Transformer',
+      { 'label': 'Wii U', 'pattern': 'WiiU' },
+      'Wii',
+      'Xbox One',
+      'Xbox',
       'Xoom'
     ]);
 
@@ -351,10 +357,12 @@
       'HP': { 'TouchPad': 1 },
       'HTC': { },
       'LG': { },
+      'Microsoft': { 'Xbox': 1, 'Xbox One': 1 },
       'Motorola': { 'Xoom': 1 },
+      'Nintendo': { 'Wii U': 1,  'Wii': 1 },
       'Nokia': { },
       'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1, 'Galaxy S3': 1, 'Galaxy S4': 1 },
-      'Sony': { 'PlayStation Vita': 1 }
+      'Sony': { 'PlayStation 4': 1, 'PlayStation 3': 1, 'PlayStation Vita': 1 }
     });
 
     /* Detectable OSes (order is important) */
@@ -613,6 +621,10 @@
         )) {
       layout = [data];
     }
+    // detect NetFront on PlayStation
+    else if (/PlayStation(?! Vita)/i.test(name) && layout == 'WebKit') {
+      layout = ['NetFront'];
+    }
     // detect IE 11 and above
     if (!name && layout == 'Trident') {
       name = 'IE';
@@ -710,9 +722,19 @@
     }
     // detect Windows Phone desktop mode
     else if (name == 'IE' && (data = (/; *(?:XBLWP|ZuneWP)(\d+)/i.exec(ua) || 0)[1])) {
-      name += ' Mobile';
-      os = 'Windows Phone OS ' + data + '.x';
-      description.unshift('desktop mode');
+        name += ' Mobile';
+        os = 'Windows Phone OS ' + data + '.x';
+        description.unshift('desktop mode');
+    }
+    // detect Xboxes
+    else if (/Xbox/i.test(product)) {
+      os = null;
+      if (product == 'Xbox') {
+        product = 'Xbox 360';
+        if(/IEMobile/.test(ua)) {
+          description.unshift('mobile mode');
+        }
+      }
     }
     // add mobile postfix
     else if ((name == 'Chrome' || name == 'IE' || name && !product && !/Browser|Mobi/.test(name)) &&
@@ -735,14 +757,16 @@
     // detect Opera identifying/masking itself as another browser
     // http://www.opera.com/support/kb/view/843/
     else if (this != forOwn && (
-          (useFeatures && opera) ||
-          (/Opera/.test(name) && /\b(?:MSIE|Firefox)\b/i.test(ua)) ||
-          (name == 'Firefox' && /OS X (?:\d+\.){2,}/.test(os)) ||
-          (name == 'IE' && (
-            (os && !/^Win/.test(os) && version > 5.5) ||
-            /Windows XP/.test(os) && version > 8 ||
-            version == 8 && !/Trident/.test(ua)
-          ))
+          product != 'Wii' && (
+            (useFeatures && opera) ||
+            (/Opera/.test(name) && /\b(?:MSIE|Firefox)\b/i.test(ua)) ||
+            (name == 'Firefox' && /OS X (?:\d+\.){2,}/.test(os)) ||
+            (name == 'IE' && (
+              (os && !/^Win/.test(os) && version > 5.5) ||
+              /Windows XP/.test(os) && version > 8 ||
+              version == 8 && !/Trident/.test(ua)
+            ))
+          )
         ) && !reOpera.test((data = parse.call(forOwn, ua.replace(reOpera, '') + ';'))) && data.name) {
 
       // when "indentifying", the UA contains both Opera and the other browser's name

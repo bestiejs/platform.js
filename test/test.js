@@ -983,6 +983,26 @@
       'version': '9.0#{beta}'
     },
 
+    'IE 9.0 on Microsoft Xbox 360': {
+      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; Xbox)',
+      'layout': 'Trident',
+      'manufacturer': 'Microsoft',
+      'mode': 9,
+      'name': 'IE',
+      'product': 'Xbox 360',
+      'version': '9.0'
+    },
+
+    'IE 9.0 (mobile mode) on Microsoft Xbox 360': {
+      'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0; Xbox)',
+      'layout': 'Trident',
+      'manufacturer': 'Microsoft',
+      'mode': 9,
+      'name': 'IE',
+      'product': 'Xbox 360',
+      'version': '9.0'
+    },
+
     'IE 9.0 on Windows Server 2008 R2 / 7 64-bit': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; AMD64; Trident/5.0)',
       'layout': 'Trident',
@@ -990,6 +1010,16 @@
       'name': 'IE',
       'os': 'Windows Server 2008 R2 / 7 64-bit',
       'version': '9.0'
+    },
+
+    'IE 10.0 on Microsoft Xbox One': {
+      'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0; Xbox; Xbox One)',
+      'layout': 'Trident',
+      'manufacturer': 'Microsoft',
+      'mode': 10,
+      'name': 'IE',
+      'product': 'Xbox One',
+      'version': '10.0'
     },
 
     'IE 10.0 (platform preview) on Windows Server 2008 / Vista': {
@@ -1014,6 +1044,7 @@
     'IE 11.0 on Windows 8.1': {
       'ua': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko',
       'layout': 'Trident',
+      'mode': 11,
       'name': 'IE',
       'os': 'Windows 8.1',
       'version': '11.0'
@@ -1360,6 +1391,16 @@
       'version': '12.00'
     },
 
+    'Opera 9.00 on Nintendo Wii': {
+      'ua': 'Opera/9.00 (Nintendo Wii; U; ; 1309-9; en)',
+      'layout': 'Presto',
+      'manufacturer': 'Nintendo',
+      'name': 'Opera',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '9.00'; } },
+      'product': 'Wii',
+      'version': '9.00'
+    },
+
     'Opera 10.10 (identifying as Firefox 2.0.0) on Windows XP': {
       'ua': 'Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 10.10',
       'layout': 'Presto',
@@ -1421,6 +1462,20 @@
       'os': 'Tablet OS 1.0.0',
       'product': 'PlayBook',
       'version': '0.0.1'
+    },
+
+    'PlayStation Browser (like Safari 4.x) on PlayStation 3 4.21': {
+      'ua': 'Mozilla/5.0 (PLAYSTATION 3 4.21) AppleWebKit/531.22.8 (KHTML, like Gecko)',
+      'layout': 'NetFront',
+      'name': 'PlayStation Browser',
+      'product': 'PlayStation 3 4.21'
+    },
+
+    'PlayStation Browser (like Safari 5+) on PlayStation 4 1.51': {
+      'ua': 'Mozilla/5.0 (PlayStation 4 1.51) AppleWebKit/536.26 (KHTML, like Gecko)',
+      'layout': 'NetFront',
+      'name': 'PlayStation Browser',
+      'product': 'PlayStation 4 1.51'
     },
 
     'Raven 0.5.8635 on OS X 10.7.1': {
@@ -1805,6 +1860,14 @@
       'version': '1.0'
     },
 
+    'Wii Browser (like Safari 5.x) on Nintendo Wii U': {
+      'ua': 'Mozilla/5.0 (Nintendo WiiU) AppleWebKit/534.52 (KHTML, like Gecko) NX/2.1.0.8.23 NintendoBrowser/1.1.0.7579.EU',
+      'layout': 'WebKit',
+      'manufacturer': 'Nintendo',
+      'name': 'Wii Browser',
+      'product': 'Wii U'
+    },
+
     'TouchPad Browser (like Chrome 6.x) on HP TouchPad 1.0 (webOS 3.0.0)': {
       'ua': 'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-GB) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0',
       'layout': 'WebKit',
@@ -1863,10 +1926,6 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100728 Firefox/3.6.8 CometBird/3.6.8,gzip(gfe),gzip(gfe)',
       'layout': 'Gecko',
       'os': 'Windows XP'
-    },
-
-    'Mozilla/5.0 (PLAYSTATION 3; 2.00)': {
-      'ua': 'Mozilla/5.0 (PLAYSTATION 3; 2.00)'
     },
 
     'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64': {
