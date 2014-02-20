@@ -14,6 +14,7 @@ Platform.js is part of the BestieJS *"Best in Class"* module collection. This me
 
 The documentation for Platform.js can be viewed here: [/doc/README.md](https://github.com/bestiejs/platform.js/blob/master/doc/README.md#readme)
 
+The full changelog for this release is available on our [wiki](https://github.com/bestiejs/platform.js/wiki/Changelog).<br>
 For a list of upcoming features, check out our [roadmap](https://github.com/bestiejs/platform.js/wiki/Roadmap).
 
 ## Support
