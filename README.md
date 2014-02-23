@@ -19,7 +19,7 @@ For a list of upcoming features, check out our [roadmap](https://github.com/best
 
 ## Support
 
-Platform.js has been tested in at least Chrome 5~32, Firefox 2~27, IE 6-11, Opera 9.25~19, Safari 3-7, Node.js 0.6.21~0.10.25, Narwhal 0.3.2, PhantomJS 1.9.2, RingoJS 0.9, and Rhino 1.7RC5.
+Platform.js has been tested in at least Chrome 5~32, Firefox 2~27, IE 6-11, Opera 9.25~19, Safari 3-7, Node.js 0.6.21~0.10.26, Narwhal 0.3.2, PhantomJS 1.9.2, RingoJS 0.9, and Rhino 1.7RC5.
 
 ## Installation and usage
 
