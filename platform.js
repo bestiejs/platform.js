@@ -568,10 +568,6 @@
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
     }
-    // detect Firefox OS
-    if ((/\((?:Mobile|Tablet).*?Firefox/i).test(ua)) {
-      os = 'Firefox OS';
-    }
     // detect iOS
     if (/^iP/.test(product)) {
       name || (name = 'Safari');
@@ -600,6 +596,13 @@
       if ((data = product || manufacturer || os) &&
           (product || manufacturer || /Android|Symbian OS|Tablet OS|webOS/.test(os))) {
         name = /[a-z]+(?: Hat)?/i.exec(/Android/.test(os) ? os : data) + ' Browser';
+      }
+    }
+    // detect Firefox OS
+    if ((data = /\((Mobile|Tablet).*?Firefox/i.exec(ua)) && data[1]) {
+      os = 'Firefox OS';
+      if (!product) {
+        product = data[1];
       }
     }
     // detect non-Opera versions (order is important)

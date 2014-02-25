@@ -669,11 +669,12 @@
       'version': '10.0.5'
     },
 
-    'Firefox Mobile 18.0 on Firefox OS': {
+    'Firefox Mobile 18.0 on Mobile (Firefox OS)': {
       'ua': 'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0',
       'layout': 'Gecko',
       'name': 'Firefox Mobile',
       'os': 'Firefox OS',
+      'product': 'Mobile',
       'version': '18.0'
     },
 
@@ -693,11 +694,12 @@
       'version': '24.0'
     },
 
-    'Firefox Mobile 26.0 on Firefox OS': {
+    'Firefox Mobile 26.0 on Tablet (Firefox OS)': {
       'ua': 'Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0',
       'layout': 'Gecko',
       'name': 'Firefox Mobile',
       'os': 'Firefox OS',
+      'product': 'Tablet',
       'version': '26.0'
     },
 
