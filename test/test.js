@@ -1319,7 +1319,7 @@
       'version': '0.8.9'
     },
 
-    'Nokia Browser 8.5.0 (like Safari 5+) on Nokia N9': {
+    'Nokia Browser 8.5.0 (like Safari 7+) on Nokia N9': {
       'ua': 'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/543.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
       'layout': 'WebKit',
       'manufacturer': 'Nokia',
@@ -1473,7 +1473,7 @@
       'product': 'PlayStation 3 4.21'
     },
 
-    'PlayStation Browser (like Safari 5+) on PlayStation 4 1.51': {
+    'PlayStation Browser (like Safari 6.x) on PlayStation 4 1.51': {
       'ua': 'Mozilla/5.0 (PlayStation 4 1.51) AppleWebKit/536.26 (KHTML, like Gecko)',
       'layout': 'NetFront',
       'name': 'PlayStation Browser',
@@ -1862,24 +1862,6 @@
       'version': '1.0'
     },
 
-    'Wii Browser (like Safari 5.x) on Nintendo Wii U': {
-      'ua': 'Mozilla/5.0 (Nintendo WiiU) AppleWebKit/534.52 (KHTML, like Gecko) NX/2.1.0.8.23 NintendoBrowser/1.1.0.7579.EU',
-      'layout': 'WebKit',
-      'manufacturer': 'Nintendo',
-      'name': 'Wii Browser',
-      'product': 'Wii U'
-    },
-
-    'TouchPad Browser (like Chrome 6.x) on HP TouchPad 1.0 (webOS 3.0.0)': {
-      'ua': 'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-GB) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0',
-      'layout': 'WebKit',
-      'likeChrome': true,
-      'manufacturer': 'HP',
-      'os': 'webOS 3.0.0',
-      'product': 'TouchPad 1.0',
-      'name': 'TouchPad Browser'
-    },
-
     'WebKit Nightly 528.4 (like Safari 4.x) on OS X 10.4.11': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; tr) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
       'layout': 'WebKit',
@@ -1898,7 +1880,7 @@
       'version': '533.2'
     },
 
-    'WebKit Nightly 535.7 (like Safari 5+) on OS X 10.7.1': {
+    'WebKit Nightly 535.7 (like Safari 6.x) on OS X 10.7.1': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_1) AppleWebKit/535.7+ (KHTML, like Gecko) Version/5.1 Safari/534.48.3',
       'layout': 'WebKit',
       'name': 'WebKit Nightly',
@@ -1912,6 +1894,24 @@
       'layout': 'WebKit',
       'name': 'WebPositive',
       'os': 'Haiku'
+    },
+
+    'Wii Browser (like Safari 5.x) on Nintendo Wii U': {
+      'ua': 'Mozilla/5.0 (Nintendo WiiU) AppleWebKit/534.52 (KHTML, like Gecko) NX/2.1.0.8.23 NintendoBrowser/1.1.0.7579.EU',
+      'layout': 'WebKit',
+      'manufacturer': 'Nintendo',
+      'name': 'Wii Browser',
+      'product': 'Wii U'
+    },
+
+    'TouchPad Browser (like Chrome 6.x) on HP TouchPad 1.0 (webOS 3.0.0)': {
+      'ua': 'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-GB) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0',
+      'layout': 'WebKit',
+      'likeChrome': true,
+      'manufacturer': 'HP',
+      'os': 'webOS 3.0.0',
+      'product': 'TouchPad 1.0',
+      'name': 'TouchPad Browser'
     },
 
     'Lynx/2.8.8dev.3 libwww-FM/2.14 SSL-MM/1.4.1': {
