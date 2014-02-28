@@ -316,6 +316,14 @@
       'version': '0.8.0'
     },
 
+    'Arora 0.11.0 (like Safari 5.x) on Linux i686': {
+      'ua': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.34 (KHTML like Gecko) Arora/0.11.0 Safari/534.34',
+      'layout': 'WebKit',
+      'name': 'Arora',
+      'os': 'Linux i686',
+      'version': '0.11.0'
+    },
+
     'Avant Browser on Windows Server 2008 / Vista': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Avant Browser)',
       'layout': 'Trident',
@@ -355,6 +363,14 @@
       'name': 'BlackBerry Browser',
       'os': 'Device Software 6.0.0.91',
       'product': 'BlackBerry 9800'
+    },
+
+    'BlackBerry Browser (like Safari 7+) on BlackBerry 10.1.0.1429': {
+      'ua': 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.1.0.1429 Mobile Safari/537.10+',
+      'layout': 'WebKit',
+      'manufacturer': 'BlackBerry',
+      'name': 'BlackBerry Browser',
+      'os': 'BlackBerry 10.1.0.1429'
     },
 
     'Camino 0.7 on OS X': {
@@ -417,6 +433,14 @@
       'version': '2.0.3'
     },
 
+    'Camino 2.1.2 on OS X 10.9': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.9; en; rv:1.9.2.28) Gecko/20120308 Camino/2.1.2 (like Firefox/3.6.28)',
+      'layout': 'Gecko',
+      'name': 'Camino',
+      'os': 'OS X 10.9',
+      'version': '2.1.2'
+    },
+
     'Chrome 0.2.149.27 on Windows 2000': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.2.149.27 Safari/525.13',
       'layout': 'WebKit',
@@ -451,6 +475,22 @@
       'os': 'Linux armv7l',
       'product': 'Google TV',
       'version': '11.0.696.77'
+    },
+
+    'Chrome 23.0.1257.0 on OS X 10.9.1': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9.1) AppleWebKit/537.9 (KHTML like Gecko) Chrome/23.0.1257.0 Safari/537.9',
+      'layout': 'WebKit',
+      'name': 'Chrome',
+      'os': 'OS X 10.9.1',
+      'version': '23.0.1257.0'
+    },
+
+    'Chrome 31.0.1650.63 on OS X 10.9.2': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9.2) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'OS X 10.9.2',
+      'version': '31.0.1650.63'
     },
 
     'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
@@ -514,6 +554,14 @@
       'name': 'Epiphany',
       'os': 'Linux 64-bit',
       'version': '2.30.6'
+    },
+
+    'Epiphany 3.9.0 32-bit on Ubuntu 13.04 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML like Gecko) Chrome/23.0.1271.64 Safari/537.11 Mozilla/5.0 (X11; Linux x8664) Ubuntu/13.04 (3.9.0-0ubuntu2) Epiphany/3.9.0',
+      'layout': 'WebKit',
+      'name': 'Epiphany',
+      'os': 'Ubuntu 13.04 64-bit',
+      'version': '3.9.0'
     },
 
     'Firefox 2.0.0.7 on Gentoo': {
@@ -644,6 +692,22 @@
       'version': '5.0'
     },
 
+    'Firefox 15.0 on OS X 10.9': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:15.0) Gecko/20100101 Firefox/15.0',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'OS X 10.9',
+      'version': '15.0'
+    },
+
+    'Firefox 25.0 on OS X 10.9': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:25.0) Gecko/20100101 Firefox/25.0',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'OS X 10.9',
+      'version': '25.0'
+    },
+
     'Firefox Mobile 2.0#{beta}1 on Android': {
       'ua': 'Mozilla/5.0 (Android; Linux armv7l; rv:2.0b6pre) Gecko/20100907 Firefox/4.0b6pre Fennec/2.0b1pre',
       'layout': 'Gecko',
@@ -729,6 +793,14 @@
       'version': '2.6.0'
     },
 
+    'Flock 3.5.3.4628 on OS X 10.6': {
+      'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US) AppleWebKit/534.7 (KHTML like Gecko) Flock/3.5.3.4628 Chrome/7.0.517.450 Safari/534.7',
+      'layout': 'WebKit',
+      'name': 'Flock',
+      'os': 'OS X 10.6',
+      'version': '3.5.3.4628'
+    },
+
     'Galeon 1.2.5 on Linux i686': {
       'ua': 'Mozilla/5.0 Galeon/1.2.5 (X11; Linux i686; U;) Gecko/20020809',
       'layout': 'Gecko',
@@ -791,6 +863,14 @@
       'name': 'iCab',
       'os': 'OS X',
       'version': '4.7'
+    },
+
+    'iCab 5.1.1 on OS X 10.9.1': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9.1) AppleWebKit/537.73.11 (KHTML like Gecko) iCab/5.1.1 Safari/533.16',
+      'layout': 'WebKit',
+      'name': 'iCab',
+      'os': 'OS X 10.9.1',
+      'version': '5.1.1' 
     },
 
     'Iceweasel 3.5.5 on Debian': {
@@ -1089,7 +1169,7 @@
       'manufacturer': 'LG',
       'mode': 8,
       'name': 'IE Mobile',
-     'os': 'Windows Phone OS 7.5',
+      'os': 'Windows Phone OS 7.5',
       'product': 'LG E900',
       'version': '9.0'
     },
@@ -1100,7 +1180,7 @@
       'layout': 'Trident',
       'mode': 9,
       'name': 'IE Mobile',
-     'os': 'Windows Phone OS 7.x',
+      'os': 'Windows Phone OS 7.x',
       'version': '9.0'
     },
 
@@ -1112,6 +1192,18 @@
       'name': 'IE Mobile',
       'os': 'Windows Phone OS 7.x',
       'version': '9.0'
+    },
+
+    'IE Mobile 10.0 on Nokia (Windows Phone 8.0)': {
+      'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 920)',
+      'external': null,
+      'layout': 'Trident',
+      'manufacturer': 'Nokia',
+      'mode': 10,
+      'name': 'IE Mobile',
+      'os': 'Windows Phone 8.0',
+      'product': 'Nokia',
+      'version': '10.0'
     },
 
     'Iron 0.2.152.0 on Windows Server 2008 / Vista': {

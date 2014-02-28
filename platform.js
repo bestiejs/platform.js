@@ -321,6 +321,7 @@
 
     /* Detectable products (order is important) */
     var product = getProduct([
+      { 'label': 'BlackBerry', 'pattern': 'BB10' },
       'BlackBerry',
       { 'label': 'Galaxy S', 'pattern': 'GT-I9000' },
       { 'label': 'Galaxy S2', 'pattern': 'GT-I9100' },
@@ -750,12 +751,15 @@
     }
     // detect BlackBerry OS version
     // http://docs.blackberry.com/en/developers/deliverables/18169/HTTP_headers_sent_by_BB_Browser_1234911_11.jsp
-    else if (/BlackBerry/.test(product) && (data =
+    else if ((/BlackBerry/.test(product) || /BB10/.test(ua)) && (data =
           (RegExp(product.replace(/ +/g, ' *') + '/([.\\d]+)', 'i').exec(ua) || 0)[1] ||
           version
         )) {
-      os = 'Device Software ' + data;
+      data = [data, /BB10/.test(ua)];
+      os = (data[1] ? 'BlackBerry' : 'Device Software') + ' ' + data[0];
       version = null;
+      data[1] && (product = null);
+      manufacturer = 'BlackBerry';
     }
     // detect Opera identifying/masking itself as another browser
     // http://www.opera.com/support/kb/view/843/
@@ -817,7 +821,7 @@
       // use the full Chrome version when available
       data[1] = (/\bChrome\/([\d.]+)/i.exec(ua) || 0)[1];
       // detect Blink layout engine
-      if (data[0] == '537.36' && data[2] == '537.36' && data[1] >= 28) {
+      if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28) {
         layout = ['Blink'];
       }
       // detect JavaScriptCore
