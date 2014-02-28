@@ -518,7 +518,7 @@
           result = format(result[0]
             .replace(RegExp(pattern, 'i'), guess)
             .replace(RegExp('; *(?:' + guess + '[_-])?', 'i'), ' ')
-            .replace(RegExp('(' + guess + ')(\\w)', 'i'), '$1 $2'));
+            .replace(RegExp('(' + guess + ')[-_.]?(\\w)', 'i'), '$1 $2'));
         }
         return result;
       });

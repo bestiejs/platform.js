@@ -239,13 +239,13 @@
       'version': '3.0.4'
     },
 
-    'Android Browser 3.1.2 (like Safari 4.x) on HTC _TATTOO_A3288 (Android 1.6)': {
+    'Android Browser 3.1.2 (like Safari 4.x) on HTC TATTOO_A3288 (Android 1.6)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 1.6; en-us; HTC_TATTOO_A3288 Build/DRC79) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1',
       'layout': 'WebKit',
       'manufacturer': 'HTC',
       'name': 'Android Browser',
       'os': 'Android 1.6',
-      'product': 'HTC _TATTOO_A3288',
+      'product': 'HTC TATTOO_A3288',
       'version': '3.1.2'
     },
 
