@@ -291,7 +291,7 @@
       'GreenBrowser',
       'iCab',
       'Iceweasel',
-      'Iron',
+      { 'label': 'SRWare Iron', 'pattern': 'Iron' },
       'K-Meleon',
       'Konqueror',
       'Lunascape',
@@ -343,7 +343,7 @@
       { 'label': 'Wii U', 'pattern': 'WiiU' },
       'Wii',
       'Xbox One',
-      'Xbox',
+      { 'label': 'Xbox 360', 'pattern': 'Xbox' },
       'Xoom'
     ]);
 
@@ -511,7 +511,7 @@
               RegExp('\\b' + pattern + '(?:; *(?:[a-z]+[_-])?[a-z]+\\d+|[^ ();-]*)', 'i').exec(ua)
             )) {
           // split by forward slash and append product version if needed
-          if ((result = String(guess.label || result).split('/'))[1] && !/[\d.]+/.test(result[0])) {
+          if ((result = String((guess.label && !RegExp(pattern, 'i').test(guess.label)) ? guess.label : result).split('/'))[1] && !/[\d.]+/.test(result[0])) {
             result[0] += ' ' + result[1];
           }
           // correct character case and cleanup
@@ -609,7 +609,7 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|CriOS|CrMo|Opera ?Mini|OPR|Raven|Silk(?!/[\\d.]+$))',
+        '(?:Cloud9|CriOS|CrMo|Iron|Opera ?Mini|OPR|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
@@ -730,14 +730,11 @@
         os = 'Windows Phone OS ' + data + '.x';
         description.unshift('desktop mode');
     }
-    // detect Xboxes
+    // detect Xbox 360 and Xbox One
     else if (/Xbox/i.test(product)) {
       os = null;
-      if (product == 'Xbox') {
-        product = 'Xbox 360';
-        if(/IEMobile/.test(ua)) {
-          description.unshift('mobile mode');
-        }
+      if (product == 'Xbox 360' && /IEMobile/.test(ua)) {
+        description.unshift('mobile mode');
       }
     }
     // add mobile postfix
@@ -756,10 +753,8 @@
           version
         )) {
       data = [data, /BB10/.test(ua)];
-      os = (data[1] ? 'BlackBerry' : 'Device Software') + ' ' + data[0];
+      os = (data[1] ? (product = null, manufacturer = 'BlackBerry') : 'Device Software') + ' ' + data[0];
       version = null;
-      data[1] && (product = null);
-      manufacturer = 'BlackBerry';
     }
     // detect Opera identifying/masking itself as another browser
     // http://www.opera.com/support/kb/view/843/
@@ -828,7 +823,7 @@
       // http://stackoverflow.com/questions/6768474/how-can-i-detect-which-javascript-engine-v8-or-jsc-is-used-at-runtime-in-androi
       if (!useFeatures || (/internal|\n/i.test(toString.toString()) && !data[1])) {
         layout && (layout[1] = 'like Safari');
-        data = (data = data[0], data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : data < 537 ? 6 : '7');
+        data = (data = data[0], data < 400 ? 1 : data < 500 ? 2 : data < 526 ? 3 : data < 533 ? 4 : data < 534 ? '4+' : data < 535 ? 5 : data < 537 ? 6 : data < 538 ? 7 : '7');
       } else {
         layout && (layout[1] = 'like Chrome');
         data = data[1] || (data = data[0], data < 530 ? 1 : data < 532 ? 2 : data < 532.05 ? 3 : data < 533 ? 4 : data < 534.03 ? 5 : data < 534.07 ? 6 : data < 534.10 ? 7 : data < 534.13 ? 8 : data < 534.16 ? 9 : data < 534.24 ? 10 : data < 534.30 ? 11 : data < 535.01 ? 12 : data < 535.02 ? '13+' : data < 535.07 ? 15 : data < 535.11 ? 16 : data < 535.19 ? 17 : data < 536.05 ? 18 : data < 536.10 ? 19 : data < 537.01 ? 20 : data < 537.11 ? '21+' : data < 537.13 ? 23 : data < 537.18 ? 24 : data < 537.24 ? 25 : data < 537.36 ? 26 : layout != 'Blink' ? '27' : '28');

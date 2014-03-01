@@ -365,7 +365,7 @@
       'product': 'BlackBerry 9800'
     },
 
-    'BlackBerry Browser (like Safari 7+) on BlackBerry 10.1.0.1429': {
+    'BlackBerry Browser (like Safari 7.x) on BlackBerry 10.1.0.1429': {
       'ua': 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.1.0.1429 Mobile Safari/537.10+',
       'layout': 'WebKit',
       'manufacturer': 'BlackBerry',
@@ -1206,12 +1206,20 @@
       'version': '10.0'
     },
 
-    'Iron 0.2.152.0 on Windows Server 2008 / Vista': {
+    'SRWare Iron 0.2.152.0 on Windows Server 2008 / Vista': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Iron/0.2.152.0 Safari/41562480.525',
       'layout': 'WebKit',
-      'name': 'Iron',
+      'name': 'SRWare Iron',
       'os': 'Windows Server 2008 / Vista',
       'version': '0.2.152.0'
+    },
+
+    'SRWare Iron 30.0.1650.0 on Windows 8.1': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML like Gecko) Iron/30.0.1650.0 Chrome/30.0.1650.0 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'SRWare Iron',
+      'os': 'Windows 8.1',
+      'version': '30.0.1650.0'
     },
 
     'Kindle Browser 3.4 (NetFront) on Amazon Kindle 2.0 (Linux 2.6.22)': {
@@ -1532,11 +1540,19 @@
     },
 
     'Opera 15.0.1147.18 on OS X 10.8.4': {
-      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.20 Safari/537.36  OPR/15.0.1147.18 (Edition Next)',
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.20 Safari/537.36 OPR/15.0.1147.18 (Edition Next)',
       'layout': 'Blink',
       'name': 'Opera',
       'os': 'OS X 10.8.4',
       'version': '15.0.1147.18'
+    },
+
+    'Opera 18.0.1284.49 on OS X 10.9.1': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.57 Safari/537.36 OPR/18.0.1284.49',
+      'layout': 'Blink',
+      'name': 'Opera',
+      'os': 'OS X 10.9.1',
+      'version': '18.0.1284.49'
     },
 
     'PhantomJS 1.0.0 (like Safari 4.x) on Cygwin': {
@@ -1735,6 +1751,22 @@
       'name': 'Safari',
       'os': 'OS X 10.8',
       'version': '5.2'
+    },
+
+    'Safari 6.0.4 on OS X 10.8.3': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.29.13 (KHTML, like Gecko) Version/6.0.4 Safari/536.29.13',
+      'layout': 'WebKit',
+      'name': 'Safari',
+      'os': 'OS X 10.8.3',
+      'version': '6.0.4'
+    },
+
+    'Safari 7.0.1 on OS X 10.9.1': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.73.11 (KHTML, like Gecko) Version/7.0.1 Safari/537.73.11',
+      'layout': 'WebKit',
+      'name': 'Safari',
+      'os': 'OS X 10.9.1',
+      'version': '7.0.1'
     },
 
     'SeaMonkey 1.1.7#{alpha} on Haiku': {
