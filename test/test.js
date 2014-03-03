@@ -520,7 +520,7 @@
       'name': 'Chrome Mobile',
       'os': 'Android 4.0.4',
       'product': 'Galaxy S2',
-      'version': '27.0.1453.90',
+      'version': '27.0.1453.90'
     },
 
     'Chrome Mobile (desktop mode) on iOS 4.3+': {
@@ -870,7 +870,7 @@
       'layout': 'WebKit',
       'name': 'iCab',
       'os': 'OS X 10.9.1',
-      'version': '5.1.1' 
+      'version': '5.1.1'
     },
 
     'Iceweasel 3.5.5 on Debian': {
