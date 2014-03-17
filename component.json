@@ -1,0 +1,10 @@
+{
+  "name": "platform.js",
+  "repo": "bestiejs/platform.js",
+  "version": "1.0.0",
+  "description": "A platform detection library that works on nearly all JavaScript platforms.",
+  "license": "MIT",
+  "main": "platform.js",
+  "keywords": ["environment", "platform", "ua", "useragent"],
+  "scripts": ["platform.js"]
+}
