@@ -1,4 +1,3 @@
 .DS_Store
-node_modules/
-tests/platform.air/src/*.js
-tests/platform.air/bin-debug/
+*.log
+node_modules
