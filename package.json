@@ -13,6 +13,7 @@
   ],
   "bugs": "https://github.com/bestiejs/platform.js/issues",
   "repository": "bestiejs/platform.js",
+  "scripts": { "test": "echo \"See the repository CONTRIBUTING.md for testing instructions.\"" },
   "engines": ["node", "rhino"],
   "files": [
     "LICENSE.txt",
