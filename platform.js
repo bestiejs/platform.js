@@ -54,6 +54,13 @@
   /** Used to check for own properties of an object */
   var hasOwnProperty = {}.hasOwnProperty;
 
+  /**
+   * Used as the maximum length of an array-like object.
+   * See the [ES6 spec](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength)
+   * for more details.
+   */
+  var maxSafeInteger = Math.pow(2, 53) - 1;
+
   /** Browser navigator object */
   var nav = root.navigator || {};
 
@@ -96,9 +103,9 @@
    */
   function each(object, callback) {
     var index = -1,
-        length = object.length;
+        length = object ? object.length : 0;
 
-    if (length == length >>> 0) {
+    if (typeof length == 'number' && length > -1 && length <= maxSafeInteger) {
       while (++index < length) {
         callback(object[index], index, object);
       }
@@ -130,7 +137,9 @@
    */
   function forOwn(object, callback) {
     for (var key in object) {
-      hasKey(object, key) && callback(object[key], key, object);
+      if (hasOwnProperty.call(object, key)) {
+        callback(object[key], key, object);
+      }
     }
   }
 
@@ -145,40 +154,6 @@
     return value == null
       ? capitalize(value)
       : toString.call(value).slice(8, -1);
-  }
-
-  /**
-   * Checks if an object has the specified key as a direct property.
-   *
-   * @private
-   * @param {Object} object The object to check.
-   * @param {string} key The key to check for.
-   * @returns {boolean} Returns `true` if key is a direct property, else `false`.
-   */
-  function hasKey() {
-    // lazy define for others (not as accurate)
-    hasKey = function(object, key) {
-      var parent = object != null && (object.constructor || Object).prototype;
-      return !!parent && key in Object(object) && !(key in parent && object[key] === parent[key]);
-    };
-    // for modern browsers
-    if (getClassOf(hasOwnProperty) == 'Function') {
-      hasKey = function(object, key) {
-        return object != null && hasOwnProperty.call(object, key);
-      };
-    }
-    // for Safari 2
-    else if ({}.__proto__ == Object.prototype) {
-      hasKey = function(object, key) {
-        var result = false;
-        if (object != null) {
-          object = Object(object);
-          object.__proto__ = [object.__proto__, object.__proto__ = null, result = key in object][0];
-        }
-        return result;
-      };
-    }
-    return hasKey.apply(this, arguments);
   }
 
   /**
@@ -416,7 +391,7 @@
      * Picks the manufacturer from an array of guesses.
      *
      * @private
-     * @param {Array} guesses An array of guesses.
+     * @param {Object} guesses An object of guesses.
      * @returns {null|string} The detected manufacturer.
      */
     function getManufacturer(guesses) {
