@@ -71,7 +71,9 @@
    */
   function forOwn(object, callback) {
     for (var key in object) {
-      hasOwnProperty.call(object, key) && callback(object[key], key, object);
+      if (hasOwnProperty.call(object, key)) {
+        callback(object[key], key, object);
+      }
     }
   }
 
@@ -84,26 +86,10 @@
    * @returns {String} The modified string.
    */
   function interpolate(string, object) {
-    forOwn(object || {}, function(value, key) {
+    forOwn(object, function(value, key) {
       string = string.replace(RegExp('#\\{' + key + '\\}', 'g'), value);
     });
     return string;
-  }
-
-  /**
-   * Host objects can return type values that are different from their actual
-   * data type. The objects we are concerned with usually return non-primitive
-   * types of object, function, or unknown.
-   *
-   * @private
-   * @param {Mixed} object The owner of the property.
-   * @param {String} property The property to check.
-   * @returns {Boolean} Returns `true` if the property value is a non-primitive, else `false`.
-   */
-  function isHostType(object, property) {
-    var type = object != null ? typeof object[property] : 'number';
-    return !/^(?:boolean|number|string|undefined)$/.test(type) &&
-      (type == 'object' ? !!object[property] : true);
   }
 
   /**
@@ -114,64 +100,28 @@
    * @returns {Object} The simulated platform object.
    */
   var getPlatform = (function() {
-    // the cache for memoized platform objects
     var cache = {};
-
-    var getPlatform = (function() {
-      var code,
-          result,
-          xhr;
-
-      // for browsers
-      if (root.document && !root.phantom) {
-        if (isHostType(root, 'ActiveXObject')) {
-          xhr = new ActiveXObject('Microsoft.XMLHTTP');
-        } else if (isHostType(root, 'XMLHttpRequest')) {
-          xhr = new XMLHttpRequest;
-        }
-        each(document.getElementsByTagName('script'), function(element) {
-          var src = element.src;
-          if (/platform\.js$/.test(src)) {
-            xhr.open('get', src + '?t=' + (+new Date), false);
-            xhr.send(null);
-            code = xhr.responseText;
-          }
-        });
+    return function(description, options) {
+      var result = cache[description];
+      if (result) {
+        return result;
       }
-      // for Narwhal and Rhino
-      else if (typeof readFile == 'function') {
-        code = readFile('../platform.js');
+      if (options.mode) {
+        options.document = { 'documentMode': options.mode };
       }
-      // for Node.js, PhantomJS, and RingoJS
-      else if (typeof require == 'function') {
-        code = (require('fs').readFileSync || require('fs').read)('../platform.js');
-      }
-      return Function('options',
-        ('return ' +
-        /\(function[\s\S]+?(?=if\s*\(typeof define)/.exec(code)[0] +
-        ' return parse()}.call(this))')
-          .replace('/internal|\\n/i.test(toString.toString())', '!me.likeChrome')
-          .replace(/\broot\s*=[^\n]+?(;\n)/, 'root=options$1')
-          .replace(/\boldRoot\s*=[^\n]+?(;\n)/, 'oldRoot=options$1')
-          .replace(/\bvar thisBinding\s*=[^\n]+?(;\n)/, '')
-          .replace(/\bfreeGlobal\s*=(?:.|\n)+?(;\n)\s*if[^}]+\}/, 'freeGlobal=options.global$1')
-          .replace(/\buserAgent\s*=[^\n]+?(;\n)/, 'userAgent=me.ua$1')
-          .replace(/\b(?:thisBinding|root)\b/g, 'me')
-          .replace(/([^.])\bsystem\b/g, '$1me.system')
-          .replace(/\bgetClassOf\(opera\)/g, 'opera&&opera["[[Class]]"]')
-          .replace(/\b(?:Environment|Java|RuntimeObject|ScriptBridgingProxyObject)\b/g, 'Object')
-          .replace(/\bnav\.appMinorVersion/g, 'me.appMinorVersion')
-          .replace(/\bnav\.cpuClass/g, 'me.cpuClass')
-          .replace(/\bnav\.platform/g, 'me.platform')
-          .replace(/\bexports\b/g, 'me.exports')
-          .replace(/\bexternal/g, 'me.external')
-          .replace(/\bprocess\b/g, 'me.process')
-          .replace(/\brequire\b/g, 'me.require')
-          .replace(/\bdoc\.documentMode/g, 'me.mode'));
-    }());
+      options.navigator = {
+        'appMinorVersion': options.appMinorVersion,
+        'cpuClass': options.cpuClass,
+        'platform': options.platform,
+        'userAgent': options.ua
+      };
 
-    return function(name, options) {
-      return cache[name] || (cache[name] = getPlatform(options));
+      delete options.appMinorVersion;
+      delete options.cpuClass;
+      delete options.mode;
+      delete options.platform;
+      delete options.ua;
+      return (cache[description] = platform.parse(options));
     };
   }());
 
