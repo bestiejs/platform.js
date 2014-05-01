@@ -198,7 +198,7 @@
     var context = root;
 
     /** Used to flag when a custom context is provided */
-    var isCustomContext =  ua && typeof ua == 'object';
+    var isCustomContext = ua && typeof ua == 'object' && getClassOf(ua) != 'String';
 
     // juggle arguments
     if (isCustomContext) {
