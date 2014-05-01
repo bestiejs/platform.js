@@ -219,7 +219,7 @@
 
     /** Used to detect if browser is like Chrome */
     var likeChrome = isCustomContext
-      ? !!context.likeChrome
+      ? !!nav.likeChrome
       : /\bChrome\b/.test(ua) && !/internal|\n/i.test(toString.toString());
 
     /** Internal [[Class]] value shortcuts */

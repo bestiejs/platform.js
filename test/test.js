@@ -112,12 +112,14 @@
       options.navigator = {
         'appMinorVersion': options.appMinorVersion,
         'cpuClass': options.cpuClass,
+        'likeChrome': options.likeChrome,
         'platform': options.platform,
         'userAgent': options.ua
       };
 
       delete options.appMinorVersion;
       delete options.cpuClass;
+      delete options.likeChrome;
       delete options.mode;
       delete options.platform;
       delete options.ua;
