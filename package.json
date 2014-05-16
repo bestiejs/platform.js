@@ -1,6 +1,6 @@
 {
   "name": "platform",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A platform detection library that works on nearly all JavaScript platforms.",
   "homepage": "https://github.com/bestiejs/platform.js",
   "license": "MIT",

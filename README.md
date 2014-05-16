@@ -1,4 +1,4 @@
-# Platform.js <sup>v1.0.0</sup>
+# Platform.js <sup>v1.1.0</sup>
 
 A platform detection library that works on nearly all JavaScript platforms<sup><a name="fnref1" href="#fn1">1</a></sup>.
 
@@ -19,7 +19,7 @@ For a list of upcoming features, check out our [roadmap](https://github.com/best
 
 ## Support
 
-Tested in Chrome (19, 34-35), Firefox (3, 20, 28-29), IE 6-11, Opera (10, 12, 19-20), Safari 5-7, Node.js 0.6.21~0.10.28, Narwhal 0.3.2, PhantomJS 1.9.2, RingoJS 0.9, & Rhino 1.7RC5.
+Tested in Chrome 34-35, Firefox 28-29, IE 6-11, Opera 20-21, Safari 5-7, Node.js 0.6.21~0.10.28, Narwhal 0.3.2, PhantomJS 1.9.2, RingoJS 0.9, & Rhino 1.7RC5.
 
 ## Installation and usage
 
@@ -97,5 +97,5 @@ info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.
 ## Contributors
 
 | [![twitter/demoneaux](http://gravatar.com/avatar/029b19dba521584d83398ada3ecf6131?s=70)](https://twitter.com/demoneaux "Follow @demoneaux on Twitter") | [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](https://twitter.com/mathias "Follow @mathias on Twitter") |
-|---|
+|---|---|
 | [Benjamin Tan](http://d10.github.io/) | [Mathias Bynens](http://mathiasbynens.be/) |
