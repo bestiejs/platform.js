@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>platform.js · demo</title>
+    <meta name="description" content="Demo of `platform.js`">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <hgroup>
+        <h1><a href="http://mths.be/platform">platform.js</a></h1>
+        <h2>Demo of <code>platform.js</code></h2>
+    </hgroup>
+
+    <section id="main">
+        <form type="get" action="/platform-demo/">
+            <label for="customUA">Custom UA: </label>
+            <input type="text" length="100" maxlength="255" name="customUA" id="custom">
+            <input type="submit">
+        </form>
+        <pre class="intro"><code id="json"></code></pre>
+        <noscript>JavaScript needs to be enabled for this demo to work.</noscript>
+    </section>
+
+    <footer>
+        <p>
+            Report issues to <a href="https://github.com/bestiejs/platform.js/issues/new">platform.js</a><br>
+            <a href="http://mths.be/platform">platform.js</a> by <a href="https://github.com/jdalton">@jdalton</a>, <a href="https://github.com/d10">@d10</a>, and <a href="https://github.com/mathiasbynens">@mathiasbynens</a>
+        </p>
+    </footer>
+
+    <script src="vendor/json3/lib/json3.min.js"></script>
+    <script src="vendor/platform.js/platform.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
