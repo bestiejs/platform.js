@@ -2186,9 +2186,9 @@
 
   /*--------------------------------------------------------------------------*/
 
-  QUnit.config.hidepassed = true;
-
-  if (!document) {
+  if (document) {
+    QUnit.config.hidepassed = true
+  } else {
     QUnit.config.noglobals = true;
     QUnit.start();
   }
