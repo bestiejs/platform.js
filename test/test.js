@@ -2023,7 +2023,7 @@
 
   // explicitly call `QUnit.module()` instead of `module()`
   // in case we are in a CLI environment
-  QUnit.module('platform' + (root.document ? '' : ': ' + platform));
+  QUnit.module('platform' + (document ? '' : ': ' + platform));
 
   (function() {
     each(['description', 'layout', 'manufacturer', 'name', 'os', 'prerelease', 'product', 'version'], function(name) {
