@@ -445,6 +445,14 @@
       'version': '31.0.1650.63'
     },
 
+    'Chrome 34.0.1847.137 on OS X 10.9.3': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'OS X 10.9.3',
+      'version': '34.0.1847.137'
+    },
+
     'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
       'layout': 'WebKit',
@@ -658,6 +666,14 @@
       'name': 'Firefox',
       'os': 'OS X 10.9',
       'version': '25.0'
+    },
+
+    'Firefox 29.0 on OS X 10.9': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:29.0) Gecko/20100101 Firefox/29.0',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'OS X 10.9',
+      'version': '29.0'
     },
 
     'Firefox Mobile 2.0#{beta}1 on Android': {
@@ -1505,6 +1521,14 @@
       'name': 'Opera',
       'os': 'OS X 10.9.1',
       'version': '18.0.1284.49'
+    },
+
+    'Opera 21.0.1432.67 on OS X 10.9.3': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.132 Safari/537.36 OPR/21.0.1432.67',
+      'layout': 'Blink',
+      'name': 'Opera',
+      'os': 'OS X 10.9.3',
+      'version': '21.0.1432.67'
     },
 
     'PhantomJS 1.0.0 (like Safari 4.x) on Cygwin': {
