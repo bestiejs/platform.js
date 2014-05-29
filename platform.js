@@ -6,7 +6,7 @@
 ;(function() {
   'use strict';
 
-  /** Used to determine if values are of the language type Object */
+  /** Used to determine if values are of the language type `Object` */
   var objectTypes = {
     'function': true,
     'object': true
@@ -116,11 +116,11 @@
   }
 
   /**
-   * Gets the internal [[Class]] of a value.
+   * Gets the internal `[[Class]]` of a value.
    *
    * @private
    * @param {*} value The value.
-   * @returns {string} The [[Class]].
+   * @returns {string} The `[[Class]]`.
    */
   function getClassOf(value) {
     return value == null
@@ -222,7 +222,7 @@
       ? !!nav.likeChrome
       : /\bChrome\b/.test(ua) && !/internal|\n/i.test(toString.toString());
 
-    /** Internal [[Class]] value shortcuts */
+    /** Internal `[[Class]]` value shortcuts */
     var objectClass = 'Object',
         airRuntimeClass = isCustomContext ? objectClass : 'ScriptBridgingProxyObject',
         enviroClass = isCustomContext ? objectClass : 'Environment',
@@ -245,13 +245,13 @@
     var doc = context.document || {};
 
     /**
-     * Detect Opera browser
+     * Detect Opera browser (Presto-based)
      * http://www.howtocreate.co.uk/operaStuff/operaObject.html
      * http://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
      */
     var opera = context.operamini || context.opera;
 
-    /** Opera [[Class]] */
+    /** Opera `[[Class]]` */
     var operaClass = reOpera.test(operaClass = (isCustomContext && opera) ? opera['[[Class]]'] : getClassOf(opera))
       ? operaClass
       : (opera = null);
@@ -426,7 +426,7 @@
      * Picks the manufacturer from an array of guesses.
      *
      * @private
-     * @param {Object} guesses An object of guesses.
+     * @param {Array} guesses An object of guesses.
      * @returns {null|string} The detected manufacturer.
      */
     function getManufacturer(guesses) {
