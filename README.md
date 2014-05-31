@@ -1,6 +1,6 @@
 # Platform.js <sup>v1.1.0</sup>
 
-A platform detection library that works on nearly all JavaScript platforms<sup><a name="fnref1" href="#fn1">1</a></sup>.
+A platform detection library that works on nearly all JavaScript platforms<sup><a href="#support">*</a></sup>.
 
 ## Disclaimer
 
