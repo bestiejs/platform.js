@@ -644,9 +644,12 @@
       layout = ['NetFront'];
     }
     // detect IE 11 and above
-    if (!name && layout == 'Trident') {
+    if (name != 'IE' && layout == 'Trident' && (data = /\brv:([\d.]+)/.exec(ua))) {
+      if (name) {
+        description.push('identifying as ' + name + (version ? ' ' + version : ''));
+      }
       name = 'IE';
-      version = (/\brv:([\d.]+)/.exec(ua) || 0)[1];
+      version = data[1];
     }
     // leverage environment features
     if (useFeatures) {

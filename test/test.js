@@ -1100,6 +1100,24 @@
       'version': '11.0'
     },
 
+    'IE 11.0 32-bit (identifying as Firefox 12.0) on Windows Server 2008 R2 / 7 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko/20100101 Firefox/12.0',
+      'layout': 'Trident',
+      'mode': 11,
+      'name': 'IE',
+      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'version': '11.0'
+    },
+
+    'IE 11.0 32-bit (identifying as Firefox 22.0) on Windows Server 2008 R2 / 7 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko/20100101 Firefox/22.0',
+      'layout': 'Trident',
+      'mode': 11,
+      'name': 'IE',
+      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'version': '11.0'
+    },
+
     'IE Mobile 4.01 on Windows CE': {
       'ua' : 'Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320)',
       'layout': 'Trident',
@@ -2120,6 +2138,13 @@
     test('parses IE', function() {
       var actual = parse('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0)'),
           expected = 'IE 7.0 on Windows XP';
+
+      equal(actual.description, expected);
+    });
+
+    test('parses IE identifying as Firefox 12.0', function() {
+      var actual = parse('Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko/20100101 Firefox/12.0'),
+          expected = 'IE 11.0 32-bit (identifying as Firefox 12.0) on Windows Server 2008 R2 / 7 64-bit';
 
       equal(actual.description, expected);
     });
