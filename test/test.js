@@ -1162,14 +1162,14 @@
       'version': '9.0'
     },
 
-    'IE Mobile 10.0 on Nokia (Windows Phone 8.0)': {
+    'IE Mobile 10.0 on Nokia (Windows Phone OS 8.0)': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 920)',
       'external': null,
       'layout': 'Trident',
       'manufacturer': 'Nokia',
       'mode': 10,
       'name': 'IE Mobile',
-      'os': 'Windows Phone 8.0',
+      'os': 'Windows Phone OS 8.0',
       'product': 'Nokia',
       'version': '10.0'
     },

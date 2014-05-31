@@ -505,6 +505,7 @@
             .replace(/_/g, '.')
             .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
             .replace(/x86\.64/gi, 'x86_64')
+            .replace(/(Windows Phone)(?! OS)/, '$1 OS')
             .split(' on ')[0]);
         }
         return result;
