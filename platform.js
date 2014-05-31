@@ -644,7 +644,7 @@
       layout = ['NetFront'];
     }
     // detect IE 11 and above
-    if (!name && layout == 'Trident') {
+    if ((!name || name === 'Firefox') && layout == 'Trident') {
       name = 'IE';
       version = (/\brv:([\d.]+)/.exec(ua) || 0)[1];
     }

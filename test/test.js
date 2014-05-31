@@ -2124,6 +2124,13 @@
       equal(actual.description, expected);
     });
 
+    test('parses IE 11.0 masking as Firefox', function() {
+      var actual = parse('Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko/20100101 Firefox/12.0'),
+          expected = 'IE 11.0 on Windows Server 2008 R2 / 7';
+
+      equal(actual.description, expected);
+    });
+
     test('parses Opera', function() {
       var actual = parse('Opera/9.80 (Macintosh; Intel Mac OS X 10.7.2; U; Edition Next; en) Presto/2.9.220 Version/12.00'),
           expected = 'Opera 12.00 on OS X 10.7.2';
