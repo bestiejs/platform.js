@@ -1,27 +1,17 @@
-# Platform.js <sup>v1.1.0</sup>
+# Platform.js v1.1.0
 
-A platform detection library that works on nearly all JavaScript platforms<sup><a href="#support">*</a></sup>.
+A platform detection library that works on nearly all JavaScript platforms.
 
 ## Disclaimer
 
-Platform.js is for informational purposes only and **not** intended as a substitution for [feature detection/inference](http://allyoucanleet.com/post/18087210413/feature-testing-costs#screencast2) checks.
-
-## BestieJS
-
-Platform.js is part of the BestieJS *"Best in Class"* module collection. This means we promote solid browser/environment support, ES5+ precedents, unit testing, and plenty of documentation.
+Platform.js is for informational purposes only & **not** intended as a substitution for [feature detection/inference](http://allyoucanleet.com/post/18087210413/feature-testing-costs#screencast2) checks.
 
 ## Documentation
+* [doc/README.md](https://github.com/bestiejs/platform.js/blob/master/doc/README.md#readme)
+* [wiki/Changelog](https://github.com/bestiejs/platform.js/wiki/Changelog)
+* [wiki/Roadmap](https://github.com/bestiejs/platform.js/wiki/Roadmap)
 
-The documentation for Platform.js can be viewed here: [/doc/README.md](https://github.com/bestiejs/platform.js/blob/master/doc/README.md#readme)
-
-The full changelog for this release is available on our [wiki](https://github.com/bestiejs/platform.js/wiki/Changelog).<br>
-For a list of upcoming features, check out our [roadmap](https://github.com/bestiejs/platform.js/wiki/Roadmap).
-
-## Support
-
-Tested in Chrome 34-35, Firefox 28-29, IE 6-11, Opera 20-21, Safari 5-7, Node.js 0.6.21~0.10.28, Narwhal 0.3.2, PhantomJS 1.9.2, RingoJS 0.9, & Rhino 1.7RC5.
-
-## Installation and usage
+## Installation
 
 In a browser:
 
@@ -29,35 +19,22 @@ In a browser:
 <script src="platform.js"></script>
 ```
 
-Via [npm](http://npmjs.org/):
+In an AMD loader:
 
-```bash
-npm install platform
+```js
+require(['platform'], function(platform) {/*…*/});
 ```
 
-In [Node.js](http://nodejs.org/) and [RingoJS](http://ringojs.org/):
+Using npm:
+
+```bash
+$ npm i --save platform
+```
+
+In Node.js:
 
 ```js
 var platform = require('platform');
-```
-
-In [Rhino](http://www.mozilla.org/rhino/):
-
-```js
-load('platform.js');
-```
-
-In an AMD loader like [RequireJS](http://requirejs.org/):
-
-```js
-require({
-  'paths': {
-    'platform': 'path/to/platform'
-  }
-},
-['platform'], function(platform) {
-  console.log(platform.name);
-});
 ```
 
 Usage example:
@@ -87,6 +64,13 @@ info.layout; // 'Presto'
 info.os; // 'Mac OS X 10.7.2'
 info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.2'
 ```
+## Support
+
+Tested in Chrome 34-35, Firefox 29-30, IE 6-11, Opera 21-22, Safari 5-7, Node.js 0.8.26~0.10.28, PhantomJS 1.9.2, RingoJS 0.9, & Rhino 1.7RC5.
+
+## BestieJS
+
+Platform.js is part of the BestieJS *“Best in Class”* module collection. This means we promote solid browser/environment support, ES5+ precedents, unit testing, & plenty of documentation.
 
 ## Author
 
