@@ -661,28 +661,23 @@
           arch = data.getProperty('os.arch');
           os = os || data.getProperty('os.name') + ' ' + data.getProperty('os.version');
         }
-        if (isHostType(context, 'exports')) {
-          if (isModuleScope && isHostType(context, 'system') && (data = [context.system])[0]) {
-            os || (os = data[0].os || null);
-            try {
-              data[1] = context.require('ringo/engine').version;
-              version = data[1].join('.');
-              name = 'RingoJS';
-            } catch(e) {
-              if (data[0].global.system == context.system) {
-                name = 'Narwhal';
-              }
+        if (isModuleScope && isHostType(context, 'system') && (data = [context.system])[0]) {
+          os || (os = data[0].os || null);
+          try {
+            data[1] = context.require('ringo/engine').version;
+            version = data[1].join('.');
+            name = 'RingoJS';
+          } catch(e) {
+            if (data[0].global.system == context.system) {
+              name = 'Narwhal';
             }
           }
-          else if (typeof context.process == 'object' && (data = context.process)) {
-            name = 'Node.js';
-            arch = data.arch;
-            os = data.platform;
-            version = /[\d.]+/.exec(data.version)[0];
-          }
-          else if (rhino) {
-            name = 'Rhino';
-          }
+        }
+        else if (typeof context.process == 'object' && (data = context.process)) {
+          name = 'Node.js';
+          arch = data.arch;
+          os = data.platform;
+          version = /[\d.]+/.exec(data.version)[0];
         }
         else if (rhino) {
           name = 'Rhino';
