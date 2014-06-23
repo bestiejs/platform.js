@@ -1,4 +1,4 @@
-# Platform.js v1.1.0
+# Platform.js v1.2.0
 
 A platform detection library that works on nearly all JavaScript platforms.
 
@@ -66,7 +66,7 @@ info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.
 ```
 ## Support
 
-Tested in Chrome 34-35, Firefox 29-30, IE 6-11, Opera 21-22, Safari 5-7, Node.js 0.8.26~0.10.28, PhantomJS 1.9.2, RingoJS 0.9, & Rhino 1.7RC5.
+Tested in Chrome 34-35, Firefox 29-30, IE 6-11, Opera 21-22, Safari 5-7, Node.js 0.8.26~0.10.29, PhantomJS 1.9.2, RingoJS 0.9, & Rhino 1.7RC5.
 
 ## BestieJS
 
