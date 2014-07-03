@@ -1,12 +1,12 @@
 /*!
- * Platform.js v1.1.0 <http://mths.be/platform>
+ * Platform.js v1.2.0 <http://mths.be/platform>
  * Copyright 2010-2014 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <http://mths.be/mit>
  */
 ;(function() {
   'use strict';
 
-  /** Used to determine if values are of the language type Object */
+  /** Used to determine if values are of the language type `Object` */
   var objectTypes = {
     'function': true,
     'object': true
@@ -116,11 +116,11 @@
   }
 
   /**
-   * Gets the internal [[Class]] of a value.
+   * Gets the internal `[[Class]]` of a value.
    *
    * @private
    * @param {*} value The value.
-   * @returns {string} The [[Class]].
+   * @returns {string} The `[[Class]]`.
    */
   function getClassOf(value) {
     return value == null
@@ -222,7 +222,7 @@
       ? !!nav.likeChrome
       : /\bChrome\b/.test(ua) && !/internal|\n/i.test(toString.toString());
 
-    /** Internal [[Class]] value shortcuts */
+    /** Internal `[[Class]]` value shortcuts */
     var objectClass = 'Object',
         airRuntimeClass = isCustomContext ? objectClass : 'ScriptBridgingProxyObject',
         enviroClass = isCustomContext ? objectClass : 'Environment',
@@ -245,13 +245,13 @@
     var doc = context.document || {};
 
     /**
-     * Detect Opera browser
+     * Detect Opera browser (Presto-based)
      * http://www.howtocreate.co.uk/operaStuff/operaObject.html
      * http://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
      */
     var opera = context.operamini || context.opera;
 
-    /** Opera [[Class]] */
+    /** Opera `[[Class]]` */
     var operaClass = reOpera.test(operaClass = (isCustomContext && opera) ? opera['[[Class]]'] : getClassOf(opera))
       ? operaClass
       : (opera = null);
@@ -275,6 +275,9 @@
 
     /** The browser/environment version */
     var version = useFeatures && opera && typeof opera.version == 'function' && opera.version();
+
+    /** A flag to indicate if the OS is Windows 7 */
+    var isWindows7;
 
     /* Detectable layout engines (order is important) */
     var layout = getLayout([
@@ -426,7 +429,7 @@
      * Picks the manufacturer from an array of guesses.
      *
      * @private
-     * @param {Object} guesses An object of guesses.
+     * @param {Array} guesses An object of guesses.
      * @returns {null|string} The detected manufacturer.
      */
     function getManufacturer(guesses) {
@@ -487,6 +490,7 @@
           if (/^Win/i.test(result) &&
               (data = data[0/*Opera 9.25 fix*/, /[\d.]+$/.exec(result)])) {
             result = 'Windows ' + data;
+            isWindows7 = data == 'Server 2008 R2 / 7';
           }
           // correct character case and cleanup
           result = format(String(result)
@@ -501,6 +505,7 @@
             .replace(/_/g, '.')
             .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
             .replace(/x86\.64/gi, 'x86_64')
+            .replace(/(Windows Phone)(?! OS)/, '$1 OS')
             .split(' on ')[0]);
         }
         return result;
@@ -639,9 +644,12 @@
       layout = ['NetFront'];
     }
     // detect IE 11 and above
-    if (!name && layout == 'Trident') {
+    if (name != 'IE' && layout == 'Trident' && (data = /\brv:([\d.]+)/.exec(ua))) {
+      if (name) {
+        description.push('identifying as ' + name + (version ? ' ' + version : ''));
+      }
       name = 'IE';
-      version = (/\brv:([\d.]+)/.exec(ua) || 0)[1];
+      version = data[1];
     }
     // leverage environment features
     if (useFeatures) {
@@ -653,28 +661,23 @@
           arch = data.getProperty('os.arch');
           os = os || data.getProperty('os.name') + ' ' + data.getProperty('os.version');
         }
-        if (isHostType(context, 'exports')) {
-          if (isModuleScope && isHostType(context, 'system') && (data = [context.system])[0]) {
-            os || (os = data[0].os || null);
-            try {
-              data[1] = (data[1] = context.require) && data[1]('ringo/engine').version;
-              version = data[1].join('.');
-              name = 'RingoJS';
-            } catch(e) {
-              if (data[0].global.system == context.system) {
-                name = 'Narwhal';
-              }
+        if (isModuleScope && isHostType(context, 'system') && (data = [context.system])[0]) {
+          os || (os = data[0].os || null);
+          try {
+            data[1] = context.require('ringo/engine').version;
+            version = data[1].join('.');
+            name = 'RingoJS';
+          } catch(e) {
+            if (data[0].global.system == context.system) {
+              name = 'Narwhal';
             }
           }
-          else if (typeof context.process == 'object' && (data = context.process)) {
-            name = 'Node.js';
-            arch = data.arch;
-            os = data.platform;
-            version = /[\d.]+/.exec(data.version)[0];
-          }
-          else if (rhino) {
-            name = 'Rhino';
-          }
+        }
+        else if (typeof context.process == 'object' && (data = context.process)) {
+          name = 'Node.js';
+          arch = data.arch;
+          os = data.platform;
+          version = /[\d.]+/.exec(data.version)[0];
         }
         else if (rhino) {
           name = 'Rhino';
@@ -896,11 +899,11 @@
       data = / ([\d.+]+)$/.exec(os);
       os = {
         'architecture': 32,
-        'family': data ? os.replace(data[0], '') : os,
+        'family': (data && !isWindows7) ? os.replace(data[0], '') : os,
         'version': data ? data[1] : null,
         'toString': function() {
           var version = this.version;
-          return this.family + (version ? ' ' + version : '') + (this.architecture == 64 ? ' 64-bit' : '');
+          return this.family + ((version && !isWindows7) ? ' ' + version : '') + (this.architecture == 64 ? ' 64-bit' : '');
         }
       };
     }
@@ -1010,6 +1013,11 @@
 
       /**
        * The family of the OS.
+       *
+       * Common values include:
+       * "Windows", "Windows Server 2008 R2 / 7", "Windows Server 2008 / Vista",
+       * "Windows XP", "OS X", "Ubuntu", "Debian", "Fedora", "Red Hat", "SuSE",
+       * "Android", "iOS" and "Windows Phone OS"
        *
        * @memberOf platform.os
        * @type string|null
