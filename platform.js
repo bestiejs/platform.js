@@ -276,8 +276,8 @@
     /** The browser/environment version */
     var version = useFeatures && opera && typeof opera.version == 'function' && opera.version();
 
-    /** A flag to indicate if the OS is Windows 7 */
-    var isWindows7;
+    /** A flag to indicate if the OS ends with "/ Version" */
+    var isSpecialCasedOS;
 
     /* Detectable layout engines (order is important) */
     var layout = getLayout([
@@ -490,7 +490,6 @@
           if (/^Win/i.test(result) &&
               (data = data[0/*Opera 9.25 fix*/, /[\d.]+$/.exec(result)])) {
             result = 'Windows ' + data;
-            isWindows7 = data == 'Server 2008 R2 / 7';
           }
           // correct character case and cleanup
           result = format(String(result)
@@ -897,13 +896,14 @@
     // parse OS into an object
     if (os) {
       data = / ([\d.+]+)$/.exec(os);
+      isSpecialCasedOS = data && os.charAt(os.length - data[0].length - 1) == '/';
       os = {
         'architecture': 32,
-        'family': (data && !isWindows7) ? os.replace(data[0], '') : os,
+        'family': (data && !isSpecialCasedOS) ? os.replace(data[0], '') : os,
         'version': data ? data[1] : null,
         'toString': function() {
           var version = this.version;
-          return this.family + ((version && !isWindows7) ? ' ' + version : '') + (this.architecture == 64 ? ' 64-bit' : '');
+          return this.family + ((version && !isSpecialCasedOS) ? ' ' + version : '') + (this.architecture == 64 ? ' 64-bit' : '');
         }
       };
     }
