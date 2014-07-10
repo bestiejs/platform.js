@@ -323,6 +323,7 @@
       'Swiftfox',
       'WebPositive',
       'Opera Mini',
+      { 'label': 'Opera Mini', 'pattern': 'OPiOS' },
       'Opera',
       { 'label': 'Opera', 'pattern': 'OPR' },
       'Chrome',
@@ -582,6 +583,10 @@
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
     }
+    // detect Opera Mini 8+ running in Turbo / Uncompressed mode on iOS
+    if (name == 'Opera Mini' && /OPiOS/.test(ua)) {
+      description.push('running in Turbo / Uncompressed mode');
+    }
     // detect iOS
     if (/^iP/.test(product)) {
       name || (name = 'Safari');
@@ -622,7 +627,7 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|CriOS|CrMo|Iron|Opera ?Mini|OPR|Raven|Silk(?!/[\\d.]+$))',
+        '(?:Cloud9|CriOS|CrMo|Iron|Opera ?Mini|OPiOS|OPR|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'

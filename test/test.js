@@ -1452,6 +1452,30 @@
       'version': '6.1.15738'
     },
 
+    'Opera Mini 8.0.0 on Apple iPhone': {
+      'ua': 'Opera/9.80 (iPhone; Opera Mini/8.0.0/34.2336; U; en) Presto/2.8.119 Version/11.10',
+      'layout': 'Presto',
+      'manufacturer': 'Apple',
+      'name': 'Opera Mini',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'operamini': { '[[Class]]': 'OperaMini' },
+      'os': 'iOS',
+      'product': 'iPhone',
+      'version': '8.0.0'
+    },
+
+    'Opera Mini 8.0.0.78129 (running in Turbo / Uncompressed mode; like Safari 7.x) on Apple iPhone (iOS 7.1.1)': {
+      'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) OPiOS/8.0.0.78129 Mobile/11D201 Safari/9537.53',
+      'layout': 'Presto',
+      'manufacturer': 'Apple',
+      'name': 'Opera Mini',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'operamini': { '[[Class]]': 'OperaMini' },
+      'os': 'iOS 7.1.1',
+      'product': 'iPhone',
+      'version': '8.0.0.78129'
+    },
+
     'Opera Mini (desktop mode) on Linux zvav': {
       'ua': 'Opera/9.80 (X11; Linux zvav; U; en) Presto/2.8.119 Version/10.54',
       'layout': 'Presto',
