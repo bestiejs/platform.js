@@ -1525,25 +1525,28 @@
       'version': '11.52'
     },
 
-    'Opera 15.0.1147.18 on OS X 10.8.4': {
+    'Opera 15.0.1147.18 (like Chrome 28.0.1500.20) on OS X 10.8.4': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.20 Safari/537.36 OPR/15.0.1147.18 (Edition Next)',
       'layout': 'Blink',
+      'likeChrome': true,
       'name': 'Opera',
       'os': 'OS X 10.8.4',
       'version': '15.0.1147.18'
     },
 
-    'Opera 18.0.1284.49 on OS X 10.9.1': {
+    'Opera 18.0.1284.49 (like Chrome 31.0.1650.57) on OS X 10.9.1': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.57 Safari/537.36 OPR/18.0.1284.49',
       'layout': 'Blink',
+      'likeChrome': true,
       'name': 'Opera',
       'os': 'OS X 10.9.1',
       'version': '18.0.1284.49'
     },
 
-    'Opera 21.0.1432.67 on OS X 10.9.3': {
+    'Opera 21.0.1432.67 (like Chrome 34.0.1847.132) on OS X 10.9.3': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.132 Safari/537.36 OPR/21.0.1432.67',
       'layout': 'Blink',
+      'likeChrome': true,
       'name': 'Opera',
       'os': 'OS X 10.9.3',
       'version': '21.0.1432.67'
