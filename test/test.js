@@ -325,7 +325,7 @@
       'os': 'BlackBerry 10.1.0.1429'
     },
 
-    'Breach on OS X 10.9.3': {
+    'Breach (like Chrome 35.0.1916.114) on OS X 10.9.3': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Breach Safari/537.36',
       'layout': 'Blink',
       'name': 'Breach',

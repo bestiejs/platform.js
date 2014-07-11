@@ -903,7 +903,7 @@
     // add layout engine
     if (layout && !/Avant|Nook/.test(name) && (
         /Browser|Lunascape|Maxthon/.test(name) ||
-        /^(?:Adobe|Arora|Midori|Opera|Phantom|Rekonq|Rock|Sleipnir|Web)/.test(name) && layout[1])) {
+        /^(?:Adobe|Arora|Breach|Midori|Opera|Phantom|Rekonq|Rock|Sleipnir|Web)/.test(name) && layout[1])) {
       // don't add layout details to description if they are falsey
       (data = layout[layout.length - 1]) && description.push(data);
     }
