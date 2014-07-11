@@ -350,6 +350,7 @@
       'Adobe AIR',
       'Arora',
       'Avant Browser',
+      'Breach',
       'Camino',
       'Epiphany',
       'Fennec',

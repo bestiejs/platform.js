@@ -325,6 +325,13 @@
       'os': 'BlackBerry 10.1.0.1429'
     },
 
+    'Breach on OS X 10.9.3': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Breach Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Breach',
+      'os': 'OS X 10.9.3'
+    },
+
     'Camino 0.7 on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.0.1) Gecko/20030306 Camino/0.7',
       'layout': 'Gecko',
