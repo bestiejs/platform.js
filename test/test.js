@@ -1469,8 +1469,6 @@
       'layout': 'Presto',
       'manufacturer': 'Apple',
       'name': 'Opera Mini',
-      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
-      'operamini': { '[[Class]]': 'OperaMini' },
       'os': 'iOS 7.1.1',
       'product': 'iPhone',
       'version': '8.0.0.78129'
