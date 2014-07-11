@@ -67,6 +67,60 @@
   }
 
   /**
+   * A utility function to clean up the OS name.
+   *
+   * @private
+   * @param {string} os The OS name to clean up.
+   * @param {string} [pattern] A `RegExp` pattern matching the OS name.
+   * @param {string} [label] A label for the OS.
+   */
+  function cleanupOS(os, pattern, label) {
+    // platform tokens defined at
+    // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
+    // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
+    var data = {
+      '6.3':  '8.1',
+      '6.2':  '8',
+      '6.1':  'Server 2008 R2 / 7',
+      '6.0':  'Server 2008 / Vista',
+      '5.2':  'Server 2003 / XP 64-bit',
+      '5.1':  'XP',
+      '5.01': '2000 SP1',
+      '5.0':  '2000',
+      '4.0':  'NT',
+      '4.90': 'ME'
+    };
+    // detect Windows version from platform tokens
+    if (pattern && label && /^Win/i.test(os) &&
+        (data = data[0/*Opera 9.25 fix*/, /[\d.]+$/.exec(os)])) {
+      os = 'Windows ' + data;
+    }
+    // correct character case and cleanup
+    os = String(os);
+
+    if (pattern && label) {
+      os = os.replace(RegExp(pattern, 'i'), label);
+    }
+
+    os = format(
+      os.replace(/ ce$/i, ' CE')
+        .replace(/hpw/i, 'web')
+        .replace(/Macintosh/, 'Mac OS')
+        .replace(/_PowerPC/i, ' OS')
+        .replace(/(OS X) [^ \d]+/i, '$1')
+        .replace(/Mac (OS X)/, '$1')
+        .replace(/\/(\d)/, ' $1')
+        .replace(/_/g, '.')
+        .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
+        .replace(/x86\.64/gi, 'x86_64')
+        .replace(/(Windows Phone)(?! OS)/, '$1 OS')
+        .split(' on ')[0]
+    );
+
+    return os;
+  }
+
+  /**
    * An iteration utility for arrays and objects.
    *
    * @private
@@ -472,41 +526,7 @@
         if (!result && (result =
               RegExp('\\b' + pattern + '(?:/[\\d.]+|[ \\w.]*)', 'i').exec(ua)
             )) {
-          // platform tokens defined at
-          // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
-          // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
-          data = {
-            '6.3':  '8.1',
-            '6.2':  '8',
-            '6.1':  'Server 2008 R2 / 7',
-            '6.0':  'Server 2008 / Vista',
-            '5.2':  'Server 2003 / XP 64-bit',
-            '5.1':  'XP',
-            '5.01': '2000 SP1',
-            '5.0':  '2000',
-            '4.0':  'NT',
-            '4.90': 'ME'
-          };
-          // detect Windows version from platform tokens
-          if (/^Win/i.test(result) &&
-              (data = data[0/*Opera 9.25 fix*/, /[\d.]+$/.exec(result)])) {
-            result = 'Windows ' + data;
-          }
-          // correct character case and cleanup
-          result = format(String(result)
-            .replace(RegExp(pattern, 'i'), guess.label || guess)
-            .replace(/ ce$/i, ' CE')
-            .replace(/hpw/i, 'web')
-            .replace(/Macintosh/, 'Mac OS')
-            .replace(/_PowerPC/i, ' OS')
-            .replace(/(OS X) [^ \d]+/i, '$1')
-            .replace(/Mac (OS X)/, '$1')
-            .replace(/\/(\d)/, ' $1')
-            .replace(/_/g, '.')
-            .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
-            .replace(/x86\.64/gi, 'x86_64')
-            .replace(/(Windows Phone)(?! OS)/, '$1 OS')
-            .split(' on ')[0]);
+          result = cleanupOS(result, pattern, guess.label || guess);
         }
         return result;
       });
