@@ -940,7 +940,7 @@
         os.family = os.family.replace(RegExp(' *' + data), '');
       }
       if (name && (/WOW64/i.test(ua) ||
-          (useFeatures && /\w(?:86|32)$/.test(nav.cpuClass || nav.platform)))) {
+          (useFeatures && /\w(?:86|32)$/.test(nav.cpuClass || nav.platform) && !/^win32$/i.test(nav.platform)))) {
         description.unshift('32-bit');
       }
     }
