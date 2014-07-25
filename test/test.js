@@ -460,6 +460,14 @@
       'version': '34.0.1847.137'
     },
 
+    'Chrome 38.0.2103.0 on Windows Server 2008 R2 / 7 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2103.0 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'version': '38.0.2103.0'
+    },
+
     'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
       'layout': 'WebKit',

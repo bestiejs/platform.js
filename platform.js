@@ -939,8 +939,10 @@
         os.architecture = 64;
         os.family = os.family.replace(RegExp(' *' + data), '');
       }
-      if (name && (/WOW64/i.test(ua) ||
-          (useFeatures && /\w(?:86|32)$/.test(nav.cpuClass || nav.platform)))) {
+      if (
+          name && (/WOW64/i.test(ua) ||
+          (useFeatures && /\w(?:86|32)$/.test(nav.cpuClass || nav.platform) && !/\bWin64; x64\b/i.test(ua)))
+      ) {
         description.unshift('32-bit');
       }
     }
