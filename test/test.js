@@ -1395,7 +1395,7 @@
       var object = {
         'exports': {},
         'name': 'Narwhal',
-        'require': function() { },
+        'require': function() {},
         'system':  {}
       };
       object.global = object.system.global = object;
