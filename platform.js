@@ -425,12 +425,12 @@
       'BlackBerry': { 'PlayBook': 1 },
       'Google': { 'Google TV': 1 },
       'HP': { 'TouchPad': 1 },
-      'HTC': { },
-      'LG': { },
+      'HTC': {},
+      'LG': {},
       'Microsoft': { 'Xbox': 1, 'Xbox One': 1 },
       'Motorola': { 'Xoom': 1 },
       'Nintendo': { 'Wii U': 1,  'Wii': 1 },
-      'Nokia': { },
+      'Nokia': {},
       'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1, 'Galaxy S3': 1, 'Galaxy S4': 1 },
       'Sony': { 'PlayStation 4': 1, 'PlayStation 3': 1, 'PlayStation Vita': 1 }
     });
