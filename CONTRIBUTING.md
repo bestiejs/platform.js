@@ -10,6 +10,15 @@ Include updated unit tests in the `test` directory as part of your pull request.
 You can run the tests from the command line via `node test/test`, or open `test/index.html` in a web browser.
 The `test/run-test.sh` script attempts to run the tests in [Rhino](https://developer.mozilla.org/en-US/docs/Rhino), [RingoJS](http://ringojs.org/), [PhantomJS](http://phantomjs.org/), and [Node](http://nodejs.org/), before running them in your default browser.
 
+#### Cross browser testing
+```shell
+$ npm install -g grunt-cli
+$ npm install
+$ export SAUCE_USERNAME='myUsername'
+$ export SAUCE_ACCESS_KEY='s0m3R4nDoMk3y-s0m3R4nDoMk3y-s0m3R4nDoMk3y'
+$ grunt saucelabs
+```
+
 ## Coding Guidelines
 
 In addition to the following guidelines, please follow the conventions already established in the code.

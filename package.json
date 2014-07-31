@@ -26,5 +26,10 @@
       "LICENSE.txt",
       "platform.js"
     ]
+  },
+  "devDependencies": {
+    "request": "~2.39.0",
+    "grunt-saucelabs": "~8.2.0",
+    "grunt-http-server": "~0.0.5"
   }
 }
