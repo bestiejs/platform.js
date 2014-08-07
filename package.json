@@ -26,5 +26,11 @@
       "LICENSE.txt",
       "platform.js"
     ]
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-saucelabs": "^8.2.0",
+    "grunt-shell": "^0.7.0",
+    "send": "^0.7.3"
   }
 }

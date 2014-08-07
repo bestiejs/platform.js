@@ -15,6 +15,8 @@ matrix:
       env: BIN="rhino" OPTION="-require"
     - node_js: "0.10"
       env: BIN="ringo"
+    - node_js: "0.10"
+      env: BIN="grunt" OPTION="saucelabs"
 git:
   depth: 10
 branches:
@@ -25,5 +27,7 @@ before_install:
   - "[ $BIN != 'rhino' ] || (echo -e '#!/bin/sh\\njava -jar /opt/rhino-1.7R5/js.jar $@' | sudo tee /usr/local/bin/rhino && sudo chmod +x /usr/local/bin/rhino)"
   - "[ $BIN != 'ringo' ] || (wget http://ringojs.org/downloads/ringojs-0.9.zip && sudo unzip ringojs-0.9 -d /opt && rm ringojs-0.9.zip)"
   - "[ $BIN != 'ringo' ] || (sudo ln -s /opt/ringojs-0.9/bin/ringo /usr/local/bin/ringo && sudo chmod +x /usr/local/bin/ringo)"
+  - "[ $BIN != 'grunt' ] || (npm i -g grunt-cli && npm i)"
 script:
-  - "cd test && $BIN $OPTION ./test.js"
+  - "[ $BIN == 'grunt'] || (cd test && $BIN $OPTION ./test.js)"
+  - "[ $BIN != 'grunt'] || ($BIN $OPTION)"
