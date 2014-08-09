@@ -6,10 +6,10 @@
   "license": "MIT",
   "main": "platform.js",
   "keywords": ["environment", "platform", "ua", "useragent"],
-  "author": "John-David Dalton <john.david.dalton@gmail.com> (http://allyoucanleet.com/)",
+  "author": "Benjamin Tan <demoneaux@gmail.com> (http://d10.github.io/)",
   "contributors": [
-    "John-David Dalton <john.david.dalton@gmail.com> (http://allyoucanleet.com/)",
     "Benjamin Tan <demoneaux@gmail.com> (http://d10.github.io/)",
+    "John-David Dalton <john.david.dalton@gmail.com> (http://allyoucanleet.com/)",
     "Mathias Bynens <mathias@qiwi.be> (http://mathiasbynens.be/)"
   ],
   "bugs": "https://github.com/bestiejs/platform.js/issues",
