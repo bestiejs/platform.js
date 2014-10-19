@@ -26,14 +26,14 @@
     return  root.QUnit || (
       root.addEventListener || (root.addEventListener = noop),
       root.setTimeout || (root.setTimeout = noop),
-      root.QUnit = load('../vendor/qunit/qunit/qunit.js') || root.QUnit,
+      root.QUnit = load('../node_modules/qunitjs/qunit/qunit.js') || root.QUnit,
       addEventListener === noop && delete root.addEventListener,
       root.QUnit
     );
   }());
 
   /** Load and install QUnit Extras */
-  var qa = load('../vendor/qunit-extras/qunit-extras.js');
+  var qa = load('../node_modules/qunit-extras/qunit-extras.js');
   if (qa) {
     qa.runInContext(root);
   }
