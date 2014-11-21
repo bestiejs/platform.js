@@ -79,6 +79,7 @@
     // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
     // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
     var data = {
+      '6.4':  '10',
       '6.3':  '8.1',
       '6.2':  '8',
       '6.1':  'Server 2008 R2 / 7',
@@ -697,6 +698,13 @@
       }
       version = data[1];
     }
+    // detect IE Tech Preview
+    else if ((name == 'Chrome' || name != 'IE') && (data = /\bEdge\/([\d.]+)/.exec(ua))) {
+      name = 'IE';
+      version = data[1];
+      layout = ['Trident'];
+      description.unshift('platform preview');
+    }
     // leverage environment features
     if (useFeatures) {
       // detect server-side environments
@@ -867,7 +875,7 @@
       // use the full Chrome version when available
       data[1] = (/\bChrome\/([\d.]+)/i.exec(ua) || 0)[1];
       // detect Blink layout engine
-      if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28) {
+      if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28 && name != 'IE') {
         layout = ['Blink'];
       }
       // detect JavaScriptCore

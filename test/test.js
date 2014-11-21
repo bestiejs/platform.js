@@ -1133,6 +1133,15 @@
       'version': '11.0'
     },
 
+    'IE 12.0 32-bit (platform preview) on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0',
+      'layout': 'Trident',
+      'mode': 12,
+      'name': 'IE',
+      'os': 'Windows 10 64-bit',
+      'version': '12.0'
+    },
+
     'IE Mobile 4.01 on Windows CE': {
       'ua' : 'Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320)',
       'layout': 'Trident',
