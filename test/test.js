@@ -1420,8 +1420,8 @@
       'version': '0.8.9'
     },
 
-    'Nokia Browser 8.5.0 (like Safari 7+) on Nokia N9': {
-      'ua': 'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/543.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
+    'Nokia Browser 8.5.0 (like Safari 5.x) on Nokia N9': {
+      'ua': 'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
       'layout': 'WebKit',
       'manufacturer': 'Nokia',
       'name': 'Nokia Browser',
@@ -1780,7 +1780,7 @@
     },
 
     'Safari 5.2 on OS X 10.8': {
-      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8) AppleWebKit/535.18.5 (KHTML, like Gecko) Version/5.2 Safari/535.18.',
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8) AppleWebKit/535.18.5 (KHTML, like Gecko) Version/5.2 Safari/535.18.5',
       'layout': 'WebKit',
       'name': 'Safari',
       'os': 'OS X 10.8',
@@ -1795,12 +1795,40 @@
       'version': '6.0.4'
     },
 
+    'Safari 7.0 on Apple iPad (iOS 7.0)': {
+      'ua': 'Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/537.51.1',
+      'layout': 'WebKit',
+      'manufacturer': 'Apple',
+      'name': 'Safari',
+      'os': 'iOS 7.0',
+      'product': 'iPad',
+      'version': '7.0'
+    },
+
     'Safari 7.0.1 on OS X 10.9.1': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.73.11 (KHTML, like Gecko) Version/7.0.1 Safari/537.73.11',
       'layout': 'WebKit',
       'name': 'Safari',
       'os': 'OS X 10.9.1',
       'version': '7.0.1'
+    },
+
+    'Safari 8.0 on Apple iPhone (iOS 8.0)': {
+      'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A365 Safari/600.1.4',
+      'layout': 'WebKit',
+      'manufacturer': 'Apple',
+      'name': 'Safari',
+      'os': 'iOS 8.0',
+      'product': 'iPhone',
+      'version': '8.0'
+    },
+
+    'Safari 8.0 on OS X 10.10.0': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_0) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/8.0 Safari/600.1.17',
+      'layout': 'WebKit',
+      'name': 'Safari',
+      'os': 'OS X 10.10.0',
+      'version': '8.0'
     },
 
     'SeaMonkey 1.1.7#{alpha} on Haiku': {
