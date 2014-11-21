@@ -104,15 +104,15 @@
 
     os = format(
       os.replace(/ ce$/i, ' CE')
-        .replace(/(\b)hpw/i, '$1web')
-        .replace(/(\b)Macintosh(\b)/, '$1Mac OS$2')
-        .replace(/_PowerPC(\b)/i, ' OS$1')
-        .replace(/(\bOS X) [^ \d]+/i, '$1')
-        .replace(/(\b)Mac (OS X\b)/, '$1$2')
+        .replace(/\bhpw/i, 'web')
+        .replace(/\bMacintosh\b/, 'Mac OS')
+        .replace(/_PowerPC\b/i, ' OS')
+        .replace(/\b(OS X) [^ \d]+/i, '$1')
+        .replace(/\bMac (OS X)\b/, '$1')
         .replace(/\/(\d)/, ' $1')
         .replace(/_/g, '.')
         .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
-        .replace(/(\b)x86\.64(\b)/gi, '$1x86_64$2')
+        .replace(/\bx86\.64\b/gi, 'x86_64')
         .replace(/\b(Windows Phone) OS\b/, '$1')
         .split(' on ')[0]
     );
@@ -597,15 +597,15 @@
       product = getProduct([manufacturer]);
     }
     // clean up Google TV
-    if ((data = /\b(Google TV)\b/.exec(product))) {
-      product = data[1];
+    if ((data = /\bGoogle TV\b/.exec(product))) {
+      product = data[0];
     }
     // detect simulators
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
     }
     // detect Opera Mini 8+ running in Turbo/Uncompressed mode on iOS
-    if (name == 'Opera Mini' && /OPiOS/.test(ua)) {
+    if (name == 'Opera Mini' && /\bOPiOS\b/.test(ua)) {
       description.push('running in Turbo/Uncompressed mode');
     }
     // detect iOS
@@ -639,7 +639,7 @@
       }
     }
     // detect Firefox OS
-    if ((data = /\((Mobile|Tablet).*?Firefox/i.exec(ua)) && data[1]) {
+    if ((data = /\((Mobile|Tablet).*?Firefox\b/i.exec(ua)) && data[1]) {
       os = 'Firefox OS';
       if (!product) {
         product = data[1];
@@ -665,7 +665,7 @@
       layout = [data];
     }
     // detect NetFront on PlayStation
-    else if (/PlayStation(?! Vita)/i.test(name) && layout == 'WebKit') {
+    else if (/\bPlayStation\b(?! Vita\b)/i.test(name) && layout == 'WebKit') {
       layout = ['NetFront'];
     }
     // detect IE 11 and above
