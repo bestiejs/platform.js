@@ -113,7 +113,7 @@
         .replace(/_/g, '.')
         .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
         .replace(/(\b)x86\.64(\b)/gi, '$1x86_64$2')
-        .replace(/(\bWindows Phone)(?! OS\b)/, '$1 OS')
+        .replace(/\b(Windows Phone) OS\b/, '$1')
         .split(' on ')[0]
     );
 
@@ -763,7 +763,7 @@
     // detect Windows Phone desktop mode
     else if (name == 'IE' && (data = (/; *(?:XBLWP|ZuneWP)(\d+)/i.exec(ua) || 0)[1])) {
         name += ' Mobile';
-        os = 'Windows Phone OS ' + data + '.x';
+        os = 'Windows Phone ' + data + '.x';
         description.unshift('desktop mode');
     }
     // detect Xbox 360 and Xbox One
@@ -1045,7 +1045,7 @@
        * Common values include:
        * "Windows", "Windows Server 2008 R2 / 7", "Windows Server 2008 / Vista",
        * "Windows XP", "OS X", "Ubuntu", "Debian", "Fedora", "Red Hat", "SuSE",
-       * "Android", "iOS" and "Windows Phone OS"
+       * "Android", "iOS" and "Windows Phone"
        *
        * @memberOf platform.os
        * @type string|null

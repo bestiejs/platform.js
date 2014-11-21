@@ -1141,68 +1141,68 @@
       'version': '4.01'
     },
 
-    'IE Mobile 7.0 on Samsung OMNIA7 (Windows Phone OS 7.0)': {
+    'IE Mobile 7.0 on Samsung OMNIA7 (Windows Phone 7.0)': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; SAMSUNG; OMNIA7)',
       'external': null,
       'layout': 'Trident',
       'manufacturer': 'Samsung',
       'name': 'IE Mobile',
-      'os': 'Windows Phone OS 7.0',
+      'os': 'Windows Phone 7.0',
       'product': 'Samsung OMNIA7',
       'version': '7.0'
     },
 
-    'IE Mobile 7.0 on LG GW910 (Windows Phone OS 7.0)': {
+    'IE Mobile 7.0 on LG GW910 (Windows Phone 7.0)': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; LG; GW910)',
       'external': null,
       'layout': 'Trident',
       'manufacturer': 'LG',
       'name': 'IE Mobile',
-     'os': 'Windows Phone OS 7.0',
+      'os': 'Windows Phone 7.0',
       'product': 'LG GW910',
       'version': '7.0'
     },
 
-    'IE Mobile 9.0 (IE 8 mode) on LG E900 (Windows Phone OS 7.5)': {
+    'IE Mobile 9.0 (IE 8 mode) on LG E900 (Windows Phone 7.5)': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0; LG; LG-E900)',
       'external': null,
       'layout': 'Trident',
       'manufacturer': 'LG',
       'mode': 8,
       'name': 'IE Mobile',
-      'os': 'Windows Phone OS 7.5',
+      'os': 'Windows Phone 7.5',
       'product': 'LG E900',
       'version': '9.0'
     },
 
-    'IE Mobile 9.0 (desktop mode) on Windows Phone OS 7.x': {
+    'IE Mobile 9.0 (desktop mode) on Windows Phone 7.x': {
       'ua': ' Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; XBLWP7; ZuneWP7)',
       'external': null,
       'layout': 'Trident',
       'mode': 9,
       'name': 'IE Mobile',
-      'os': 'Windows Phone OS 7.x',
+      'os': 'Windows Phone 7.x',
       'version': '9.0'
     },
 
-    'IE Mobile 9.0 (desktop mode; IE 8 mode) on Windows Phone OS 7.x': {
+    'IE Mobile 9.0 (desktop mode; IE 8 mode) on Windows Phone 7.x': {
       'ua': ' Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; XBLWP7; ZuneWP7)',
       'external': null,
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE Mobile',
-      'os': 'Windows Phone OS 7.x',
+      'os': 'Windows Phone 7.x',
       'version': '9.0'
     },
 
-    'IE Mobile 10.0 on Nokia (Windows Phone OS 8.0)': {
+    'IE Mobile 10.0 on Nokia (Windows Phone 8.0)': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 920)',
       'external': null,
       'layout': 'Trident',
       'manufacturer': 'Nokia',
       'mode': 10,
       'name': 'IE Mobile',
-      'os': 'Windows Phone OS 8.0',
+      'os': 'Windows Phone 8.0',
       'product': 'Nokia',
       'version': '10.0'
     },
