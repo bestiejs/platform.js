@@ -1195,7 +1195,7 @@
       'version': '9.0'
     },
 
-    'IE Mobile 10.0 on Nokia (Windows Phone 8.0)': {
+    'IE Mobile 10.0 on Nokia Lumia 920 (Windows Phone 8.0)': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 920)',
       'external': null,
       'layout': 'Trident',
@@ -1203,8 +1203,66 @@
       'mode': 10,
       'name': 'IE Mobile',
       'os': 'Windows Phone 8.0',
-      'product': 'Nokia',
+      'product': 'Lumia 920',
       'version': '10.0'
+    },
+
+    'IE Mobile 10.0 (desktop mode) on Windows Phone 8+': {
+      'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0; ARM; Touch; WPDesktop)',
+      'external': null,
+      'layout': 'Trident',
+      'mode': 10,
+      'name': 'IE Mobile',
+      'os': 'Windows Phone 8+',
+      'version': '10.0'
+    },
+
+    'IE Mobile 11.0 on Nokia Lumia 920 (Windows Phone 8.1)': {
+      'ua': 'Mozilla/5.0 (Windows Phone 8.1; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 920) like Gecko',
+      'external': null,
+      'layout': 'Trident',
+      'manufacturer': 'Nokia',
+      'mode': 11,
+      'name': 'IE Mobile',
+      'os': 'Windows Phone 8.1',
+      'product': 'Lumia 920',
+      'version': '11.0'
+    },
+
+    'IE Mobile 11.0 (desktop mode) on Nokia Lumia 920 (Windows Phone 8+)': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.2; ARM; Trident/7.0; Touch; rv:11.0; WPDesktop; NOKIA; Lumia 920) like Gecko',
+      'external': null,
+      'layout': 'Trident',
+      'manufacturer': 'Nokia',
+      'mode': 11,
+      'name': 'IE Mobile',
+      'os': 'Windows Phone 8+',
+      'product': 'Lumia 920',
+      'version': '11.0'
+    },
+
+    'IE Mobile 11.0#{ }on Nokia Lumia 920 (Windows Phone 8.1)': {
+      'ua': 'Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 920) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537',
+      'external': null,
+      'layout': 'Trident',
+      'manufacturer': 'Nokia',
+      'mode': 11,
+      'name': 'IE Mobile',
+      'os': 'Windows Phone 8.1',
+      'product': 'Lumia 920',
+      'version': '11.0'
+    },
+
+    'IE Mobile 11.0#{ }(desktop mode) on Nokia Lumia 920 (Windows Phone 8+)': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.2; ARM; Trident/7.0; Touch; rv:11.0; WPDesktop; Lumia 920) like Gecko',
+      'external': null,
+      'layout': 'Trident',
+      'manufacturer': 'Nokia',
+      'mode': 11,
+      'name': 'IE Mobile',
+      'os': 'Windows Phone 8+',
+      'product': 'Lumia 920',
+      'version': '11.0'
     },
 
     'SRWare Iron 0.2.152.0 on Windows Server 2008 / Vista': {

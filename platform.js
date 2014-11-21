@@ -335,12 +335,12 @@
 
     /* Detectable layout engines (order is important) */
     var layout = getLayout([
+      'Trident',
       { 'label': 'WebKit', 'pattern': 'AppleWebKit' },
       'iCab',
       'Presto',
       'NetFront',
       'Tasman',
-      'Trident',
       'KHTML',
       'Gecko'
     ]);
@@ -384,6 +384,7 @@
       'Chrome',
       { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
+      { 'label': 'IE', 'pattern': 'IEMobile' },
       { 'label': 'IE', 'pattern': 'MSIE' },
       'Safari'
     ]);
@@ -397,6 +398,7 @@
       { 'label': 'Galaxy S3', 'pattern': 'GT-I9300' },
       { 'label': 'Galaxy S4', 'pattern': 'GT-I9500' },
       'Google TV',
+      'Lumia',
       'iPad',
       'iPod',
       'iPhone',
@@ -430,13 +432,14 @@
       'Microsoft': { 'Xbox': 1, 'Xbox One': 1 },
       'Motorola': { 'Xoom': 1 },
       'Nintendo': { 'Wii U': 1,  'Wii': 1 },
-      'Nokia': {},
+      'Nokia': { 'Lumia': 1 },
       'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1, 'Galaxy S3': 1, 'Galaxy S4': 1 },
       'Sony': { 'PlayStation 4': 1, 'PlayStation 3': 1, 'PlayStation Vita': 1 }
     });
 
     /* Detectable OSes (order is important) */
     var os = getOS([
+      'Windows Phone ',
       'Android',
       'CentOS',
       'Debian',
@@ -648,7 +651,7 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|CriOS|CrMo|Iron|Opera ?Mini|OPiOS|OPR|Raven|Silk(?!/[\\d.]+$))',
+        '(?:Cloud9|CriOS|CrMo|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
@@ -657,23 +660,41 @@
     // detect stubborn layout engines
     if (layout == 'iCab' && parseFloat(version) > 3) {
       layout = ['WebKit'];
-    } else if ((data =
+    } else if (
+        layout != 'Trident' &&
+        (data =
           /\bOpera\b/.test(name) && (/\bOPR\b/.test(ua) ? 'Blink' : 'Presto') ||
           /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
           !layout && /\bMSIE\b/i.test(ua) && (os == 'Mac OS' ? 'Tasman' : 'Trident')
-        )) {
+        )
+    ) {
       layout = [data];
     }
     // detect NetFront on PlayStation
     else if (/\bPlayStation\b(?! Vita\b)/i.test(name) && layout == 'WebKit') {
       layout = ['NetFront'];
     }
+    // detect Windows Phone 7 desktop mode
+    if (name == 'IE' && (data = (/; *(?:XBLWP|ZuneWP)(\d+)/i.exec(ua) || 0)[1])) {
+      name += ' Mobile';
+      os = 'Windows Phone ' + (/\+$/.test(data) ? data : data + '.x');
+      description.unshift('desktop mode');
+    }
+    // detect Windows Phone 8+ desktop mode
+    else if (/\bWPDesktop\b/i.test(ua)) {
+      name = 'IE Mobile';
+      os = 'Windows Phone 8+';
+      description.unshift('desktop mode');
+      version || (version = (/\brv:([\d.]+)/.exec(ua) || 0)[1]);
+    }
     // detect IE 11 and above
-    if (name != 'IE' && layout == 'Trident' && (data = /\brv:([\d.]+)/.exec(ua))) {
-      if (name) {
-        description.push('identifying as ' + name + (version ? ' ' + version : ''));
+    else if (name != 'IE' && layout == 'Trident' && (data = /\brv:([\d.]+)/.exec(ua))) {
+      if (!/\bWPDesktop\b/i.test(ua)) {
+        if (name) {
+          description.push('identifying as ' + name + (version ? ' ' + version : ''));
+        }
+        name = 'IE';
       }
-      name = 'IE';
       version = data[1];
     }
     // leverage environment features
@@ -759,12 +780,6 @@
       if (/Accelerated *= *true/i.test(ua)) {
         description.unshift('accelerated');
       }
-    }
-    // detect Windows Phone desktop mode
-    else if (name == 'IE' && (data = (/; *(?:XBLWP|ZuneWP)(\d+)/i.exec(ua) || 0)[1])) {
-        name += ' Mobile';
-        os = 'Windows Phone ' + data + '.x';
-        description.unshift('desktop mode');
     }
     // detect Xbox 360 and Xbox One
     else if (/\bXbox\b/i.test(product)) {
