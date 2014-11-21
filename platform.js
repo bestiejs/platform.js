@@ -774,7 +774,7 @@
       }
     }
     // add mobile postfix
-    else if ((name == 'Chrome' || name == 'IE' || name && !product && !/Browser|Mobi/.test(name)) &&
+    else if ((/^(?:Chrome|IE|Opera)$/.test(name) || name && !product && !/Browser|Mobi/.test(name)) &&
         (os == 'Windows CE' || /Mobi/i.test(ua))) {
       name += ' Mobile';
     }

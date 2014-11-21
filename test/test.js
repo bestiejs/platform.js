@@ -1516,6 +1516,17 @@
       'version': '12.00'
     },
 
+
+    'Opera Mobile 25.0.1619.84037 (like Chrome 38.0.2125.102) on Asus T00J (Android 4.3)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.3; ASUS_T00J Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36 OPR/25.0.1619.84037',
+      'layout': 'Blink',
+      'name': 'Opera Mobile',
+      'manufacturer': 'Asus',
+      'os': 'Android 4.3',
+      'product': 'Asus T00J',
+      'version': '25.0.1619.84037'
+    },
+
     'Opera 9.00 on Nintendo Wii': {
       'ua': 'Opera/9.00 (Nintendo Wii; U; ; 1309-9; en)',
       'layout': 'Presto',
