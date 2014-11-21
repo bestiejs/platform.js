@@ -604,9 +604,9 @@
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
     }
-    // detect Opera Mini 8+ running in Turbo / Uncompressed mode on iOS
+    // detect Opera Mini 8+ running in Turbo/Uncompressed mode on iOS
     if (name == 'Opera Mini' && /OPiOS/.test(ua)) {
-      description.push('running in Turbo / Uncompressed mode');
+      description.push('running in Turbo/Uncompressed mode');
     }
     // detect iOS
     if (/^iP/.test(product)) {

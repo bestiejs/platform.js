@@ -1479,7 +1479,7 @@
       'version': '8.0.0'
     },
 
-    'Opera Mini 8.0.0.78129 (running in Turbo / Uncompressed mode; like Safari 7.x) on Apple iPhone (iOS 7.1.1)': {
+    'Opera Mini 8.0.0.78129 (running in Turbo/Uncompressed mode; like Safari 7.x) on Apple iPhone (iOS 7.1.1)': {
       'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) OPiOS/8.0.0.78129 Mobile/11D201 Safari/9537.53',
       'layout': 'Presto',
       'manufacturer': 'Apple',
