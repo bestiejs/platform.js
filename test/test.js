@@ -1489,13 +1489,13 @@
       'version': '8.0.0.78129'
     },
 
-    'Opera Mini (desktop mode) on Linux zvav': {
+    'Opera Mini (desktop mode) on Linux': {
       'ua': 'Opera/9.80 (X11; Linux zvav; U; en) Presto/2.8.119 Version/10.54',
       'layout': 'Presto',
       'name': 'Opera Mini',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
       'operamini': { '[[Class]]': 'OperaMini' },
-      'os': 'Linux zvav'
+      'os': 'Linux'
     },
 
     'Opera Mobile 10.00 on Linux i686': {
@@ -1507,12 +1507,12 @@
       'version': '10.00'
     },
 
-    'Opera Mobile 12.00 (desktop mode) on Linux zbov': {
+    'Opera Mobile 12.00 (desktop mode) on Linux': {
       'ua': 'Opera/9.80 (X11; Linux zbov; U; ar) Presto/2.10.254 Version/12.00',
       'layout': 'Presto',
       'name': 'Opera Mobile',
       'opera': { '[[Class]]': 'Opera', 'version': function() { return '12.00'; } },
-      'os': 'Linux zbov',
+      'os': 'Linux',
       'version': '12.00'
     },
 

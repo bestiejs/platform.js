@@ -872,15 +872,16 @@
       }
     }
     // detect Opera desktop modes
-    if (name == 'Opera' &&  (data = /\b(zbov|zvav)$/.exec(os))) {
+    if (name == 'Opera' &&  (data = /\bzbov|zvav$/.exec(os))) {
       name += ' ';
       description.unshift('desktop mode');
-      if (data[1] == 'zvav') {
+      if (data == 'zvav') {
         name += 'Mini';
         version = null;
       } else {
         name += 'Mobile';
       }
+      os = os.replace(RegExp(' *' + data + '$'), '');
     }
     // detect Chrome desktop mode
     else if (name == 'Safari' && /\bChrome\b/.exec(layout && layout[1])) {
