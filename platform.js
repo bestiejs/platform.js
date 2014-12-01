@@ -1,5 +1,5 @@
 /*!
- * Platform.js v1.2.0 <http://mths.be/platform>
+ * Platform.js v1.3.0 <http://mths.be/platform>
  * Copyright 2010-2014 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <http://mths.be/mit>
  */
