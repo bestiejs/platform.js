@@ -9,7 +9,7 @@
   "contributors": [
     "Benjamin Tan <demoneaux@gmail.com> (http://d10.github.io/)",
     "John-David Dalton <john.david.dalton@gmail.com> (http://allyoucanleet.com/)",
-    "Mathias Bynens <mathias@qiwi.be> (http://mathiasbynens.be/)"
+    "Mathias Bynens <mathias@qiwi.be> (https://mathiasbynens.be/)"
   ],
   "repository": "bestiejs/platform.js",
   "scripts": { "test": "echo \"See the repository CONTRIBUTING.md for testing instructions.\"" },
