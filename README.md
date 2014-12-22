@@ -66,7 +66,7 @@ info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.
 ```
 ## Support
 
-Tested in Chrome 38-39, Firefox 32-33, IE 6-11, Opera 25-26, Safari 5-8, Node.js 0.8.26~0.10.33, PhantomJS 1.9.7, RingoJS 0.9, & Rhino 1.7RC5.
+Tested in Chrome 38-39, Firefox 33-34, IE 6-11, Opera 25-26, Safari 5-8, Node.js 0.8.26~0.10.33, PhantomJS 1.9.7, RingoJS 0.9, & Rhino 1.7RC5.
 
 ## BestieJS
 
@@ -76,7 +76,7 @@ Platform.js is part of the BestieJS *“Best in Class”* module collection. Thi
 
 | [![twitter/demoneaux](http://gravatar.com/avatar/029b19dba521584d83398ada3ecf6131?s=70)](https://twitter.com/demoneaux "Follow @demoneaux on Twitter") |
 |---|
-| [Benjamin Tan](http://d10.github.io/) |
+| [Benjamin Tan](https://d10.github.io/) |
 
 ## Contributors
 
