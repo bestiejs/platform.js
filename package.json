@@ -14,12 +14,11 @@
   "repository": "bestiejs/platform.js",
   "scripts": { "test": "echo \"See the repository CONTRIBUTING.md for testing instructions.\"" },
   "devDependencies": {
-    "qunit-extras": "~1.4.0",
+    "qunit-extras": "~1.4.1",
     "qunitjs": "~1.16.0",
     "requirejs": "~2.1.15"
   },
   "files": [
-    "LICENSE.txt",
     "platform.js"
   ]
 }
