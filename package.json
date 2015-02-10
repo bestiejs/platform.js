@@ -15,7 +15,7 @@
   "scripts": { "test": "echo \"See the repository CONTRIBUTING.md for testing instructions.\"" },
   "devDependencies": {
     "qunit-extras": "~1.4.1",
-    "qunitjs": "~1.16.0",
+    "qunitjs": "~1.17.0",
     "requirejs": "~2.1.15"
   },
   "files": [

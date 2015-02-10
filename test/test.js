@@ -27,7 +27,7 @@
     QUnit = QUnit.QUnit || QUnit
   ));
 
-  /** Load and install QUnit Extras */
+  /** Load QUnit Extras. */
   var qa = load('../node_modules/qunit-extras/qunit-extras.js');
   if (qa) {
     qa.runInContext(root);
