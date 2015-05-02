@@ -11,10 +11,6 @@ matrix:
     - node_js: "0.10"
       env: BIN="phantomjs"
     - node_js: "0.10"
-      env: BIN="rhino"
-    - node_js: "0.10"
-      env: BIN="rhino" OPTION="-require"
-    - node_js: "0.10"
       env: BIN="ringo"
 git:
   depth: 10
@@ -25,8 +21,6 @@ before_install:
   - "nvm use $TRAVIS_NODE_VERSION"
   - "npm config set loglevel error"
   - "npm i -g npm@\"$NPM_VERSION\""
-  - "[ $BIN != 'rhino' ] || (sudo mkdir /opt/rhino-1.7R5 && sudo wget -O /opt/rhino-1.7R5/js.jar https://oss.sonatype.org/content/repositories/snapshots/org/mozilla/rhino/1.7R5-SNAPSHOT/rhino-1.7R5-20120629.144839-4.jar)"
-  - "[ $BIN != 'rhino' ] || (echo -e '#!/bin/sh\\njava -jar /opt/rhino-1.7R5/js.jar $@' | sudo tee /usr/local/bin/rhino && sudo chmod +x /usr/local/bin/rhino)"
   - "[ $BIN != 'ringo' ] || (wget https://github.com/ringo/ringojs/releases/download/v0.11.0/ringojs-0.11.zip && sudo unzip ringojs-0.11 -d /opt && rm ringojs-0.11.zip)"
   - "[ $BIN != 'ringo' ] || (sudo ln -s /opt/ringojs-0.11/bin/ringo /usr/local/bin/ringo && sudo chmod +x /usr/local/bin/ringo)"
 script:
