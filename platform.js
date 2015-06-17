@@ -630,7 +630,7 @@
       os = /\bAndroid\b/.test(os) ? os : 'Android';
     }
     // detect false positives for Firefox/Safari
-    else if (!name || (data = !/\bMinefield\b|\(Android;/i.test(ua) && /\b(?:Firefox|Safari)\b/.exec(name))) {
+    else if (!name || (data = !/\b(Minefield|Waterfox)\b|\(Android;/i.test(ua) && /\b(?:Firefox|Safari)\b/.exec(name))) {
       // escape the `/` for Firefox 1
       if (name && !product && /[\/,]|^[^(]+?\)/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         // clear name of false positives
@@ -655,7 +655,7 @@
         '(?:Cloud9|CriOS|CrMo|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
-        '(?:Firefox|Minefield|NetFront)'
+        '(?:Firefox|Minefield|Waterfox|NetFront)'
       ]);
     }
     // detect stubborn layout engines
