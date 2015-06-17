@@ -384,7 +384,7 @@
       { 'label': 'Opera', 'pattern': 'OPR' },
       'Chrome',
       { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
-      { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
+      { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield|Waterfox)' },
       { 'label': 'IE', 'pattern': 'IEMobile' },
       { 'label': 'IE', 'pattern': 'MSIE' },
       'Safari'
