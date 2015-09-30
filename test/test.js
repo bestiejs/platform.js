@@ -1128,11 +1128,11 @@
       'version': '11.0'
     },
 
-    'IE 12.0 32-bit (platform preview) on Windows 10 64-bit': {
+    'Microsoft Edge 12.0 32-bit on Windows 10 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0',
       'layout': 'Trident',
       'mode': 12,
-      'name': 'IE',
+      'name': 'Microsoft Edge',
       'os': 'Windows 10 64-bit',
       'version': '12.0'
     },
