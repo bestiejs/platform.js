@@ -2367,6 +2367,22 @@
       equal(actual.os.family, expected);
       equal(actual.os.version, '7');
     });
+
+    test('parses Chrome OS Arm', function() {
+      var actual = parse('Mozilla/5.0 (X11; CrOS armv7l 6457.83.0) AppleWebKit/537.36 (KHTML,like Gecko) Chrome/40.0.2214.93 Safari/537.36'),
+          expected = 'Chrome OS';
+
+      equal(actual.os.family, expected);
+      equal(actual.os.version, '6457.83.0');
+    });
+
+    test('parses Chrome OS2 x86', function() {
+      var actual = parse('Mozilla/5.0 (X11; CrOS x86_64 6946.31.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.46 Safari/537.36'),
+          expected = 'Chrome OS';
+
+      equal(actual.os.family, expected);
+      equal(actual.os.version, '6946.31.0');
+    });
   }());
 
   /*--------------------------------------------------------------------------*/
