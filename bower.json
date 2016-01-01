@@ -5,7 +5,6 @@
     ".*",
     "*.log",
     "*.md",
-    "component.json",
     "package.json",
     "doc",
     "test",
