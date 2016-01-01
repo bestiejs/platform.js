@@ -1,70 +1,70 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Platform.js Test Suite</title>
-		<link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
-	</head>
-	<body>
-		<div id="qunit"></div>
-		<script src="../platform.js"></script>
-		<script src="../node_modules/qunitjs/qunit/qunit.js"></script>
-		<script>
-			QUnit.config.hidepassed = true;
-			QUnit.urlParams.norequire = /[?&]norequire=true(?:&|$)/.test(location.search);
+  <head>
+    <meta charset="utf-8">
+    <title>Platform.js Test Suite</title>
+    <link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <script src="../platform.js"></script>
+    <script src="../node_modules/qunitjs/qunit/qunit.js"></script>
+    <script>
+      QUnit.config.hidepassed = true;
+      QUnit.urlParams.norequire = /[?&]norequire=true(?:&|$)/.test(location.search);
 
-			// load test.js if not using require.js
-			document.write(QUnit.urlParams.norequire
-				? '<script src="test.js"><\/script>'
-				: '<script src="../node_modules/requirejs/require.js"><\/script>'
-			);
-		</script>
-		<script>
-			var platformModule;
+      // load test.js if not using require.js
+      document.write(QUnit.urlParams.norequire
+        ? '<script src="test.js"><\/script>'
+        : '<script src="../node_modules/requirejs/require.js"><\/script>'
+      );
+    </script>
+    <script>
+      var platformModule;
 
-			(function() {
-				if (!window.require) {
-					return;
-				}
-				QUnit.config.autostart = false;
+      (function() {
+        if (!window.require) {
+          return;
+        }
+        QUnit.config.autostart = false;
 
-				requirejs.config({
-					'baseUrl': './',
-					'urlArgs': 't=' + (+new Date),
-					'waitSeconds': 0,
-					'packages': [
-						{
-							'name': 'platform',
-							'location': '..',
-							'main': 'platform'
-						},
-						{
-							'name': 'test',
-							'location': '.',
-							'main': 'test'
-						}
-					]
-				});
+        requirejs.config({
+          'baseUrl': './',
+          'urlArgs': 't=' + (+new Date),
+          'waitSeconds': 0,
+          'packages': [
+            {
+              'name': 'platform',
+              'location': '..',
+              'main': 'platform'
+            },
+            {
+              'name': 'test',
+              'location': '.',
+              'main': 'test'
+            }
+          ]
+        });
 
-				// load platform as a module
-				require(['platform'], function(platform) {
-					platformModule = platform;
-					require(['test'], function() {
-						QUnit.start();
-					});
-				});
-			}());
+        // load platform as a module
+        require(['platform'], function(platform) {
+          platformModule = platform;
+          require(['test'], function() {
+            QUnit.start();
+          });
+        });
+      }());
 
-			// set a more readable browser name
-			window.onload = function() {
-				var timeoutId = setInterval(function() {
-					var ua = document.getElementById('qunit-userAgent');
-					if (ua) {
-						ua.innerHTML = platform;
-						clearInterval(timeoutId);
-					}
-				}, 16);
-			};
-		</script>
-	</body>
+      // set a more readable browser name
+      window.onload = function() {
+        var timeoutId = setInterval(function() {
+          var ua = document.getElementById('qunit-userAgent');
+          if (ua) {
+            ua.innerHTML = platform;
+            clearInterval(timeoutId);
+          }
+        }, 16);
+      };
+    </script>
+  </body>
 </html>
