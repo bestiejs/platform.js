@@ -28,9 +28,9 @@
   ));
 
   /** Load QUnit Extras. */
-  var qa = load('../node_modules/qunit-extras/qunit-extras.js');
-  if (qa) {
-    qa.runInContext(root);
+  var QUnitExtras = load('../node_modules/qunit-extras/qunit-extras.js');
+  if (QUnitExtras) {
+    QUnitExtras.runInContext(root);
   }
 
   /** The `platform` object to check */
@@ -2204,43 +2204,41 @@
 
   /*--------------------------------------------------------------------------*/
 
-  // explicitly call `QUnit.module()` instead of `module()`
-  // in case we are in a CLI environment
   QUnit.module('platform' + (document ? '' : ': ' + platform));
 
   (function() {
     each(['description', 'layout', 'manufacturer', 'name', 'os', 'prerelease', 'product', 'version'], function(name) {
-      test('has the correct `platform.' + name + '` property', function() {
+      QUnit.test('has the correct `platform.' + name + '` property', function(assert) {
         forOwn(Tests, function(value, key) {
           var platform = getPlatform(key, value);
           value = name == 'description' ? key : value[name];
           value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2', ' ': ' ' }) : null;
-          equal(platform && String(platform[name]), String(value), String(platform));
+          assert.strictEqual(platform && String(platform[name]), String(value), String(platform));
         });
       });
     });
 
-    test('has correct null values', function() {
+    QUnit.test('has correct null values', function(assert) {
       forOwn(Tests, function(value, key) {
         forOwn(getPlatform(key, value), function(value, key) {
-          !value && strictEqual(value, null, 'platform.' + key);
+          !value && assert.strictEqual(value, null, 'platform.' + key);
         });
       });
     });
 
-    test('handles no user agent', function() {
+    QUnit.test('handles no user agent', function(assert) {
       forOwn(getPlatform('', {}), function(value, key) {
         if (typeof value != 'function') {
-          equal(String(value), 'null', 'platform.' + key);
+          assert.strictEqual(String(value), 'null', 'platform.' + key);
         }
       });
     });
 
-    test('supports loading Platform.js as a module', function() {
+    QUnit.test('supports loading Platform.js as a module', function(assert) {
       if (amd) {
-        equal((platformModule || {}).description, platform.description);
+        assert.strictEqual((platformModule || {}).description, platform.description);
       } else {
-        ok(true, 'test skipped');
+        assert.ok(true, 'test skipped');
       }
     });
   }());
@@ -2255,117 +2253,117 @@
       return platform.parse(ua + ';');
     }
 
-    test('parses Adobe Air', function() {
+    QUnit.test('parses Adobe Air', function(assert) {
       var actual = parse('Mozilla/5.0 (Windows; U; en-US) AppleWebKit/531.9 (KHTML, like Gecko) AdobeAIR/2.5'),
           expected = 'Adobe AIR 2.5 (like Safari 4.x)';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Chrome', function() {
+    QUnit.test('parses Chrome', function(assert) {
       var actual = parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2'),
           expected = 'Chrome 15.0.874.106 on OS X 10.7.2';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Firefox', function() {
+    QUnit.test('parses Firefox', function(assert) {
       var actual = parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:8.0) Gecko/20100101 Firefox/8.0'),
           expected = 'Firefox 8.0 on OS X 10.7';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses IE', function() {
+    QUnit.test('parses IE', function(assert) {
       var actual = parse('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0)'),
           expected = 'IE 7.0 on Windows XP';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses IE identifying as Firefox 12.0', function() {
+    QUnit.test('parses IE identifying as Firefox 12.0', function(assert) {
       var actual = parse('Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko/20100101 Firefox/12.0'),
           expected = 'IE 11.0 32-bit (identifying as Firefox 12.0) on Windows Server 2008 R2 / 7 64-bit';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Opera', function() {
+    QUnit.test('parses Opera', function(assert) {
       var actual = parse('Opera/9.80 (Macintosh; Intel Mac OS X 10.7.2; U; Edition Next; en) Presto/2.9.220 Version/12.00'),
           expected = 'Opera 12.00 on OS X 10.7.2';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Opera description identifying as Firefox 2.0.0', function() {
+    QUnit.test('parses Opera description identifying as Firefox 2.0.0', function(assert) {
       var actual = parse('Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 10.10'),
           expected = 'Opera 10.10 (identifying as Firefox 2.0.0) on Windows XP';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Opera layout identifying as Firefox 2.0.0', function() {
+    QUnit.test('parses Opera layout identifying as Firefox 2.0.0', function(assert) {
       var actual = parse('Mozilla/5.0 (Windows NT 5.1; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 10.10'),
           expected = 'Presto';
 
-      equal(actual.layout, expected);
+      assert.strictEqual(actual.layout, expected);
     });
 
-    test('parses Opera description identifying as IE 8.0', function() {
+    QUnit.test('parses Opera description identifying as IE 8.0', function(assert) {
       var actual = parse('Mozilla/4.0 (compatible; MSIE 8.0; Mac_PowerPC; en) Opera 10.52'),
           expected = 'Opera 10.52 (identifying as IE 8.0)';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Opera description identifying as IE 9.0', function() {
+    QUnit.test('parses Opera description identifying as IE 9.0', function(assert) {
       var actual = parse('Mozilla/5.0 (compatible; MSIE 9.0; Mac_PowerPC; en) Opera 12.00'),
           expected = 'Opera 12.00 (identifying as IE 9.0)';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Opera description masking as Firefox 4.0', function() {
+    QUnit.test('parses Opera description masking as Firefox 4.0', function(assert) {
       var actual = parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7.2; en; rv:2.0) Gecko/20100101 Firefox/4.0'),
           expected = 'Opera (masking as Firefox 4.0) on OS X 10.7.2';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Opera description masking as IE 8.0', function() {
+    QUnit.test('parses Opera description masking as IE 8.0', function(assert) {
       var actual = parse('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; en)'),
           expected = 'Opera (masking as IE 8.0)';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Opera description masking as IE 9.0', function() {
+    QUnit.test('parses Opera description masking as IE 9.0', function(assert) {
       var actual = parse('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 5.1; Trident/5.0; en)'),
           expected = 'Opera (masking as IE 9.0)';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Safari', function() {
+    QUnit.test('parses Safari', function(assert) {
       var actual = parse('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22'),
           expected = 'Safari 5.1.1 on OS X 10.7.2';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses PhantomJS', function() {
+    QUnit.test('parses PhantomJS', function(assert) {
       var actual = parse('Mozilla/5.0 (X11; U; Cygwin; C -) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3)  PhantomJS/1.0.0'),
           expected = 'PhantomJS 1.0.0 (like Safari 4.x) on Cygwin';
 
-      equal(actual.description, expected);
+      assert.strictEqual(actual.description, expected);
     });
 
-    test('parses Windows 7 OS', function() {
+    QUnit.test('parses Windows 7 OS', function(assert) {
       var actual = parse('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36'),
           expected = 'Windows Server 2008 R2 / 7';
 
-      equal(actual.os.family, expected);
-      equal(actual.os.version, '7');
+      assert.strictEqual(actual.os.family, expected);
+      assert.strictEqual(actual.os.version, '7');
     });
   }());
 
@@ -2374,24 +2372,20 @@
   QUnit.module('platform.toString');
 
   (function() {
-    test('returns a string when `platform.description` is `null`', function() {
+    QUnit.test('returns a string when `platform.description` is `null`', function(assert) {
       var description = platform.description;
       platform.description = null;
-      ok(typeof platform.toString() == 'string');
+      assert.ok(typeof platform.toString() == 'string');
       platform.description = description;
     });
   }());
 
   /*--------------------------------------------------------------------------*/
 
-  if (document) {
-    QUnit.begin(function() {
-      QUnit.config.hidepassed = true;
-      document.getElementById('qunit-tests').className += ' hidepass';
-      document.getElementById('qunit-urlconfig-hidepassed').checked = true;
-    });
-  } else {
-    QUnit.config.hidepassed = true;
+  QUnit.config.asyncRetries = 10;
+  QUnit.config.hidepassed = true;
+
+  if (!document) {
     QUnit.config.noglobals = true;
     QUnit.load();
   }
