@@ -1,5 +1,5 @@
 /*!
- * Platform.js v1.3.0 <http://mths.be/platform>
+ * Platform.js v1.3.1 <http://mths.be/platform>
  * Copyright 2014-2016 Benjamin Tan <https://d10.github.io/>
  * Copyright 2011-2013 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <http://mths.be/mit>
