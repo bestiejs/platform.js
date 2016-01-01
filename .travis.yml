@@ -1,17 +1,23 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "5"
 env:
   global:
     - BIN="node" OPTION="" NPM_VERSION="^2.0.0"
+  matrix:
+    -
+    - BIN="phantomjs"
+    - BIN="ringo"
 matrix:
   include:
     - node_js: "0.8"
       env: NPM_VERSION="~1.4.0"
     - node_js: "0.10"
-      env: BIN="phantomjs"
-    - node_js: "0.10"
-      env: BIN="ringo"
+      env:
+    - node_js: "0.12"
+      env:
+    - node_js: "4"
+      env:
 git:
   depth: 10
 branches:
