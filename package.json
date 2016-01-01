@@ -14,6 +14,7 @@
   "repository": "bestiejs/platform.js",
   "scripts": { "test": "echo \"See the repository CONTRIBUTING.md for testing instructions.\"" },
   "devDependencies": {
+    "docdown": "~0.3.0",
     "qunit-extras": "~1.4.0",
     "qunitjs": "~1.18.0",
     "requirejs": "~2.1.0"

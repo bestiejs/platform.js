@@ -7,7 +7,6 @@
     "*.md",
     "package.json",
     "doc",
-    "test",
-    "vendor"
+    "test"
   ]
 }
