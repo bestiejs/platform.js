@@ -1,6 +1,5 @@
 {
   "name": "platform.js",
-  "version": "1.3.0",
   "main": "platform.js",
   "ignore": [
     ".*",
