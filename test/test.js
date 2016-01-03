@@ -1224,13 +1224,13 @@
       'version': '10.0'
     },
 
-    'IE Mobile 10.0 (desktop mode) on Windows Phone 8+': {
+    'IE Mobile 10.0 (desktop mode) on Windows Phone 8.x': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0; ARM; Touch; WPDesktop)',
       'external': null,
       'layout': 'Trident',
       'mode': 10,
       'name': 'IE Mobile',
-      'os': 'Windows Phone 8+',
+      'os': 'Windows Phone 8.x',
       'version': '10.0'
     },
 
@@ -1246,14 +1246,14 @@
       'version': '11.0'
     },
 
-    'IE Mobile 11.0 (desktop mode) on Nokia Lumia 920 (Windows Phone 8+)': {
+    'IE Mobile 11.0 (desktop mode) on Nokia Lumia 920 (Windows Phone 8.x)': {
       'ua': 'Mozilla/5.0 (Windows NT 6.2; ARM; Trident/7.0; Touch; rv:11.0; WPDesktop; NOKIA; Lumia 920) like Gecko',
       'external': null,
       'layout': 'Trident',
       'manufacturer': 'Nokia',
       'mode': 11,
       'name': 'IE Mobile',
-      'os': 'Windows Phone 8+',
+      'os': 'Windows Phone 8.x',
       'product': 'Lumia 920',
       'version': '11.0'
     },
@@ -1270,14 +1270,14 @@
       'version': '11.0'
     },
 
-    'IE Mobile 11.0#{ }(desktop mode) on Nokia Lumia 920 (Windows Phone 8+)': {
+    'IE Mobile 11.0#{ }(desktop mode) on Nokia Lumia 920 (Windows Phone 8.x)': {
       'ua': 'Mozilla/5.0 (Windows NT 6.2; ARM; Trident/7.0; Touch; rv:11.0; WPDesktop; Lumia 920) like Gecko',
       'external': null,
       'layout': 'Trident',
       'manufacturer': 'Nokia',
       'mode': 11,
       'name': 'IE Mobile',
-      'os': 'Windows Phone 8+',
+      'os': 'Windows Phone 8.x',
       'product': 'Lumia 920',
       'version': '11.0'
     },

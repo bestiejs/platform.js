@@ -683,21 +683,19 @@
       os = 'Windows Phone ' + (/\+$/.test(data) ? data : data + '.x');
       description.unshift('desktop mode');
     }
-    // detect Windows Phone 8+ desktop mode
+    // detect Windows Phone 8.x desktop mode
     else if (/\bWPDesktop\b/i.test(ua)) {
       name = 'IE Mobile';
-      os = 'Windows Phone 8+';
+      os = 'Windows Phone 8.x';
       description.unshift('desktop mode');
       version || (version = (/\brv:([\d.]+)/.exec(ua) || 0)[1]);
     }
     // detect IE 11
     else if (name != 'IE' && layout == 'Trident' && (data = /\brv:([\d.]+)/.exec(ua))) {
-      if (!/\bWPDesktop\b/i.test(ua)) {
-        if (name) {
-          description.push('identifying as ' + name + (version ? ' ' + version : ''));
-        }
-        name = 'IE';
+      if (name) {
+        description.push('identifying as ' + name + (version ? ' ' + version : ''));
       }
+      name = 'IE';
       version = data[1];
     }
     // leverage environment features
