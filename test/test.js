@@ -229,12 +229,14 @@
       'version': '4.0'
     },
 
-    'Android Browser 4.1#{alpha} (like Chrome 5.x) on Android 2.2.1': {
+    'Android Browser 4.1#{alpha} (like Chrome 5.x) on Google Nexus (Android 2.2.1)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.2.1; en-us; Nexus One Build/FRG83) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.1a Mobile Safari/533.1',
       'layout': 'WebKit',
       'likeChrome': true,
+      'manufacturer': 'Google',
       'name': 'Android Browser',
       'os': 'Android 2.2.1',
+      'product': 'Nexus',
       'prerelease': 'alpha',
       'version': '4.1#{alpha}'
     },
@@ -491,6 +493,26 @@
       'os': 'Android 4.0.4',
       'product': 'Galaxy S2',
       'version': '27.0.1453.90'
+    },
+
+    'Chrome Mobile 39.0.2171.59 on Google Nexus 5 (Android 5.0)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.0; Nexus 5 Build/LRX21O) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.59 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'manufacturer': 'Google',
+      'name': 'Chrome Mobile',
+      'os': 'Android 5.0',
+      'product': 'Nexus 5',
+      'version': '39.0.2171.59'
+    },
+
+    'Chrome Mobile 45.0.2454.94 on Google Nexus 6P (Android 6.0)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 6P Build/MDA83) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.94 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'manufacturer': 'Google',
+      'name': 'Chrome Mobile',
+      'os': 'Android 6.0',
+      'product': 'Nexus 6P',
+      'version': '45.0.2454.94'
     },
 
     'Chrome Mobile (desktop mode) on iOS 4.3+': {
