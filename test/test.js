@@ -1128,15 +1128,6 @@
       'version': '11.0'
     },
 
-    'Microsoft Edge 12.0 32-bit on Windows 10 64-bit': {
-      'ua': 'Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0',
-      'layout': 'Trident',
-      'mode': 12,
-      'name': 'Microsoft Edge',
-      'os': 'Windows 10 64-bit',
-      'version': '12.0'
-    },
-
     'IE Mobile 4.01 on Windows CE': {
       'ua' : 'Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320)',
       'layout': 'Trident',
@@ -1420,6 +1411,22 @@
       'os': 'Windows XP',
       'prerelease': 'alpha',
       'version': '3.x#{alpha}'
+    },
+
+    'Microsoft Edge 12.0 32-bit on Windows 10 Technical Preview 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0',
+      'layout': 'EdgeHTML',
+      'name': 'Microsoft Edge',
+      'os': 'Windows 10 Technical Preview 64-bit',
+      'version': '12.0'
+    },
+
+    'Microsoft Edge 12.10136 on Windows 10': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10136',
+      'layout': 'EdgeHTML',
+      'name': 'Microsoft Edge',
+      'os': 'Windows 10',
+      'version': '12.10136'
     },
 
     'Midori (like Safari 3.x) on Linux 64-bit': {

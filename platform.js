@@ -80,7 +80,8 @@
     // http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
     // http://web.archive.org/web/20081122053950/http://msdn.microsoft.com/en-us/library/ms537503(VS.85).aspx
     var data = {
-      '6.4':  '10',
+      '10.0': '10',
+      '6.4':  '10 Technical Preview',
       '6.3':  '8.1',
       '6.2':  '8',
       '6.1':  '7 / Server 2008 R2',
@@ -337,6 +338,7 @@
 
     /* Detectable layout engines (order is important) */
     var layout = getLayout([
+      { 'label': 'EdgeHTML', 'pattern': 'Edge' },
       'Trident',
       { 'label': 'WebKit', 'pattern': 'AppleWebKit' },
       'iCab',
@@ -354,6 +356,7 @@
       'Avant Browser',
       'Breach',
       'Camino',
+      { 'label': 'Microsoft Edge', 'pattern': 'Edge' },
       'Epiphany',
       'Fennec',
       'Flock',
@@ -653,7 +656,7 @@
     // detect non-Opera versions (order is important)
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|CriOS|CrMo|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|Silk(?!/[\\d.]+$))',
+        '(?:Cloud9|CriOS|CrMo|Edge|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
@@ -662,14 +665,11 @@
     // detect stubborn layout engines
     if (layout == 'iCab' && parseFloat(version) > 3) {
       layout = ['WebKit'];
-    } else if (
-        layout != 'Trident' &&
-        (data =
-          /\bOpera\b/.test(name) && (/\bOPR\b/.test(ua) ? 'Blink' : 'Presto') ||
-          /\b(?:Midori|Nook|Safari)\b/i.test(ua) && 'WebKit' ||
-          !layout && /\bMSIE\b/i.test(ua) && (os == 'Mac OS' ? 'Tasman' : 'Trident')
-        )
-    ) {
+    } else if ((data =
+      /\bOpera\b/.test(name) && (/\bOPR\b/.test(ua) ? 'Blink' : 'Presto') ||
+      /\b(?:Midori|Nook|Safari)\b/i.test(ua) && !/^(?:Trident|EdgeHTML)$/.test(layout) && 'WebKit' ||
+      !layout && /\bMSIE\b/i.test(ua) && (os == 'Mac OS' ? 'Tasman' : 'Trident')
+    )) {
       layout = [data];
     }
     // detect NetFront on PlayStation
@@ -689,7 +689,7 @@
       description.unshift('desktop mode');
       version || (version = (/\brv:([\d.]+)/.exec(ua) || 0)[1]);
     }
-    // detect IE 11 and above
+    // detect IE 11
     else if (name != 'IE' && layout == 'Trident' && (data = /\brv:([\d.]+)/.exec(ua))) {
       if (!/\bWPDesktop\b/i.test(ua)) {
         if (name) {
@@ -698,12 +698,6 @@
         name = 'IE';
       }
       version = data[1];
-    }
-    // detect Microsoft Edge
-    else if ((name == 'Chrome' || name != 'IE') && (data = /\bEdge\/([\d.]+)/.exec(ua))) {
-      name = 'Microsoft Edge';
-      version = data[1];
-      layout = ['Trident'];
     }
     // leverage environment features
     if (useFeatures) {
