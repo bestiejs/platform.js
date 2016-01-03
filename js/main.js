@@ -1,14 +1,17 @@
 (function() {
-	var platformKeys = ['name', 'version', 'layout', 'prerelease', 'os', 'manufacturer', 'product', 'description', 'ua'];
-	var customUA = (/[?&]customUA=([^&]+)(?:&|$)/i.exec(location.href) || 0)[1];
+  var ua = /[?&]ua=([^&]+)(?:&|$)/.exec(location.search);
 
-	if (customUA) {
-		customUA = decodeURIComponent(customUA).replace(/\+/g, ' ');
-		custom.value = customUA;
-	}
+  if (ua) {
+    ua = decodeURIComponent(ua[1]).replace(/\+/g, ' ');
+    document.getElementById('custom').value = ua;
+  }
 
-	var platformObj = customUA ? platform.parse(customUA) : platform;
-	platformObj.os = platformObj.os.toString();
+  platform = ua ? platform.parse(ua) : platform;
+  platform.os = String(platform.os);
 
-	json.innerHTML = JSON.stringify(platformObj, platformKeys, 4);
-}.call(this));
+  document.getElementById('json').innerHTML = JSON.stringify(
+    platform,
+    ['name', 'version', 'layout', 'prerelease', 'os', 'manufacturer', 'product', 'description', 'ua'],
+    4
+  );
+}());

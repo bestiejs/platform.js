@@ -1,6 +1,7 @@
 /*!
- * Platform.js v1.3.0 <http://mths.be/platform>
- * Copyright 2010-2014 John-David Dalton <http://allyoucanleet.com/>
+ * Platform.js v1.3.1 <http://mths.be/platform>
+ * Copyright 2014-2016 Benjamin Tan <https://d10.github.io/>
+ * Copyright 2011-2013 John-David Dalton <http://allyoucanleet.com/>
  * Available under MIT license <http://mths.be/mit>
  */
 ;(function() {
@@ -698,12 +699,11 @@
       }
       version = data[1];
     }
-    // detect IE Tech Preview
+    // detect Microsoft Edge
     else if ((name == 'Chrome' || name != 'IE') && (data = /\bEdge\/([\d.]+)/.exec(ua))) {
-      name = 'IE';
+      name = 'Microsoft Edge';
       version = data[1];
       layout = ['Trident'];
-      description.unshift('platform preview');
     }
     // leverage environment features
     if (useFeatures) {
@@ -875,7 +875,7 @@
       // use the full Chrome version when available
       data[1] = (/\bChrome\/([\d.]+)/i.exec(ua) || 0)[1];
       // detect Blink layout engine
-      if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28 && name != 'IE') {
+      if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28 && name != 'IE' && name != 'Microsoft Edge') {
         layout = ['Blink'];
       }
       // detect JavaScriptCore

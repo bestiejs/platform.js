@@ -1,3 +1,4 @@
-# platform.js
+# Platform.js v1.3.1
 
-Demo of platform.js
+* [View the live demo.](https://bestiejs.github.io/platform.js)
+* [View the source code.](https://github.com/bestiejs/platform.js)
