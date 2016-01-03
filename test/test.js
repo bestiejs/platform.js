@@ -1429,6 +1429,16 @@
       'version': '12.10136'
     },
 
+    'Microsoft Edge 12.0 on Nokia id313 (Windows Phone 10.0)': {
+      'ua': 'Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Nokia; id313) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Mobile Safari/537.36 Edge/12.0',
+      'layout': 'EdgeHTML',
+      'manufacturer': 'Nokia',
+      'name': 'Microsoft Edge',
+      'os': 'Windows Phone 10.0',
+      'product': 'Nokia id313',
+      'version': '12.0'
+    },
+
     'Midori (like Safari 3.x) on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; ru-ru) AppleWebKit/525.1+ (KHTML, like Gecko, Safari/525.1+) midori',
       'layout': 'WebKit',

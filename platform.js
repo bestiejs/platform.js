@@ -94,7 +94,7 @@
       '4.90': 'ME'
     };
     // detect Windows version from platform tokens
-    if (pattern && label && /^Win/i.test(os) &&
+    if (pattern && label && /^Win/i.test(os) && !/^Windows Phone /i.test(os) &&
         (data = data[/[\d.]+$/.exec(os)])) {
       os = 'Windows ' + data;
     }
