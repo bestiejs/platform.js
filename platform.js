@@ -868,7 +868,7 @@
       // use the full Chrome version when available
       data[1] = (/\bChrome\/([\d.]+)/i.exec(ua) || 0)[1];
       // detect Blink layout engine
-      if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28 && name != 'IE' && name != 'Microsoft Edge') {
+      if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28 && layout == 'WebKit') {
         layout = ['Blink'];
       }
       // detect JavaScriptCore
@@ -934,7 +934,7 @@
     }
     // append product
     if (product) {
-      description.push((/^on /.test(description[description.length -1]) ? '' : 'on ') + product);
+      description.push((/^on /.test(description[description.length - 1]) ? '' : 'on ') + product);
     }
     // parse OS into an object
     if (os) {
