@@ -247,11 +247,11 @@
       'version': '0.4'
     },
 
-    'Arora 0.6 (like Safari 4.x) on Windows Server 2008 / Vista': {
+    'Arora 0.6 (like Safari 4.x) on Windows Vista / Server 2008': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.6 (Change: )',
       'layout': 'WebKit',
       'name': 'Arora',
-      'os': 'Windows Server 2008 / Vista',
+      'os': 'Windows Vista / Server 2008',
       'version': '0.6'
     },
 
@@ -271,12 +271,12 @@
       'version': '0.11.0'
     },
 
-    'Avant Browser on Windows Server 2008 / Vista': {
+    'Avant Browser on Windows Vista / Server 2008': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Avant Browser)',
       'layout': 'Trident',
       'mode': 8,
       'name': 'Avant Browser',
-      'os': 'Windows Server 2008 / Vista'
+      'os': 'Windows Vista / Server 2008'
     },
 
     'Avant Browser (IE 7 mode) on Windows XP': {
@@ -455,11 +455,11 @@
       'version': '34.0.1847.137'
     },
 
-    'Chrome 38.0.2103.0 on Windows Server 2008 R2 / 7 64-bit': {
+    'Chrome 38.0.2103.0 on Windows 7 / Server 2008 R2 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2103.0 Safari/537.36',
       'layout': 'Blink',
       'name': 'Chrome',
-      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'os': 'Windows 7 / Server 2008 R2 64-bit',
       'version': '38.0.2103.0'
     },
 
@@ -625,21 +625,21 @@
       'version': '3.7#{alpha}5'
     },
 
-    'Firefox 4.0#{beta}8 on Windows Server 2008 / Vista 64-bit': {
+    'Firefox 4.0#{beta}8 on Windows Vista / Server 2008 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 6.0; Win64; IA64; rv:2.0b8pre) Gecko/20101213 Firefox/4.0b8pre',
       'layout': 'Gecko',
       'name': 'Firefox',
-      'os': 'Windows Server 2008 / Vista 64-bit',
+      'os': 'Windows Vista / Server 2008 64-bit',
       'platform': 'Win64',
       'prerelease': 'beta',
       'version': '4.0#{beta}8'
     },
 
-    'Firefox 4.0#{beta}8 32-bit on Windows Server 2008 R2 / 7 64-bit': {
+    'Firefox 4.0#{beta}8 32-bit on Windows 7 / Server 2008 R2 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0b8pre) Gecko/20101114 Firefox/4.0b8pre',
       'layout': 'Gecko',
       'name': 'Firefox',
-      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'os': 'Windows 7 / Server 2008 R2 64-bit',
       'platform': 'Win32',
       'prerelease': 'beta',
       'version': '4.0#{beta}8'
@@ -932,11 +932,11 @@
       'version': '6.1'
     },
 
-    'IE 7.0#{beta} on Windows Server 2003 / XP 64-bit': {
+    'IE 7.0#{beta} on Windows XP 64-bit / Server 2003': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.2)',
       'layout': 'Trident',
       'name': 'IE',
-      'os': 'Windows Server 2003 / XP 64-bit',
+      'os': 'Windows XP 64-bit / Server 2003',
       'prerelease': 'beta',
       'version': '7.0#{beta}'
     },
@@ -987,50 +987,50 @@
       'version': '8.0'
     },
 
-    'IE 8.0 32-bit on Windows Server 2008 / Vista 64-bit': {
+    'IE 8.0 32-bit on Windows Vista / Server 2008 64-bit': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; WOW64; Trident/4.0)',
       'cpuClass': 'x86',
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
-      'os': 'Windows Server 2008 / Vista 64-bit',
+      'os': 'Windows Vista / Server 2008 64-bit',
       'platform': 'Win32',
       'version': '8.0'
     },
 
-    'IE 8.0 on Windows Server 2008 R2 / 7 64-bit': {
+    'IE 8.0 on Windows 7 / Server 2008 R2 64-bit': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64; Trident/4.0)',
       'cpuClass': 'x64',
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'os': 'Windows 7 / Server 2008 R2 64-bit',
       'platform': 'Win64',
       'version': '8.0'
     },
 
-    'IE 9.0 (platform preview) on Windows Server 2008 R2 / 7': {
+    'IE 9.0 (platform preview) on Windows 7 / Server 2008 R2': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
       'external': null,
       'layout': 'Trident',
       'mode': 9,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7',
+      'os': 'Windows 7 / Server 2008 R2',
       'version': '9.0'
     },
 
-    'IE 9.0#{beta} (IE 7 mode) on Windows Server 2008 R2 / 7': {
+    'IE 9.0#{beta} (IE 7 mode) on Windows 7 / Server 2008 R2': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
       'appMinorVersion': 'beta',
       'layout': 'Trident',
       'mode': 7,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7',
+      'os': 'Windows 7 / Server 2008 R2',
       'prerelease': 'beta',
       'version': '9.0#{beta}'
     },
 
-    'IE 9.0#{beta} (platform preview; IE 8 mode) on Windows Server 2008 R2 / 7': {
+    'IE 9.0#{beta} (platform preview; IE 8 mode) on Windows 7 / Server 2008 R2': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
       'appMinorVersion': 'beta',
       'cpuClass': 'x86',
@@ -1038,7 +1038,7 @@
       'layout': 'Trident',
       'mode': 8,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7',
+      'os': 'Windows 7 / Server 2008 R2',
       'prerelease': 'beta',
       'version': '9.0#{beta}'
     },
@@ -1063,12 +1063,12 @@
       'version': '9.0'
     },
 
-    'IE 9.0 on Windows Server 2008 R2 / 7 64-bit': {
+    'IE 9.0 on Windows 7 / Server 2008 R2 64-bit': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; AMD64; Trident/5.0)',
       'layout': 'Trident',
       'mode': 9,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'os': 'Windows 7 / Server 2008 R2 64-bit',
       'version': '9.0'
     },
 
@@ -1082,13 +1082,13 @@
       'version': '10.0'
     },
 
-    'IE 10.0 (platform preview) on Windows Server 2008 / Vista': {
+    'IE 10.0 (platform preview) on Windows Vista / Server 2008': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.0; Trident/6.0)',
       'external': null,
       'layout': 'Trident',
       'mode': 10,
       'name': 'IE',
-      'os': 'Windows Server 2008 / Vista',
+      'os': 'Windows Vista / Server 2008',
       'version': '10.0'
     },
 
@@ -1110,21 +1110,21 @@
       'version': '11.0'
     },
 
-    'IE 11.0 32-bit (identifying as Firefox 12.0) on Windows Server 2008 R2 / 7 64-bit': {
+    'IE 11.0 32-bit (identifying as Firefox 12.0) on Windows 7 / Server 2008 R2 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko/20100101 Firefox/12.0',
       'layout': 'Trident',
       'mode': 11,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'os': 'Windows 7 / Server 2008 R2 64-bit',
       'version': '11.0'
     },
 
-    'IE 11.0 32-bit (identifying as Firefox 22.0) on Windows Server 2008 R2 / 7 64-bit': {
+    'IE 11.0 32-bit (identifying as Firefox 22.0) on Windows 7 / Server 2008 R2 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko/20100101 Firefox/22.0',
       'layout': 'Trident',
       'mode': 11,
       'name': 'IE',
-      'os': 'Windows Server 2008 R2 / 7 64-bit',
+      'os': 'Windows 7 / Server 2008 R2 64-bit',
       'version': '11.0'
     },
 
@@ -1269,11 +1269,11 @@
       'version': '11.0'
     },
 
-    'SRWare Iron 0.2.152.0 on Windows Server 2008 / Vista': {
+    'SRWare Iron 0.2.152.0 on Windows Vista / Server 2008': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Iron/0.2.152.0 Safari/41562480.525',
       'layout': 'WebKit',
       'name': 'SRWare Iron',
-      'os': 'Windows Server 2008 / Vista',
+      'os': 'Windows Vista / Server 2008',
       'version': '0.2.152.0'
     },
 
@@ -1338,40 +1338,40 @@
       'version': '4.7.1'
     },
 
-    'Lunascape 5.0#{alpha}3 (Trident) on Windows Server 2003 / XP 64-bit': {
+    'Lunascape 5.0#{alpha}3 (Trident) on Windows XP 64-bit / Server 2003': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.2; Lunascape 5.0 alpha3)',
       'layout': 'Trident',
       'name': 'Lunascape',
-      'os': 'Windows Server 2003 / XP 64-bit',
+      'os': 'Windows XP 64-bit / Server 2003',
       'prerelease': 'alpha',
       'version': '5.0#{alpha}3'
     },
 
-    'Lunascape 6.1.7.21880 (Trident) on Windows Server 2008 R2 / 7': {
+    'Lunascape 6.1.7.21880 (Trident) on Windows 7 / Server 2008 R2': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; Lunascape 6.1.7.21880)',
       'layout': 'Trident',
       'mode': 8,
       'name': 'Lunascape',
-      'os': 'Windows Server 2008 R2 / 7',
+      'os': 'Windows 7 / Server 2008 R2',
       'version': '6.1.7.21880'
     },
 
-    'Lunascape 6.2.1.22445 (Gecko) on Windows Server 2008 / Vista': {
+    'Lunascape 6.2.1.22445 (Gecko) on Windows Vista / Server 2008': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.13) Gecko/20100917 Firefox/3.5.13 Lunascape/6.2.1.22445',
       'layout': 'Gecko',
       'name': 'Lunascape',
-      'os': 'Windows Server 2008 / Vista',
+      'os': 'Windows Vista / Server 2008',
       'version': '6.2.1.22445'
     },
 
-    'Lunascape 6.3.1.22729#{beta} (Trident) on Windows Server 2008 / Vista': {
+    'Lunascape 6.3.1.22729#{beta} (Trident) on Windows Vista / Server 2008': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0; Lunascape/6.3.1.22729)',
       'appMinorVersion': 'beta',
       'external': null,
       'layout': 'Trident',
       'mode': 9,
       'name': 'Lunascape',
-      'os': 'Windows Server 2008 / Vista',
+      'os': 'Windows Vista / Server 2008',
       'prerelease': 'beta',
       'version': '6.3.1.22729#{beta}'
     },
@@ -1844,11 +1844,11 @@
       'version': '4.0.4'
     },
 
-    'Safari 5.1 on Windows Server 2008 R2 / 7': {
+    'Safari 5.1 on Windows 7 / Server 2008 R2': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',
       'layout': 'WebKit',
       'name': 'Safari',
-      'os': 'Windows Server 2008 R2 / 7',
+      'os': 'Windows 7 / Server 2008 R2',
       'version': '5.1'
     },
 
@@ -1921,11 +1921,11 @@
       'version': '1.1.13'
     },
 
-    'SeaMonkey 2.0#{beta}1 on Windows Server 2008 / Vista': {
+    'SeaMonkey 2.0#{beta}1 on Windows Vista / Server 2008': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.1pre) Gecko/20090717 SeaMonkey/2.0b1',
       'layout': 'Gecko',
       'name': 'SeaMonkey',
-      'os': 'Windows Server 2008 / Vista',
+      'os': 'Windows Vista / Server 2008',
       'prerelease': 'beta',
       'version': '2.0#{beta}1'
     },
@@ -2045,12 +2045,12 @@
       'version': '2.9.2#{beta}'
     },
 
-    'Sleipnir 2.9.4 (IE 7 mode) on Windows Server 2008 / Vista': {
+    'Sleipnir 2.9.4 (IE 7 mode) on Windows Vista / Server 2008': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; Trident/4.0; Sleipnir/2.9.4)',
       'layout': 'Trident',
       'mode': 7,
       'name': 'Sleipnir',
-      'os': 'Windows Server 2008 / Vista',
+      'os': 'Windows Vista / Server 2008',
       'version': '2.9.4'
     },
 
@@ -2062,12 +2062,12 @@
       'os': 'Windows XP'
     },
 
-    'SlimBrowser (IE 5 mode) on Windows Server 2008 R2 / 7': {
+    'SlimBrowser (IE 5 mode) on Windows 7 / Server 2008 R2': {
       'ua': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/4.0; SlimBrowser)',
       'layout': 'Trident',
       'mode': 5,
       'name': 'SlimBrowser',
-      'os': 'Windows Server 2008 R2 / 7'
+      'os': 'Windows 7 / Server 2008 R2'
     },
 
     'Sunrise 1.7.5 on OS X 10.5.5': {
@@ -2192,7 +2192,7 @@
     'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64': {
       'ua': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64',
       'layout': 'Gecko',
-      'os': 'Windows Server 2008 R2 / 7 64-bit'
+      'os': 'Windows 7 / Server 2008 R2 64-bit'
     },
 
     'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 Prism/1.0b2': {
@@ -2283,7 +2283,7 @@
 
     QUnit.test('parses IE identifying as Firefox 12.0', function(assert) {
       var actual = parse('Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko/20100101 Firefox/12.0'),
-          expected = 'IE 11.0 32-bit (identifying as Firefox 12.0) on Windows Server 2008 R2 / 7 64-bit';
+          expected = 'IE 11.0 32-bit (identifying as Firefox 12.0) on Windows 7 / Server 2008 R2 64-bit';
 
       assert.strictEqual(actual.description, expected);
     });
@@ -2360,7 +2360,7 @@
 
     QUnit.test('parses Windows 7 OS', function(assert) {
       var actual = parse('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36'),
-          expected = 'Windows Server 2008 R2 / 7';
+          expected = 'Windows 7 / Server 2008 R2';
 
       assert.strictEqual(actual.os.family, expected);
       assert.strictEqual(actual.os.version, '7');
