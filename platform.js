@@ -94,7 +94,7 @@
     };
     // detect Windows version from platform tokens
     if (pattern && label && /^Win/i.test(os) &&
-        (data = data[0/*Opera 9.25 fix*/, /[\d.]+$/.exec(os)])) {
+        (data = data[/[\d.]+$/.exec(os)])) {
       os = 'Windows ' + data;
     }
     // correct character case and cleanup
@@ -498,7 +498,7 @@
         // lookup the manufacturer by product or scan the UA for the manufacturer
         return result || (
           value[product] ||
-          value[0/*Opera 9.25 fix*/, /^[a-z]+(?: +[a-z]+\b)*/i.exec(product)] ||
+          value[/^[a-z]+(?: +[a-z]+\b)*/i.exec(product)] ||
           RegExp('\\b' + qualify(key) + '(?:\\b|\\w*\\d)', 'i').exec(ua)
         ) && key;
       });
