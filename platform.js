@@ -117,6 +117,7 @@
         .replace(/(?: BePC|[ .]*fc[ \d.]+)$/i, '')
         .replace(/\bx86\.64\b/gi, 'x86_64')
         .replace(/\b(Windows Phone) OS\b/, '$1')
+        .replace(/\b(Chrome OS \w+) [\d.]+\b/, '$1')
         .split(' on ')[0]
     );
 
@@ -448,6 +449,7 @@
       'Windows Phone ',
       'Android',
       'CentOS',
+      { 'label': 'Chrome OS', 'pattern': 'CrOS' },
       'Debian',
       'Fedora',
       'FreeBSD',

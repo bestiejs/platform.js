@@ -465,6 +465,22 @@
       'version': '38.0.2103.0'
     },
 
+    'Chrome 40.0.2214.93 on Chrome OS armv7l': {
+      'ua': 'Mozilla/5.0 (X11; CrOS armv7l 6457.83.0) AppleWebKit/537.36 (KHTML,like Gecko) Chrome/40.0.2214.93 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'Chrome OS armv7l',
+      'version': '40.0.2214.93'
+    },
+
+    'Chrome 43.0.2357.46 on Chrome OS 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; CrOS x86_64 6946.31.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.46 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'Chrome OS 64-bit',
+      'version': '43.0.2357.46'
+    },
+
     'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
       'layout': 'WebKit',
