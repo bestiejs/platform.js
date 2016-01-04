@@ -491,7 +491,7 @@
       'version': '16.0.912.77'
     },
 
-    'Chrome Mobile 19.0.1084.60 on Apple iPhone (iOS 5.1.1)': {
+    'Chrome Mobile 19.0.1084.60 (like Safari 5.x) on Apple iPhone (iOS 5.1.1)': {
       'ua': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; en-gb) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/19.0.1084.60 Mobile/9B206 Safari/7534.48.3',
       'layout': 'WebKit',
       'manufacturer': 'Apple',
@@ -724,7 +724,7 @@
       'version': '29.0'
     },
 
-    'Firefox Mobile 1.0 on Apple iPhone (iOS 8.3)': {
+    'Firefox Mobile 1.0 (like Safari 8.x) on Apple iPhone (iOS 8.3)': {
       'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4',
       'layout': 'WebKit',
       'manufacturer': 'Apple',
