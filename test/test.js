@@ -1,27 +1,27 @@
 ;(function() {
 
-  /** Used as a safe reference for `undefined` in pre ES5 environments */
+  /** Used as a safe reference for `undefined` in pre ES5 environments. */
   var undefined;
 
-  /** Used as a reference to the global object */
+  /** Used as a reference to the global object. */
   var root = (typeof global == 'object' && global) || this;
 
-  /** Method and object shortcuts */
+  /** Method and object shortcuts. */
   var phantom = root.phantom,
       amd = root.define && define.amd,
       document = !phantom && root.document,
       hasOwnProperty = Object.prototype.hasOwnProperty,
       noop = function() {};
 
-  /** Detect if running in Java */
+  /** Detect if running in Java. */
   var isJava = !document && !!root.java;
 
-  /** Use a single "load" function */
+  /** Use a single "load" function. */
   var load = (typeof require == 'function' && !amd)
     ? require
     : (isJava && root.load) || noop;
 
-  /** The unit testing framework */
+  /** The unit testing framework. */
   var QUnit = root.QUnit || (root.QUnit = (
     QUnit = load('../node_modules/qunitjs/qunit/qunit.js') || root.QUnit,
     QUnit = QUnit.QUnit || QUnit
@@ -33,7 +33,7 @@
     QUnitExtras.runInContext(root);
   }
 
-  /** The `platform` object to check */
+  /** The `platform` object to check. */
   var platform = root.platform || (root.platform =
     load('../platform.js') ||
     root.platform
@@ -2324,7 +2324,7 @@
 
   (function() {
     function parse(ua) {
-      // avoid false negative when the UA string being tested matches the browser's
+      // Avoid false negative when the UA string being tested matches the browser's.
       return platform.parse(ua + ';');
     }
 
