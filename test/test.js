@@ -1294,7 +1294,7 @@
       'version': '11.0'
     },
 
-    'IE Mobile 11.0#{ }on Nokia Lumia 920 (Windows Phone 8.1)': {
+    'IE Mobile 11.0 on Nokia Lumia 920 (Windows Phone 8.1)': {
       'ua': 'Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 920) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537',
       'external': null,
       'layout': 'Trident',
@@ -1306,7 +1306,7 @@
       'version': '11.0'
     },
 
-    'IE Mobile 11.0#{ }(desktop mode) on Nokia Lumia 920 (Windows Phone 8.x)': {
+    'IE Mobile 11.0 (desktop mode) on Nokia Lumia 920 (Windows Phone 8.x)': {
       'ua': 'Mozilla/5.0 (Windows NT 6.2; ARM; Trident/7.0; Touch; rv:11.0; WPDesktop; Lumia 920) like Gecko',
       'external': null,
       'layout': 'Trident',
@@ -2287,7 +2287,7 @@
         forOwn(Tests, function(value, key) {
           var platform = getPlatform(key, value);
           value = name == 'description' ? key : value[name];
-          value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2', ' ': ' ' }) : null;
+          value = value ? interpolate(value, { 'alpha': '\u03b1', 'beta': '\u03b2' }) : null;
           assert.strictEqual(platform && String(platform[name]), String(value), String(platform));
         });
       });
