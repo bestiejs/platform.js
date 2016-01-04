@@ -742,19 +742,21 @@
       'version': '18.0'
     },
 
-    'Firefox Mobile 24.0 on Android': {
+    'Firefox Mobile 24.0 on Mobile': {
       'ua': 'Mozilla/5.0 (Android; Mobile; rv:24.0) Gecko/24.0 Firefox/24.0',
       'layout': 'Gecko',
       'name': 'Firefox Mobile',
       'os': 'Android',
+      'product': 'Mobile',
       'version': '24.0'
     },
 
-    'Firefox Mobile#{ }24.0 on Android': {
+    'Firefox Mobile 24.0 on Tablet': {
       'ua': 'Mozilla/5.0 (Android; Tablet; rv:24.0) Gecko/24.0 Firefox/24.0',
       'layout': 'Gecko',
       'name': 'Firefox Mobile',
       'os': 'Android',
+      'product': 'Tablet',
       'version': '24.0'
     },
 
@@ -765,6 +767,24 @@
       'os': 'Firefox OS',
       'product': 'Tablet',
       'version': '26.0'
+    },
+
+    'Firefox Mobile 43.0 on Mobile (Android 4.3)': {
+      'ua': 'Mozilla/5.0 (Android 4.3; Mobile; rv:43.0) Gecko/43.0 Firefox/43.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android 4.3',
+      'product': 'Mobile',
+      'version': '43.0'
+    },
+
+    'Firefox Mobile 44.0 on TV (Firefox OS)': {
+      'ua': 'Mozilla/5.0 (TV; rv:44.0) Gecko/44.0 Firefox/44.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Firefox OS',
+      'product': 'TV',
+      'version': '44.0'
     },
 
     'Flock 2.0#{alpha}1 on Linux i686': {

@@ -635,7 +635,7 @@
       os = /\bAndroid\b/.test(os) ? os : 'Android';
     }
     // detect false positives for Firefox/Safari
-    else if (!name || (data = !/\bMinefield\b|\(Android;/i.test(ua) && /\b(?:Firefox|Safari)\b/.exec(name))) {
+    else if (!name || (data = !/\bMinefield\b|\(Android\b/i.test(ua) && /\b(?:Firefox|Safari)\b/.exec(name))) {
       // escape the `/` for Firefox 1
       if (name && !product && /[\/,]|^[^(]+?\)/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         // clear name of false positives
@@ -647,12 +647,10 @@
         name = /[a-z]+(?: Hat)?/i.exec(/\bAndroid\b/.test(os) ? os : data) + ' Browser';
       }
     }
-    // detect Firefox OS
-    if ((data = /\((Mobile|Tablet).*?Firefox\b/i.exec(ua)) && data[1]) {
-      os = 'Firefox OS';
-      if (!product) {
-        product = data[1];
-      }
+    // detect Firefox OS and products running Firefox
+    if (name == 'Firefox' && (data = /\b(Mobile|Tablet|TV)\b.*?\bFirefox\b/i.exec(ua))) {
+      os || (os = 'Firefox OS');
+      product || (product = data[1]);
     }
     // detect non-Opera versions (order is important)
     if (!version) {
