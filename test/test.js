@@ -724,6 +724,16 @@
       'version': '29.0'
     },
 
+    'Firefox Mobile 1.0 on Apple iPhone (iOS 8.3)': {
+      'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4',
+      'layout': 'WebKit',
+      'manufacturer': 'Apple',
+      'name': 'Firefox Mobile',
+      'os': 'iOS 8.3',
+      'product': 'iPhone',
+      'version': '1.0'
+    },
+
     'Firefox Mobile 2.0#{beta}1 on Android': {
       'ua': 'Mozilla/5.0 (Android; Linux armv7l; rv:2.0b6pre) Gecko/20100907 Firefox/4.0b6pre Fennec/2.0b1pre',
       'layout': 'Gecko',
