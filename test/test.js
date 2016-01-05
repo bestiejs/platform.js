@@ -1602,86 +1602,6 @@
       'version': '1.0'
     },
 
-    'Opera Mini 4.1.11355': {
-      'ua': 'Opera/9.50 (J2ME/MIDP; Opera Mini/4.1.11355/542; U; en)',
-      'layout': 'Presto',
-      'name': 'Opera Mini',
-      'operamini': { '[[Class]]': 'OperaMini' },
-      'version': '4.1.11355'
-    },
-
-    'Opera Mini 6.1.15738 on Apple iPhone': {
-      'ua': 'Opera/9.80 (iPhone; Opera Mini/6.1.15738/25.669; U; en) Presto/2.5.25 Version/10.54.544',
-      'layout': 'Presto',
-      'manufacturer': 'Apple',
-      'name': 'Opera Mini',
-      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
-      'operamini': { '[[Class]]': 'OperaMini' },
-      'os': 'iOS',
-      'product': 'iPhone',
-      'version': '6.1.15738'
-    },
-
-    'Opera Mini 8.0.0 on Apple iPhone': {
-      'ua': 'Opera/9.80 (iPhone; Opera Mini/8.0.0/34.2336; U; en) Presto/2.8.119 Version/11.10',
-      'layout': 'Presto',
-      'manufacturer': 'Apple',
-      'name': 'Opera Mini',
-      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
-      'operamini': { '[[Class]]': 'OperaMini' },
-      'os': 'iOS',
-      'product': 'iPhone',
-      'version': '8.0.0'
-    },
-
-    'Opera Mini 8.0.0.78129 (running in Turbo/Uncompressed mode; like Safari 7.x) on Apple iPhone (iOS 7.1.1)': {
-      'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) OPiOS/8.0.0.78129 Mobile/11D201 Safari/9537.53',
-      'layout': 'Presto',
-      'manufacturer': 'Apple',
-      'name': 'Opera Mini',
-      'os': 'iOS 7.1.1',
-      'product': 'iPhone',
-      'version': '8.0.0.78129'
-    },
-
-    'Opera Mini (desktop mode) on Linux': {
-      'ua': 'Opera/9.80 (X11; Linux zvav; U; en) Presto/2.8.119 Version/10.54',
-      'layout': 'Presto',
-      'name': 'Opera Mini',
-      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
-      'operamini': { '[[Class]]': 'OperaMini' },
-      'os': 'Linux'
-    },
-
-    'Opera Mobile 10.00 on Linux i686': {
-      'ua': 'Opera/9.80 (Linux i686; Opera Mobi/1038; U; en) Presto/2.5.24 Version/10.00',
-      'layout': 'Presto',
-      'name': 'Opera Mobile',
-      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
-      'os': 'Linux i686',
-      'version': '10.00'
-    },
-
-    'Opera Mobile 12.00 (desktop mode) on Linux': {
-      'ua': 'Opera/9.80 (X11; Linux zbov; U; ar) Presto/2.10.254 Version/12.00',
-      'layout': 'Presto',
-      'name': 'Opera Mobile',
-      'opera': { '[[Class]]': 'Opera', 'version': function() { return '12.00'; } },
-      'os': 'Linux',
-      'version': '12.00'
-    },
-
-
-    'Opera Mobile 25.0.1619.84037 (like Chrome 38.0.2125.102) on Asus T00J (Android 4.3)': {
-      'ua': 'Mozilla/5.0 (Linux; Android 4.3; ASUS_T00J Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36 OPR/25.0.1619.84037',
-      'layout': 'Blink',
-      'name': 'Opera Mobile',
-      'manufacturer': 'Asus',
-      'os': 'Android 4.3',
-      'product': 'Asus T00J',
-      'version': '25.0.1619.84037'
-    },
-
     'Opera 9.00 on Nintendo Wii': {
       'ua': 'Opera/9.00 (Nintendo Wii; U; ; 1309-9; en)',
       'layout': 'Presto',
@@ -1753,6 +1673,85 @@
       'name': 'Opera',
       'os': 'OS X 10.9.3',
       'version': '21.0.1432.67'
+    },
+
+    'Opera Mini 4.1.11355': {
+      'ua': 'Opera/9.50 (J2ME/MIDP; Opera Mini/4.1.11355/542; U; en)',
+      'layout': 'Presto',
+      'name': 'Opera Mini',
+      'operamini': { '[[Class]]': 'OperaMini' },
+      'version': '4.1.11355'
+    },
+
+    'Opera Mini 6.1.15738 on Apple iPhone': {
+      'ua': 'Opera/9.80 (iPhone; Opera Mini/6.1.15738/25.669; U; en) Presto/2.5.25 Version/10.54.544',
+      'layout': 'Presto',
+      'manufacturer': 'Apple',
+      'name': 'Opera Mini',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'operamini': { '[[Class]]': 'OperaMini' },
+      'os': 'iOS',
+      'product': 'iPhone',
+      'version': '6.1.15738'
+    },
+
+    'Opera Mini 8.0.0 on Apple iPhone': {
+      'ua': 'Opera/9.80 (iPhone; Opera Mini/8.0.0/34.2336; U; en) Presto/2.8.119 Version/11.10',
+      'layout': 'Presto',
+      'manufacturer': 'Apple',
+      'name': 'Opera Mini',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'operamini': { '[[Class]]': 'OperaMini' },
+      'os': 'iOS',
+      'product': 'iPhone',
+      'version': '8.0.0'
+    },
+
+    'Opera Mini 8.0.0.78129 (running in Turbo/Uncompressed mode; like Safari 7.x) on Apple iPhone (iOS 7.1.1)': {
+      'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) OPiOS/8.0.0.78129 Mobile/11D201 Safari/9537.53',
+      'layout': 'Presto',
+      'manufacturer': 'Apple',
+      'name': 'Opera Mini',
+      'os': 'iOS 7.1.1',
+      'product': 'iPhone',
+      'version': '8.0.0.78129'
+    },
+
+    'Opera Mini (desktop mode) on Linux': {
+      'ua': 'Opera/9.80 (X11; Linux zvav; U; en) Presto/2.8.119 Version/10.54',
+      'layout': 'Presto',
+      'name': 'Opera Mini',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'operamini': { '[[Class]]': 'OperaMini' },
+      'os': 'Linux'
+    },
+
+    'Opera Mobile 10.00 on Linux i686': {
+      'ua': 'Opera/9.80 (Linux i686; Opera Mobi/1038; U; en) Presto/2.5.24 Version/10.00',
+      'layout': 'Presto',
+      'name': 'Opera Mobile',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '10.00'; } },
+      'os': 'Linux i686',
+      'version': '10.00'
+    },
+
+    'Opera Mobile 12.00 (desktop mode) on Linux': {
+      'ua': 'Opera/9.80 (X11; Linux zbov; U; ar) Presto/2.10.254 Version/12.00',
+      'layout': 'Presto',
+      'name': 'Opera Mobile',
+      'opera': { '[[Class]]': 'Opera', 'version': function() { return '12.00'; } },
+      'os': 'Linux',
+      'version': '12.00'
+    },
+
+    'Opera Mobile 25.0.1619.84037 (like Chrome 38.0.2125.102) on Asus T00J (Android 4.3)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.3; ASUS_T00J Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36 OPR/25.0.1619.84037',
+      'layout': 'Blink',
+      'name': 'Opera Mobile',
+      'manufacturer': 'Asus',
+      'os': 'Android 4.3',
+      'product': 'Asus T00J',
+      'version': '25.0.1619.84037'
     },
 
     'PaleMoon 25.6.0 on Windows 10 64-bit': {

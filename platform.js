@@ -639,12 +639,27 @@
       name = 'Android Browser';
       os = /\bAndroid\b/.test(os) ? os : 'Android';
     }
+    // Detect Silk desktop/accelerated modes.
+    else if (name == 'Silk') {
+      if (!/\bMobi/i.test(ua)) {
+        os = 'Android';
+        description.unshift('desktop mode');
+      }
+      if (/Accelerated *= *true/i.test(ua)) {
+        description.unshift('accelerated');
+      }
+    }
     // Detect PaleMoon identifying as Firefox.
     else if (name == 'PaleMoon' && (data = /\bFirefox\/([\d.]+)\b/.exec(ua))) {
       description.push('identifying as Firefox ' + data[1]);
     }
+    // Detect Firefox OS and products running Firefox.
+    else if (name == 'Firefox' && (data = /\b(Mobile|Tablet|TV)\b/i.exec(ua))) {
+      os || (os = 'Firefox OS');
+      product || (product = data[1]);
+    }
     // Detect false positives for Firefox/Safari.
-    else if (!name || (data = !/\bMinefield\b|\(Android\b/i.test(ua) && /\b(?:Firefox|Safari)\b/.exec(name))) {
+    else if (!name || (data = !/\bMinefield\b/i.test(ua) && /\b(?:Firefox|Safari)\b/.exec(name))) {
       // Escape the `/` for Firefox 1.
       if (name && !product && /[\/,]|^[^(]+?\)/.test(ua.slice(ua.indexOf(data + '/') + 8))) {
         // Clear name of false positives.
@@ -656,11 +671,6 @@
         name = /[a-z]+(?: Hat)?/i.exec(/\bAndroid\b/.test(os) ? os : data) + ' Browser';
       }
     }
-    // Detect Firefox OS and products running Firefox.
-    if (name == 'Firefox' && (data = /\b(Mobile|Tablet|TV)\b.*?\bFirefox\b/i.exec(ua))) {
-      os || (os = 'Firefox OS');
-      product || (product = data[1]);
-    }
     // Detect non-Opera (Presto-based) versions (order is important).
     if (!version) {
       version = getVersion([
@@ -671,18 +681,14 @@
       ]);
     }
     // Detect stubborn layout engines.
-    if (layout == 'iCab' && parseFloat(version) > 3) {
-      layout = ['WebKit'];
-    } else if ((data =
-      /\bOpera\b/.test(name) && (/\bOPR\b/.test(ua) ? 'Blink' : 'Presto') ||
-      /\b(?:Midori|Nook|Safari)\b/i.test(ua) && !/^(?:Trident|EdgeHTML)$/.test(layout) && 'WebKit' ||
-      !layout && /\bMSIE\b/i.test(ua) && (os == 'Mac OS' ? 'Tasman' : 'Trident')
-    )) {
+    if ((data =
+          layout == 'iCab' && parseFloat(version) > 3 && 'WebKit' ||
+          /\bOpera\b/.test(name) && (/\bOPR\b/.test(ua) ? 'Blink' : 'Presto') ||
+          /\b(?:Midori|Nook|Safari)\b/i.test(ua) && !/^(?:Trident|EdgeHTML)$/.test(layout) && 'WebKit' ||
+          !layout && /\bMSIE\b/i.test(ua) && (os == 'Mac OS' ? 'Tasman' : 'Trident') ||
+          layout == 'WebKit' && /\bPlayStation\b(?! Vita\b)/i.test(name) && 'NetFront'
+        )) {
       layout = [data];
-    }
-    // Detect NetFront on PlayStation.
-    else if (/\bPlayStation\b(?! Vita\b)/i.test(name) && layout == 'WebKit') {
-      layout = ['NetFront'];
     }
     // Detect Windows Phone 7 desktop mode.
     if (name == 'IE' && (data = (/; *(?:XBLWP|ZuneWP)(\d+)/i.exec(ua) || 0)[1])) {
@@ -779,16 +785,6 @@
     else if (name == 'Maxthon' && version) {
       version = version.replace(/\.[\d.]+/, '.x');
     }
-    // Detect Silk desktop/accelerated modes.
-    else if (name == 'Silk') {
-      if (!/\bMobi/i.test(ua)) {
-        os = 'Android';
-        description.unshift('desktop mode');
-      }
-      if (/Accelerated *= *true/i.test(ua)) {
-        description.unshift('accelerated');
-      }
-    }
     // Detect Xbox 360 and Xbox One.
     else if (/\bXbox\b/i.test(product)) {
       os = null;
@@ -817,19 +813,16 @@
     }
     // Detect Opera identifying/masking itself as another browser.
     // http://www.opera.com/support/kb/view/843/
-    else if (this != forOwn && (
-          product != 'Wii' && (
-            (useFeatures && opera) ||
-            (/Opera/.test(name) && /\b(?:MSIE|Firefox)\b/i.test(ua)) ||
-            (name == 'Firefox' && /\bOS X (?:\d+\.){2,}/.test(os)) ||
-            (name == 'IE' && (
-              (os && !/^Win/.test(os) && version > 5.5) ||
-              /\bWindows XP\b/.test(os) && version > 8 ||
-              version == 8 && !/\bTrident\b/.test(ua)
-            ))
-          )
+    else if (this != forOwn && product != 'Wii' && (
+          (useFeatures && opera) ||
+          (/Opera/.test(name) && /\b(?:MSIE|Firefox)\b/i.test(ua)) ||
+          (name == 'Firefox' && /\bOS X (?:\d+\.){2,}/.test(os)) ||
+          (name == 'IE' && (
+            (os && !/^Win/.test(os) && version > 5.5) ||
+            /\bWindows XP\b/.test(os) && version > 8 ||
+            version == 8 && !/\bTrident\b/.test(ua)
+          ))
         ) && !reOpera.test((data = parse.call(forOwn, ua.replace(reOpera, '') + ';'))) && data.name) {
-
       // When "identifying", the UA contains both Opera and the other browser's name.
       data = 'ing as ' + data.name + ((data = data.version) ? ' ' + data : '');
       if (reOpera.test(name)) {
