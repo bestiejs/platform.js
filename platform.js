@@ -458,6 +458,7 @@
       'Haiku',
       'Kubuntu',
       'Linux Mint',
+      'OpenBSD',
       'Red Hat',
       'SuSE',
       'Ubuntu',

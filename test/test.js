@@ -716,6 +716,14 @@
       'version': '25.0'
     },
 
+    'Firefox 29.0 on OpenBSD 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; OpenBSD amd64; rv:29.0) Gecko/20100101 Firefox/29.0',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'OpenBSD 64-bit',
+      'version': '29.0'
+    },
+
     'Firefox 29.0 on OS X 10.9': {
       'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:29.0) Gecko/20100101 Firefox/29.0',
       'layout': 'Gecko',
