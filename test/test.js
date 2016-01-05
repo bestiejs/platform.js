@@ -1755,6 +1755,22 @@
       'version': '21.0.1432.67'
     },
 
+    'PaleMoon 25.6.0 on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:25.6) Gecko/20150723 PaleMoon/25.6.0',
+      'layout': 'Gecko',
+      'name': 'PaleMoon',
+      'os': 'Windows 10 64-bit',
+      'version': '25.6.0'
+    },
+
+    'PaleMoon 25.6.0 (identifying as Firefox 31.9) on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:25.6) Gecko/20150723 Firefox/31.9 PaleMoon/25.6.0',
+      'layout': 'Gecko',
+      'name': 'PaleMoon',
+      'os': 'Windows 10 64-bit',
+      'version': '25.6.0'
+    },
+
     'PhantomJS 1.0.0 (like Safari 4.x) on Cygwin': {
       'ua': 'Mozilla/5.0 (X11; U; Cygwin; C -) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3)  PhantomJS/1.0.0',
       'layout': 'WebKit',
@@ -2280,12 +2296,6 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.8) Gecko/20100728 Firefox/3.6.8 CometBird/3.6.8,gzip(gfe),gzip(gfe)',
       'layout': 'Gecko',
       'os': 'Windows XP'
-    },
-
-    'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64': {
-      'ua': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:7.0) Gecko/20110929 Firefox/7.0-x64 PaleMoon/7.0-x64',
-      'layout': 'Gecko',
-      'os': 'Windows 7 / Server 2008 R2 64-bit'
     },
 
     'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 Prism/1.0b2': {

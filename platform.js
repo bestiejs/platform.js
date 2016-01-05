@@ -371,6 +371,7 @@
       { 'label': 'Microsoft Edge', 'pattern': 'Edge' },
       'Midori',
       'Nook Browser',
+      'PaleMoon',
       'PhantomJS',
       'Raven',
       'Rekonq',
@@ -637,6 +638,10 @@
         ((/Chrome/.test(name) && !/\bMobile Safari\b/i.test(ua)) || /\bVita\b/.test(product))) {
       name = 'Android Browser';
       os = /\bAndroid\b/.test(os) ? os : 'Android';
+    }
+    // Detect PaleMoon identifying as Firefox.
+    else if (name == 'PaleMoon' && (data = /\bFirefox\/([\d.]+)\b/.exec(ua))) {
+      description.push('identifying as Firefox ' + data[1]);
     }
     // Detect false positives for Firefox/Safari.
     else if (!name || (data = !/\bMinefield\b|\(Android\b/i.test(ua) && /\b(?:Firefox|Safari)\b/.exec(name))) {
