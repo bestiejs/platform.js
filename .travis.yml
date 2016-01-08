@@ -3,15 +3,13 @@ node_js:
   - "5"
 env:
   global:
-    - BIN="node" NPM_VERSION="^2.0.0"
+    - BIN="node"
   matrix:
     -
     - BIN="phantomjs"
     - BIN="ringo"
 matrix:
   include:
-    - node_js: "0.8"
-      env: NPM_VERSION="~1.4.0"
     - node_js: "0.10"
       env:
     - node_js: "0.12"
@@ -26,7 +24,7 @@ branches:
 before_install:
   - "nvm use $TRAVIS_NODE_VERSION"
   - "npm config set loglevel error"
-  - "npm i -g npm@\"$NPM_VERSION\""
+  - "npm i -g npm@\"^2.0.0\""
   - "[ $BIN != 'ringo' ] || (wget https://github.com/ringo/ringojs/releases/download/v0.11.0/ringojs-0.11.zip && sudo unzip ringojs-0.11 -d /opt && rm ringojs-0.11.zip)"
   - "[ $BIN != 'ringo' ] || (sudo ln -s /opt/ringojs-0.11/bin/ringo /usr/local/bin/ringo && sudo chmod +x /usr/local/bin/ringo)"
 script:
