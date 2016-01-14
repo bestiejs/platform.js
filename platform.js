@@ -634,8 +634,9 @@
       os = 'Kubuntu';
     }
     // Detect Android browsers.
-    else if (manufacturer && manufacturer != 'Google' &&
-        ((/Chrome/.test(name) && !/\bMobile Safari\b/i.test(ua)) || /\bVita\b/.test(product))) {
+    else if (
+        (manufacturer && manufacturer != 'Google' && ((/Chrome/.test(name) && !/\bMobile Safari\b/i.test(ua)) || /\bVita\b/.test(product)))
+        || (/Android/i.test(os) && /Chrome/.test(name) && (/Version\//i.test(ua) || /Browser\//i.test(ua)))) {
       name = 'Android Browser';
       os = /\bAndroid\b/.test(os) ? os : 'Android';
     }

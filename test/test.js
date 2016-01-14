@@ -241,6 +241,68 @@
       'version': '4.1#{alpha}'
     },
 
+    'Android Browser 4.0 (like Chrome 43.0.2357.121) on LG LS770 (Android 5.1.1)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.1.1; LGLS770 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 ACHEETAHI/2100502012',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'LG',
+      'name': 'Android Browser',
+      'os': 'Android 5.1.1',
+      'product': 'LG LS770',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 39.0.0.0) on Google Nexus 9 (Android 5.1)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.1; Google Nexus 9 - 5.1.0 - API 22 - 1536x2048 Build/LMY47D) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'Google',
+      'name': 'Android Browser',
+      'os': 'Android 5.1',
+      'product': 'Nexus 9',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 30.0.0.0) on LG L16C (Android 4.4.2)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.4.2; LGL16C Build/KOT49I.L16CV11a) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'LG',
+      'name': 'Android Browser',
+      'os': 'Android 4.4.2',
+      'product': 'LG L16C',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 33.0.0.0) on Android 4.4.4': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.4.4; SGH-M919 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'Android Browser',
+      'os': 'Android 4.4.4',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 42.0.2311.129) on Android 5.1': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.1; XT1254 Build/SU4TL-44; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/42.0.2311.129 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'Android Browser',
+      'os': 'Android 5.1',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 37.0.0.0) on Asus Z00AD (Android 5.0)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.0; ASUS_Z00AD Build/LRX21V) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/37.0.0.0 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'Asus',
+      'name': 'Android Browser',
+      'os': 'Android 5.0',
+      'product': 'Asus Z00AD',
+      'version': '4.0'
+    },
+
     'Arora 0.4 (like Safari 3.x) on Linux': {
       'ua': 'Mozilla/5.0 (X11; U; Linux; cs-CZ) AppleWebKit/523.15 (KHTML, like Gecko, Safari/419.3) Arora/0.4 (Change: 333 41e3bc6)',
       'layout': 'WebKit',
