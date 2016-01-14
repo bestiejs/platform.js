@@ -390,6 +390,7 @@
       { 'label': 'Opera', 'pattern': 'OPR' },
       'Chrome',
       { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
+      { 'label': 'Waterfox', 'pattern': 'Waterfox' },
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
       { 'label': 'Firefox Mobile', 'pattern': 'FxiOS' },
       { 'label': 'IE', 'pattern': 'IEMobile' },
