@@ -2301,6 +2301,14 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 Prism/1.0b2',
       'layout': 'Gecko',
       'os': 'Windows XP'
+    },
+
+    'Waterfox 43.0 on OS X 10.11': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:43.0) Gecko/20100101 Firefox/43.0 Waterfox/43.0',
+      'layout': 'Gecko',
+      'name': 'Waterfox',
+      'os': 'OS X 10.11',
+      'version': '43.0'
     }
   };
 
