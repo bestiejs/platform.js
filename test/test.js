@@ -165,6 +165,17 @@
       'os': 'Android'
     },
 
+    'Android Browser 1.0 (like Chrome 18.0.1025.308) on Samsung Galaxy S4 (Android 4.2.2)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobile Safari/535.19',
+      'layout': 'WebKit',
+      'likeChrome': true,
+      'manufacturer': 'Samsung',
+      'name': 'Android Browser',
+      'os': 'Android 4.2.2',
+      'product': 'Galaxy S4',
+      'version': '1.0'
+    },
+
     'Android Browser 3.0.4 (like Chrome 1.x) on Motorola Xoom (Android 3.0)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 3.0; xx-xx; Xoom Build/HRI39) AppleWebKit/525.10+ (KHTML, like Gecko) Version/3.0.4 Mobile Safari/523.12.2',
       'layout': 'WebKit',
@@ -216,6 +227,77 @@
       'name': 'Android Browser',
       'os': 'Android 4.0.4',
       'product': 'Galaxy S3',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 30.0.0.0) on LG L16C (Android 4.4.2)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.4.2; LGL16C Build/KOT49I.L16CV11a) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'LG',
+      'name': 'Android Browser',
+      'os': 'Android 4.4.2',
+      'product': 'LG L16C',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 33.0.0.0) on Android 4.4.4': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.4.4; SGH-M919 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'Android Browser',
+      'os': 'Android 4.4.4',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 37.0.0.0) on Asus Z00AD (Android 5.0)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.0; ASUS_Z00AD Build/LRX21V) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/37.0.0.0 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'Asus',
+      'name': 'Android Browser',
+      'os': 'Android 5.0',
+      'product': 'Asus Z00AD',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 39.0.0.0) on Google Nexus 9 (Android 5.1)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.1; Google Nexus 9 - 5.1.0 - API 22 - 1536x2048 Build/LMY47D) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/39.0.0.0 Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'Google',
+      'name': 'Android Browser',
+      'os': 'Android 5.1',
+      'product': 'Nexus 9',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 40.0.2214.89) on Android 5.1.1': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.1.1; SGP521 Build/23.4.A.0.546) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'Android Browser',
+      'os': 'Android 5.1.1',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 42.0.2311.129) on Android 5.1': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.1; XT1254 Build/SU4TL-44; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/42.0.2311.129 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'Android Browser',
+      'os': 'Android 5.1',
+      'version': '4.0'
+    },
+
+    'Android Browser 4.0 (like Chrome 43.0.2357.121) on LG LS770 (Android 5.1.1)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.1.1; LGLS770 Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 ACHEETAHI/2100502012',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'LG',
+      'name': 'Android Browser',
+      'os': 'Android 5.1.1',
+      'product': 'LG LS770',
       'version': '4.0'
     },
 
@@ -485,16 +567,6 @@
       'name': 'Chrome',
       'os': 'Windows 10 64-bit',
       'version': '54.0.2840.71'
-    },
-
-    'Chrome Mobile 1.0 on Samsung Galaxy S4 (Android 4.2.2)': {
-      'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobile Safari/535.19',
-      'layout': 'WebKit',
-      'manufacturer': 'Samsung',
-      'name': 'Chrome Mobile',
-      'os': 'Android 4.2.2',
-      'product': 'Galaxy S4',
-      'version': '1.0'
     },
 
     'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
