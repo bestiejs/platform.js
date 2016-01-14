@@ -2364,6 +2364,22 @@
       'version': '1.0'
     },
 
+    'Waterfox 40.1.0 on Windows 8.1 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:40.0) Gecko/20100101 Firefox/40.1.0 Waterfox/40.1.0',
+      'layout': 'Gecko',
+      'name': 'Waterfox',
+      'os': 'Windows 8.1 64-bit',
+      'version': '40.1.0'
+    },
+
+    'Waterfox 43.0 on OS X 10.11': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:43.0) Gecko/20100101 Firefox/43.0 Waterfox/43.0',
+      'layout': 'Gecko',
+      'name': 'Waterfox',
+      'os': 'OS X 10.11',
+      'version': '43.0'
+    },
+
     'WebKit Nightly 528.4 (like Safari 4.x) on OS X 10.4.11': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10_4_11; tr) AppleWebKit/528.4+ (KHTML, like Gecko) Version/4.0dp1 Safari/526.11.2',
       'layout': 'WebKit',
