@@ -383,6 +383,7 @@
       { 'label': 'SRWare Iron', 'pattern': 'Iron' },
       'Sunrise',
       'Swiftfox',
+      'Waterfox',
       'WebPositive',
       'Opera Mini',
       { 'label': 'Opera Mini', 'pattern': 'OPiOS' },
