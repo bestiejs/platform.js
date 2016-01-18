@@ -1336,6 +1336,15 @@
       'version': '11.0'
     },
 
+    'IE Mobile 11.0 on Surface RT (Windows RT 8.1)': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.3; ARM; Trident/7.0; Touch; .NET4.0E; .NET4.0C; Tablet PC 2.0; rv:11.0) like Gecko',
+      'layout': 'Trident',
+      'name': 'IE Mobile',
+      'os': 'Windows RT 8.1',
+      'product': 'Surface RT',
+      'version': '11.0'
+    },
+
     'SRWare Iron 0.2.152.0 on Windows Vista / Server 2008': {
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Iron/0.2.152.0 Safari/41562480.525',
       'layout': 'WebKit',
