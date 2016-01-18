@@ -418,6 +418,7 @@
       'PlayStation 3',
       'PlayStation 4',
       'PlayStation Vita',
+      { 'label': 'Surface RT', 'pattern': 'Tablet PC 2.0'},
       'TouchPad',
       'Transformer',
       { 'label': 'Wii U', 'pattern': 'WiiU' },
@@ -701,6 +702,12 @@
       name = 'IE Mobile';
       os = 'Windows Phone 8.x';
       description.unshift('desktop mode');
+      version || (version = (/\brv:([\d.]+)/.exec(ua) || 0)[1]);
+    }
+    // Detect IE 11 Mobile (Surface).
+    else if (/\bTablet PC\b/i.test(ua)) {
+      name = 'IE Mobile';
+      os = 'Windows RT 8.1';
       version || (version = (/\brv:([\d.]+)/.exec(ua) || 0)[1]);
     }
     // Detect IE 11.
