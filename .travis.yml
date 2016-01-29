@@ -23,7 +23,8 @@ branches:
     - master
 before_install:
   - "nvm use $TRAVIS_NODE_VERSION"
-  - "npm config set loglevel error"
+  - "npm set loglevel error"
+  - "npm set progress false"
   - "npm i -g npm@\"^2.0.0\""
   - "[ $BIN != 'ringo' ] || (wget https://github.com/ringo/ringojs/releases/download/v0.11.0/ringojs-0.11.zip && sudo unzip ringojs-0.11 -d /opt && rm ringojs-0.11.zip)"
   - "[ $BIN != 'ringo' ] || (sudo ln -s /opt/ringojs-0.11/bin/ringo /usr/local/bin/ringo && sudo chmod +x /usr/local/bin/ringo)"
