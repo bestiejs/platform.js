@@ -1,0 +1,19 @@
+{
+   "name":"bestiejs/platform.js",
+   "version":"1.3.1",
+   "description":"A platform detection library that works on nearly all JavaScript platforms.",
+   "type":"component",
+   "homepage":"https://github.com/bestiejs/platform.js",
+   "license":"MIT",
+   "extra":{
+      "component":{
+         "name":"platformjs",
+         "scripts":[
+            "platform.js"
+         ],
+         "files":[
+            "platform.js"
+         ]
+      }
+   }
+}
