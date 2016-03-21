@@ -968,6 +968,13 @@
         description.unshift('32-bit');
       }
     }
+    // Chrome 39 and above on OS X is always 64-bit.
+    else if (
+        os && /^OS X/.test(os.family) &&
+        name == 'Chrome' && parseFloat(version) >= 39
+    ) {
+      os.architecture = 64;
+    }
 
     ua || (ua = null);
 

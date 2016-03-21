@@ -471,6 +471,14 @@
       'version': '43.0.2357.46'
     },
 
+    'Chrome 49.0.2623.87 on OS X 10.11.1 64-bit': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'OS X 10.11.1 64-bit',
+      'version': '49.0.2623.87'
+    },
+
     'Chrome 54.0.2840.71 32-bit on Windows 10 64-bit': {
       'ua': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36',
       'layout': 'Blink',
