@@ -965,6 +965,10 @@
         description.unshift('32-bit');
       }
     }
+    else if (os && (os.family.indexOf('OS X') != -1 || os.family.indexOf('Mac') != -1) &&
+        name == "Chrome" && parseFloat(version) >= 39) {
+        os.architecture = 64;
+    }
 
     ua || (ua = null);
 
