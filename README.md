@@ -66,7 +66,7 @@ info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.
 ```
 ## Support
 
-Tested in Chrome 46-47, Firefox 42-43, IE 8-11, Edge 13, Safari 8-9, Node.js 0.10, 0.12, 4, & 5, & PhantomJS 1.9.8.
+Tested in Chrome 46-47, Firefox 42-43, IE 8-11, Edge 13, Safari 8-9, Node.js 0.10-6, & PhantomJS 1.9.8.
 
 ## BestieJS
 
