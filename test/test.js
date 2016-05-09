@@ -1347,6 +1347,16 @@
       'version': '11.0'
     },
 
+    'IE Mobile 11.0 on Archos (Windows Phone 8.1)': {
+      'ua': 'Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; ARCHOS; 40 Cesium) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537',
+      'layout': 'Trident',
+      'manufacturer': 'Archos',
+      'name': 'IE Mobile',
+      'os': 'Windows Phone 8.1',
+      'product': 'Archos',
+      'version': '11.0'
+    },
+
     'IE Mobile 11.0 on Nokia Lumia 920 (Windows Phone 8.1)': {
       'ua': 'Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 920) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537',
       'external': null,

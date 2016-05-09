@@ -430,6 +430,7 @@
     /* Detectable manufacturers. */
     var manufacturer = getManufacturer({
       'Apple': { 'iPad': 1, 'iPhone': 1, 'iPod': 1 },
+      'Archos': {},
       'Amazon': { 'Kindle': 1, 'Kindle Fire': 1 },
       'Asus': { 'Transformer': 1 },
       'Barnes & Noble': { 'Nook': 1 },
@@ -448,7 +449,7 @@
 
     /* Detectable operating systems (order is important). */
     var os = getOS([
-      'Windows Phone ',
+      'Windows Phone',
       'Android',
       'CentOS',
       { 'label': 'Chrome OS', 'pattern': 'CrOS' },
@@ -622,8 +623,14 @@
     if (name == 'Opera Mini' && /\bOPiOS\b/.test(ua)) {
       description.push('running in Turbo/Uncompressed mode');
     }
+    // Detect IE Mobile 11.
+    if (name == 'IE' && /\blike iPhone OS\b/.test(ua)) {
+      data = parse(ua.replace(/like iPhone OS/, ''));
+      manufacturer = data.manufacturer;
+      product = data.product;
+    }
     // Detect iOS.
-    if (/^iP/.test(product)) {
+    else if (/^iP/.test(product)) {
       name || (name = 'Safari');
       os = 'iOS' + ((data = / OS ([\d_]+)/i.exec(ua))
         ? ' ' + data[1].replace(/_/g, '.')
