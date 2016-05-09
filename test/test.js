@@ -1323,6 +1323,16 @@
       'product': 'Lumia 920',
       'version': '11.0'
     },
+    
+    'IE Mobile 11.0 on Archos 40 Cesium (Windows Phone 8.1)': {
+      'ua': 'Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; ARCHOS; 40 Cesium) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537',
+      'layout': 'Trident',
+      'manufacturer': 'Archos',
+      'name': 'IE Mobile',
+      'os': 'Windows Phone 8.1',
+      'product': 'Archos',
+      'version': '11.0'
+    },
 
     'IE Mobile 11.0 (desktop mode) on Nokia Lumia 920 (Windows Phone 8.x)': {
       'ua': 'Mozilla/5.0 (Windows NT 6.2; ARM; Trident/7.0; Touch; rv:11.0; WPDesktop; Lumia 920) like Gecko',
