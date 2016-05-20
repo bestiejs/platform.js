@@ -732,14 +732,24 @@
       'version': '29.0'
     },
 
-    'Firefox Mobile 1.0 (like Safari 8.x) on Apple iPhone (iOS 8.3)': {
+    'Firefox for iOS 1.0 (like Safari 8.x) on Apple iPhone (iOS 8.3)': {
       'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4',
       'layout': 'WebKit',
       'manufacturer': 'Apple',
-      'name': 'Firefox Mobile',
+      'name': 'Firefox for iOS',
       'os': 'iOS 8.3',
       'product': 'iPhone',
       'version': '1.0'
+    },
+
+    'Firefox for iOS 4.0 (like Safari 8.x) on Apple iPad (iOS 8.3)': {
+      'ua': 'Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/4.0 Mobile/12F69 Safari/600.1.4',
+      'layout': 'WebKit',
+      'manufacturer': 'Apple',
+      'name': 'Firefox for iOS',
+      'os': 'iOS 8.3',
+      'product': 'iPad',
+      'version': '4.0'
     },
 
     'Firefox Mobile 2.0#{beta}1 on Android': {

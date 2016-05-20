@@ -391,7 +391,7 @@
       'Chrome',
       { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
-      { 'label': 'Firefox Mobile', 'pattern': 'FxiOS' },
+      { 'label': 'Firefox for iOS', 'pattern': 'FxiOS' },
       { 'label': 'IE', 'pattern': 'IEMobile' },
       { 'label': 'IE', 'pattern': 'MSIE' },
       'Safari'
