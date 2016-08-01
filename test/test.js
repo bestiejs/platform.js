@@ -156,16 +156,6 @@
       'product': 'Transformer'
     },
 
-    'Android Browser 1.0 (like Chrome 18.0.1025.308) on Samsung Galaxy S4 (Android 4.2.2)': {
-      'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobie Safari/535.19',
-      'layout': 'WebKit',
-      'manufacturer': 'Samsung',
-      'name': 'Android Browser',
-      'os': 'Android 4.2.2',
-      'product': 'Galaxy S4',
-      'version': '1.0'
-    },
-
     'Android Browser (like Safari 4.x) on Sony PlayStation Vita 1.00': {
       'ua': 'Mozilla/5.0 (PlayStation Vita 1.00) AppleWebKit/531.22.8 (KHTML, like Gecko) Silk/3.2',
       'layout': 'WebKit',
@@ -479,6 +469,16 @@
       'name': 'Chrome',
       'os': 'Chrome OS 64-bit',
       'version': '43.0.2357.46'
+    },
+
+    'Chrome Mobile 1.0 on Samsung Galaxy S4 (Android 4.2.2)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobile Safari/535.19',
+      'layout': 'WebKit',
+      'manufacturer': 'Samsung',
+      'name': 'Chrome Mobile',
+      'os': 'Android 4.2.2',
+      'product': 'Galaxy S4',
+      'version': '1.0'
     },
 
     'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
