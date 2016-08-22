@@ -27,7 +27,7 @@ require(['platform'], function(platform) {/*…*/});
 
 Using npm:
 
-```bash
+```shell
 $ npm i --save platform
 ```
 
