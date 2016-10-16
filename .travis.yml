@@ -1,28 +1,74 @@
 language: node_js
+sudo: false
 node_js:
-  - "6"
+  - 6
+
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.yarn-cache
+    - travis_phantomjs
+    - travis_ringojs
+
 env:
   global:
-    - BIN="node"
+    - BIN=node
+
   matrix:
     -
-    - BIN="phantomjs"
-    - BIN="ringo"
+    - BIN=phantomjs
+    - BIN=ringo
+
 matrix:
   include:
-    - node_js: "4"
+    - node_js: 4
       env:
+
 git:
   depth: 10
+
 branches:
   only:
     - master
+
 before_install:
-  - "nvm use $TRAVIS_NODE_VERSION"
-  - "npm set loglevel error"
-  - "npm set progress false"
-  - "npm i -g npm@\"^2.0.0\""
-  - "[ $BIN != 'ringo' ] || (wget https://github.com/ringo/ringojs/releases/download/v0.11.0/ringojs-0.11.zip && sudo unzip ringojs-0.11 -d /opt && rm ringojs-0.11.zip)"
-  - "[ $BIN != 'ringo' ] || (sudo ln -s /opt/ringojs-0.11/bin/ringo /usr/local/bin/ringo && sudo chmod +x /usr/local/bin/ringo)"
+  # Upgrade PhantomJS.
+  - |
+      export PHANTOMJS_VERSION=2.1.1
+      export PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH
+      if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then
+        rm -rf $PWD/travis_phantomjs
+        mkdir -p $PWD/travis_phantomjs
+        wget https://github.com/Medium/phantomjs/releases/download/v$PHANTOMJS_VERSION/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
+        tar -xvf phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs
+      fi
+      phantomjs -v
+
+  # Install RingoJS.
+  - |
+      export RINGOJS_VERSION=0.11
+      export PATH=$PWD/travis_ringojs/ringojs-$RINGOJS_VERSION/bin:$PATH
+      if [ ! -f "$(which ringo)" ]; then
+        rm -rf $PWD/travis_ringojs
+        mkdir -p $PWD/travis_ringojs
+        wget https://github.com/ringo/ringojs/releases/download/v$RINGOJS_VERSION.0/ringojs-$RINGOJS_VERSION.tar.gz
+        tar -xvf ringojs-$RINGOJS_VERSION.tar.gz -C $PWD/travis_ringojs
+      fi
+      ringo -v
+
+  # Use exact Node version.
+  - nvm use $TRAVIS_NODE_VERSION
+
+  # Setup package managers.
+  - npm set loglevel error
+  - npm set progress false
+  - npm i -g yarn
+  - yarn -V
+
+install:
+  # Install packages.
+  - yarn
+
 script:
-  - "cd test && $BIN ./test.js"
+  - cd test
+  - $BIN ./test.js
