@@ -733,7 +733,10 @@
             }
           }
         }
-        else if (typeof context.process == 'object' && (data = context.process)) {
+        else if (
+          typeof context.process == 'object' && !context.process.browser &&
+          (data = context.process)
+        ) {
           name = 'Node.js';
           arch = data.arch;
           os = data.platform;

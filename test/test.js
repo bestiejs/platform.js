@@ -2494,6 +2494,18 @@
       assert.strictEqual(actual.os.family, expected);
       assert.strictEqual(actual.os.version, '7');
     });
+
+    QUnit.test('parses browserified modules', function(assert) {
+      var actual = parse(
+            'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36',
+            {
+              'process': { 'browser': true, 'arch': 'x64', 'version': 'v6.2.1', 'platform': 'win32' }
+            }
+          ),
+          expected = 'Chrome 54.0.2840.71 32-bit on Windows 10 64-bit';
+
+      assert.strictEqual(actual.description, expected);
+    });
   }());
 
   /*--------------------------------------------------------------------------*/
