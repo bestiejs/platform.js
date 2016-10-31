@@ -2328,7 +2328,17 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 Prism/1.0b2',
       'layout': 'Gecko',
       'os': 'Windows XP'
+    },
+
+    'Chrome 49.0.2623.87 on OS X 10.11.1 64-bit': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'OS X 10.11.1 64-bit',
+      'version': '49.0.2623.87',
+      'architecture': 64
     }
+
   };
 
   /*--------------------------------------------------------------------------*/
@@ -2346,6 +2356,15 @@
         });
       });
     });
+
+    QUnit.test('has the correct architecture values', function(assert) {
+      forOwn(Tests, function(value, key) {
+        if (value.hasOwnProperty("architecture")) {
+          var platform = getPlatform(key, value)
+          assert.strictEqual(platform.os.architecture, value.architecture, 'platform.' + key)
+        }
+      })
+    })
 
     QUnit.test('has correct null values', function(assert) {
       forOwn(Tests, function(value, key) {

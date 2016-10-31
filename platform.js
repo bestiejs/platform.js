@@ -968,6 +968,11 @@
         description.unshift('32-bit');
       }
     }
+    // Detect if this is Mac on Chrome. Architecture is always 64bit on Chrome 39 and above
+    else if (os && (os.family.indexOf('OS X') != -1 || os.family.indexOf('Mac') != -1) &&
+        name == "Chrome" && parseFloat(version) >= 39) {
+        os.architecture = 64;
+    }
 
     ua || (ua = null);
 
