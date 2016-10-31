@@ -399,6 +399,7 @@
 
     /* Detectable products (order is important). */
     var product = getProduct([
+      'Archos',
       { 'label': 'BlackBerry', 'pattern': 'BB10' },
       'BlackBerry',
       { 'label': 'Galaxy S', 'pattern': 'GT-I9000' },
@@ -430,6 +431,7 @@
     /* Detectable manufacturers. */
     var manufacturer = getManufacturer({
       'Apple': { 'iPad': 1, 'iPhone': 1, 'iPod': 1 },
+      'Archos': { '40 Cesium': 1, '50 Cesium': 1, 'Helium': 1 },
       'Amazon': { 'Kindle': 1, 'Kindle Fire': 1 },
       'Asus': { 'Transformer': 1 },
       'Barnes & Noble': { 'Nook': 1 },
