@@ -471,6 +471,14 @@
       'version': '43.0.2357.46'
     },
 
+    'Chrome 54.0.2840.71 32-bit on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'Windows 10 64-bit',
+      'version': '54.0.2840.71'
+    },
+
     'Chrome Mobile 1.0 on Samsung Galaxy S4 (Android 4.2.2)': {
       'ua' : 'Mozilla/5.0 (Linux; Android 4.2.2; en-au; SAMSUNG GT-I9500 Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Version/1.0 Chrome/18.0.1025.308 Mobile Safari/535.19',
       'layout': 'WebKit',
