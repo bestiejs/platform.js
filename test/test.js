@@ -831,6 +831,15 @@
       'version': '44.0'
     },
 
+    'Firefox Mobile 49.0 on Mobile (Android 4.4.2)': {
+      'ua': 'Mozilla/5.0 (Android 4.4.2; Mobile; rv:49.0) Gecko/49.0 Firefox/49.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'Android 4.4.2',
+      'product': 'Mobile',
+      'version': '49.0'
+    },
+
     'Flock 2.0#{alpha}1 on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9pre) Gecko/2008051917 Firefox/3.0pre Flock/2.0a1pre',
       'layout': 'Gecko',
