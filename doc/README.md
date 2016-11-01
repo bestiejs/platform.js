@@ -1,4 +1,4 @@
-# Platform.js <sup>v1.3.1</sup>
+# Platform.js <span>v1.3.2</span>
 
 <!-- div class="toc-container" -->
 
@@ -6,27 +6,27 @@
 
 ## `platform`
 * <a href="#platform">`platform`</a>
-* <a href="#platformdescription">`platform.description`</a>
-* <a href="#platformlayout">`platform.layout`</a>
-* <a href="#platformmanufacturer">`platform.manufacturer`</a>
-* <a href="#platformname">`platform.name`</a>
-* <a href="#platformparseuanavigatoruseragent">`platform.parse`</a>
-* <a href="#platformprerelease">`platform.prerelease`</a>
-* <a href="#platformproduct">`platform.product`</a>
-* <a href="#platformtostring">`platform.toString`</a>
-* <a href="#platformua">`platform.ua`</a>
-* <a href="#platformversion">`platform.version`</a>
+* <a href="#platform-description">`platform.description`</a>
+* <a href="#platform-layout">`platform.layout`</a>
+* <a href="#platform-manufacturer">`platform.manufacturer`</a>
+* <a href="#platform-name">`platform.name`</a>
+* <a href="#platform-parse">`platform.parse`</a>
+* <a href="#platform-prerelease">`platform.prerelease`</a>
+* <a href="#platform-product">`platform.product`</a>
+* <a href="#platform-toString">`platform.toString`</a>
+* <a href="#platform-ua">`platform.ua`</a>
+* <a href="#platform-version">`platform.version`</a>
 
 <!-- /div -->
 
 <!-- div -->
 
 ## `platform.os`
-* <a href="#platformos">`platform.os`</a>
-* <a href="#platformosarchitecture">`platform.os.architecture`</a>
-* <a href="#platformosfamily">`platform.os.family`</a>
-* <a href="#platformostostring">`platform.os.toString`</a>
-* <a href="#platformosversion">`platform.os.version`</a>
+* <a href="#platform-os">`platform.os`</a>
+* <a href="#platform-os-architecture">`platform.os.architecture`</a>
+* <a href="#platform-os-family">`platform.os.family`</a>
+* <a href="#platform-os-toString">`platform.os.toString`</a>
+* <a href="#platform-os-version">`platform.os.version`</a>
 
 <!-- /div -->
 
@@ -41,7 +41,7 @@
 <!-- div -->
 
 ### <a id="platform"></a>`platform`
-<a href="#platform">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L984 "View in source") [&#x24C9;][1]
+<a href="#platform">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L997 "View in source") [&#x24C9;][1]
 
 (Object): The platform object.
 
@@ -51,8 +51,8 @@
 
 <!-- div -->
 
-### <a id="platformdescription"></a>`platform.description`
-<a href="#platformdescription">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L992 "View in source") [&#x24C9;][1]
+### <a id="platform-description"></a>`platform.description`
+<a href="#platform-description">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1005 "View in source") [&#x24C9;][1]
 
 (string, null): The platform description.
 
@@ -62,8 +62,8 @@
 
 <!-- div -->
 
-### <a id="platformlayout"></a>`platform.layout`
-<a href="#platformlayout">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1000 "View in source") [&#x24C9;][1]
+### <a id="platform-layout"></a>`platform.layout`
+<a href="#platform-layout">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1013 "View in source") [&#x24C9;][1]
 
 (string, null): The name of the browser's layout engine.
 
@@ -73,8 +73,8 @@
 
 <!-- div -->
 
-### <a id="platformmanufacturer"></a>`platform.manufacturer`
-<a href="#platformmanufacturer">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1008 "View in source") [&#x24C9;][1]
+### <a id="platform-manufacturer"></a>`platform.manufacturer`
+<a href="#platform-manufacturer">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1021 "View in source") [&#x24C9;][1]
 
 (string, null): The name of the product's manufacturer.
 
@@ -84,8 +84,8 @@
 
 <!-- div -->
 
-### <a id="platformname"></a>`platform.name`
-<a href="#platformname">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1016 "View in source") [&#x24C9;][1]
+### <a id="platform-name"></a>`platform.name`
+<a href="#platform-name">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1029 "View in source") [&#x24C9;][1]
 
 (string, null): The name of the browser/environment.
 
@@ -95,13 +95,13 @@
 
 <!-- div -->
 
-### <a id="platformparseuanavigatoruseragent"></a>`platform.parse([ua=navigator.userAgent])`
-<a href="#platformparseuanavigatoruseragent">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L251 "View in source") [&#x24C9;][1]
+### <a id="platform-parse"></a>`platform.parse([ua=navigator.userAgent])`
+<a href="#platform-parse">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L253 "View in source") [&#x24C9;][1]
 
 Creates a new platform object.
 
 #### Arguments
-1. `[ua=navigator.userAgent]` *(Object|string)*: The user agent string or context object.
+1. `[ua=navigator.userAgent]` *(Object|string)*: The user agent string or context object.
 
 #### Returns
 *(Object)*:  A platform object.
@@ -112,8 +112,8 @@ Creates a new platform object.
 
 <!-- div -->
 
-### <a id="platformprerelease"></a>`platform.prerelease`
-<a href="#platformprerelease">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1024 "View in source") [&#x24C9;][1]
+### <a id="platform-prerelease"></a>`platform.prerelease`
+<a href="#platform-prerelease">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1037 "View in source") [&#x24C9;][1]
 
 (string, null): The alpha/beta release indicator.
 
@@ -123,8 +123,8 @@ Creates a new platform object.
 
 <!-- div -->
 
-### <a id="platformproduct"></a>`platform.product`
-<a href="#platformproduct">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1032 "View in source") [&#x24C9;][1]
+### <a id="platform-product"></a>`platform.product`
+<a href="#platform-product">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1045 "View in source") [&#x24C9;][1]
 
 (string, null): The name of the product hosting the browser.
 
@@ -134,8 +134,8 @@ Creates a new platform object.
 
 <!-- div -->
 
-### <a id="platformtostring"></a>`platform.toString()`
-<a href="#platformtostring">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L591 "View in source") [&#x24C9;][1]
+### <a id="platform-toString"></a>`platform.toString()`
+<a href="#platform-toString">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L601 "View in source") [&#x24C9;][1]
 
 Returns `platform.description` when the platform object is coerced to a string.
 
@@ -148,8 +148,8 @@ Returns `platform.description` when the platform object is coerced to a string.
 
 <!-- div -->
 
-### <a id="platformua"></a>`platform.ua`
-<a href="#platformua">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1040 "View in source") [&#x24C9;][1]
+### <a id="platform-ua"></a>`platform.ua`
+<a href="#platform-ua">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1053 "View in source") [&#x24C9;][1]
 
 (string, null): The browser's user agent string.
 
@@ -159,8 +159,8 @@ Returns `platform.description` when the platform object is coerced to a string.
 
 <!-- div -->
 
-### <a id="platformversion"></a>`platform.version`
-<a href="#platformversion">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1048 "View in source") [&#x24C9;][1]
+### <a id="platform-version"></a>`platform.version`
+<a href="#platform-version">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1061 "View in source") [&#x24C9;][1]
 
 (string, null): The browser/environment version.
 
@@ -176,8 +176,8 @@ Returns `platform.description` when the platform object is coerced to a string.
 
 <!-- div -->
 
-### <a id="platformos"></a>`platform.os`
-<a href="#platformos">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1056 "View in source") [&#x24C9;][1]
+### <a id="platform-os"></a>`platform.os`
+<a href="#platform-os">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1069 "View in source") [&#x24C9;][1]
 
 (Object): The name of the operating system.
 
@@ -187,8 +187,8 @@ Returns `platform.description` when the platform object is coerced to a string.
 
 <!-- div -->
 
-### <a id="platformosarchitecture"></a>`platform.os.architecture`
-<a href="#platformosarchitecture">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1064 "View in source") [&#x24C9;][1]
+### <a id="platform-os-architecture"></a>`platform.os.architecture`
+<a href="#platform-os-architecture">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1077 "View in source") [&#x24C9;][1]
 
 (number, null): The CPU architecture the OS is built for.
 
@@ -198,15 +198,19 @@ Returns `platform.description` when the platform object is coerced to a string.
 
 <!-- div -->
 
-### <a id="platformosfamily"></a>`platform.os.family`
-<a href="#platformosfamily">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1077 "View in source") [&#x24C9;][1]
+### <a id="platform-os-family"></a>`platform.os.family`
+<a href="#platform-os-family">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1090 "View in source") [&#x24C9;][1]
 
-(string, null): The family of the OS.
+(string, null): The family of the OS.<br>
 <br>
+<br>
 <br>
-Common values include:<br>
-"Windows", "Windows Server 2008 R2 / 7", "Windows Server 2008 / Vista",
-"Windows XP", "OS X", "Ubuntu", "Debian", "Fedora", "Red Hat", "SuSE",
+Common values include:<br>
+<br>
+"Windows", "Windows 7 / Server 2008 R2", "Windows Vista / Server 2008",<br>
+<br>
+"Windows XP", "OS X", "Ubuntu", "Debian", "Fedora", "Red Hat", "SuSE",<br>
+<br>
 "Android", "iOS" and "Windows Phone"
 
 * * *
@@ -215,8 +219,8 @@ Common values include:<br>
 
 <!-- div -->
 
-### <a id="platformostostring"></a>`platform.os.toString()`
-<a href="#platformostostring">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1093 "View in source") [&#x24C9;][1]
+### <a id="platform-os-toString"></a>`platform.os.toString()`
+<a href="#platform-os-toString">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1106 "View in source") [&#x24C9;][1]
 
 Returns the OS string.
 
@@ -229,8 +233,8 @@ Returns the OS string.
 
 <!-- div -->
 
-### <a id="platformosversion"></a>`platform.os.version`
-<a href="#platformosversion">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.1/platform.js#L1085 "View in source") [&#x24C9;][1]
+### <a id="platform-os-version"></a>`platform.os.version`
+<a href="#platform-os-version">#</a> [&#x24C8;](https://github.com/bestiejs/platform.js/blob/1.3.2/platform.js#L1098 "View in source") [&#x24C9;][1]
 
 (string, null): The version of the OS.
 
