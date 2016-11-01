@@ -7,6 +7,7 @@ A platform detection library that works on nearly all JavaScript platforms.
 Platform.js is for informational purposes only & **not** intended as a substitution for [feature detection/inference](http://allyoucanleet.com/post/18087210413/feature-testing-costs#screencast2) checks.
 
 ## Documentation
+
 * [doc/README.md](https://github.com/bestiejs/platform.js/blob/master/doc/README.md#readme)
 * [wiki/Changelog](https://github.com/bestiejs/platform.js/wiki/Changelog)
 * [wiki/Roadmap](https://github.com/bestiejs/platform.js/wiki/Roadmap)
@@ -64,9 +65,10 @@ info.layout; // 'Presto'
 info.os; // 'Mac OS X 10.7.2'
 info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.2'
 ```
+
 ## Support
 
-Tested in Chrome 46-47, Firefox 42-43, IE 8-11, Edge 13, Safari 8-9, Node.js 0.10-6, & PhantomJS 1.9.8.
+Tested in Chrome 53-54, Firefox 48-49, IE 11, Edge 14, Safari 9-10, Node.js 4-6, & PhantomJS 2.1.1.
 
 ## BestieJS
 
