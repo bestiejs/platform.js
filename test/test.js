@@ -1311,6 +1311,24 @@
       'version': '11.0'
     },
 
+    'IE 11.0 (masking as Chrome 28.0.1500.95) on Windows': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36',
+      'layout': 'Trident',
+      'mode': 11,
+      'name': 'IE',
+      'os': 'Windows',
+      'version': '11.0'
+    },
+
+    'IE 11.0 (masking as Firefox 12.0) on Windows': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.2; rv:12.0) Gecko/20100101 Firefox/12.0',
+      'layout': 'Trident',
+      'mode': 11,
+      'name': 'IE',
+      'os': 'Windows',
+      'version': '11.0'
+    },
+
     'IE Mobile 4.01 on Windows CE': {
       'ua' : 'Mozilla/4.0 (compatible; MSIE 4.01; Windows CE; PPC; 240x320)',
       'layout': 'Trident',
