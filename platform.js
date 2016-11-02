@@ -357,6 +357,7 @@
       'Avant Browser',
       'Breach',
       'Camino',
+      'Electron',
       'Epiphany',
       'Fennec',
       'Flock',
@@ -680,6 +681,10 @@
         name = /[a-z]+(?: Hat)?/i.exec(/\bAndroid\b/.test(os) ? os : data) + ' Browser';
       }
     }
+    // Add Chrome version to description for Electron.
+    else if (name == 'Electron' && (data = (/\bChrome\/([\d.]+)\b/.exec(ua) || 0)[1])) {
+      description.push('Chromium ' + data);
+    }
     // Detect non-Opera (Presto-based) versions (order is important).
     if (!version) {
       version = getVersion([
@@ -746,10 +751,22 @@
           typeof context.process == 'object' && !context.process.browser &&
           (data = context.process)
         ) {
-          name = 'Node.js';
-          arch = data.arch;
-          os = data.platform;
-          version = /[\d.]+/.exec(data.version)[0];
+          if (typeof data.versions == 'object') {
+            if (typeof data.versions.electron == 'string') {
+              description.push('Node ' + data.versions.node);
+              name = 'Electron';
+              version = data.versions.electron;
+            } else if (typeof data.versions.nw == 'string') {
+              description.push('Chromium ' + version, 'Node ' + data.versions.node);
+              name = 'NW.js';
+              version = data.versions.nw;
+            }
+          } else {
+            name = 'Node.js';
+            arch = data.arch;
+            os = data.platform;
+            version = /[\d.]+/.exec(data.version)[0];
+          }
         }
         else if (rhino) {
           name = 'Rhino';
