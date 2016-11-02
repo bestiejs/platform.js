@@ -628,6 +628,18 @@
       'os': 'iOS 4.3+'
     },
 
+    'Electron 1.4.5 (Chromium 53.0.2785.113; Node 6.5.0) on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) electron-app/1.0.0 Chrome/53.0.2785.113 Electron/1.4.5 Safari/537.36',
+      'global': {},
+      'layout': 'Blink',
+      'name': 'Electron',
+      'os': 'Windows 10 64-bit',
+      'process': { 
+        'versions': { 'electron': '1.4.5', 'node': '6.5.0' }
+      },
+      'version': '1.4.5'
+    },
+
     'Epiphany 0.9.2 on Linux i686': {
       'ua': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.4) Gecko/20030908 Epiphany/0.9.2',
       'layout': 'Gecko',
@@ -1735,6 +1747,18 @@
       'name': 'Nook Browser',
       'product': 'Nook',
       'version': '1.0'
+    },
+
+    'NW.js 0.18.4 (Chromium 54.0.2840.71; Node 7.0.0) on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36',
+      'global': {},
+      'layout': 'Blink',
+      'name': 'NW.js',
+      'os': 'Windows 10 64-bit',
+      'process': { 
+        'versions': { 'nw': '0.18.4', 'node': '7.0.0' }
+      },
+      'version': '0.18.4'
     },
 
     'Opera 9.00 on Nintendo Wii': {
