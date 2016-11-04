@@ -417,9 +417,8 @@
       'Nexus',
       'Nook',
       'PlayBook',
-      'PlayStation 3',
-      'PlayStation 4',
       'PlayStation Vita',
+      'PlayStation',
       'TouchPad',
       'Transformer',
       { 'label': 'Wii U', 'pattern': 'WiiU' },
@@ -446,7 +445,7 @@
       'Nintendo': { 'Wii U': 1,  'Wii': 1 },
       'Nokia': { 'Lumia': 1 },
       'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1, 'Galaxy S3': 1, 'Galaxy S4': 1 },
-      'Sony': { 'PlayStation 4': 1, 'PlayStation 3': 1, 'PlayStation Vita': 1 }
+      'Sony': { 'PlayStation': 1, 'PlayStation Vita': 1 }
     });
 
     /* Detectable operating systems (order is important). */

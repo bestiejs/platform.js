@@ -1948,18 +1948,28 @@
       'version': '0.0.1'
     },
 
-    'PlayStation Browser (like Safari 4.x) on PlayStation 3 4.21': {
+    'PlayStation Browser (like Safari 4.x) on Sony PlayStation 3': {
       'ua': 'Mozilla/5.0 (PLAYSTATION 3 4.21) AppleWebKit/531.22.8 (KHTML, like Gecko)',
       'layout': 'NetFront',
+      'manufacturer': 'Sony',
       'name': 'PlayStation Browser',
-      'product': 'PlayStation 3 4.21'
+      'product': 'PlayStation 3'
     },
 
-    'PlayStation Browser (like Safari 6.x) on PlayStation 4 1.51': {
+    'PlayStation Browser (like Safari 6.x) on Sony PlayStation 4': {
       'ua': 'Mozilla/5.0 (PlayStation 4 1.51) AppleWebKit/536.26 (KHTML, like Gecko)',
       'layout': 'NetFront',
+      'manufacturer': 'Sony',
       'name': 'PlayStation Browser',
-      'product': 'PlayStation 4 1.51'
+      'product': 'PlayStation 4'
+    },
+
+    'PlayStation Browser (like Safari 7.x) on Sony PlayStation 4': {
+      'ua': 'Mozilla/5.0 (PlayStation 4 3.00) AppleWebKit/537.73 (KHTML, like Gecko)',
+      'layout': 'NetFront',
+      'manufacturer': 'Sony',
+      'name': 'PlayStation Browser',
+      'product': 'PlayStation 4'
     },
 
     'Raven 0.5.8635 on OS X 10.7.1': {
