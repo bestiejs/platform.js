@@ -2202,6 +2202,50 @@
       'version': '8.0'
     },
 
+    'Samsung Internet 2.1 (like Chrome 34.0.1847.76) on Samsung Galaxy S5 (Android 5.0)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 5.0; SAMSUNG SM-G900F Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.1 Chrome/34.0.1847.76 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'Samsung',
+      'name': 'Samsung Internet',
+      'os': 'Android 5.0',
+      'product': 'Galaxy S5',
+      'version': '2.1'
+    },
+
+    'Samsung Internet 4.0 (like Chrome 44.0.2403.133) on Samsung Galaxy S6 Edge (Android 5.0.2)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 5.0.2; SAMSUNG SM-G925F Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'Samsung',
+      'name': 'Samsung Internet',
+      'os': 'Android 5.0.2',
+      'product': 'Galaxy S6 Edge',
+      'version': '4.0'
+    },
+
+    'Samsung Internet 4.0 (like Chrome 44.0.2403.133) on Samsung Galaxy S7 (Android 6.0)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 6.0; SAMSUNG SM-G930F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'Samsung',
+      'name': 'Samsung Internet',
+      'os': 'Android 6.0',
+      'product': 'Galaxy S7',
+      'version': '4.0'
+    },
+
+    'Samsung Internet 4.0 (like Chrome 44.0.2403.133) on Samsung Galaxy S7 Edge (Android 6.0)': {
+      'ua' : 'Mozilla/5.0 (Linux; Android 6.0; SAMSUNG SM-G935F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/44.0.2403.133 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'manufacturer': 'Samsung',
+      'name': 'Samsung Internet',
+      'os': 'Android 6.0',
+      'product': 'Galaxy S7 Edge',
+      'version': '4.0'
+    },
+
     'SeaMonkey 1.1.7#{alpha} on Haiku': {
       'ua': 'Mozilla/5.0 (BeOS; U; Haiku BePC; en-US; rv:1.8.1.10pre) Gecko/20080112 SeaMonkey/1.1.7pre',
       'layout': 'Gecko',
