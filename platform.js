@@ -357,6 +357,7 @@
       'Avant Browser',
       'Breach',
       'Camino',
+      'Edge',
       'Electron',
       'Epiphany',
       'Fennec',
@@ -369,7 +370,6 @@
       'Konqueror',
       'Lunascape',
       'Maxthon',
-      { 'label': 'Microsoft Edge', 'pattern': 'Edge' },
       'Midori',
       'Nook Browser',
       'PaleMoon',
@@ -823,7 +823,9 @@
     }
     // Detect Xbox 360 and Xbox One.
     else if (/\bXbox\b/i.test(product)) {
-      os = null;
+      if (product == 'Xbox 360') {
+        os = null;
+      }
       if (product == 'Xbox 360' && /\bIEMobile\b/.test(ua)) {
         description.unshift('mobile mode');
       }
@@ -1033,7 +1035,7 @@
      * The name of the browser's layout engine.
      *
      * The list of common layout engines include:
-     * "Blink", "Edge", "Gecko", "Trident" and "WebKit"
+     * "Blink", "EdgeHTML", "Gecko", "Trident" and "WebKit"
      *
      * @memberOf platform
      * @type string|null
@@ -1057,9 +1059,8 @@
      * The name of the browser/environment.
      *
      * The list of common browser names include:
-     * "Chrome", "Electron", "Firefox", "Firefox for iOS", "IE",
-     * "Microsoft Edge", "PhantomJS", "Safari", "SeaMonkey", "Silk",
-     * "Opera Mini" and "Opera"
+     * "Chrome", "Electron", "Firefox", "Firefox for iOS", "IE", "Edge",
+     * "PhantomJS", "Safari", "SeaMonkey", "Silk", "Opera Mini" and "Opera"
      *
      * Mobile versions of some browsers have "Mobile" appended to their name:
      * eg. "Chrome Mobile", "Firefox Mobile", "IE Mobile" and "Opera Mobile"
