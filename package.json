@@ -12,12 +12,15 @@
     "Mathias Bynens <mathias@qiwi.be> (https://mathiasbynens.be/)"
   ],
   "repository": "bestiejs/platform.js",
-  "scripts": { "test": "echo \"See the repository CONTRIBUTING.md for testing instructions.\"" },
+  "scripts": {
+    "doc": "docdown platform.js doc/README.md style=github title=\"Platform.js <sup>v${npm_package_version}</sup>\" toc=categories url=https://github.com/bestiejs/platform.js/blob/${npm_package_version}/platform.js",
+    "test": "node test/test"
+  },
   "devDependencies": {
-    "docdown": "~0.4.1",
+    "docdown": "~0.7.1",
     "qunit-extras": "^1.5.0",
-    "qunitjs": "~1.22.0",
-    "requirejs": "^2.1.22"
+    "qunitjs": "^2.0.1",
+    "requirejs": "^2.3.2"
   },
   "files": [
     "platform.js"
