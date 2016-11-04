@@ -823,7 +823,9 @@
     }
     // Detect Xbox 360 and Xbox One.
     else if (/\bXbox\b/i.test(product)) {
-      os = null;
+      if (product == 'Xbox 360') {
+        os = null;
+      }
       if (product == 'Xbox 360' && /\bIEMobile\b/.test(ua)) {
         description.unshift('mobile mode');
       }
@@ -1032,7 +1034,7 @@
      * The name of the browser's layout engine.
      *
      * The list of common layout engines include:
-     * "Blink", "Edge", "Gecko", "Trident" and "WebKit"
+     * "Blink", "EdgeHTML", "Gecko", "Trident" and "WebKit"
      *
      * @memberOf platform
      * @type string|null

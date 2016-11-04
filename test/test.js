@@ -1267,12 +1267,13 @@
       'version': '9.0'
     },
 
-    'IE 10.0 on Microsoft Xbox One': {
+    'IE 10.0 on Microsoft Xbox One (Windows 8)': {
       'ua': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0; Xbox; Xbox One)',
       'layout': 'Trident',
       'manufacturer': 'Microsoft',
       'mode': 10,
       'name': 'IE',
+      'os': 'Windows 8',
       'product': 'Xbox One',
       'version': '10.0'
     },
@@ -1660,6 +1661,26 @@
       'os': 'Windows Phone 10.0',
       'product': 'Nokia id313',
       'version': '12.0'
+    },
+
+    'Microsoft Edge 13.10553 on Microsoft Xbox One (Windows 10 64-bit)': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; Xbox; Xbox One) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10553',
+      'layout': 'EdgeHTML',
+      'manufacturer': 'Microsoft',
+      'name': 'Microsoft Edge',
+      'os': 'Windows 10 64-bit',
+      'product': 'Xbox One',
+      'version': '13.10553'
+    },
+
+    'Microsoft Edge 13.10586 on Microsoft Lumia 950 (Windows Phone 10.0)': {
+      'ua': 'Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 950) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Mobile Safari/537.36 Edge/13.10586',
+      'layout': 'EdgeHTML',
+      'manufacturer': 'Microsoft',
+      'name': 'Microsoft Edge',
+      'os': 'Windows Phone 10.0',
+      'product': 'Lumia 950',
+      'version': '13.10586'
     },
 
     'Midori (like Safari 3.x) on Linux 64-bit': {
