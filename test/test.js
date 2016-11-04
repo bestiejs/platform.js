@@ -2456,6 +2456,14 @@
       'product': 'Wii U'
     },
 
+    'Wii Browser (like Safari 6.x) on Nintendo Wii U': {
+      'ua': 'Mozilla/5.0 (Nintendo WiiU) AppleWebKit/536.30 (KHTML, like Gecko) NX/3.0.4.2.11 NintendoBrowser/4.3.0.11224.EU',
+      'layout': 'WebKit',
+      'manufacturer': 'Nintendo',
+      'name': 'Wii Browser',
+      'product': 'Wii U'
+    },
+
     'TouchPad Browser (like Chrome 6.x) on HP TouchPad 1.0 (webOS 3.0.0)': {
       'ua': 'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-GB) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0',
       'layout': 'WebKit',
