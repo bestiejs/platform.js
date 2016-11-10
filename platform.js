@@ -84,9 +84,9 @@
       '6.4':  '10 Technical Preview',
       '6.3':  '8.1',
       '6.2':  '8',
-      '6.1':  '7 / Server 2008 R2',
-      '6.0':  'Vista / Server 2008',
-      '5.2':  'XP 64-bit / Server 2003',
+      '6.1':  'Server 2008 R2 / 7',
+      '6.0':  'Server 2008 / Vista',
+      '5.2':  'Server 2003 / XP 64-bit',
       '5.1':  'XP',
       '5.01': '2000 SP1',
       '5.0':  '2000',
@@ -334,7 +334,7 @@
     /** The browser/environment version. */
     var version = useFeatures && opera && typeof opera.version == 'function' && opera.version();
 
-    /** A flag to indicate if the OS begins with "Name Version /". */
+    /** A flag to indicate if the OS ends with "/ Version" */
     var isSpecialCasedOS;
 
     /* Detectable layout engines (order is important). */
@@ -950,9 +950,8 @@
     }
     // Parse the OS into an object.
     if (os) {
-      data =
-        / ([\d.+]+)$/.exec(os) ||
-        (isSpecialCasedOS = /^[a-z]+ ([\d.+]+) \//i.exec(os));
+      data = / ([\d.+]+)$/.exec(os);
+      isSpecialCasedOS = data && os.charAt(os.length - data[0].length - 1) == '/';
       os = {
         'architecture': 32,
         'family': (data && !isSpecialCasedOS) ? os.replace(data[0], '') : os,
@@ -1080,7 +1079,7 @@
        * The family of the OS.
        *
        * Common values include:
-       * "Windows", "Windows 7 / Server 2008 R2", "Windows Vista / Server 2008",
+       * "Windows", "Windows Server 2008 R2 / 7", "Windows Server 2008 / Vista",
        * "Windows XP", "OS X", "Ubuntu", "Debian", "Fedora", "Red Hat", "SuSE",
        * "Android", "iOS" and "Windows Phone"
        *
