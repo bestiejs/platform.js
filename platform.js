@@ -478,6 +478,7 @@
       'webOS ',
       'webOS',
       'Tablet OS',
+      'Tizen',
       'Linux',
       'Mac OS X',
       'Macintosh',
