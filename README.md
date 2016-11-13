@@ -70,6 +70,10 @@ info.description; // 'Opera 11.52 (identifying as Firefox 4.0) on Mac OS X 10.7.
 
 Tested in Chrome 53-54, Firefox 48-49, IE 11, Edge 14, Safari 9-10, Node.js 4-7, & PhantomJS 2.1.1.
 
+## See platform.js in action
+
+[whatsmyua.info](http://www.whatsmyua.info/) shows what platform.js reports for your current user agent/OS/device, or for any arbitrary user agent string.
+
 ## BestieJS
 
 Platform.js is part of the BestieJS *“Best in Class”* module collection. This means we promote solid browser/environment support, ES5+ precedents, unit testing, & plenty of documentation.
