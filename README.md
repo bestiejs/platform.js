@@ -11,6 +11,7 @@ Platform.js is for informational purposes only & **not** intended as a substitut
 * [doc/README.md](https://github.com/bestiejs/platform.js/blob/master/doc/README.md#readme)
 * [wiki/Changelog](https://github.com/bestiejs/platform.js/wiki/Changelog)
 * [wiki/Roadmap](https://github.com/bestiejs/platform.js/wiki/Roadmap)
+* [platform.js demo](https://bestiejs.github.io/platform.js/) (See also [whatsmyua.info](https://www.whatsmyua.info/) for comparisons between platform.js and other platform detection libraries)
 
 ## Installation
 
