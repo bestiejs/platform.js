@@ -14,15 +14,19 @@
   "repository": "bestiejs/platform.js",
   "scripts": {
     "doc": "docdown platform.js doc/README.md style=github title=\"Platform.js <sup>v${npm_package_version}</sup>\" toc=properties url=https://github.com/bestiejs/platform.js/blob/${npm_package_version}/platform.js",
+    "prepublish": "uglifyjs platform.js --compress --mangle --output platform.min.js --source-map platform.min.js.map",
     "test": "node test/test"
   },
   "devDependencies": {
     "docdown": "~0.7.1",
     "qunit-extras": "^1.5.0",
     "qunitjs": "~1.22.0",
-    "requirejs": "^2.3.2"
+    "requirejs": "^2.3.2",
+    "uglify-js": "^2.7.5"
   },
   "files": [
-    "platform.js"
+    "platform.js",
+    "platform.min.js",
+    "platform.min.js.map"
   ]
 }
