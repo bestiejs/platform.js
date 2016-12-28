@@ -363,6 +363,7 @@
       'Flock',
       'Galeon',
       'GreenBrowser',
+      { 'label': 'CocCoc', 'pattern': 'coc_coc_browser'},
       'iCab',
       'Iceweasel',
       'K-Meleon',
