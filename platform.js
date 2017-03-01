@@ -772,7 +772,8 @@
             name = 'Node.js';
             arch = data.arch;
             os = data.platform;
-            version = /[\d.]+/.exec(data.version)[0];
+            version = /[\d.]+/.exec(data.version)
+            version = version ? version[0] : 'unknown';
           }
         }
         else if (rhino) {
