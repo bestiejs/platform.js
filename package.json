@@ -17,10 +17,10 @@
     "test": "node test/test"
   },
   "devDependencies": {
-    "docdown": "~0.7.1",
+    "docdown": "~0.7.2",
     "qunit-extras": "^1.5.0",
-    "qunitjs": "~1.22.0",
-    "requirejs": "^2.3.2"
+    "qunitjs": "^1.23.1",
+    "requirejs": "^2.3.3"
   },
   "files": [
     "platform.js"
