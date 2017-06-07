@@ -2612,6 +2612,43 @@
       'version': '3.0.10#{alpha}'
      },
 
+     'UC Browser 11.3.0.950 (like Chrome 12.x) on Android 5.0':{
+      'ua': 'Mozilla/5.0 (Linux; U; Android 5.0; en-US; SM-N900 Build/LRX21V) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/11.3.0.950 U3/0.8.0 Mobile Safari/534.30',
+      'layout': 'WebKit',
+      'likeChrome': true,
+      'name': 'UC Browser',
+      'os': 'Android 5.0',
+      'version': '11.3.0.950'
+    },
+
+    'UC Browser 11.3.5.1203 (like Safari 7.x) on Apple iPhone (iOS 12.4.7)':{
+      'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_7 like Mac OS X; ru) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/16G192 UCBrowser/11.3.5.1203 Mobile',
+      'layout': 'WebKit',
+      'manufacturer': 'Apple',
+      'name': 'UC Browser',
+      'os': 'iOS 12.4.7',
+      'product': 'iPhone',
+      'version': '11.3.5.1203'
+    },
+
+    'UC Browser 13.2.0.1296 (like Chrome 57.0.2987.108) on Android 10':{
+      'ua': 'Mozilla/5.0 (Linux; U; Android 10; ar-SA; SM-N975F Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/13.2.0.1296 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'UC Browser',
+      'os': 'Android 10',
+      'version': '13.2.0.1296'
+    },
+
+    'UC Browser 13.2.0.1296 (speed mode; like Chrome 12.x) on Android 9':{
+      'ua': 'Mozilla/5.0 (Linux; U; Android 9; en-US; Redmi Note 5 Pro Build/PKQ1.180904.001) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/13.2.0.1296 (SpeedMode) U4/1.0 UCWEB/2.0 Mobile Safari/534.30',
+      'layout': 'WebKit',
+      'likeChrome': true,
+      'name': 'UC Browser',
+      'os': 'Android 9',
+      'version': '13.2.0.1296'
+    },
+
      'Vivaldi 3.1.4 (like Chrome 81.0.3298.14) on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.3298.14 Safari/537.36 Vivaldi/3.1.4',
       'layout': 'Blink',

@@ -389,6 +389,7 @@
       'Waterfox',
       'WebPositive',
       { 'label': 'Yandex Browser', 'pattern': 'YaBrowser' },
+      { 'label': 'UC Browser', 'pattern': 'UCBrowser' },
       'Opera Mini',
       { 'label': 'Opera Mini', 'pattern': 'OPiOS' },
       'Opera',
@@ -673,6 +674,10 @@
         description.unshift('accelerated');
       }
     }
+    // Detect UC Browser speed mode.
+    else if (name == 'UC Browser' && /\bUCWEB\b/.test(ua)) {
+      description.push('speed mode');
+    }
     // Detect PaleMoon identifying as Firefox.
     else if (name == 'PaleMoon' && (data = /\bFirefox\/([\d.]+)\b/.exec(ua))) {
       description.push('identifying as Firefox ' + data[1]);
@@ -702,7 +707,7 @@
     // Detect non-Opera (Presto-based) versions (order is important).
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|CriOS|CrMo|Edge|Edg|EdgA|EdgiOS|FxiOS|HeadlessChrome|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|SamsungBrowser|Silk(?!/[\\d.]+$)|YaBrowser)',
+        '(?:Cloud9|CriOS|CrMo|Edge|Edg|EdgA|EdgiOS|FxiOS|HeadlessChrome|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|SamsungBrowser|Silk(?!/[\\d.]+$)|UCBrowser|YaBrowser)',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
