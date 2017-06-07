@@ -768,7 +768,8 @@
               name = 'NW.js';
               version = data.versions.nw;
             }
-          } else {
+          } 
+          if (!name) {
             name = 'Node.js';
             arch = data.arch;
             os = data.platform;
