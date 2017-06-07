@@ -2569,7 +2569,14 @@
       'ua': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 Prism/1.0b2',
       'layout': 'Gecko',
       'os': 'Windows XP'
-    }
+    },
+	'UCBrowser 11.3.0.950 (like Safari 5.x) on Android 5.0':{
+		'ua': 'Mozilla/5.0 (Linux; U; Android 5.0; en-US; SM-N900 Build/LRX21V) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/11.3.0.950 U3/0.8.0 Mobile Safari/534.30',
+		'layout': 'WebKit',
+		'os': 'Android 5.0',
+		'name': 'UCBrowser',
+		'version': '11.3.0.950'
+	}
   };
 
   /*--------------------------------------------------------------------------*/
