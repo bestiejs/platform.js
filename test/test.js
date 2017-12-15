@@ -634,7 +634,7 @@
       'layout': 'Blink',
       'name': 'Electron',
       'os': 'Windows 10 64-bit',
-      'process': { 
+      'process': {
         'versions': { 'electron': '1.4.5', 'node': '6.5.0' }
       },
       'version': '1.4.5'
@@ -1743,6 +1743,20 @@
       'version': '0.8.9'
     },
 
+    'Node.js 8.9.3 on Darwin 64-bit': {
+      'exports': {},
+      'global': {},
+      'name': 'Node.js',
+      'os': 'Darwin 64-bit',
+      'process': {
+        'arch': 'x64',
+        'version': 'v8.9.3',
+        'versions': { 'node': '8.9.3' },
+        'platform': 'darwin'
+      },
+      'version': '8.9.3'
+    },
+
     'Nokia Browser 8.5.0 (like Safari 5.x) on Nokia N9': {
       'ua': 'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
       'layout': 'WebKit',
@@ -1776,7 +1790,7 @@
       'layout': 'Blink',
       'name': 'NW.js',
       'os': 'Windows 10 64-bit',
-      'process': { 
+      'process': {
         'versions': { 'nw': '0.18.4', 'node': '7.0.0' }
       },
       'version': '0.18.4'

@@ -768,13 +768,13 @@
               name = 'NW.js';
               version = data.versions.nw;
             }
-          } 
+          }
           if (!name) {
             name = 'Node.js';
             arch = data.arch;
             os = data.platform;
-            version = /[\d.]+/.exec(data.version)
-            version = version ? version[0] : 'unknown';
+            version = /[\d.]+/.exec(data.version);
+            version = version ? version[0] : null;
           }
         }
         else if (rhino) {
