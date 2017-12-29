@@ -1714,12 +1714,15 @@
       'version': '1.19'
     },
 
-    'Narwhal': (function() {
+    'Narwhal on Mac OS X 64-bit': (function() {
       var object = {
+        'environment': {},
         'exports': {},
+        'java': { 'lang': { 'System': { 'getProperty': function(property) { return /name/.test(property) ? 'Mac OS X' : 'x86_64'; } } } },
         'name': 'Narwhal',
+        'os': 'Mac OS X 64-bit',
         'require': function() {},
-        'system':  {}
+        'system':  { 'os': 'Mac OS X' }
       };
       object.global = object.system.global = object;
       return object;
@@ -2022,21 +2025,38 @@
       'os': 'Linux i686'
     },
 
-    'Rhino on OS X 64-bit': {
+    'Rhino on Mac OS X 64-bit': {
       'environment': {},
       'global': {},
-      'java': { 'lang': { 'System': { 'getProperty': function(property) { return /name/.test(property) ? 'OS X' : 'x86_64'; } } } },
+      'java': { 'lang': { 'System': { 'getProperty': function(property) { return /name/.test(property) ? 'Mac OS X' : 'x86_64'; } } } },
       'name': 'Rhino',
-      'os': 'OS X 64-bit'
+      'os': 'Mac OS X 64-bit'
     },
 
-    'RingoJS 0.7': (function() {
+    'RingoJS 0.7 on Mac OS X 64-bit': (function() {
       var object = {
+        'environment': {},
         'exports': {},
+        'java': { 'lang': { 'System': { 'getProperty': function(property) { return /name/.test(property) ? 'Mac OS X' : 'x86_64'; } } } },
         'name': 'RingoJS',
+        'os': 'Mac OS X 64-bit',
         'require': function() { return { 'version': [0, 7] }; },
         'system':  {},
         'version': '0.7'
+      };
+      object.global = object;
+      return object;
+    }()),
+
+    'RingoJS 1.2.1 on Mac OS X 64-bit': (function() {
+      var object = {
+        'environment': {},
+        'exports': {},
+        'java': { 'lang': { 'System': { 'getProperty': function(property) { return /name/.test(property) ? 'Mac OS X' : 'x86_64'; } } } },
+        'name': 'RingoJS',
+        'os': 'Mac OS X 64-bit',
+        'require': function() { return { 'version': [1, 2, 1] }; },
+        'version': '1.2.1'
       };
       object.global = object;
       return object;
@@ -2587,7 +2607,6 @@
   };
 
   /*--------------------------------------------------------------------------*/
-
   QUnit.module('platform' + (document ? '' : ': ' + platform));
 
   (function() {
