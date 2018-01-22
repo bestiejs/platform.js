@@ -393,6 +393,7 @@
       { 'label': 'Opera', 'pattern': 'OPR' },
       'Chromium',
       'Chrome',
+      { 'label': 'Chrome', 'pattern': '(?:HeadlessChrome)' },
       { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
       { 'label': 'Firefox for iOS', 'pattern': 'FxiOS' },
@@ -698,7 +699,7 @@
     // Detect non-Opera (Presto-based) versions (order is important).
     if (!version) {
       version = getVersion([
-        '(?:Cloud9|CriOS|CrMo|Edge|Edg|EdgA|EdgiOS|FxiOS|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|SamsungBrowser|Silk(?!/[\\d.]+$))',
+        '(?:Cloud9|CriOS|CrMo|Edge|Edg|EdgA|EdgiOS|FxiOS|HeadlessChrome|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|SamsungBrowser|Silk(?!/[\\d.]+$))',
         'Version',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
@@ -922,7 +923,7 @@
         version = null;
       }
       // Use the full Chrome version when available.
-      data[1] = (/\bChrome\/([\d.]+)/i.exec(ua) || 0)[1];
+      data[1] = (/\b(?:Headless)?Chrome\/([\d.]+)/i.exec(ua) || 0)[1];
       // Detect Blink layout engine.
       if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28 && layout == 'WebKit') {
         layout = ['Blink'];
@@ -941,6 +942,8 @@
       // Obscure version for some Safari 1-2 releases.
       if (name == 'Safari' && (!version || parseInt(version) > 45)) {
         version = data;
+      } else if (name == 'Chrome' && /\bHeadlessChrome/i.test(ua)) {
+        description.unshift('headless');
       }
     }
     // Detect Opera desktop modes.

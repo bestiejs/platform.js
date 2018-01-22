@@ -569,6 +569,22 @@
       'version': '54.0.2840.71'
     },
 
+    'Chrome 63.0.3239.132 (headless) on OS X 10.11.6 64-bit': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/63.0.3239.132 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'OS X 10.11.6 64-bit',
+      'version': '63.0.3239.132'
+    },
+
+    'Chrome 63.0.3239.132 (headless) on Linux 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/63.0.3239.132 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'Linux 64-bit',
+      'version': '63.0.3239.132'
+    },
+
     'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
       'layout': 'WebKit',
