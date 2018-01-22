@@ -392,6 +392,7 @@
       'Opera',
       { 'label': 'Opera', 'pattern': 'OPR' },
       'Chrome',
+      { 'label': 'Chrome', 'pattern': '(?:HeadlessChrome)' },
       { 'label': 'Chrome Mobile', 'pattern': '(?:CriOS|CrMo)' },
       { 'label': 'Firefox', 'pattern': '(?:Firefox|Minefield)' },
       { 'label': 'Firefox for iOS', 'pattern': 'FxiOS' },
@@ -697,6 +698,7 @@
       version = getVersion([
         '(?:Cloud9|CriOS|CrMo|Edge|FxiOS|IEMobile|Iron|Opera ?Mini|OPiOS|OPR|Raven|SamsungBrowser|Silk(?!/[\\d.]+$))',
         'Version',
+        'HeadlessChrome',
         qualify(name),
         '(?:Firefox|Minefield|NetFront)'
       ]);
@@ -919,7 +921,7 @@
         version = null;
       }
       // Use the full Chrome version when available.
-      data[1] = (/\bChrome\/([\d.]+)/i.exec(ua) || 0)[1];
+      data[1] = (/\b(?:Headless)?Chrome\/([\d.]+)/i.exec(ua) || 0)[1];
       // Detect Blink layout engine.
       if (data[0] == 537.36 && data[2] == 537.36 && parseFloat(data[1]) >= 28 && layout == 'WebKit') {
         layout = ['Blink'];
