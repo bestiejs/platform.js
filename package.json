@@ -14,13 +14,14 @@
   "repository": "bestiejs/platform.js",
   "scripts": {
     "doc": "docdown platform.js doc/README.md style=github title=\"Platform.js <sup>v${npm_package_version}</sup>\" toc=properties url=https://github.com/bestiejs/platform.js/blob/${npm_package_version}/platform.js",
-    "prepublish": "node bump/bump.js ${npm_package_version}",
+    "prepublishOnly": "node bump/bump.js ${npm_package_version}",
     "test": "node test/test"
   },
   "devDependencies": {
     "docdown": "~0.7.2",
     "qunit-extras": "^1.5.0",
     "qunitjs": "^1.23.1",
+    "replace": "^0.3.0",
     "requirejs": "^2.3.3"
   },
   "files": [
