@@ -4,7 +4,7 @@ A platform detection library that works on nearly all JavaScript platforms.
 
 ## Disclaimer
 
-Platform.js is for informational purposes only & **not** intended as a substitution for [feature detection/inference](http://allyoucanleet.com/post/18087210413/feature-testing-costs#screencast2) checks.
+Platform.js is for informational purposes only & **not** intended as a substitution for feature detection/inference checks.
 
 ## Documentation
 
