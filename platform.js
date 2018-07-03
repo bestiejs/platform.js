@@ -1,8 +1,8 @@
 /*!
- * Platform.js <https://mths.be/platform>
- * Copyright 2014-2018 Benjamin Tan <https://bnjmnt4n.now.sh/>
+ * Platform.js
+ * Copyright 2014-2018 Benjamin Tan
  * Copyright 2011-2013 John-David Dalton
- * Available under MIT license <https://mths.be/mit>
+ * Available under MIT license
  */
 ;(function() {
   'use strict';
