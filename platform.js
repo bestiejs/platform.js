@@ -404,6 +404,7 @@
     var product = getProduct([
       { 'label': 'BlackBerry', 'pattern': 'BB10' },
       'BlackBerry',
+      { 'label': 'BlackBerry Passport', 'pattern': 'Passport' },
       { 'label': 'Galaxy A5', 'pattern': 'SM-A500' },
       { 'label': 'Galaxy A7', 'pattern': 'SM-A700' },
       { 'label': 'Galaxy S', 'pattern': 'GT-I9000' },
@@ -449,7 +450,7 @@
       'Amazon': { 'Kindle': 1, 'Kindle Fire': 1 },
       'Asus': { 'Transformer': 1 },
       'Barnes & Noble': { 'Nook': 1 },
-      'BlackBerry': { 'PlayBook': 1 },
+      'BlackBerry': { 'PlayBook': 1, 'Passport': 1 },
       'Google': { 'Google TV': 1, 'Nexus': 1 },
       'HP': { 'TouchPad': 1 },
       'HTC': {},
