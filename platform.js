@@ -370,6 +370,8 @@
       'Lunascape',
       'Maxthon',
       { 'label': 'Microsoft Edge', 'pattern': 'Edge' },
+      { 'label': 'Microsoft Edge', 'pattern': 'EdgA' },
+      { 'label': 'Microsoft Edge', 'pattern': 'EdgiOS' },
       'Midori',
       'Nook Browser',
       'PaleMoon',
