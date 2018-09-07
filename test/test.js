@@ -1691,7 +1691,7 @@
       'os': 'iOS',
       'product': 'iPhone',
       'version': '41.1.35.1'
-    ),
+    },
 
     'Microsoft Edge 41.1.35.1 for Android': {
       'ua': 'Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1',
@@ -1700,7 +1700,7 @@
       'name': 'Microsoft Edge',
       'os': 'Android 8.0',
       'version': '41.1.35.1'
-    ),
+    },
       
     'Midori (like Safari 3.x) on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; ru-ru) AppleWebKit/525.1+ (KHTML, like Gecko, Safari/525.1+) midori',
