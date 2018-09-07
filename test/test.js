@@ -1682,7 +1682,27 @@
       'product': 'Lumia 950',
       'version': '13.10586'
     },
+    
+    'Microsoft Edge 41.1.35.1 (like Safari 8+) on Apple iPhone (iOS 10.3.2)': {
+      'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1',
+      'layout': 'EdgeHTML',
+      'manufacturer': 'Apple',
+      'name': 'Microsoft Edge',
+      'os': 'iOS 10.3.2',
+      'product': 'iPhone',
+      'version': '41.1.35.1'
+    },
 
+    'Microsoft Edge 41.1.35.1 on Google Nexus 9 (Android 8.0)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 8.0; Google Nexus 9 - 5.1.0 - API 22 - 1536x2048 Build/LMY47D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1',
+      'layout': 'EdgeHTML',
+      'manufacturer': 'Google',
+      'name': 'Microsoft Edge',
+      'os': 'Android 8.0',
+      'product': 'Nexus 9',
+      'version': '41.1.35.1'
+    },
+      
     'Midori (like Safari 3.x) on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; ru-ru) AppleWebKit/525.1+ (KHTML, like Gecko, Safari/525.1+) midori',
       'layout': 'WebKit',
