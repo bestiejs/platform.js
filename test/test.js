@@ -1688,12 +1688,12 @@
       'layout': 'EdgeHTML',
       'manufacturer': 'Apple',
       'name': 'Microsoft Edge',
-      'os': 'iOS',
+      'os': 'iOS 10.3.2',
       'product': 'iPhone',
       'version': '41.1.35.1'
     },
 
-    'Microsoft Edge Mobile 41.1.35.1 on Android 8.0': {
+    'Microsoft Edge 41.1.35.1 on Android 8.0': {
       'ua': 'Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1',
       'layout': 'EdgeHTML',
       'name': 'Microsoft Edge',
