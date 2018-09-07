@@ -1696,7 +1696,6 @@
     'Microsoft Edge Mobile 41.1.35.1 on Android 8.0': {
       'ua': 'Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1',
       'layout': 'EdgeHTML',
-      'manufacturer': 'Apple',
       'name': 'Microsoft Edge',
       'os': 'Android 8.0',
       'version': '41.1.35.1'
