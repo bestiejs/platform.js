@@ -1693,11 +1693,13 @@
       'version': '41.1.35.1'
     },
 
-    'Microsoft Edge 41.1.35.1 on Android 8.0': {
-      'ua': 'Mozilla/5.0 (Linux; Android 8.0; Pixel XL Build/OPP3.170518.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1',
+    'Microsoft Edge 41.1.35.1 on Google Nexus 9 (Android 8.0)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 8.0; Google Nexus 9 - 5.1.0 - API 22 - 1536x2048 Build/LMY47D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.0 Mobile Safari/537.36 EdgA/41.1.35.1',
       'layout': 'EdgeHTML',
+      'manufacturer': 'Google',
       'name': 'Microsoft Edge',
       'os': 'Android 8.0',
+      'product': 'Nexus 9',
       'version': '41.1.35.1'
     },
       
