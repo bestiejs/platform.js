@@ -17,7 +17,7 @@
     "test": "node test/test"
   },
   "devDependencies": {
-    "docdown": "~0.7.2",
+    "docdown": "^0.7.3",
     "qunit-extras": "^1.5.0",
     "qunitjs": "^1.23.1",
     "requirejs": "^2.3.3"
