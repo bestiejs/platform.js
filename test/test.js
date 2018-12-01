@@ -166,7 +166,7 @@
       'os': 'Android'
     },
 
-    'Android Browser 4.0 (like Safari 7.x) on HUAWEI H891L (Android 4.4.4)': {
+    'Android Browser 4.0 (like Chrome 33.0.0.0) on HUAWEI H891L (Android 4.4.4)': {
       'ua': 'Mozilla/5.0 (Linux; Android 4.4.4; HUAWEI H891L Build/HuaweiH891L) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
       'layout': 'Blink',
       'name': 'Android Browser',
