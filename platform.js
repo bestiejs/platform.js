@@ -636,6 +636,19 @@
     if (/\bSimulator\b/i.test(ua)) {
       product = (product ? product + ' ' : '') + 'Simulator';
     }
+    // Detect Android products.
+    // Browsers on Android devices typically provide their product IDS after "Android;"
+    // up to "Build" or ") AppleWebKit".
+    // Example:
+    // "Mozilla/5.0 (Linux; Android 8.1.0; Moto G (5) Plus) AppleWebKit/537.36
+    // (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36"
+    if (/\bAndroid\b/.test(os) && !product &&
+        (data = /\bAndroid[^;]*;(.*?)(?:Build|\) AppleWebKit)\b/i.exec(ua))) {
+      product = trim(data[1])
+        // Replace any language codes (eg. "en-US").
+        .replace(/^[a-z]{2}-[a-z]{2};\s*/i, '')
+        || null;
+    }
     // Detect Opera Mini 8+ running in Turbo/Uncompressed mode on iOS.
     if (name == 'Opera Mini' && /\bOPiOS\b/.test(ua)) {
       description.push('running in Turbo/Uncompressed mode');

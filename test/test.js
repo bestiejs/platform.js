@@ -139,11 +139,12 @@
       'version': '2.5'
     },
 
-    'Android Browser (like Safari 4.x) on Android 2.1': {
+    'Android Browser (like Safari 4.x) on Sprint APA9292KT (Android 2.1)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Sprint APA9292KT Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko)',
       'layout': 'WebKit',
       'name': 'Android Browser',
-      'os': 'Android 2.1'
+      'os': 'Android 2.1',
+      'product': 'Sprint APA9292KT'
     },
 
     'Android Browser (like Chrome 8.0) on Asus Transformer': {
@@ -163,6 +164,15 @@
       'name': 'Android Browser',
       'product': 'PlayStation Vita 1.00',
       'os': 'Android'
+    },
+
+    'Android Browser 4.0 (like Chrome 33.0.0.0) on HUAWEI H891L (Android 4.4.4)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.4.4; HUAWEI H891L Build/HuaweiH891L) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Android Browser',
+      'os': 'Android 4.4.4',
+      'product': 'HUAWEI H891L',
+      'version': '4.0'
     },
 
     'Android Browser 1.0 (like Chrome 18.0.1025.308) on Samsung Galaxy S4 (Android 4.2.2)': {
@@ -241,12 +251,13 @@
       'version': '4.0'
     },
 
-    'Android Browser 4.0 (like Chrome 33.0.0.0) on Android 4.4.4': {
+    'Android Browser 4.0 (like Chrome 33.0.0.0) on SGH-M919 (Android 4.4.4)': {
       'ua': 'Mozilla/5.0 (Linux; Android 4.4.4; SGH-M919 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
       'name': 'Android Browser',
       'os': 'Android 4.4.4',
+      'product': 'SGH-M919',
       'version': '4.0'
     },
 
@@ -272,21 +283,23 @@
       'version': '4.0'
     },
 
-    'Android Browser 4.0 (like Chrome 40.0.2214.89) on Android 5.1.1': {
+    'Android Browser 4.0 (like Chrome 40.0.2214.89) on SGP521 (Android 5.1.1)': {
       'ua': 'Mozilla/5.0 (Linux; Android 5.1.1; SGP521 Build/23.4.A.0.546) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
       'name': 'Android Browser',
       'os': 'Android 5.1.1',
+      'product': 'SGP521',
       'version': '4.0'
     },
 
-    'Android Browser 4.0 (like Chrome 42.0.2311.129) on Android 5.1': {
+    'Android Browser 4.0 (like Chrome 42.0.2311.129) on XT1254 (Android 5.1)': {
       'ua': 'Mozilla/5.0 (Linux; Android 5.1; XT1254 Build/SU4TL-44; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/42.0.2311.129 Mobile Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
       'name': 'Android Browser',
       'os': 'Android 5.1',
+      'product': 'XT1254',
       'version': '4.0'
     },
 
@@ -633,6 +646,15 @@
       'os': 'Android 6.0',
       'product': 'Nexus 6P',
       'version': '45.0.2454.94'
+    },
+
+    'Chrome Mobile 70.0.3538.80 on Moto G (5) Plus (Android 8.1.0)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 8.1.0; Moto G (5) Plus) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome Mobile',
+      'os': 'Android 8.1.0',
+      'product': 'Moto G (5) Plus',
+      'version': '70.0.3538.80'
     },
 
     'Chrome Mobile (desktop mode) on iOS 4.3+': {
@@ -2561,12 +2583,13 @@
       'version': '30.0.1650.0'
     },
 
-    'SRWare Iron Mobile 74.0.3729.136 (like Chrome 74.0.3729.136) on Android 10': {
+    'SRWare Iron 74.0.3729.136 (like Chrome 74.0.3729.136) on LYA-L0C (Android 10)': {
       'ua': 'Mozilla/5.0 (Linux; Android 10; LYA-L0C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.136 Mobile Iron Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
-      'name': 'SRWare Iron Mobile',
+      'name': 'SRWare Iron',
       'os': 'Android 10',
+      'product': 'LYA-L0C',
       'version': '74.0.3729.136'
     },
 
@@ -2612,12 +2635,13 @@
       'version': '3.0.10#{alpha}'
      },
 
-     'UC Browser 11.3.0.950 (like Chrome 12.x) on Android 5.0':{
+    'UC Browser 11.3.0.950 (like Chrome 12.x) on SM-N900 (Android 5.0)':{
       'ua': 'Mozilla/5.0 (Linux; U; Android 5.0; en-US; SM-N900 Build/LRX21V) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/11.3.0.950 U3/0.8.0 Mobile Safari/534.30',
       'layout': 'WebKit',
       'likeChrome': true,
       'name': 'UC Browser',
       'os': 'Android 5.0',
+      'product': 'SM-N900',
       'version': '11.3.0.950'
     },
 
@@ -2631,21 +2655,23 @@
       'version': '11.3.5.1203'
     },
 
-    'UC Browser 13.2.0.1296 (like Chrome 57.0.2987.108) on Android 10':{
+    'UC Browser 13.2.0.1296 (like Chrome 57.0.2987.108) on SM-N975F (Android 10)':{
       'ua': 'Mozilla/5.0 (Linux; U; Android 10; ar-SA; SM-N975F Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/13.2.0.1296 Mobile Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
       'name': 'UC Browser',
       'os': 'Android 10',
+      'product': 'SM-N975F',
       'version': '13.2.0.1296'
     },
 
-    'UC Browser 13.2.0.1296 (speed mode; like Chrome 12.x) on Android 9':{
+    'UC Browser 13.2.0.1296 (speed mode; like Chrome 12.x) on Redmi Note 5 Pro (Android 9)':{
       'ua': 'Mozilla/5.0 (Linux; U; Android 9; en-US; Redmi Note 5 Pro Build/PKQ1.180904.001) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/13.2.0.1296 (SpeedMode) U4/1.0 UCWEB/2.0 Mobile Safari/534.30',
       'layout': 'WebKit',
       'likeChrome': true,
       'name': 'UC Browser',
       'os': 'Android 9',
+      'product': 'Redmi Note 5 Pro',
       'version': '13.2.0.1296'
     },
 
@@ -2742,12 +2768,13 @@
       'product': 'Wii U'
     },
 
-    'Yandex Browser 20.4.5.63.00 (like Chrome 81.0.4044.138) on Android 8.1.0': {
+    'Yandex Browser 20.4.5.63.00 (like Chrome 81.0.4044.138) on SM-J260F (Android 8.1.0)': {
       'ua': 'Mozilla/5.0 (Linux; arm; Android 8.1.0; SM-J260F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 YaBrowser/20.4.5.63.00 SA/1 Mobile Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
       'name': 'Yandex Browser',
       'os': 'Android 8.1.0',
+      'product': 'SM-J260F',
       'version': '20.4.5.63.00'
     },
 
