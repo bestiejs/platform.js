@@ -139,11 +139,12 @@
       'version': '2.5'
     },
 
-    'Android Browser (like Safari 4.x) on Android 2.1': {
+    'Android Browser (like Safari 4.x) on Sprint APA9292KT (Android 2.1)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Sprint APA9292KT Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko)',
       'layout': 'WebKit',
       'name': 'Android Browser',
-      'os': 'Android 2.1'
+      'os': 'Android 2.1',
+      'product': 'Sprint APA9292KT'
     },
 
     'Android Browser (like Chrome 8.0) on Asus Transformer': {
@@ -163,6 +164,15 @@
       'name': 'Android Browser',
       'product': 'PlayStation Vita 1.00',
       'os': 'Android'
+    },
+
+    'Android Browser 4.0 (like Safari 7.x) on HUAWEI H891L (Android 4.4.4)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 4.4.4; HUAWEI H891L Build/HuaweiH891L) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Android Browser',
+      'os': 'Android 4.4.4',
+      'product': 'HUAWEI H891L',
+      'version': '4.0'
     },
 
     'Android Browser 1.0 (like Chrome 18.0.1025.308) on Samsung Galaxy S4 (Android 4.2.2)': {
@@ -241,12 +251,13 @@
       'version': '4.0'
     },
 
-    'Android Browser 4.0 (like Chrome 33.0.0.0) on Android 4.4.4': {
+    'Android Browser 4.0 (like Chrome 33.0.0.0) on SGH-M919 (Android 4.4.4)': {
       'ua': 'Mozilla/5.0 (Linux; Android 4.4.4; SGH-M919 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
       'name': 'Android Browser',
       'os': 'Android 4.4.4',
+      'product': 'SGH-M919'
       'version': '4.0'
     },
 
@@ -272,21 +283,23 @@
       'version': '4.0'
     },
 
-    'Android Browser 4.0 (like Chrome 40.0.2214.89) on Android 5.1.1': {
+    'Android Browser 4.0 (like Chrome 40.0.2214.89) on SGP521 (Android 5.1.1)': {
       'ua': 'Mozilla/5.0 (Linux; Android 5.1.1; SGP521 Build/23.4.A.0.546) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
       'name': 'Android Browser',
       'os': 'Android 5.1.1',
+      'product': 'SGP521',
       'version': '4.0'
     },
 
-    'Android Browser 4.0 (like Chrome 42.0.2311.129) on Android 5.1': {
+    'Android Browser 4.0 (like Chrome 42.0.2311.129) on XT1254 (Android 5.1)': {
       'ua': 'Mozilla/5.0 (Linux; Android 5.1; XT1254 Build/SU4TL-44; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/42.0.2311.129 Mobile Safari/537.36',
       'layout': 'Blink',
       'likeChrome': true,
       'name': 'Android Browser',
       'os': 'Android 5.1',
+      'product': 'XT1254',
       'version': '4.0'
     },
 
@@ -617,6 +630,15 @@
       'os': 'Android 6.0',
       'product': 'Nexus 6P',
       'version': '45.0.2454.94'
+    },
+
+    'Chrome Mobile 70.0.3538.80 on Moto G (5) Plus (Android 8.1.0)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 8.1.0; Moto G (5) Plus) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome Mobile',
+      'os': 'Android 8.1.0',
+      'product': 'Moto G (5) Plus',
+      'version': '70.0.3538.80'
     },
 
     'Chrome Mobile (desktop mode) on iOS 4.3+': {
