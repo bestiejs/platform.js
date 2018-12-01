@@ -632,6 +632,21 @@
     if (name == 'Opera Mini' && /\bOPiOS\b/.test(ua)) {
       description.push('running in Turbo/Uncompressed mode');
     }
+
+    // Hack for Android devices, so so many Android devices..
+    if ( (/\bAndroid\b/.test(os)) && (!product) ) {
+        // for example
+        // ua = Mozilla/5.0 (Linux; Android 8.1.0; Moto G (5) Plus) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.80 Mobile Safari/537.36
+        // match between "Android*;" until "Build" or ") AppleWebKit"
+        var str = /Android.*(?=\;)\s*(.*?)\s*Build|Android.*(?=\;)\s*(.*?)\s*\) AppleWebKit/i.exec(ua);
+        if (str) {
+            var pr = (str[1] || str[2]);
+            if (pr) {
+                product = pr.substr(1).trim();
+            }
+        }
+    }
+
     // Detect IE Mobile 11.
     if (name == 'IE' && /\blike iPhone OS\b/.test(ua)) {
       data = parse(ua.replace(/like iPhone OS/, ''));
