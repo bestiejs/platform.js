@@ -257,7 +257,7 @@
       'likeChrome': true,
       'name': 'Android Browser',
       'os': 'Android 4.4.4',
-      'product': 'SGH-M919'
+      'product': 'SGH-M919',
       'version': '4.0'
     },
 
