@@ -2372,7 +2372,7 @@
       'version': '1.0.13.81'
     },
 
-    'Silk 1.0.0 on Amazon Kindle Fire (Android 2.3.4)': {
+    'Silk 1.0.0 (mobile mode) on Amazon Kindle Fire (Android 2.3.4)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; Cloud9/1.0.0) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
       'layout': 'WebKit',
       'manufacturer': 'Amazon',
@@ -2382,12 +2382,12 @@
       'version': '1.0.0'
     },
 
-    'Silk 1.0.0 (desktop mode) on Amazon Kindle Fire': {
+    'Silk 1.0.0 (desktop mode) on Amazon Kindle Fire (OS X 10.6.3)': {
       'ua': 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us; Cloud9/1.0.0) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16',
       'layout': 'WebKit',
       'manufacturer': 'Amazon',
       'name': 'Silk',
-      'os': 'Android',
+      'os': 'OS X 10.6.3',
       'product': 'Kindle Fire',
       'version': '1.0.0'
     },
@@ -2430,6 +2430,16 @@
       'os': 'Android',
       'product': 'Kindle Fire',
       'version': '1.1.0'
+    },
+
+    'Silk 70.5.1 (tablet mode) on Amazon Kindle Fire (Android 5.1.1)': {
+      'ua': 'Mozilla/5.0 (Linux; Android 5.1.1; KFDOWI) AppleWebKit/537.36 (KHTML, like Gecko) Silk/70.5.1 like Chrome/70.0.3538.110 Safari/537.36',
+      'layout': 'Blink',
+      'manufacturer': 'Amazon',
+      'name': 'Silk',
+      'os': 'Android 5.1.1',
+      'product': 'Kindle Fire',
+      'version': '70.5.1'
     },
 
     'Sleipnir 2.8.4 on Windows XP': {

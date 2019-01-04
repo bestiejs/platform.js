@@ -379,7 +379,7 @@
       'RockMelt',
       { 'label': 'Samsung Internet', 'pattern': 'SamsungBrowser' },
       'SeaMonkey',
-      { 'label': 'Silk', 'pattern': '(?:Cloud9|Silk-Accelerated)' },
+      { 'label': 'Silk', 'pattern': '(?:Cloud9|Silk-Accelerated|Silk\/)' },
       'Sleipnir',
       'SlimBrowser',
       { 'label': 'SRWare Iron', 'pattern': 'Iron' },
@@ -419,12 +419,12 @@
       'iPod',
       'iPhone',
       'Kindle',
-      { 'label': 'Kindle Fire', 'pattern': '(?:Cloud9|Silk-Accelerated)' },
       'Nexus',
       'Nook',
       'PlayBook',
       'PlayStation Vita',
       'PlayStation',
+      { 'label': 'Kindle Fire', 'pattern': '(?:Cloud9|Silk-Accelerated|Silk\/)' },
       'TouchPad',
       'Transformer',
       { 'label': 'Wii U', 'pattern': 'WiiU' },
@@ -658,12 +658,26 @@
     }
     // Detect Silk desktop/accelerated modes.
     else if (name == 'Silk') {
-      if (!/\bMobi/i.test(ua)) {
-        os = 'Android';
-        description.unshift('desktop mode');
-      }
-      if (/Accelerated *= *true/i.test(ua)) {
-        description.unshift('accelerated');
+      if (/Accelerated/.test(ua)) {
+        // Gen 1 Kindle Fire
+
+        if (!/\bMobi/i.test(ua)) {
+          os = 'Android';
+          description.unshift('desktop mode');
+        }
+        if (/Accelerated *= *true/i.test(ua)) {
+          description.unshift('accelerated');
+        }
+      } else {
+        if (/^Mozilla\/5\.0 \(Linux; Android/.test(ua)) {
+          description.unshift('tablet mode');
+        } else if (/^Mozilla\/5\.0 \(X11;/.test(ua)) {
+          description.unshift('desktop mode');
+        } else if (/^Mozilla\/5\.0 \(Macintosh;/.test(ua)) {
+          description.unshift('desktop mode');
+        } else if (/^Mozilla\/5\.0 \(Linux; U;/.test(ua)) {
+          description.unshift('mobile mode');
+        }
       }
     }
     // Detect PaleMoon identifying as Firefox.
