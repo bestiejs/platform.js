@@ -2091,6 +2091,14 @@
       'version': '0.8.34.820'
     },
 
+    'Sailfish Browser 1.0 (Gecko) on Sailfish 3.0': {
+      'ua': 'Mozilla/5.0 (Linux; U; Sailfish 3.0; Mobile; rv:45.0) Gecko/45.0 Firefox/45.0 SailfishBrowser/1.0',
+      'layout': 'Gecko',
+      'name': 'Sailfish Browser',
+      'os': 'Sailfish 3.0',
+      'version': '1.0'
+    },
+
     'Safari 1.x on OS X': {
       'ua': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; de-de) AppleWebKit/85.7 (KHTML, like Gecko) Safari/85.5',
       'layout': 'WebKit',
