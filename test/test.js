@@ -1702,6 +1702,14 @@
       'product': 'Nexus 9',
       'version': '41.1.35.1'
     },
+
+    'Microsoft Edge 74.1.96.24 on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.48 Safari/537.36 Edg/74.1.96.24',
+      'layout': 'Blink',
+      'name': 'Microsoft Edge',
+      'os': 'Windows 10 64-bit',
+      'version': '74.1.96.24'
+    },
       
     'Midori (like Safari 3.x) on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; ru-ru) AppleWebKit/525.1+ (KHTML, like Gecko, Safari/525.1+) midori',
