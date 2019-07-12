@@ -21,7 +21,7 @@
     "docdown": "^0.7.3",
     "qunit-extras": "^1.5.0",
     "qunitjs": "^1.23.1",
-    "replace": "^0.3.0",
+    "replace": "^1.1.0",
     "requirejs": "^2.3.3"
   },
   "files": [
