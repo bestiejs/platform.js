@@ -339,7 +339,7 @@
 
     /* Detectable layout engines (order is important). */
     var layout = getLayout([
-      { 'label': 'EdgeHTML', 'pattern': '(?:Edge|EdgA|EdgiOS)' },
+      { 'label': 'EdgeHTML', 'pattern': 'Edge' },
       'Trident',
       { 'label': 'WebKit', 'pattern': 'AppleWebKit' },
       'iCab',
