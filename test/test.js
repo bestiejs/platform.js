@@ -913,6 +913,16 @@
       'version': '26.0'
     },
 
+    'Firefox Mobile 37.0 on Alcatel 4044T (KaiOS 1.0)': {
+      'ua': 'Mozilla/5.0 (Mobile; ALCATEL4044T; rv:37.0) Gecko/37.0 Firefox/37.0 KaiOS/1.0',
+      'layout': 'Gecko',
+      'manufacturer': 'Alcatel',
+      'name': 'Firefox Mobile',
+      'os': 'KaiOS 1.0',
+      'product': 'Alcatel 4044T',
+      'version': '37.0'
+    },
+
     'Firefox Mobile 43.0 on Mobile (Android 4.3)': {
       'ua': 'Mozilla/5.0 (Android 4.3; Mobile; rv:43.0) Gecko/43.0 Firefox/43.0',
       'layout': 'Gecko',
@@ -929,6 +939,15 @@
       'os': 'Firefox OS',
       'product': 'TV',
       'version': '44.0'
+    },
+
+    'Firefox Mobile 48.0 on Mobile (KaiOS 2.0)': {
+      'ua': 'Mozilla/5.0 (Mobile; LYF/F30C/LYF_F30C-000-09-21-021018; Android; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.0',
+      'layout': 'Gecko',
+      'name': 'Firefox Mobile',
+      'os': 'KaiOS 2.0',
+      'product': 'Mobile',
+      'version': '48.0'
     },
 
     'Firefox Mobile 49.0 on Mobile (Android 4.4.2)': {

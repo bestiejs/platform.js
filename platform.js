@@ -437,6 +437,7 @@
     /* Detectable manufacturers. */
     var manufacturer = getManufacturer({
       'Apple': { 'iPad': 1, 'iPhone': 1, 'iPod': 1 },
+      'Alcatel': {},
       'Archos': {},
       'Amazon': { 'Kindle': 1, 'Kindle Fire': 1 },
       'Asus': { 'Transformer': 1 },
@@ -457,6 +458,7 @@
     /* Detectable operating systems (order is important). */
     var os = getOS([
       'Windows Phone',
+      'KaiOS',
       'Android',
       'CentOS',
       { 'label': 'Chrome OS', 'pattern': 'CrOS' },
@@ -823,7 +825,7 @@
         (prerelease == 'beta' ? beta : alpha) + (/\d+\+?/.exec(data) || '');
     }
     // Detect Firefox Mobile.
-    if (name == 'Fennec' || name == 'Firefox' && /\b(?:Android|Firefox OS)\b/.test(os)) {
+    if (name == 'Fennec' || name == 'Firefox' && /\b(?:Android|Firefox OS|KaiOS)\b/.test(os)) {
       name = 'Firefox Mobile';
     }
     // Obscure Maxthon's unreliable version.
