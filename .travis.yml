@@ -16,7 +16,7 @@ env:
   matrix:
     -
     - BIN=phantomjs
-    - BIN=ringo
+    # - BIN=ringo
 
 matrix:
   include:
@@ -61,7 +61,7 @@ before_install:
         wget https://github.com/ringo/ringojs/releases/download/v$RINGOJS_VERSION/ringojs-$RINGOJS_VERSION.tar.gz
         tar -xvf ringojs-$RINGOJS_VERSION.tar.gz -C $PWD/travis_ringojs
       fi
-      ringo -v
+      # ringo -v
 
   - nvm use $TRAVIS_NODE_VERSION
   - npm i -g npm@^5
