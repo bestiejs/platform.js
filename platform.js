@@ -391,6 +391,7 @@
       { 'label': 'Opera Mini', 'pattern': 'OPiOS' },
       'Opera',
       { 'label': 'Opera', 'pattern': 'OPR' },
+      'Vivaldi',
       'Chromium',
       'Chrome',
       { 'label': 'Chrome', 'pattern': '(?:HeadlessChrome)' },
@@ -989,7 +990,7 @@
     if (layout && !/\b(?:Avant|Nook)\b/.test(name) && (
         /Browser|Lunascape|Maxthon/.test(name) ||
         name != 'Safari' && /^iOS/.test(os) && /\bSafari\b/.test(layout[1]) ||
-        /^(?:Adobe|Arora|Breach|Midori|Opera|Phantom|Rekonq|Rock|Samsung Internet|Sleipnir|SRWare Iron|Web)/.test(name) && layout[1])) {
+        /^(?:Adobe|Arora|Breach|Midori|Opera|Phantom|Rekonq|Rock|Samsung Internet|Sleipnir|SRWare Iron|Vivaldi|Web)/.test(name) && layout[1])) {
       // Don't add layout details to description if they are falsey.
       (data = layout[layout.length - 1]) && description.push(data);
     }

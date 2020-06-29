@@ -2612,6 +2612,15 @@
       'version': '3.0.10#{alpha}'
      },
 
+     'Vivaldi 3.1.4 (like Chrome 81.0.3298.14) on Linux 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.3298.14 Safari/537.36 Vivaldi/3.1.4',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'Vivaldi',
+      'os': 'Linux 64-bit',
+      'version': '3.1.4'
+    },
+
     'webOS Browser 1.0 (like Chrome 1.x) on webOS 1.2.9': {
       'ua': 'Mozilla/5.0 (webOS/Palm webOS 1.2.9; U; en-US) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/1.0 Safari/525.27.1 Pixi/1.0',
       'layout': 'WebKit',
