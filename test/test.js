@@ -1535,22 +1535,6 @@
       'version': '11.0'
     },
 
-    'SRWare Iron 0.2.152.0 on Windows Server 2008 / Vista': {
-      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Iron/0.2.152.0 Safari/41562480.525',
-      'layout': 'WebKit',
-      'name': 'SRWare Iron',
-      'os': 'Windows Server 2008 / Vista',
-      'version': '0.2.152.0'
-    },
-
-    'SRWare Iron 30.0.1650.0 on Windows 8.1': {
-      'ua': 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML like Gecko) Iron/30.0.1650.0 Chrome/30.0.1650.0 Safari/537.36',
-      'layout': 'Blink',
-      'name': 'SRWare Iron',
-      'os': 'Windows 8.1',
-      'version': '30.0.1650.0'
-    },
-
     'Kindle Browser 3.4 (NetFront) on Amazon Kindle 2.0 (Linux 2.6.22)': {
       'ua': 'Mozilla/4.0 (compatible; Linux 2.6.22) NetFront/3.4 Kindle/2.0 (screen 600x800)',
       'layout': 'NetFront',
@@ -2557,6 +2541,42 @@
       'mode': 5,
       'name': 'SlimBrowser',
       'os': 'Windows Server 2008 R2 / 7'
+    },
+
+    'SRWare Iron 0.2.152.0 (like Chrome 1.x) on Windows Server 2008 / Vista': {
+      'ua': 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Iron/0.2.152.0 Safari/41562480.525',
+      'layout': 'WebKit',
+      'likeChrome': true,
+      'name': 'SRWare Iron',
+      'os': 'Windows Server 2008 / Vista',
+      'version': '0.2.152.0'
+    },
+
+    'SRWare Iron 30.0.1650.0 (like Chrome 30.0.1650.0) on Windows 8.1': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML like Gecko) Iron/30.0.1650.0 Chrome/30.0.1650.0 Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'SRWare Iron',
+      'os': 'Windows 8.1',
+      'version': '30.0.1650.0'
+    },
+
+    'SRWare Iron Mobile 74.0.3729.136 (like Chrome 74.0.3729.136) on Android 10': {
+      'ua': 'Mozilla/5.0 (Linux; Android 10; LYA-L0C) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.136 Mobile Iron Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'SRWare Iron Mobile',
+      'os': 'Android 10',
+      'version': '74.0.3729.136'
+    },
+
+    'SRWare Iron 76.0.3950.0 (like Chrome 76.0.3950.0) on Windows 8.1 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3950.0 Iron Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'SRWare Iron',
+      'os': 'Windows 8.1 64-bit',
+      'version': '76.0.3950.0'
     },
 
     'Sunrise 1.7.5 on OS X 10.5.5': {
