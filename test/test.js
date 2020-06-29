@@ -856,6 +856,14 @@
       'version': '29.0'
     },
 
+    'Firefox 76.0 on DragonFly BSD 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; DragonFly x86_64; rv:76.0) Gecko/20100101 Firefox/76.0',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'DragonFly BSD 64-bit',
+      'version': '76.0'
+    },
+
     'Firefox for iOS 1.0 (like Safari 8.x) on Apple iPhone (iOS 8.3)': {
       'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4',
       'layout': 'WebKit',
@@ -1580,6 +1588,14 @@
       'version': '1.5.4'
     },
 
+    'Konqueror 4.1 on DragonFly BSD': {
+      'ua': 'Mozilla/5.0 (compatible; Konqueror/4.1; DragonFly) KHTML/4.1.4 (like Gecko)',
+      'layout': 'KHTML',
+      'name': 'Konqueror',
+      'os': 'DragonFly BSD',
+      'version': '4.1'
+    },
+
     'Konqueror 4.4 on Kubuntu': {
       'ua': 'Mozilla/5.0 (compatible; Konqueror/4.4; Linux 2.6.32-22-generic; X11; en_US) KHTML/4.4.3 (like Gecko) Kubuntu',
       'layout': 'KHTML',
@@ -1594,6 +1610,22 @@
       'name': 'Konqueror',
       'os': 'Kubuntu 64-bit',
       'version': '4.7.1'
+    },
+
+    'Konqueror 5.0.97 on FreeBSD 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; FreeBSD amd64) AppleWebKit/534.34 (KHTML, like Gecko) konqueror/5.0.97 Safari/534.34',
+      'layout': 'WebKit',
+      'name': 'Konqueror',
+      'os': 'FreeBSD 64-bit',
+      'version': '5.0.97'
+    },
+
+    'Konqueror 5.0.97 on Kubuntu 64-bit': {
+      'ua': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.34 (KHTML, like Gecko) konqueror/5.0.97 Safari/534.34',
+      'layout': 'WebKit',
+      'name': 'Konqueror',
+      'os': 'Kubuntu 64-bit',
+      'version': '5.0.97'
     },
 
     'Lunascape 5.0#{alpha}3 (Trident) on Windows Server 2003 / XP 64-bit': {

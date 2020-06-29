@@ -465,6 +465,7 @@
       'CentOS',
       { 'label': 'Chrome OS', 'pattern': 'CrOS' },
       'Debian',
+      { 'label': 'DragonFly BSD', 'pattern': 'DragonFly' },
       'Fedora',
       'FreeBSD',
       'Gentoo',
@@ -650,7 +651,7 @@
         : '');
     }
     // Detect Kubuntu.
-    else if (name == 'Konqueror' && !/buntu/i.test(os)) {
+    else if (name == 'Konqueror' && /^Linux\b/i.test(os)) {
       os = 'Kubuntu';
     }
     // Detect Android browsers.
