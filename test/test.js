@@ -2705,6 +2705,34 @@
       'product': 'Wii U'
     },
 
+    'Yandex Browser 20.4.5.63.00 (like Chrome 81.0.4044.138) on Android 8.1.0': {
+      'ua': 'Mozilla/5.0 (Linux; arm; Android 8.1.0; SM-J260F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 YaBrowser/20.4.5.63.00 SA/1 Mobile Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'Yandex Browser',
+      'os': 'Android 8.1.0',
+      'version': '20.4.5.63.00'
+    },
+
+    'Yandex Browser 20.4.4.227.11 (like Safari 8+) on Apple iPad (iOS 13.3)': {
+      'ua': 'Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 YaBrowser/20.4.4.227.11 Mobile/15E148 Safari/604.1',
+      'layout': 'WebKit',
+      'manufacturer': 'Apple',
+      'name': 'Yandex Browser',
+      'os': 'iOS 13.3',
+      'product': 'iPad',
+      'version': '20.4.4.227.11'
+    },
+
+    'Yandex Browser 20.6.2.197 32-bit (like Chrome 81.0.4044.138) on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 YaBrowser/20.6.2.197 Yowser/2.5 Yptp/1.21 Safari/537.36',
+      'layout': 'Blink',
+      'likeChrome': true,
+      'name': 'Yandex Browser',
+      'os': 'Windows 10 64-bit',
+      'version': '20.6.2.197'
+    },
+
     'TouchPad Browser (like Chrome 6.x) on HP TouchPad 1.0 (webOS 3.0.0)': {
       'ua': 'Mozilla/5.0 (hp-tablet; Linux; hpwOS/3.0.0; U; en-GB) AppleWebKit/534.6 (KHTML, like Gecko) wOSBrowser/233.70 Safari/534.6 TouchPad/1.0',
       'layout': 'WebKit',
