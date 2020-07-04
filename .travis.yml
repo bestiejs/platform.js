@@ -64,7 +64,8 @@ before_install:
       # ringo -v
 
   - nvm use $TRAVIS_NODE_VERSION
-  - npm i -g npm@^5
+  - |
+      [ $TRAVIS_NODE_VERSION = "14" ] && npm i -g npm@^6 || npm i -g npm@^5
 
 install:
   - npm i
