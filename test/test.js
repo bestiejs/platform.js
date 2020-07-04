@@ -166,12 +166,13 @@
       'os': 'Android'
     },
 
-    'Android Browser 4.0 (like Chrome 33.0.0.0) on HUAWEI H891L (Android 4.4.4)': {
+    'Android Browser 4.0 (like Chrome 33.0.0.0) on Huawei H891L (Android 4.4.4)': {
       'ua': 'Mozilla/5.0 (Linux; Android 4.4.4; HUAWEI H891L Build/HuaweiH891L) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
       'layout': 'Blink',
+      'manufacturer': 'Huawei',
       'name': 'Android Browser',
       'os': 'Android 4.4.4',
-      'product': 'HUAWEI H891L',
+      'product': 'Huawei H891L',
       'version': '4.0'
     },
 
@@ -598,13 +599,13 @@
       'version': '63.0.3239.132'
     },
 
-    'Chrome Mobile 16.0.912.77 on HTC (Android 4.0.3)': {
+    'Chrome Mobile 16.0.912.77 on HTC Sensation XE with Beats Audio (Android 4.0.3)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
       'layout': 'WebKit',
       'manufacturer': 'HTC',
       'name': 'Chrome Mobile',
       'os': 'Android 4.0.3',
-      'product': 'HTC',
+      'product': 'HTC Sensation XE with Beats Audio',
       'version': '16.0.912.77'
     },
 

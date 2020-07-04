@@ -451,13 +451,17 @@
       'Google': { 'Google TV': 1, 'Nexus': 1 },
       'HP': { 'TouchPad': 1 },
       'HTC': {},
+      'Huawei': {},
+      'Lenovo': {},
       'LG': {},
       'Microsoft': { 'Xbox': 1, 'Xbox One': 1 },
       'Motorola': { 'Xoom': 1 },
       'Nintendo': { 'Wii U': 1,  'Wii': 1 },
       'Nokia': { 'Lumia': 1 },
+      'Oppo': {},
       'Samsung': { 'Galaxy S': 1, 'Galaxy S2': 1, 'Galaxy S3': 1, 'Galaxy S4': 1 },
-      'Sony': { 'PlayStation': 1, 'PlayStation Vita': 1 }
+      'Sony': { 'PlayStation': 1, 'PlayStation Vita': 1 },
+      'Xiaomi': { 'Mi': 1, 'Redmi': 1 }
     });
 
     /* Detectable operating systems (order is important). */
@@ -624,18 +628,6 @@
     // Convert layout to an array so we can add extra details.
     layout && (layout = [layout]);
 
-    // Detect product names that contain their manufacturer's name.
-    if (manufacturer && !product) {
-      product = getProduct([manufacturer]);
-    }
-    // Clean up Google TV.
-    if ((data = /\bGoogle TV\b/.exec(product))) {
-      product = data[0];
-    }
-    // Detect simulators.
-    if (/\bSimulator\b/i.test(ua)) {
-      product = (product ? product + ' ' : '') + 'Simulator';
-    }
     // Detect Android products.
     // Browsers on Android devices typically provide their product IDS after "Android;"
     // up to "Build" or ") AppleWebKit".
@@ -648,6 +640,22 @@
         // Replace any language codes (eg. "en-US").
         .replace(/^[a-z]{2}-[a-z]{2};\s*/i, '')
         || null;
+    }
+    // Detect product names that contain their manufacturer's name.
+    if (manufacturer && !product) {
+      product = getProduct([manufacturer]);
+    } else if (manufacturer && product) {
+      product = product
+        .replace(RegExp('^(' + qualify(manufacturer) + ')[-_.\\s]', 'i'), manufacturer + ' ')
+        .replace(RegExp('^(' + qualify(manufacturer) + ')[-_.]?(\\w)', 'i'), manufacturer + ' $2');
+    }
+    // Clean up Google TV.
+    if ((data = /\bGoogle TV\b/.exec(product))) {
+      product = data[0];
+    }
+    // Detect simulators.
+    if (/\bSimulator\b/i.test(ua)) {
+      product = (product ? product + ' ' : '') + 'Simulator';
     }
     // Detect Opera Mini 8+ running in Turbo/Uncompressed mode on iOS.
     if (name == 'Opera Mini' && /\bOPiOS\b/.test(ua)) {
