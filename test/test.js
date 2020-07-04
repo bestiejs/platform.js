@@ -599,6 +599,14 @@
       'version': '63.0.3239.132'
     },
 
+    'Chrome 83.0.4103.116 on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+      'layout': 'Blink',
+      'name': 'Chrome',
+      'os': 'Windows 10 64-bit',
+      'version': '83.0.4103.116'
+    },
+
     'Chrome Mobile 16.0.912.77 on HTC Sensation XE with Beats Audio (Android 4.0.3)': {
       'ua': 'Mozilla/5.0 (Linux; U; Android 4.0.3; zh-cn; HTC Sensation XE with Beats Audio Build/IML74K) AppleWebKit/535.7 (KHTML, like Gecko) CrMo/16.0.912.77 Mobile Safari/535.7',
       'layout': 'WebKit',
@@ -885,6 +893,14 @@
       'name': 'Firefox',
       'os': 'DragonFly BSD 64-bit',
       'version': '76.0'
+    },
+
+    'Firefox 77.0 on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0',
+      'layout': 'Gecko',
+      'name': 'Firefox',
+      'os': 'Windows 10 64-bit',
+      'version': '77.0'
     },
 
     'Firefox for iOS 1.0 (like Safari 8.x) on Apple iPhone (iOS 8.3)': {
@@ -1764,8 +1780,16 @@
       'product': 'Lumia 950',
       'version': '13.10586'
     },
-    
-    'Microsoft Edge 41.1.35.1 (like Safari 8+) on Apple iPhone (iOS 10.3.2)': {
+
+    'Microsoft Edge 18.19041 on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19041',
+      'layout': 'EdgeHTML',
+      'name': 'Microsoft Edge',
+      'os': 'Windows 10 64-bit',
+      'version': '18.19041',
+    },
+
+    'Microsoft Edge 41.1.35.1 (like Safari 10.x) on Apple iPhone (iOS 10.3.2)': {
       'ua': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1',
       'layout': 'WebKit',
       'manufacturer': 'Apple',
@@ -1792,7 +1816,15 @@
       'os': 'Windows 10 64-bit',
       'version': '74.1.96.24'
     },
-      
+
+    'Microsoft Edge 83.0.478.37 on Windows 10 64-bit': {
+      'ua': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36 Edg/83.0.478.37',
+      'layout': 'Blink',
+      'name': 'Microsoft Edge',
+      'os': 'Windows 10 64-bit',
+      'version': '83.0.478.37'
+    },
+
     'Midori (like Safari 3.x) on Linux 64-bit': {
       'ua': 'Mozilla/5.0 (X11; U; Linux x86_64; ru-ru) AppleWebKit/525.1+ (KHTML, like Gecko, Safari/525.1+) midori',
       'layout': 'WebKit',
@@ -2346,6 +2378,14 @@
       'version': '8.0'
     },
 
+    'Safari 13.0.5 on OS X 10.15.3': {
+      'ua': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15',
+      'layout': 'WebKit',
+      'name': 'Safari',
+      'os': 'OS X 10.15.3',
+      'version': '13.0.5'
+    },
+
     'Samsung Internet 1.0 (like Safari 7.x) on Samsung SM-Z130H (Tizen 2.3)': {
       'ua' : 'Mozilla/5.0 (Linux; Tizen 2.3; SAMSUNG SM-Z130H) AppleWebKit/537.3 (KHTML, like Gecko) SamsungBrowser/1.0 Mobile Safari/537.3',
       'layout': 'WebKit',
@@ -2779,7 +2819,7 @@
       'version': '20.4.5.63.00'
     },
 
-    'Yandex Browser 20.4.4.227.11 (like Safari 8+) on Apple iPad (iOS 13.3)': {
+    'Yandex Browser 20.4.4.227.11 (like Safari 11.x) on Apple iPad (iOS 13.3)': {
       'ua': 'Mozilla/5.0 (iPad; CPU OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 YaBrowser/20.4.4.227.11 Mobile/15E148 Safari/604.1',
       'layout': 'WebKit',
       'manufacturer': 'Apple',
