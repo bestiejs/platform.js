@@ -347,7 +347,8 @@
       'NetFront',
       'Tasman',
       'KHTML',
-      'Gecko'
+      'Gecko',
+      { 'label': 'LibWeb', 'pattern': 'Ladybird' }
     ]);
 
     /* Detectable browser names (order is important). */
@@ -402,7 +403,8 @@
       { 'label': 'Firefox for iOS', 'pattern': 'FxiOS' },
       { 'label': 'IE', 'pattern': 'IEMobile' },
       { 'label': 'IE', 'pattern': 'MSIE' },
-      'Safari'
+      'Safari',
+      'Ladybird'
     ]);
 
     /* Detectable products (order is important). */
@@ -496,7 +498,8 @@
       'Macintosh',
       'Mac',
       'Windows 98;',
-      'Windows '
+      'Windows ',
+      'SerenityOS'
     ]);
 
     /*------------------------------------------------------------------------*/

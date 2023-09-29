@@ -1574,6 +1574,46 @@
       'version': '11.0'
     },
 
+    'Ladybird on Linux x86_64': {
+      'ua': 'Mozilla/5.0 (Linux; x86_64) Ladybird/1.0',
+      'layout': 'LibWeb',
+      'name': 'Ladybird',
+      'os': 'Linux 64-bit',
+      'version': '1.0'
+    },
+
+    'Ladybird on OSX AArch64': {
+      'ua': 'Mozilla/5.0 (macOS; AArch64) Ladybird/1.0',
+      'layout': 'LibWeb',
+      'name': 'Ladybird',
+      'os': 'MacOS',
+      'version': '1.0'
+    },
+
+    'Ladybird on SerenityOS x86_64': {
+      'ua': 'Mozilla/5.0 (SerenityOS; x86_64) Ladybird/1.0',
+      'layout': 'LibWeb',
+      'name': 'Ladybird',
+      'os': 'SerenityOS 64-bit',
+      'version': '1.0'
+    },
+
+    'Ladybird on Android x86_64': {
+      'ua': 'Mozilla/5.0 (Android 10; x86_64) Ladybird/1.0',
+      'layout': 'LibWeb',
+      'name': 'Ladybird',
+      'os': 'Android 10 64-bit',
+      'version': '1.0'
+    },
+
+    'Ladybird on Android AArch64': {
+      'ua': 'Mozilla/5.0 (Android 10; AArch64) Ladybird/1.0',
+      'layout': 'LibWeb',
+      'name': 'Ladybird',
+      'os': 'Android 10',
+      'version': '1.0'
+    },
+
     'Kindle Browser 3.4 (NetFront) on Amazon Kindle 2.0 (Linux 2.6.22)': {
       'ua': 'Mozilla/4.0 (compatible; Linux 2.6.22) NetFront/3.4 Kindle/2.0 (screen 600x800)',
       'layout': 'NetFront',
